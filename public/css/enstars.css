@@ -1,0 +1,33 @@
+/* Enstar CSS */
+
+
+.panel-danger > .panel-heading {
+	/* red */
+	background-color: #ee5859;
+	border-color: #ee5859;
+}
+
+
+.panel-danger {
+	border-color: #ee5859;
+}
+
+.panel-info > .panel-heading {
+	/* blue */
+	background-color: #55d1da;
+	border-color: #55d1da;
+}
+
+.panel-info {
+	border-color: #55d1da;
+}
+
+.panel-warning > .panel-heading{
+	/* yellow */
+	background-color: #ffd33a;
+	border-color: #ffd33a;	
+}
+
+.panel-warning {
+	border-color: #ffd33a;
+}
