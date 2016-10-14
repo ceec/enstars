@@ -21,7 +21,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
 
     <style>
         body {

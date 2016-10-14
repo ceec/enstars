@@ -20,7 +20,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">

@@ -180,7 +180,10 @@ class DisplayController extends Controller {
             $even = array_chunk($even,4);
 
             //need to fill in the last chunks if they are less than four
-            $last_odd = array_pop((array_slice($odd, -1)));
+
+            $slice_odd = array_slice($odd, -1);
+            $last_odd = array_pop($slice_odd);
+
             $last_key_odd = key( array_slice($odd, -1, 1, TRUE));
 
              if (count($last_odd) < 4) {
@@ -192,7 +195,8 @@ class DisplayController extends Controller {
              }
 
              //need to fill in the last chunks if they are less than four
-             $last_even = array_pop((array_slice($even, -1)));
+             $slice_even = array_slice($even, -1);
+             $last_even = array_pop($slice_even);
              $last_key_even = key( array_slice($even, -1, 1, TRUE));
 
              //echo '<h2>last even count'.count($last_even).'</h2>';
