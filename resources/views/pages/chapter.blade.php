@@ -132,4 +132,9 @@
 
 
 </div>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
 @endsection
