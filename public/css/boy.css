@@ -1,9 +1,20 @@
+.natsume {
+  color: #ae3841;
+  font-weight:700
+}
+
 .kanata {
-  color: #1E90FF;
+  color: #71cbcc;
   letter-spacing: 5px;
 }
 
 .tsukasa {
   color: #DC143C;
   font-weight: 700;
+}
+.crazynatsume {
+  font-family: 'Loved by the King', cursive;
+   color: #ae3841;
+  font-size: 120%;
+  font-style:italic
 }
