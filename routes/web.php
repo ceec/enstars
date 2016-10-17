@@ -73,6 +73,8 @@ Route::get('/home/translations/{story_id}/{chapter_id}','HomeController@translat
 Route::post('/add/translation','HomeController@addTranslation');
 //ajax posting
 Route::post('/add/translationajax','HomeController@addTranslationAjax');
+//settings
+Route::get('/home/edit/css','HomeController@editCSS');
 
 //tool page
 Route::get('/home/tools','HomeController@tools');

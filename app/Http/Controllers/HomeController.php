@@ -222,6 +222,16 @@ class HomeController extends Controller
         }
         
         return redirect('/home/translations/');      
-    }  
+    }
+
+
+    /**
+     * UI for editing CSS
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCSS() {
+        return view('home.editCSS');
+    }        
 
 }
