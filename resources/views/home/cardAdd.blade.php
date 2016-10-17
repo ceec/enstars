@@ -26,6 +26,10 @@
                      {!! Form::text('english_name','',['class'=>'form-control','id'=>'english-name']) !!}
                   </div>   
                   <div class="form-group">
+                    <label for="s-name">Placeholder Name</label>
+                     {!! Form::text('name_s','',['class'=>'form-control','id'=>'s-name']) !!}
+                  </div>   
+                  <div class="form-group">
                     <label for="stars">Stars</label>
                     <select name="stars" class="form-control" id="stars">
                         <option value="1">1</option>

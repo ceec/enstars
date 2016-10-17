@@ -59,7 +59,7 @@ class CardController extends Controller
         $c->color = $request->input('color');
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
-        $c->name_s = '';
+        $c->name_s = $request->input('name_s');
         $c->da = 0;
         $c->vo = 0;
         $c->pf = 0;
