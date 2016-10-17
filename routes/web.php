@@ -76,6 +76,13 @@ Route::post('/add/translationajax','HomeController@addTranslationAjax');
 //settings
 Route::get('/home/edit/css','HomeController@editCSS');
 
+
+//card editing/adding UI
+Route::get('/home/card/add','CardController@addDisplay');
+//posting
+Route::post('/add/card','CardController@add');
+
+
 //tool page
 Route::get('/home/tools','HomeController@tools');
 //adding slides

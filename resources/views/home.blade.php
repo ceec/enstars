@@ -55,7 +55,7 @@
                         <li><a href="/home/album">Album</a>
                         <li><a href="/home/translations">Translations</a></li>
                         <li>Chelsea's CSS Page</li>
-                        <li>Add New Card</li>
+                        <li><a href="/home/card/add">Add New Card</a></li>
                         <li>Add New Boy</li>
                     </ul>
                 </div>
