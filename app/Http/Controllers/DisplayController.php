@@ -35,9 +35,9 @@ class DisplayController extends Controller {
         $units = Unit::all();
 
         //stories that are complete
-        $event_stories = Story::where('type','=',1)->get();
-        $gacha_stories = Story::where('type','=',2)->get();
-        $character_stories = Story::where('type','=',3)->get();
+        $event_stories = Story::where('type','=',1)->where('active','=','1')->get();
+        $gacha_stories = Story::where('type','=',2)->where('active','=','1')->get();
+        $character_stories = Story::where('type','=',3)->where('active','=','1')->get();
 
         //get a list of tags
         $tags = Tag::where('active','=','1')->get();        
