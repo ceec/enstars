@@ -18,14 +18,69 @@ use App\Story;
 use App\Chapter;
 use App\Slide;
 
+use App\Blog;
+
 
 class DisplayController extends Controller {
+
     /**
-     * Show the homepage.
+     * Show the index
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        $boys = Boy::where('class','!=','')->orderBy('first_name','asc')->get();
+        $teachers = Boy::where('class','=','')->orderBy('first_name','asc')->get();
+        $blogs = Blog::orderBy('created_at','desc')->where('active','=','1')->paginate(4);
+        $units = Unit::all();
+
+        //stories that are complete
+        $event_stories = Story::where('type','=',1)->get();
+        $gacha_stories = Story::where('type','=',2)->get();
+        $character_stories = Story::where('type','=',3)->get();
+
+        //get a list of tags
+        $tags = Tag::where('active','=','1')->get();        
+
+
+        //get a list of gem skills
+        //they dont work this way.
+        $red_all = Skill::where('category','=','gem')->where('type','=','red')->where('size','=','all')->get();
+        $red_fragment = Skill::where('category','=','gem')->where('type','=','red')->where('size','=','fragment')->get();
+        $red_small = Skill::where('category','=','gem')->where('type','=','red')->where('size','=','small')->get();
+        $red_medium = Skill::where('category','=','gem')->where('type','=','red')->where('size','=','medium')->get();
+        $red_large = Skill::where('category','=','gem')->where('type','=','red')->where('size','=','large')->get();
+
+        $reds = Skill::where('category','=','gem')->where('type','=','red')->get();
+        $blues = Skill::where('category','=','gem')->where('type','=','blue')->get();
+        $yellows = Skill::where('category','=','gem')->where('type','=','yellow')->get();
+        $all= Skill::where('category','=','gem')->where('type','=','all')->get();
+
+
+        return view('pages.main')
+        ->with('boys',$boys)
+        ->with('teachers',$teachers)
+        ->with('units',$units)
+        ->with('event_stories',$event_stories)
+        ->with('gacha_stories',$gacha_stories)
+        ->with('character_stories',$character_stories)
+        ->with('tags',$tags)    
+        ->with('reds',$reds)     
+        ->with('blues',$blues)
+        ->with('yellows',$yellows)
+        ->with('all',$all)                    
+        ->with('blogs',$blogs);
+
+    }
+
+
+
+    /**
+     * Show the old homepage/info.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function info() {
         $cards = Card::all();
         $boys = Boy::all();
 

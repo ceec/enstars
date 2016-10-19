@@ -82,7 +82,7 @@
       <br>
       <br>
       <br>
-        <!--<ul class="list-inline text-center">
+        <ul class="list-inline text-center">
           <li>
             <a href="{{ url('rss') }}" data-toggle="tooltip"
                title="RSS feed">
@@ -93,7 +93,7 @@
             </a>
           </li>
           <li>
-            <a href="https://twitter.com/PERSONALIZE" data-toggle="tooltip"
+            <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
                title="My Twitter Page">
               <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -101,7 +101,7 @@
               </span>
             </a>
           </li>
-        </ul>-->
+        </ul>
       </div>
     </div>
   </div>

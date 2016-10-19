@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'DisplayController@index');
+Route::get('/','DisplayController@index');
+
+//old home page/all stats
+Route::get('/info', 'DisplayController@info');
 
 //birthdaycalendar
 Route::get('/birthdays', 'DisplayController@birthdays');
@@ -49,6 +52,10 @@ Route::get('/event/{event_url}','DisplayController@event');
 //stories
 Route::get('/story/{story_id}','DisplayController@story');
 Route::get('/story/{story_id}/{chaper_id}','DisplayController@chapter');
+
+
+//news/blog
+Route::get('/news/{friendly_url}','BlogController@blog');
 
 //adding card suggestions
 Route::post('/add/name', 'CardController@addName');
