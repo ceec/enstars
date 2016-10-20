@@ -234,4 +234,19 @@ class HomeController extends Controller
         return view('home.editCSS');
     }        
 
+
+    /**
+     * save CSS
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function saveCSS(Request $request) {
+        //update the file
+
+
+        file_put_contents("./css/boy.css", $request->contents) or die("can't open file");
+
+        echo json_encode(array('result'=>'saved'));
+    }  
+
 }

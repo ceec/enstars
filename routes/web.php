@@ -38,6 +38,9 @@ Route::get('/tag/{tag_name}','DisplayController@tag');
 
 //skills
 Route::get('/skill/{skill_id}','DisplayController@skill');
+//whatabout groups of skills?
+// like /skill/gem/size    /skill/dorifes/vocal /skill/luck -> size can be there or not? if its not it will just show all!
+Route::get('/skill/{category}/{size}','DisplayController@skillCategory');
 
 //units
 Route::get('/unit/{unit_name}','DisplayController@unit');
@@ -80,9 +83,11 @@ Route::get('/home/translations/{story_id}/{chapter_id}','HomeController@translat
 Route::post('/add/translation','HomeController@addTranslation');
 //ajax posting
 Route::post('/add/translationajax','HomeController@addTranslationAjax');
+
 //settings
 Route::get('/home/edit/css','HomeController@editCSS');
-
+//save settings
+Route::post('/home/save/css','HomeController@saveCSS');
 
 //card editing/adding UI
 Route::get('/home/card/add','CardController@addDisplay');
@@ -92,6 +97,7 @@ Route::post('/add/card','CardController@add');
 
 //tool page
 Route::get('/home/tools','HomeController@tools');
+
 //adding slides
 Route::post('/add/translation/slides','HomeController@addSlides');
 

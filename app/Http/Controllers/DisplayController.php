@@ -341,6 +341,28 @@ class DisplayController extends Controller {
             ->with('cards',$cards);
     }
 
+
+    /**
+     * Show skill in that category
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function skillCategory($category,$size) {
+        //would need to -> get all the skills in that set, then get all the cards with that skill
+
+        //thats like the relationship building piece I need to figure out!
+
+        //can just for loop for now?s
+
+        $skill = Skill::where('id','=',$skill_id)->first();
+
+        $cards = Card::where('lesson_id','=',$skill_id)->get();
+
+        return view('pages.skill')
+            ->with('skill',$skill)
+            ->with('cards',$cards);
+    }
+
     /**
      * Show units
      *

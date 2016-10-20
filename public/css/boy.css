@@ -1,4 +1,6 @@
-.natsume {
+
+    
+    .natsume {
   color: #ae3841;
   font-weight:700
 }
@@ -18,4 +20,9 @@
   font-size: 140%;
   font-weight: 400;  
   font-style:italic
+}
+
+.test {
+    font-family: verdana;
+    font-weight: 400;
 }
