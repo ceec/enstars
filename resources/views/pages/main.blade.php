@@ -46,8 +46,8 @@ enstar.info| Ensemble Stars Information
                     <img class="img-responsive" src="/images/events/2.png">
                 </div>
                  <div class="col-md-4">
-                    <h3>Current Gacha</h3>
-                     <img class="img-responsive" src="/images/gachas/2.png">
+                    <h3>Current Scout</h3>
+                     <img class="img-responsive" src="/images/scouts/2.png">
                 </div>
                 <div class="col-md-4">
                     <h3>Translated Stories</h3>
