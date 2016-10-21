@@ -43,9 +43,11 @@ enstar.info| Ensemble Stars Information
             <div class="row">
                 <div class="col-md-4">
                     <h3>Current Event</h3>
+                    <img class="img-responsive" src="/images/events/2.png">
                 </div>
                  <div class="col-md-4">
                     <h3>Current Gacha</h3>
+                     <img class="img-responsive" src="/images/gachas/2.png">
                 </div>
                 <div class="col-md-4">
                     <h3>Translated Stories</h3>
