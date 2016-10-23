@@ -119,4 +119,10 @@ Route::get('/home/tools','HomeController@tools');
 Route::post('/add/translation/slides','HomeController@addSlides');
 
 
-
+//add edit blog
+Route::get('/home/blog/add','BlogController@addDisplay');
+Route::get('/home/blog/edit/{blog_id}','BlogController@editDisplay');
+Route::get('/home/blog/list','BlogController@listDisplay');
+//posting
+Route::post('/add/blog','BlogController@add');
+Route::post('/edit/blog','BlogController@edit');
