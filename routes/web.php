@@ -64,6 +64,23 @@ Route::get('/news/{friendly_url}','BlogController@blog');
 Route::post('/add/name', 'CardController@addName');
 Route::post('/add/link', 'CardController@addLink');
 
+//scouts
+Route::get('/scout/{scout_id}','DisplayController@scout');
+
+//data
+Route::get('/graph/cards-released','DisplayController@cardsReleased');
+
+
+/////////////////////////////////////////////////////////////////////
+//    Data
+/////////////////////////////////////////////////////////////////////
+
+Route::get('/data/cards-released','DataController@cardsReleased');
+
+
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
 Auth::routes();
 
 //dashboard

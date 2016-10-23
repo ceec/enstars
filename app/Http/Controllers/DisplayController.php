@@ -20,6 +20,8 @@ use App\Slide;
 
 use App\Blog;
 
+use App\Scout;
+
 
 class DisplayController extends Controller {
 
@@ -169,14 +171,7 @@ class DisplayController extends Controller {
             ->with('card',$card);
     } 
 
-    /**
-     * Chelsea page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function chelsea() {
-        return view('pages.chelsea');
-    }
+
     /**
      * Show the homepage.
      *
@@ -379,6 +374,26 @@ class DisplayController extends Controller {
     }
 
     /**
+     * Show specigic scout
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function scout($url) {
+        //can pass through an id or an url
+        if (ctype_digit($url)){
+            $scout = Scout::where('id','=',$url)->first();
+        } else {
+            $scout = Scout::where('url','=',$url)->first();
+        }
+
+        $cards = Card::where('scout_id','=',$scout->id)->get();
+
+        return view('pages.scout')
+            ->with('cards',$cards)
+            ->with('scout',$scout);
+    }  
+
+    /**
      * Show specigic event
      *
      * @return \Illuminate\Http\Response
@@ -467,5 +482,21 @@ class DisplayController extends Controller {
         ->with('chapter',$chapter_info)
         ->with('slides',$slides);
     } 
+
+
+
+///////////graphs//////////////
+
+        /**
+     * Show card release gnatt
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardsReleased() {
+        return view('pages.cardsReleased');
+    } 
+
+
+
 
 }
