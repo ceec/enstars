@@ -49,7 +49,7 @@ Route::get('/unit/{unit_name}','DisplayController@unit');
 //calculator
 Route::get('/event/calculator','DisplayController@eventCalculator');
 
-Route::get('/event/{event_url}','DisplayController@event');
+Route::get('/event/{event_id}','DisplayController@event');
 
 
 //stories

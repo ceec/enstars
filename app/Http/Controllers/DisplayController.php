@@ -399,19 +399,18 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function event($url) {
-        //can pass in url or id
-        $event = Event::where('id','=',$url)->first();
+        //can pass through an id or an url
+        if (ctype_digit($url)){
+            $event = Event::where('id','=',$url)->first();
+        } else {
+            $event = Event::where('url','=',$url)->first();
+        }
 
-        // $stories = Story::where('event_id','=',$event->id)->first();
-
-        // $chapters = Chapter::where('event_id',='',$event->id)->get();
-
-        // foreach($chapters as $chapter) {
-        //     //need to get all the slides.
-        // }
+        $cards = Card::where('event_id','=',$event->id)->get();
     
 
         return view('pages.event')
+            ->with('cards',$cards)
             ->with('event',$event);
     }    
 

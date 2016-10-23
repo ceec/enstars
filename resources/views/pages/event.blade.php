@@ -10,11 +10,32 @@
     <div class="row">
         <div class="col-md-12">
 
-        	<h1>{{$event->name}} <small>{{$event->start}} - {{$event->end}}</small></h1>
+        	<h1>{{$event->name_e}} <small>{{$event->start}} - {{$event->end}}</small></h1>
 
-            <h2>Cards</h2>
                 <div class="row">
-
+                    <?php $x=1; ?>
+                    @foreach($cards as $card)
+                    	<div class="col-md-3">
+    							<div class="panel">
+    							  <div class="panel-heading">
+    							    <h3 class="panel-title">
+                                        <a href="/card/{{$card->id}}">
+                                        	<div class="card-container"><img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png"></div>
+                                        </a>	
+                                    </h3>
+    							  </div>
+    							</div>   
+						</div>             
+                        <?php
+                            if ($x%4==0) {
+?>
+                            </div>
+                            <div class="row">
+<?php                            
+                            }
+                            $x++;
+                        ?>
+                    @endforeach
                 </div>
 
 
