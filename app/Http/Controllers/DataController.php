@@ -72,6 +72,13 @@ class DataController extends Controller {
                     $dates[$card->id]['end'] = date('Y-m-d',strtotime($scout->end));
                     $dates[$card->id]['task'] = $scout->name_e;
                                      
+                } else if ($card->event_id != 0) {
+                    //get that event
+                    $event = Event::where('id','=',$card->event_id)->first();
+                    
+                    $dates[$card->id]['start'] = date('Y-m-d',strtotime($event->start));
+                    $dates[$card->id]['end'] = date('Y-m-d',strtotime($event->end));
+                    $dates[$card->id]['task'] = $event->name_e;               
                 }
 
 
