@@ -504,6 +504,8 @@ class DisplayController extends Controller {
         $email = $request->email;
         $content = $request->message;
 
+        $headers = 'From: '+$email;
+
         mail('info@enstars.info','New Contact Form from '.$name,$content);
 
 
