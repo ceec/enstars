@@ -70,6 +70,10 @@ Route::get('/scout/{scout_id}','DisplayController@scout');
 //data
 Route::get('/graph/cards-released','DisplayController@cardsReleased');
 
+//contact form
+Route::get('/contact','DisplayController@contact');
+Route::post('/contact/send','DisplayController@contactSend');
+
 
 /////////////////////////////////////////////////////////////////////
 //    Data

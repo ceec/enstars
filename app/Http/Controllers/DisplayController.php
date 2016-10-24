@@ -483,6 +483,33 @@ class DisplayController extends Controller {
     } 
 
 
+    /**
+     * Contact page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function contact() {
+        return view('pages.contact');
+    }
+
+
+    /**
+     * Contact page - > send
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function contactSend(Request $request) {
+
+        $name = $request->name;
+        $email = $request->email;
+        $content = $request->message;
+
+        mail('info@enstars.info','New Contact Form from '.$name,$content);
+
+
+        return view('pages.contactThankYou');
+    }    
+
 
 ///////////graphs//////////////
 

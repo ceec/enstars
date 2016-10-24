@@ -13,12 +13,12 @@
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-<link href="https://fonts.googleapis.com/css?family=Loved+by+the+King" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Loved+by+the+King" rel="stylesheet"> 
 
     <!-- Styles -->
     <link href="/css/bootstrapyeti.min.css" rel="stylesheet">
-        <link href="/css/enstars.css" rel="stylesheet">
-          <link href="/css/boy.css" rel="stylesheet">
+    <link href="/css/enstars.css" rel="stylesheet">
+    <link href="/css/boy.css" rel="stylesheet">
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
@@ -74,34 +74,39 @@
     </nav>
 
     @yield('content')
-<footer>
+<footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div class="col-md-4">
       <br>
-      <br>
-      <br>
-      <br>
-        <ul class="list-inline text-center">
-          <li>
-            <a href="{{ url('rss') }}" data-toggle="tooltip"
-               title="RSS feed">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
-               title="My Twitter Page">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-        </ul>
+
+      </div>
+      <div class="col-md-3">
+            <br>
+          <ul class="list-inline text-center">
+            <li>
+              <a href="{{ url('rss') }}" data-toggle="tooltip"
+                 title="RSS feed">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
+                 title="My Twitter Page">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+      </div>
+      <div class="col-md-4">
+        <br>
+        <a class="navbar-right" href="/contact">Contact Us</a>
       </div>
     </div>
   </div>
