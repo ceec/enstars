@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-Event Calculator | Ensemble Stars Info!
+Event Calculator | enstars.info
 @stop
 
 @section('content')

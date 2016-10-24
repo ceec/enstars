@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-{{$event->name}} | Ensemble Stars
+{{$event->name}} | enstars.info
 @stop
 
 @section('content')

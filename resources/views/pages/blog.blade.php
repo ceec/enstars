@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-enstar.info| Ensemble Stars Information
+{{$blog->title}} | enstars.info
 @stop
 
 @section('content')

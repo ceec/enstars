@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-Birthday Calendar | Ensemble Stars
+Birthday Calendar | enstars.info
 @stop
 
 @section('content')

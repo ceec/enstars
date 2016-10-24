@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-{{$skill->english_description}} | Ensemble Stars
+{{$skill->english_description}} | enstars.info
 @stop
 
 @section('content')

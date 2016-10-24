@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-enstar.info| Ensemble Stars Information
+enstars.info - Information and Translations for Ensemble Stars!
 @stop
 
 @section('content')
