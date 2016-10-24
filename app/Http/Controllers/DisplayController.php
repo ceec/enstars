@@ -508,7 +508,7 @@ $headers = 'From: '.$email. "\r\n" .
     'Reply-To: '.$email. "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
-        mail('info@enstars.info','New Contact Form from '.$name,$content);
+        mail('info@enstars.info','New Contact Form from '.$name,$content,$headers);
 
 
         return view('pages.contactThankYou');
