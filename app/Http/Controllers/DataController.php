@@ -43,7 +43,8 @@ class DataController extends Controller {
         //     "segments": [{
         //       "start": "2016-10-15",
         //       "end": "2016-10-25",
-        //       "task": "Rockin Star"
+        //       "task": "Rockin Star",
+        //       "color": "#46615e"   
         //     },
         //         {
         //       "start": "2016-10-15",
@@ -71,6 +72,7 @@ class DataController extends Controller {
                     $dates[$card->id]['start'] = date('Y-m-d',strtotime($scout->start));
                     $dates[$card->id]['end'] = date('Y-m-d',strtotime($scout->end));
                     $dates[$card->id]['task'] = $scout->name_e;
+                    $dates[$card->id]['color'] = $boy->color;
                                      
                 } else if ($card->event_id != 0) {
                     //get that event
@@ -78,7 +80,8 @@ class DataController extends Controller {
                     
                     $dates[$card->id]['start'] = date('Y-m-d',strtotime($event->start));
                     $dates[$card->id]['end'] = date('Y-m-d',strtotime($event->end));
-                    $dates[$card->id]['task'] = $event->name_e;               
+                    $dates[$card->id]['task'] = $event->name_e;       
+                    $dates[$card->id]['color'] = $boy->color;        
                 }
 
 

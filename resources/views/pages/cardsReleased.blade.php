@@ -40,7 +40,7 @@ var chart = AmCharts.makeChart("chartdiv", {
   "valueAxis": {
     "type": "date"
   },
-  "brightnessStep": 7,
+  "brightnessStep": 0,
   "graph": {
     "fillAlphas": 1,
     "lineAlpha": 1,
@@ -58,67 +58,6 @@ var chart = AmCharts.makeChart("chartdiv", {
     "url": "/data/cards-released",
     "format": "json"
   },
-  // "dataProvider": [{
-  //   "category": "Koga",
-  //   "segments": [{
-  //     "start": "2016-10-15",
-  //     "end": "2016-10-25",
-  //     "task": "Rockin Star"
-  //   }]
-  // }, {
-  //   "category": "Rei",
-  //   "segments": [{
-  //     "start": "2016-10-15",
-  //     "end": "2016-10-25",
-  //     "task": "Rockin Star"
-  //   }]
-  // }, {
-  //   "category": "Kaoru",
-  //   "segments": [{
-  //     "start": "2016-10-15",
-  //     "end": "2016-10-25",
-  //     "task": "Rockin Star"
-  //   }]
-  // } ,{
-  //   "category": "Adonis",
-  //   "segments": [{
-  //     "start": "2016-10-15",
-  //     "end": "2016-10-25",
-  //     "task": "Rockin Star"
-  //   }]
-  // }, {
-  //   "category": "Hokke",
-  //   "segments": [{
-  //     "start": "2016-10-15",
-  //     "end": "2016-10-25",
-  //     "task": "Rockin Star"
-  //   }, {
-  //     "start": "2016-10-14",
-  //     "end": "2016-10-29",
-  //     "task": "Rose Cross"
-  //   }]
-  // }, {
-  //   "category": "Subaru",
-  //   "segments": [{
-  //     "start": "2016-10-15",
-  //     "end": "2016-10-25",
-  //     "task": "Rockin Star"
-  //   }]
-  // },{
-  //   "category": "Makoto",
-  //   "segments": [{
-  //     "start": "2016-10-15",
-  //     "end": "2016-10-25",
-  //     "task": "Rockin Star"
-  //   }]
-  // },{
-  //   "category": "Mao",
-  //   "segments": [{
-  //     "start": "2016-10-15",
-  //     "end": "2016-10-25",
-  //     "task": "Rockin Star"
-  //   }]
-  // }],
   "valueScrollbar": {
     "autoGridCount": true
   },
