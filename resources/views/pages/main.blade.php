@@ -16,7 +16,9 @@ enstars.info - Information and Translations for Ensemble Stars!
                     $nicetime = date('h:i A',strtotime($blog->created_at));
 
                     if ($blog->updated_by == 1) {
-                        $blog->updated_by = 'CC';
+                        $blog->updated_by = 'ankee';
+                    } else if ($blog->updated_by == 3) {
+                        $blog->updated_by = 'cherushi';
                     }
                 ?>            
                 @if ($blog->image !='')
