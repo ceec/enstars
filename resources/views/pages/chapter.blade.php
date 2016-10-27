@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+i@extends('layouts.layout')
 
 @section('title')
 @parent
@@ -18,6 +18,11 @@
 		} else if ($story->type == 3) {
 			$event_type = 'character';
 		}
+
+    if ($story->type == 3) {
+      //add in the boy id
+      $event_type = 'character/'.$story->boy_id;
+    }
 
 		//determine image class from phone source
 		if ($chapter->source == 'lg') {
