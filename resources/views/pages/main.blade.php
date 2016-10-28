@@ -32,10 +32,6 @@ enstars.info - Information and Translations for Ensemble Stars!
                     <small>{{$nicedate}} by {{$blog->updated_by}}</small>
                 </h4>                
             @endforeach
-
-            <!-- Pager -->
-            {{$blogs->links()}}
-
             <hr>
             <div class="row">
                 <div class="col-md-4">
