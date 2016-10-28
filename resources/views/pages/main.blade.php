@@ -9,7 +9,7 @@ enstars.info - Information and Translations for Ensemble Stars!
 <div class="container">
     <div class="row">
         <div class="col-md-9">
-            <h1>News</h1>
+            <h3>News</h3>
             @foreach ($blogs as $blog)
                 <?php
                     $nicedate = date('F d, Y',strtotime($blog->created_at));
@@ -27,15 +27,10 @@ enstars.info - Information and Translations for Ensemble Stars!
                     </div>
                 @endif
 
-                <h2>
+                <h4>
                     <a href="/{{$blog->type}}/{{$blog->url}}">{{$blog->title}}</a><br>
                     <small>{{$nicedate}} by {{$blog->updated_by}}</small>
-                </h2>                
-
-                <br>
-                <br>
-                <br>
-                <br>
+                </h4>                
             @endforeach
 
             <!-- Pager -->

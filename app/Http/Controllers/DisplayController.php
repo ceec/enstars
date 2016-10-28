@@ -33,7 +33,7 @@ class DisplayController extends Controller {
     public function index() {
         $boys = Boy::where('class','!=','')->orderBy('first_name','asc')->get();
         $teachers = Boy::where('class','=','')->orderBy('first_name','asc')->get();
-        $blogs = Blog::orderBy('created_at','desc')->where('active','=','1')->paginate(4);
+        $blogs = Blog::orderBy('created_at','desc')->where('active','=','1')->paginate(2);
         $units = Unit::all();
 
         //stories that are complete
