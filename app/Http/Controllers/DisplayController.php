@@ -177,7 +177,14 @@ class DisplayController extends Controller {
     public function card($card_id) {
         $card = Card::where('id','=',$card_id)->first();
 
-        $skill = Skill::where('id','=',$card->lesson_id)->first();
+
+        if ($card->lesson_id == 0) {
+            $skill = Skill::where('id','=',1)->first();
+            $skill->id = '';
+            $skill->english_description = 'Unkown';
+        } else {
+            $skill = Skill::where('id','=',$card->lesson_id)->first();
+        }
 
         //get event or scout
         if ($card->event_id !=0) {

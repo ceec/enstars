@@ -58,7 +58,12 @@
                 
                 <h3>Stats:</h3>
                 <h3>Dream Festival Skill:</h3>
-                <h3>Lesson Skill:</h3> <a href="/skill/{{$skill->id}}">{{$skill->english_description}}</a>
+                @if ($skill->id == 0)
+                    <h3>Lesson Skill:</h3> {{$skill->english_description}}
+                @else
+                    <h3>Lesson Skill:</h3> <a href="/skill/{{$skill->id}}">{{$skill->english_description}}</a>
+                @endif
+                
             </div>
          </div>   
          <div class="row">
