@@ -47,7 +47,7 @@
     							  <div class="panel-heading">
     							    <h3 class="panel-title">
                                        <!--<div class="pull-right">{!! $stars !!}</div>-->
-                                        <div class="card-container" id="card-{{$card->card_id}}"><img class="img-responsive" src="/images/cards/{{$boy->id}}_{{$card->card_id}}.png"></div>
+                                        <a href="/card/{{$card->id}}"><div class="card-container" id="card-{{$card->card_id}}"><img class="img-responsive" src="/images/cards/{{$boy->id}}_{{$card->card_id}}.png"></div></a>
                                         <span class="glyphicon glyphicon-certificate bloom" id="bloom-{{$card->card_id}}" data-id="{{$card->card_id}}" data-boy="{{$boy->id}}" aria-hidden="true"></span>
                                          {{$card->card_id}} {{$card->name_e}} ({{$card->name_s}}) 
                                     </h3>
