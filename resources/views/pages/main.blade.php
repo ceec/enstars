@@ -43,7 +43,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                  <div class="col-md-4">
                     <h3>Current Scout</h3>
                     @foreach ($current_scout as $scout)
-                       <a href="/scout/{{$scout->url}}"><img class="img-responsive" src="/images/events/{{$scout->id}}.png" alt="{{$scout->name_e}}"></a><br>
+                       <a href="/scout/{{$scout->url}}"><img class="img-responsive" src="/images/scouts/{{$scout->id}}.png" alt="{{$scout->name_e}}"></a><br>
                     @endforeach
                 </div>
                 <div class="col-md-4">
