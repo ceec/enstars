@@ -53,6 +53,13 @@ class DisplayController extends Controller {
         $red_medium = Skill::where('category','=','gem')->where('type','=','red')->where('size','=','medium')->get();
         $red_large = Skill::where('category','=','gem')->where('type','=','red')->where('size','=','large')->get();
 
+        //neeed 
+
+        $current_event = Event::where('active','=',1)->get();
+        $current_scout = Scout::where('active','=',1)->get();
+
+
+
         $reds = Skill::where('category','=','gem')->where('type','=','red')->get();
         $blues = Skill::where('category','=','gem')->where('type','=','blue')->get();
         $yellows = Skill::where('category','=','gem')->where('type','=','yellow')->get();
@@ -67,10 +74,13 @@ class DisplayController extends Controller {
         ->with('gacha_stories',$gacha_stories)
         ->with('character_stories',$character_stories)
         ->with('tags',$tags)    
-        ->with('reds',$reds)     
+        ->with('reds',$reds)  
+        ->with('red_medium',$red_medium)   
         ->with('blues',$blues)
         ->with('yellows',$yellows)
-        ->with('all',$all)                    
+        ->with('all',$all)         
+        ->with('current_event',$current_event)
+        ->with('current_scout',$current_scout)           
         ->with('blogs',$blogs);
 
     }
@@ -342,16 +352,31 @@ class DisplayController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function skillCategory($category,$size) {
+    public function skillCategory($category,$type,$size) {
         //would need to -> get all the skills in that set, then get all the cards with that skill
 
         //thats like the relationship building piece I need to figure out!
 
         //can just for loop for now?s
 
-        $skill = Skill::where('id','=',$skill_id)->first();
+        if ($category = 'jewel') {
+            $category = 'gem';
+        }
 
-        $cards = Card::where('lesson_id','=',$skill_id)->get();
+        $skills = Skill::where('category','=','gem')->where('type','=',$type)->where('size','=',$size)->get();
+
+
+        foreach ($skills as $skill) {
+            //lets use where in
+            $in[] = $skill->id;
+        }
+
+        $cards = Card::whereIn('lesson_id',$in)->get();
+        $skill = Skill::where('id','=',$in[0])->first();
+
+        // print '<pre>';
+        // print_r($skill);
+        // print '</pre>';
 
         return view('pages.skill')
             ->with('skill',$skill)

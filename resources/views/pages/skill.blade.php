@@ -18,7 +18,9 @@
     							<div class="panel">
     							  <div class="panel-heading">
     							    <h3 class="panel-title">
-                                        <div class="card-container"><img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png"></div>
+                                        <a href="/card/{{$card->id}}">
+                                            <div class="card-container"><img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png"></div>
+                                        </a>                                            
                                     </h3>
     							  </div>
     							</div>   

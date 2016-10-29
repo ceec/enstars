@@ -36,11 +36,15 @@ enstars.info - Information and Translations for Ensemble Stars!
             <div class="row">
                 <div class="col-md-4">
                     <h3>Current Event</h3>
-                    <img class="img-responsive" src="/images/events/2.png">
+                    @foreach ($current_event as $event)
+                        <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a>
+                    @endforeach
                 </div>
                  <div class="col-md-4">
                     <h3>Current Scout</h3>
-                     <img class="img-responsive" src="/images/scouts/2.png">
+                    @foreach ($current_scout as $scout)
+                       <a href="/scout/{{$scout->url}}"><img class="img-responsive" src="/images/events/{{$scout->id}}.png" alt="{{$scout->name_e}}"></a><br>
+                    @endforeach
                 </div>
                 <div class="col-md-4">
                     <h3>Translated Stories</h3>
@@ -67,25 +71,24 @@ enstars.info - Information and Translations for Ensemble Stars!
                 </div>                
                 <div class="col-md-4">
                     <h3>Lesson Skills</h3>
-                        <h4>All</h4>
-                        @foreach($all as $each)
-                            <a href="/skill/{{$each->id}}">{{$each->english_description}}</a><br>
-                        @endforeach            
-                        
-                        <h4>Red</h4>
-                        @foreach($reds as $red)
-                            <a href="/skill/{{$red->id}}">{{$red->english_description}}</a><br>
-                        @endforeach    
-                        
-                        <h4>Blue</h4>
-                        @foreach($blues as $blue)
-                            <a href="/skill/{{$blue->id}}">{{$blue->english_description}}</a><br>
-                        @endforeach    
-                        
-                        <h4>Yellow</h4>
-                        @foreach($yellows as $yellow)
-                            <a href="/skill/{{$yellow->id}}">{{$yellow->english_description}}</a><br>
-                        @endforeach                        
+                        <h4>Jewels</h4>
+                        Red: 
+                        <a href="/skill/jewel/red/small">Small</a>
+                        <a href="/skill/jewel/red/medium"><img src="/images/red_medium.png"></a> 
+                        <a href="/skill/jewel/red/large">Large</a>
+                        <a href="/skill/jewel/red/all">All</a>
+                        <br>
+                        Blue:
+                        <a href="/skill/jewel/blue/small">Small</a>
+                        <a href="/skill/jewel/blue/medium"><img src="/images/blue_medium.png"></a>                         
+                        <a href="/skill/jewel/blue/large">Large</a>
+                        <a href="/skill/jewel/blue/all">All</a>                        
+                        <br>
+                        Yellow:
+                        <a href="/skill/jewel/yellow/small">Small</a>
+                        <a href="/skill/jewel/yellow/medium"><img src="/images/yellow_medium.png"></a>
+                        <a href="/skill/jewel/yellow/large">Large</a>
+                        <a href="/skill/jewel/yellow/all">All</a>  
                 </div> 
                 <div class="col-md-4">
                     <h3>Units</h3>

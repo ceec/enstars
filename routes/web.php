@@ -40,7 +40,7 @@ Route::get('/tag/{tag_name}','DisplayController@tag');
 Route::get('/skill/{skill_id}','DisplayController@skill');
 //whatabout groups of skills?
 // like /skill/gem/size    /skill/dorifes/vocal /skill/luck -> size can be there or not? if its not it will just show all!
-Route::get('/skill/{category}/{size}','DisplayController@skillCategory');
+Route::get('/skill/{category}/{type}/{size}','DisplayController@skillCategory');
 
 //units
 Route::get('/unit/{unit_name}','DisplayController@unit');
