@@ -18,6 +18,19 @@
                             } else {
                                 $color_class = 'panel-default';
                             }
+
+                            if ($card->scout_id != 0) {
+                                //its from a scout
+                                $from = 'scout';
+                            } else if ($card->event_id !=0) {
+                                //its from an event
+                                $from = 'event';
+                            } else {
+                                $from = 'pool';
+                            }
+
+
+
                         ?>  
         	<h1>{{$card->name_e}}</h1>
          <div class="row">
@@ -34,11 +47,18 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2>Released:</h2>
-                <h2>Obtained by:</h2>
-                <h2>Stats:</h2>
-                <h2>Dream Festival Skill:</h2>
-                <h2>Lesson Skill:</h2>
+                <h3>Released: </h3>
+                @if ($from == 'pool')
+                    <h3>Introduced in:</h3> Original Card
+                @elseif ($from == 'scout')
+                    <h3>Introduced in:</h3> Scout: <a href="/scout/{{$source->id}}">{{$source->name_e}}</a><br>
+                @elseif ($from == 'event')
+                    <h3>Introduced in:</h3> Event: <a href="/event/{{$source->id}}">{{$source->name_e}}</a><br>
+                @endif
+                
+                <h3>Stats:</h3>
+                <h3>Dream Festival Skill:</h3>
+                <h3>Lesson Skill:</h3> <a href="/skill/{{$skill->id}}">{{$skill->english_description}}</a>
             </div>
          </div>   
          <div class="row">
