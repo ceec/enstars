@@ -11,7 +11,7 @@
         <div class="col-md-12">
 
         	<h1>{{$event->name_e}} <small>{{$event->start}} - {{$event->end}}</small></h1>
-
+            <p>{!! $event->text !!}</p>
                 <div class="row">
                     <?php $x=1; ?>
                     @foreach($cards as $card)

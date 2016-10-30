@@ -432,9 +432,30 @@ class DisplayController extends Controller {
         }
 
         $cards = Card::where('scout_id','=',$scout->id)->get();
+        
+        
+        if ($scout->type_id == 1) {
+            //if its a gacha
+            //get the stories
+            $story = Story::where('type_id','=',$scout->id)->where('type','=',2)->first();
+            //chatpers
+            if (isset($story->id)) {
+                $chapters = Chapter::where('story_id','=',$story->id)->get();
+            } else {
+                $chapters = '';
+            }
+            
+        } else {
+            //its a character story scout
+            //do something here??
+            $story = '';
+            $chapters = '';
+        }
 
         return view('pages.scout')
             ->with('cards',$cards)
+            ->with('story',$story)
+            ->with('chapters',$chapters)
             ->with('scout',$scout);
     }  
 
