@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-{{$scout->name}} | enstars.info
+{{$scout->name_e}} | enstars.info
 @stop
 
 @section('content')
