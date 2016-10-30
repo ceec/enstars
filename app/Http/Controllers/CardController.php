@@ -69,6 +69,8 @@ class CardController extends Controller
         $c->lesson_j = '';
         $c->lesson_e = '';
         $c->lesson_id = $request->input('lesson_id');
+        $c->scout_id = 0;
+        $c->event_id = 0;
         $c->stories = 0;
         $c->completed_stories = 0;
         $c->suggested_name = '';
