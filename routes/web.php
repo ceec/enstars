@@ -117,6 +117,9 @@ Route::get('/home/card/add','CardController@addDisplay');
 //posting
 Route::post('/add/card','CardController@add');
 
+Route::get('/home/card/edit/{card_id}','CardController@editDisplay');
+//posting
+Route::post('/home/edit/card','CardController@edit');
 
 //tool page
 Route::get('/home/tools','HomeController@tools');

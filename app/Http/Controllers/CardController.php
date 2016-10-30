@@ -9,6 +9,7 @@ use App\Skill;
 use App\Minievent;
 use App\Minieventchoice;
 use App\Event;
+use Auth;
 
 class CardController extends Controller
 {
@@ -77,6 +78,57 @@ class CardController extends Controller
         $c->suggested_name = '';
         $c->suggested_link = '';
         $c->updated_by = 1;
+        $c->save();
+
+
+        // return view('pages.card')
+        //     ->with('card',$card);
+
+        return redirect('/home');          
+    } 
+
+
+    /**
+     * Edit card  UI
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editDisplay($card_id) {
+            
+            $card = Card::find($card_id);
+            $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
+            $lesson_skills = Skill::where('skilltype_id','=','2')->orderBy('category','ASC')->pluck('english_description','id');
+            $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->pluck('english_description','id');
+
+            return view('home.cardEdit')
+            ->with('card',$card)
+            ->with('lesson_skills',$lesson_skills) 
+            ->with('dorifes_skills',$dorifes_skills)                  
+            ->with('boys',$boys);
+    } 
+
+
+    /**
+     * Edit card 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request) {
+        //need to update card
+        $c = Card::find($request->input('card_id'));
+        $c->boy_id = $request->input('boy_id');
+        $c->place = $request->input('place');
+        $c->stars = $request->input('stars');
+        $c->color = $request->input('color');
+        $c->name_j = $request->input('japanese_name');
+        $c->name_e = $request->input('english_name');
+        $c->name_s = $request->input('name_s');
+        $c->sentence_j = $request->input('sentence_j');
+        $c->sentence_e = $request->input('sentence_e');        
+        $c->dorifes_id = $request->input('dorifes_id');
+        $c->lesson_id = $request->input('lesson_id');
+
+        $c->updated_by = Auth::id();  
         $c->save();
 
 
