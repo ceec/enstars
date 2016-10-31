@@ -38,7 +38,7 @@
 
 
                             //image url
-                            $scout_image = '/images/cards/get/'.$card->boy_id.'_'.$card->card_id.'png';
+                            $scout_image = '/images/cards/get/'.$card->boy_id.'_'.$card->card_id.'.png';
 
                         ?>  
         	<h1>{{$card->name_e}}</h1>
