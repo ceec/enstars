@@ -44,6 +44,7 @@
                          <img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}b.png">
                     </div>
                   </div>
+                  <p>{{$card->sentence_e}}</p>
                 </div>
             </div>
             <div class="col-md-6">
