@@ -14,6 +14,16 @@ use Auth;
 class CardController extends Controller
 {
 
+    /**
+     * Only can do this when logged in
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 
 
     /**

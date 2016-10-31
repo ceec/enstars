@@ -24,23 +24,16 @@ use Auth;
 
 class BlogController extends Controller {
 
+
     /**
-     * Show specific blog
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function blog($url) {
-        $blog = Blog::where('url','=',$url)->first();
-        $boys = Boy::where('class','!=','')->orderBy('first_name','asc')->get();
-        $teachers = Boy::where('class','=','')->orderBy('first_name','asc')->get();
-
-        return view('pages.blog')
-        ->with('blog',$blog)
-        ->with('boys',$boys)
-        ->with('teachers',$teachers);
-    } 
-
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 
     /**

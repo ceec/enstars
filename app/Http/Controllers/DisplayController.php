@@ -549,6 +549,28 @@ class DisplayController extends Controller {
     } 
 
 
+
+
+    /**
+     * Show specific blog
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function blog($url) {
+        $blog = Blog::where('url','=',$url)->first();
+        $boys = Boy::where('class','!=','')->orderBy('first_name','asc')->get();
+        $teachers = Boy::where('class','=','')->orderBy('first_name','asc')->get();
+
+        return view('pages.blog')
+        ->with('blog',$blog)
+        ->with('boys',$boys)
+        ->with('teachers',$teachers);
+    } 
+
+
+    ////////contact page //////
+
+
     /**
      * Contact page
      *

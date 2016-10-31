@@ -58,7 +58,7 @@ Route::get('/story/{story_id}/{chaper_id}','DisplayController@chapter');
 
 
 //news/blog
-Route::get('/news/{friendly_url}','BlogController@blog');
+Route::get('/news/{friendly_url}','DisplayController@blog');
 //all old blogs
 
 
