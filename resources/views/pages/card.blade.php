@@ -29,8 +29,13 @@
                                 $from = 'pool';
                             }
 
-                            //format starting date
-                            $start_date = date('F j, Y',strtotime($source->start));
+                            if ($source) {
+                                //format starting date
+                                $start_date = date('F j, Y',strtotime($source->start));
+                            } else {
+                                $start_date = 'Original Card';
+                            }
+
 
                             //image url
                             $scout_image = '/images/cards/get/'.$card->boy_id.'_'.$card->card_id.'png';
