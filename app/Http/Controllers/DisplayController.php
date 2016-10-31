@@ -431,7 +431,7 @@ class DisplayController extends Controller {
             $scout = Scout::where('url','=',$url)->first();
         }
 
-        $cards = Card::where('scout_id','=',$scout->id)->get();
+        $cards = Card::where('scout_id','=',$scout->id)->orderBy('stars','desc')->get();
         
         
         if ($scout->type_id == 1) {
