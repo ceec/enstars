@@ -29,7 +29,11 @@
                                 $from = 'pool';
                             }
 
+                            //format starting date
+                            $start_date = date('F j, Y',strtotime($source->start));
 
+                            //image url
+                            $scout_image = '/images/cards/get/'.$card->boy_id.'_'.$card->card_id.'png';
 
                         ?>  
         	<h1>{{$card->name_e}}</h1>
@@ -48,28 +52,34 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h3>Released: </h3>
+                <h3>Released: {{$start_date}}</h3> 
                 @if ($from == 'pool')
-                    <h3>Introduced in:</h3> Original Card
+                    <h3>Introduced in: Original Card</h3>
                 @elseif ($from == 'scout')
-                    <h3>Introduced in:</h3> Scout: <a href="/scout/{{$source->id}}">{{$source->name_e}}</a><br>
+                    <h3>Introduced in: Scout: <a href="/scout/{{$source->id}}">{{$source->name_e}}</a></h3>
                 @elseif ($from == 'event')
-                    <h3>Introduced in:</h3> Event: <a href="/event/{{$source->id}}">{{$source->name_e}}</a><br>
+                    <h3>Introduced in: Event: <a href="/event/{{$source->id}}">{{$source->name_e}}</a></h3>
                 @endif
                 
-                <h3>Stats:</h3>
-                <h3>Dream Festival Skill:</h3>
-                @if ($skill->id == 0)
-                    <h3>Lesson Skill:</h3> {{$skill->english_description}}
+                @if ($dorifes_skill->id == 0)
+                    <h3>Dream Festival Skill: {{$dorifes_skill->english_description}} </h3>
                 @else
-                    <h3>Lesson Skill:</h3> <a href="/skill/{{$skill->id}}">{{$skill->english_description}}</a>
+                    <h3>Dream Festival Skill: <a href="/skill/{{$dorifes_skill->id}}">{{$dorifes_skill->english_description}}</a></h3>
+                @endif
+
+                @if ($lesson_skill->id == 0)
+                    <h3>Lesson Skill: {{$lesson_skill->english_description}} </h3>
+                @else
+                    <h3>Lesson Skill: <a href="/skill/{{$lesson_skill->id}}">{{$lesson_skill->english_description}}</a></h3>
                 @endif
                 
             </div>
          </div>   
          <div class="row">
             <div class="col-md-12">
+                @if (file_exists($scout_image))
                 <img class="img-responsive" src="/images/cards/get/{{$card->boy_id}}_{{$card->card_id}}.png">
+                @endif
             </div>
          </div>   
 </div>

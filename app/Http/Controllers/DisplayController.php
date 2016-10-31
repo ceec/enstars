@@ -177,14 +177,24 @@ class DisplayController extends Controller {
     public function card($card_id) {
         $card = Card::where('id','=',$card_id)->first();
 
-
+        //lesson skill
         if ($card->lesson_id == 0) {
-            $skill = Skill::where('id','=',1)->first();
-            $skill->id = '';
-            $skill->english_description = 'Unkown';
+            $lesson_skill = Skill::where('id','=',1)->first();
+            $lesson_skill->id = '';
+            $lesson_skill->english_description = 'Unkown';
         } else {
-            $skill = Skill::where('id','=',$card->lesson_id)->first();
+            $lesson_skill = Skill::where('id','=',$card->lesson_id)->first();
         }
+
+        //dorifes skill
+        if ($card->dorifes_id == 0) {
+            $dorifes_skill = Skill::where('id','=',1)->first();
+            $dorifes_skill->id = '';
+            $dorifes_skill->english_description = 'Unkown';
+        } else {
+            $dorifes_skill = Skill::where('id','=',$card->dorifes_id)->first();
+        }
+
 
         //get event or scout
         if ($card->event_id !=0) {
@@ -196,7 +206,8 @@ class DisplayController extends Controller {
         }
 
         return view('pages.card')
-            ->with('skill',$skill)
+            ->with('dorifes_skill',$dorifes_skill)
+            ->with('lesson_skill',$lesson_skill)
             ->with('source',$source)
             ->with('card',$card);
     } 
