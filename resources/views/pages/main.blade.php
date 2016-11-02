@@ -89,6 +89,11 @@ enstars.info - Information and Translations for Ensemble Stars!
                         <a href="/skill/jewel/yellow/medium"><img src="/images/yellow_medium.png"></a>
                         <a href="/skill/jewel/yellow/large">Large</a>
                         <a href="/skill/jewel/yellow/all">All</a>  
+                        <br>
+                        All:
+                        <a href="/skill/jewel/all/small">Small</a>
+                        <a href="/skill/jewel/all/medium">Medium</a>                   
+
                 </div> 
                 <div class="col-md-4">
                     <h3>Units</h3>
