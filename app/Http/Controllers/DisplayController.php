@@ -177,6 +177,8 @@ class DisplayController extends Controller {
     public function card($card_id) {
         $card = Card::where('id','=',$card_id)->first();
 
+        $boy = Boy::where('id','=',$card->boy_id)->first();
+
         //lesson skill
         if ($card->lesson_id == 0) {
             $lesson_skill = Skill::where('id','=',1)->first();
@@ -208,6 +210,7 @@ class DisplayController extends Controller {
         return view('pages.card')
             ->with('dorifes_skill',$dorifes_skill)
             ->with('lesson_skill',$lesson_skill)
+            ->with('boy',$boy)
             ->with('source',$source)
             ->with('card',$card);
     } 
