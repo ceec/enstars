@@ -92,7 +92,7 @@
       <div class="col-md-3">
             <br>
           <ul class="list-inline text-center">
-            <li>
+            <!--<li>
               <a href="{{ url('rss') }}" data-toggle="tooltip"
                  title="RSS feed">
                 <span class="fa-stack fa-lg">
@@ -100,7 +100,7 @@
                   <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
                 </span>
               </a>
-            </li>
+            </li>-->
             <li>
               <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
                  title="My Twitter Page">
