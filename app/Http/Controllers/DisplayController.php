@@ -470,6 +470,21 @@ class DisplayController extends Controller {
             ->with('scout',$scout);
     }  
 
+
+    /**
+     * Show all events
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function eventAll() {
+        $events = Event::orderBy('end','desc')->get();
+
+    
+
+        return view('pages.eventAll')
+            ->with('events',$events);
+    }   
+
     /**
      * Show specigic event
      *
@@ -483,11 +498,22 @@ class DisplayController extends Controller {
             $event = Event::where('url','=',$url)->first();
         }
 
-        $cards = Card::where('event_id','=',$event->id)->get();
+        //get the stories
+        $story = Story::where('type_id','=',$event->id)->where('type','=',1)->first();
+        //chatpers
+        if (isset($story->id)) {
+            $chapters = Chapter::where('story_id','=',$story->id)->get();
+        } else {
+            $chapters = '';
+        }
+
+        $cards = Card::where('event_id','=',$event->id)->orderBy('stars','desc')->get();
     
 
         return view('pages.event')
             ->with('cards',$cards)
+            ->with('story',$story)
+            ->with('chapters',$chapters)
             ->with('event',$event);
     }    
 

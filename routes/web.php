@@ -49,6 +49,10 @@ Route::get('/unit/{unit_name}','DisplayController@unit');
 //calculator
 Route::get('/event/calculator','DisplayController@eventCalculator');
 
+//all events
+Route::get('/event/all','DisplayController@eventAll');
+
+//specific event
 Route::get('/event/{event_id}','DisplayController@event');
 
 

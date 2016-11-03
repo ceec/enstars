@@ -12,7 +12,22 @@
 
         	<h1>{{$event->name_e}} <small>{{$event->start}} - {{$event->end}}</small></h1>
             <p>{!! $event->text !!}</p>
-                <div class="row">
+            <div class="row">
+            <div class="row">
+                <div class="col-md-2">
+                        @if ($chapters != '')
+                            <h3>Event Story</h3>
+                            @foreach ($chapters as $chapter)
+                                @if ($chapter->complete == 1)
+                                    <a href="/story/{{$story->id}}/{{$chapter->chapter}}">{{$chapter->name_e}}</a><br>
+                                @else
+                                    {{$chapter->name_e}}<br>
+                                @endif
+                            @endforeach
+                        @endif
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
                     <?php $x=1; ?>
                     @foreach($cards as $card)
                     	<div class="col-md-3">
@@ -38,7 +53,7 @@
                     @endforeach
                 </div>
 
-
+            </div>
         </div>
 
     </div>

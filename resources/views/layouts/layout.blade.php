@@ -56,14 +56,22 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/event/magical-halloween">Current Event</a></li>
-            <li><a href="#">Stories</a></li>
-            <li><a href="#">Calculator</a></li>
-          </ul>
-        </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/event/magical-halloween">Current Event</a></li>
+                      <li><a href="/event/all">All Events</a></li>
+                      <li><a href="#">Calculator</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Scouts <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/scout/colorful-autumn">Current Scout</a></li>
+                       <li><a href="/scout/tsumugis-introduction">Current Story Scout</a></li>
+                      <li><a href="/scout/all">All Scouts</a></li>
+                    </ul>
+                  </li>                  
                     <li><a href="http://enstars.info/birthdays">Birthday Calendar</a></li>
                    <!-- <li><a href="{{ url('/reviews') }}">Reviews</a></li>
                     <li><a href="{{ url('/news') }}">News</a></li>
