@@ -56,6 +56,12 @@ Route::get('/event/all','DisplayController@eventAll');
 Route::get('/event/{event_id}','DisplayController@event');
 
 
+//all scouts
+Route::get('/scout/all','DisplayController@scoutAll');
+//specfic scouts
+Route::get('/scout/{scout_id}','DisplayController@scout');
+
+
 //stories
 Route::get('/story/{story_id}','DisplayController@story');
 Route::get('/story/{story_id}/{chaper_id}','DisplayController@chapter');
@@ -70,8 +76,7 @@ Route::get('/news/{friendly_url}','DisplayController@blog');
 Route::post('/add/name', 'CardController@addName');
 Route::post('/add/link', 'CardController@addLink');
 
-//scouts
-Route::get('/scout/{scout_id}','DisplayController@scout');
+
 
 //data
 Route::get('/graph/cards-released','DisplayController@cardsReleased');

@@ -430,6 +430,18 @@ class DisplayController extends Controller {
     }
 
     /**
+     * Show all scouts
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function scoutAll() {
+        $scouts = Scout::orderBy('end','desc')->get();
+
+        return view('pages.scoutAll')
+            ->with('scouts',$scouts);
+    }   
+
+    /**
      * Show specigic scout
      *
      * @return \Illuminate\Http\Response
