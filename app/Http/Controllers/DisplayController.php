@@ -22,6 +22,10 @@ use App\Blog;
 
 use App\Scout;
 
+use App\Unitskill;
+use App\Unitskillboy;
+use App\Type;
+
 
 class DisplayController extends Controller {
 
@@ -431,6 +435,77 @@ class DisplayController extends Controller {
             ->with('unit',$unit)
             ->with('boys',$boys);
     }
+
+    /**
+     * Show all unit skills
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function unitskillAll() {
+        $unit_skills = Unitskill::all();
+
+        foreach($unit_skills as $key => $skill) {
+            $type = Type::where('id','=',$skill->type_id)->first();
+            $unit_skills[$key]->type = $type['type'];
+        }
+
+
+        return view('pages.unitskillAll')
+            ->with('unit_skills',$unit_skills);
+    }  
+
+    /**
+     * Show all specific unit skill
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function unitskill($skill_id) {
+        //can pass through an id or an url
+        if (ctype_digit($skill_id)){
+            $skill = Unitskill::where('id','=',$skill_id)->first();
+        } else {
+            $skill = Unitskill::where('url','=',$skill_id)->first();
+        }
+
+        //setup card color because its hardcoded and not an id like it should be - fix this eventually
+        if ($skill->type_id == '1') {
+            $color = 'red';
+            $skill->type = 'Dance';
+        } else if ($skill->type_id == '2') {
+            $color = 'blue';
+            $skill->type = 'Vocal';
+        } else if ($skill->type_id == '3') {
+            $color = 'yellow';
+            $skill->type = 'Performance';
+        } else {
+            $color = '';
+        }
+
+
+        //need to get the boys in that skill
+        $unitboys = Unitskillboy::where('unitskill_id','=',$skill->id)->get();
+
+        foreach ($unitboys as $boy) {
+            //lets use where in
+            $in[] = $boy->boy_id;
+        }
+
+
+        $boys = Boy::whereIn('id',$in)->get();
+
+
+        foreach ($boys as $key => $boy) {
+            //get all the cards that match this unit skill
+            $cards = Card::where('boy_id','=',$boy->id)->where('color','=',$color)->orderBy('stars','desc')->get();
+            $boys[$key]->cards = $cards;
+        }
+
+
+        return view('pages.unitskill')
+            ->with('skill',$skill)
+            ->with('boys',$boys);
+    } 
+
 
     /**
      * Show all scouts

@@ -72,6 +72,12 @@ Route::get('/news/{friendly_url}','DisplayController@blog');
 //all old blogs
 
 
+//unitskills
+Route::get('/unitskill/all','DisplayController@unitskillAll');
+//specfic scouts
+Route::get('/unitskill/{skill_id}','DisplayController@unitskill');
+
+
 //adding card suggestions
 Route::post('/add/name', 'CardController@addName');
 Route::post('/add/link', 'CardController@addLink');
