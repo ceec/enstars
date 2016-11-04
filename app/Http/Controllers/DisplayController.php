@@ -458,7 +458,9 @@ class DisplayController extends Controller {
             }
 
 
-            $unit_skills[$key]->boys = Boy::whereIn('id',$in)->get();            
+            $unit_skills[$key]->boys = Boy::whereIn('id',$in)->get();           
+            
+            unset($in);
         }
 
 
