@@ -447,6 +447,18 @@ class DisplayController extends Controller {
         foreach($unit_skills as $key => $skill) {
             $type = Type::where('id','=',$skill->type_id)->first();
             $unit_skills[$key]->type = $type['type'];
+
+
+            //need to get the boys in that skill
+            $unitboys = Unitskillboy::where('unitskill_id','=',$skill->id)->get();
+
+            foreach ($unitboys as $boy) {
+                //lets use where in
+                $in[] = $boy->boy_id;
+            }
+
+
+            $unit_skills[$key]->boys = Boy::whereIn('id',$in)->get();            
         }
 
 
