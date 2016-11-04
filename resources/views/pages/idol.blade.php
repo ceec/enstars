@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
 
-        	<h1>{{$boy->english_name}}</h1>
+        	<h1>{{$boy->first_name}} {{$boy->last_name}}</h1>
                 <div class="row">
                     <?php $x=1; ?>
                     @foreach($cards as $card)
