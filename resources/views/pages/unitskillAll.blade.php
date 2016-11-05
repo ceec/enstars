@@ -14,7 +14,7 @@ All Unit Skills | enstars.info
             <div class="row">
                 <div class="col-md-3">
                     <!--<a href="/unitskill/{{$skill->url}}"><img class="img-responsive" src="/images/unitskills/{{$skill->id}}.png"></a>-->
-                    <a href="/unitskill/{{$skill->url}}"><h3>{{$skill->name_e}}  +{{$skill->percent}}% {{$skill->type}}</h3></a>
+                    <a href="/unitskill/{{$skill->url}}"><h3>+{{$skill->percent}}% {{$skill->type}} - {{$skill->name_e}}</h3></a>
                 </div>
                 <div class="col-md-9">
                      @foreach($skill->boys as $boy)

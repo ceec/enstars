@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
 
-        	<h1>{{$skill->name_e}} +{{$skill->percent}}% {{$skill->type}}</h1>
+        	<h1>+{{$skill->percent}}% {{$skill->type}} - {{$skill->name_e}}</h1>
             <p>{!! $skill->description_e !!}</p>
 
             @foreach ($boys as $boy)
