@@ -71,29 +71,37 @@ enstars.info - Information and Translations for Ensemble Stars!
                 </div>                
                 <div class="col-md-4">
                     <h3>Lesson Skills</h3>
-                        <h4>Jewels</h4>
-                        Red: 
-                        <a href="/skill/jewel/red/small">Small</a>
-                        <a href="/skill/jewel/red/medium"><img src="/images/red_medium.png"></a> 
-                        <a href="/skill/jewel/red/large">Large</a>
-                        <a href="/skill/jewel/red/all">All</a>
-                        <br>
-                        Blue:
-                        <a href="/skill/jewel/blue/small">Small</a>
-                        <a href="/skill/jewel/blue/medium"><img src="/images/blue_medium.png"></a>                         
-                        <a href="/skill/jewel/blue/large">Large</a>
-                        <a href="/skill/jewel/blue/all">All</a>                        
-                        <br>
-                        Yellow:
-                        <a href="/skill/jewel/yellow/small">Small</a>
-                        <a href="/skill/jewel/yellow/medium"><img src="/images/yellow_medium.png"></a>
-                        <a href="/skill/jewel/yellow/large">Large</a>
-                        <a href="/skill/jewel/yellow/all">All</a>  
-                        <br>
-                        All:
-                        <a href="/skill/jewel/all/small">Small</a>
-                        <a href="/skill/jewel/all/medium">Medium</a>                   
-
+                    <h4>Jewels</h4>
+                    <table class="table">
+                        <tr>
+                            <td>Red</td>
+                            <td><a href="/skill/jewel/red/small"><img src="/images/red_small.png" alt="small"></a></td>
+                            <td><a href="/skill/jewel/red/medium"><img src="/images/red_medium.png" alt="medium"></a> </td>
+                            <td><a href="/skill/jewel/red/large"><img src="/images/red_large.png" alt="large"></a></td>
+                            <td><a href="/skill/jewel/red/all">All</a></td>
+                        </tr>
+                        <tr>
+                            <td>Blue</td>
+                            <td><a href="/skill/jewel/blue/small"><img src="/images/blue_small.png" alt="small"></a></td>
+                            <td><a href="/skill/jewel/blue/medium"><img src="/images/blue_medium.png" alt="medium"></a></td>
+                            <td><a href="/skill/jewel/blue/large"><img src="/images/blue_large.png" alt="large"></a></td>
+                            <td><a href="/skill/jewel/blue/all">All</a></td>
+                        </tr>
+                        <tr>
+                            <td>Yellow</td>
+                            <td><a href="/skill/jewel/yellow/small"><img src="/images/yellow_small.png" alt="small"></a></td>
+                            <td><a href="/skill/jewel/yellow/medium"><img src="/images/yellow_medium.png" alt="medium"></a></td>
+                            <td><a href="/skill/jewel/yellow/large"><img src="/images/yellow_large.png" alt="large"></a></td>
+                            <td><a href="/skill/jewel/yellow/all">All</a></td>
+                        </tr>
+                        <tr>
+                            <td>All</td>
+                            <td><a href="/skill/jewel/all/small">Small</a></td>
+                            <td> <a href="/skill/jewel/all/medium">Med</a></td>
+                            <td></td>
+                            <td></td>
+                        </tr>                                                                        
+                    </table>                                                        
                 </div> 
                 <div class="col-md-4">
                     <h3>Units</h3>
