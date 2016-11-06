@@ -68,7 +68,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Scouts <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="/scout/colorful-autumn">Current Scout</a></li>
-                       <li><a href="/scout/tsumugis-introduction">Current Story Scout</a></li>
+                       <!--<li><a href="/scout/tsumugis-introduction">Current Story Scout</a></li>-->
                       <li><a href="/scout/all">All Scouts</a></li>
                     </ul>
                   </li>    
