@@ -15,19 +15,22 @@ var eventEnd = "<?php print $event->end;?>";
 
         	<h1>Event Calculator</h1>
 
-        	<h2>{{$event->name}} <small>{{$event->start}} - {{$event->end}}</small></h2>
+        	<h3>{{$event->name_e}} <small>{{$event->start}} - {{$event->end}}</small></h3><br><br>
 
 <?php
 			//time math
+			//need to set timezone to japan
 			$date1 = new DateTime();
+			$date1->setTimeZone(new DateTimeZone('Asia/Tokyo'));
 			$date2 = new DateTime($event->end);
+			$date2->setTimeZone(new DateTimeZone('Asia/Tokyo'));
 			$interval = $date1->diff($date2);
-			echo "difference " . $interval->y . " years, " . $interval->m." months, ".$interval->d." days ".$interval->h." hours ".$interval->i." minutes"; 
+			echo "Time Remaining: ".$interval->d." days ".$interval->h." hours ".$interval->i." minutes"; 
 
 ?>
 
 
-    	<div class="col-md-6">
+    	<div class="col-md-3">
     		Da: <input type="text" id="da" value="371809" class="form-control"><br>
     		Vo: <input type="text" id="vo" value="374231" class="form-control"><br>
     		Pf: <input type="text" id="pf" value="330402" class="form-control"><br>

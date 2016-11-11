@@ -77,7 +77,13 @@
                     <ul class="dropdown-menu">
                       <li><a href="/unitskill/all">Unit Skills</a></li>
                     </ul>
-                  </li>                  
+                  </li>     
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/graph/cards-released">Released Cards Graph</a></li>
+                    </ul>
+                  </li>                                    
                     <li><a href="http://enstars.info/birthdays">Birthday Calendar</a></li>
                    <!-- <li><a href="{{ url('/reviews') }}">Reviews</a></li>
                     <li><a href="{{ url('/news') }}">News</a></li>

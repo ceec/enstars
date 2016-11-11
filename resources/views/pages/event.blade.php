@@ -9,10 +9,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
         	<h1>{{$event->name_e}} <small>{{$event->start}} - {{$event->end}}</small></h1>
             <p>{!! $event->text !!}</p>
-            <div class="row">
             <div class="row">
                 <div class="col-md-2">
                         @if ($chapters != '')
@@ -52,7 +50,40 @@
                         ?>
                     @endforeach
                 </div>
-
+                <!--<div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Ranking</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>
+                                {{$event->rank_5}}
+                            </td>
+                            <td>
+                                {{$event->points_5}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{$event->rank_4}}
+                            </td>
+                            <td>
+                                {{$event->points_4}}
+                            </td>                        
+                        </tr>
+                        <tr>
+                            <td>
+                                {{$event->rank_3}}
+                            </td>
+                            <td>
+                                {{$event->points_3_da}} {{$event->points_3_vo}} {{$event->points_3_pf}} 
+                            </td>                        
+                        </tr>
+                    </table>
+                </div>-->
             </div>
         </div>
 
