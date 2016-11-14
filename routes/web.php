@@ -85,7 +85,10 @@ Route::post('/add/link', 'CardController@addLink');
 
 
 //data
+//released cards
 Route::get('/graph/cards-released','DisplayController@cardsReleased');
+//guessing future cards
+Route::get('/graph/card-prediction','DisplayController@cardPrediction');
 
 //contact form
 Route::get('/contact','DisplayController@contact');

@@ -756,6 +756,38 @@ $headers = 'From: '.$email. "\r\n" .
     } 
 
 
+    //might not technically be a graph in the end
+
+    /**
+     * predict future cards
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardPrediction() {
+        $boys = Boy::where('class','!=','')->orderBy('first_name','asc')->get();
+
+        //get all 5 stars of that boy (just do that for now)
+
+        foreach($boys as $key => $boy) {
+            //get the 5 stars
+            $five_star = Card::where('boy_id','=',$boy->id)->where('stars','=',5)->get();
+
+            //get the event they are from
+            foreach ($five_star as $card) {
+
+                $boys[$key]->card = $card;
+                
+            }
+
+
+            
+
+        }
+
+        return view('pages.cardPrediction')
+         ->with('boys',$boys);
+    } 
+
 
 
 }
