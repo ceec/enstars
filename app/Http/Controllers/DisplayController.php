@@ -26,6 +26,7 @@ use App\Unitskill;
 use App\Unitskillboy;
 use App\Type;
 
+use App\Message;
 
 class DisplayController extends Controller {
 
@@ -729,15 +730,19 @@ class DisplayController extends Controller {
      */
     public function contactSend(Request $request) {
 
-        $name = $request->name;
-        $email = $request->email;
-        $content = $request->message;
+        $m = new Message;
 
-$headers = 'From: '.$email. "\r\n" .
-    'Reply-To: '.$email. "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+        $m->name = $request->name;
+        $m->email = $request->email;
+        $m->message = $request->message;
+        $m->updated_by = 0;
+        $m->save();
 
-        mail('info@enstars.info','New Contact Form from '.$name,$content,$headers);
+// $headers = 'From: '.$email. "\r\n" .
+//     'Reply-To: '.$email. "\r\n" .
+//     'X-Mailer: PHP/' . phpversion();
+
+//         mail('info@enstars.info','New Contact Form from '.$name,$content,$headers);
 
 
         return view('pages.contactThankYou');
