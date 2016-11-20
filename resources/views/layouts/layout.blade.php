@@ -35,7 +35,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
