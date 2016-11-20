@@ -443,7 +443,7 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function unitskillAll() {
-        $unit_skills = Unitskill::all();
+        $unit_skills = Unitskill::orderBy('type_id','asc')->orderBy('percent','desc')->get();
 
         foreach($unit_skills as $key => $skill) {
             $type = Type::where('id','=',$skill->type_id)->first();
@@ -737,13 +737,6 @@ class DisplayController extends Controller {
         $m->message = $request->message;
         $m->updated_by = 0;
         $m->save();
-
-// $headers = 'From: '.$email. "\r\n" .
-//     'Reply-To: '.$email. "\r\n" .
-//     'X-Mailer: PHP/' . phpversion();
-
-//         mail('info@enstars.info','New Contact Form from '.$name,$content,$headers);
-
 
         return view('pages.contactThankYou');
     }    
