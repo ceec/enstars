@@ -78,8 +78,42 @@ class HomeController extends Controller
        $gacha_stories = Story::where('type','=',2)->get();
        $character_stories = Story::where('type','=',3)->get();
 
+       //get the percentage of the stories
+       foreach($event_stories as $key => $story) {
+            //count how many are marked complete
+            $amount_complete = Chapter::where('story_id','=',$story->id)->where('complete','=','1')->count();
+            $amount_total = Chapter::where('story_id','=',$story->id)->count();
+
+            if ($amount_total == 0) {
+                $amount_total = 1;
+            }
+            $event_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
+       }
+
+       //get the percentage of the stories
+       foreach($gacha_stories as $key => $story) {
+            //count how many are marked complete
+            $amount_complete = Chapter::where('story_id','=',$story->id)->where('complete','=','1')->count();
+            $amount_total = Chapter::where('story_id','=',$story->id)->count();
+
+            if ($amount_total == 0) {
+                $amount_total = 1;
+            }
+            $gacha_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
+       }
 
 
+       //get the percentage of the stories
+       foreach($character_stories as $key => $story) {
+            //count how many are marked complete
+            $amount_complete = Chapter::where('story_id','=',$story->id)->where('complete','=','1')->count();
+            $amount_total = Chapter::where('story_id','=',$story->id)->count();
+
+            if ($amount_total == 0) {
+                $amount_total = 1;
+            }
+            $character_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
+       }
 
         return view('home.translation')
         ->with('event_stories',$event_stories)
