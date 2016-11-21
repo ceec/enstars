@@ -53,3 +53,8 @@ body {
 .panel-warning {
 	border-color: #ffd33a;
 }
+
+.hoverhand { 
+	cursor: pointer; 
+	cursor: hand; 
+}

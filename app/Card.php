@@ -29,7 +29,7 @@ class Card extends Model
 			<div class="panel-heading">
 				<h3 class="panel-title">
 					<a href="/card/<?php print $this->id ?>"><div class="card-container" id="card-<?php print $this->id ?>"><img class="img-responsive" src="/images/cards/<?php print $this->boy_id ?>_<?php print $this->card_id ?>.png"></div></a>
-					<span class="glyphicon glyphicon-certificate bloom" id="bloom-<?php print $this->id ?>" data-id="<?php print $this->id ?>" data-card-id="<?php print $this->card_id ?>" data-boy="<?php print $this->boy_id ?>" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-certificate bloom hoverhand" id="bloom-<?php print $this->id ?>" data-id="<?php print $this->id ?>" data-card-id="<?php print $this->card_id ?>" data-boy="<?php print $this->boy_id ?>" aria-hidden="true"></span>
 			 		<?php print $this->id ?> <?php print $this->name_e ?>
 				</h3>
 			</div>
