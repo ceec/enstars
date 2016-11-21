@@ -34,12 +34,7 @@
                 <div class="row">
                     <?php $x=1; ?>
                     @foreach($cards as $card)
-                        <div class="col-md-3">
-                                        <a href="/card/{{$card->id}}">
-                                            <div class="card-container"><img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png"></div>
-                                        </a>                           
- 
-                        </div>             
+                        {{ $card->display() }}          
                         <?php
                             if ($x%4==0) {
 ?>
@@ -59,5 +54,26 @@
         </div>
 
     </div>
+                                <script>
+                                jQuery('body').on('click','.bloom',function() {
+                                    var ID = jQuery(this).data('id');
+                                    var cardID = jQuery(this).data('card-id');
+                                    var boyID = jQuery(this).data('boy');
+                                    jQuery('#card-'+ID).html('<img class="img-responsive" src="/images/cards/'+boyID+'_'+cardID+'b.png">');
+                                    jQuery('#bloom-'+ID).removeClass('bloom').addClass('unbloom');
+                                    jQuery('#bloom-'+ID).removeClass('glyphicon-certificate').addClass('glyphicon-record');                                    
+                                });
+
+                                jQuery('body').on('click','.unbloom',function() {
+                                    var ID = jQuery(this).data('id');
+                                    var cardID = jQuery(this).data('card-id');
+                                    var boyID = jQuery(this).data('boy');   
+                                    jQuery('#card-'+ID).html('<img class="img-responsive" src="/images/cards/'+boyID+'_'+cardID+'.png">');
+                                    jQuery('#bloom-'+ID).removeClass('unbloom').addClass('bloom');
+                                     jQuery('#bloom-'+ID).removeClass('glyphicon-record').addClass('glyphicon-certificate');
+                                }); 
+
+                             
+                                </script>        
 </div>
 @endsection

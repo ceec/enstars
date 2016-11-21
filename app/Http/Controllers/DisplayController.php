@@ -28,6 +28,8 @@ use App\Type;
 
 use App\Message;
 
+use App\User;
+
 class DisplayController extends Controller {
 
     /**

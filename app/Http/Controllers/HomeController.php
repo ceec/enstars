@@ -11,6 +11,7 @@ use App\Story;
 use App\Chapter;
 use App\Slide;
 use App\Boy;
+use App\User;
 
 class HomeController extends Controller
 {

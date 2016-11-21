@@ -10,6 +10,7 @@ use App\Minievent;
 use App\Minieventchoice;
 use App\Event;
 use Auth;
+use App\User;
 
 class CardController extends Controller
 {
@@ -23,6 +24,10 @@ class CardController extends Controller
     {
         $this->middleware('auth');
     }
+
+
+
+
 
 
 
