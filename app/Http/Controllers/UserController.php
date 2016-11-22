@@ -39,13 +39,22 @@ class UserController extends Controller
         //add the user card
         $user = Auth::user();    
 
-        //need to update card
-        $u = new Usercard;
-        $u->user_id = $user->id;
-        $u->card_id = $card_id;
-        $u->save();
+        //check if that card is already there
 
-        echo json_encode(array('card_id'=>$card_id));
+        $check = Usercard::where('user_id','=',$user->id)->where('card_id','=',$card_id)->count();
+
+        if ($check < 1) {
+            //only add if it isnt already there
+            //need to update card
+            $u = new Usercard;
+            $u->user_id = $user->id;
+            $u->card_id = $card_id;
+            $u->save();
+
+            echo json_encode(array('card_id'=>$card_id));            
+        }
+
+
       
     } 
 

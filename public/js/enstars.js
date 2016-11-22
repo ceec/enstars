@@ -69,6 +69,8 @@
                                             //change the color of the bg, remove the class
                                             jQuery('#card-panel-'+data.card_id).removeClass('panel-info');
                                             //$('#lastupdated-'+slideID).html(data.date);
+                                            //change the text and class of the button
+                                            
                                             console.log(data);
                                         },
                                         error: function (data) {
