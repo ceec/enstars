@@ -78,26 +78,6 @@
         </div>
 
     </div>
-                                <script>
-                                jQuery('body').on('click','.bloom',function() {
-                                    var ID = jQuery(this).data('id');
-                                    var cardID = jQuery(this).data('card-id');
-                                    var boyID = jQuery(this).data('boy');
-                                    jQuery('#card-'+ID).html('<img class="img-responsive" src="/images/cards/'+boyID+'_'+cardID+'b.png">');
-                                    jQuery('#bloom-'+ID).removeClass('bloom').addClass('unbloom');
-                                    jQuery('#bloom-'+ID).removeClass('glyphicon-certificate').addClass('glyphicon-record');                                    
-                                });
-
-                                jQuery('body').on('click','.unbloom',function() {
-                                    var ID = jQuery(this).data('id');
-                                    var cardID = jQuery(this).data('card-id');
-                                    var boyID = jQuery(this).data('boy');   
-                                    jQuery('#card-'+ID).html('<img class="img-responsive" src="/images/cards/'+boyID+'_'+cardID+'.png">');
-                                    jQuery('#bloom-'+ID).removeClass('unbloom').addClass('bloom');
-                                     jQuery('#bloom-'+ID).removeClass('glyphicon-record').addClass('glyphicon-certificate');
-                                }); 
-
-                             
-                                </script>       
+     <script src="/js/enstars.js"></script>        
 </div>
 @endsection

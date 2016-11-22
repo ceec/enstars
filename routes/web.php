@@ -153,3 +153,9 @@ Route::get('/home/blog/list','BlogController@listDisplay');
 //posting
 Route::post('/add/blog','BlogController@add');
 Route::post('/edit/blog','BlogController@edit');
+
+
+
+///user stuff
+Route::post('/add/user/card','UserController@addCard');
+Route::post('/remove/user/card','UserController@removeCard');
