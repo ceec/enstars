@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Middleware;
+use Auth;
+
 
 use Closure;
+
 
 class Admin
 {
@@ -20,7 +23,7 @@ class Admin
             return $next($request);
         }
 
-        return redirect('/home');
+        return redirect('/');
 
         //return $next($request);
     }

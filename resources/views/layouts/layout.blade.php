@@ -97,6 +97,9 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                @if (Auth::user()->isAdmin())
+                                <li><a href="{{ url('/home') }}">Admin</a></li>
+                                @endif
                                 <li><a href="">Cards</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
