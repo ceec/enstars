@@ -19,7 +19,7 @@
                                 //adding a new card
                                 $('body').on('click','.add-card',function() {
                                     var ID = jQuery(this).data('id');
-
+                                    var clickedOn = jQuery(this);
 
                                 $.ajaxSetup({
                                         headers: {
@@ -37,7 +37,9 @@
                                             //change the color of the bg, add the class
                                             jQuery('#card-panel-'+data.card_id).addClass('panel-info');
                                             //$('#lastupdated-'+slideID).html(data.date);
-                                            console.log(data);
+                                             clickedOn.html('Remove');
+                                             clickedOn.removeClass('add-card');
+                                             clickedOn.addClass('remove-card');
                                         },
                                         error: function (data) {
                                             console.log('Error:', data);
@@ -51,7 +53,7 @@
                                 //removing card
                                 $('body').on('click','.remove-card',function() {
                                     var ID = jQuery(this).data('id');
-                                    console.log('clicked remove');
+                                    var clickedOn = jQuery(this);     
 
                                 $.ajaxSetup({
                                         headers: {
@@ -70,8 +72,9 @@
                                             jQuery('#card-panel-'+data.card_id).removeClass('panel-info');
                                             //$('#lastupdated-'+slideID).html(data.date);
                                             //change the text and class of the button
-                                            
-                                            console.log(data);
+                                             clickedOn.html('Add');
+                                             clickedOn.removeClass('remove-card');
+                                             clickedOn.addClass('add-card');                                           
                                         },
                                         error: function (data) {
                                             console.log('Error:', data);
