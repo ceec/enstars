@@ -22,17 +22,7 @@
                     <div class="row">
                     <?php $x=1; ?>
                     @foreach($boy->cards as $card)
-                        <div class="col-md-2">
-                                <div class="panel">
-                                  <div class="panel-heading">
-                                    <h3 class="panel-title">
-                                        <a href="/card/{{$card->id}}">
-                                            <div class="card-container"><img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png"></div>
-                                        </a>    
-                                    </h3>
-                                  </div>
-                                </div>   
-                        </div>             
+                     {{ $card->display('mini') }}            
                         <?php
                             if ($x%5==0) {
 ?>

@@ -13,7 +13,7 @@ class Card extends Model
     //
 
 
-    public function display() {
+    public function display($view='') {
     	//display the card
 
     	//lets standardize this across all cards!
@@ -44,9 +44,15 @@ class Card extends Model
 			$background = '';
 		}
 
+		//check for mini
+		if ($view == 'mini') {
+			$col = 2;
+		} else {
+			$col = 3;
+		}
 
 ?>
-    <div class="col-md-3">
+    <div class="col-md-<?php print $col; ?>">
 <?php
 	if ($this->stars != '') {
 ?>
@@ -61,31 +67,35 @@ class Card extends Model
 <?php
 
 
-		//check if they are logged in
-		if (isset($user)) {
-			//extra UI for admins
+		//dont show the buttons if its in mini view
+		if ($view != 'mini') {
+
+			//check if they are logged in
+			if (isset($user)) {
+				//extra UI for admins
 
 
 
-        	if ($user->isAdmin()) {
+        		if ($user->isAdmin()) {
 ?>
-       		<button class="button">Edit</button>
+       				<button class="button">Edit</button>
 <?php  	 
-        	} 
-        	//normal UI for users
-        	//change text based on if they have the card
-        	if ($have > 0 ) {
-        		$button_text = 'Remove';
-        		$button_class = 'remove-card';
-        	} else {
-        		$button_text = 'Add';
-        		$button_class = 'add-card';
-        	}
+        		} 
+	        	//normal UI for users
+	        	//change text based on if they have the card
+	        	if ($have > 0 ) {
+	        		$button_text = 'Remove';
+	        		$button_class = 'remove-card';
+	        	} else {
+	        		$button_text = 'Add';
+	        		$button_class = 'add-card';
+	        	}
 
 ?>
-			<button class="button <?php print $button_class; ?>" data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
+				<button class="button <?php print $button_class; ?>" data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
 <?php
 
+			}			
 		}
  ?>			
 		</div>     
