@@ -37,7 +37,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                 <div class="col-md-4">
                     <h3>Current Event</h3>
                     @foreach ($current_event as $event)
-                        <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a>
+                        <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a><br>
                     @endforeach
                 </div>
                  <div class="col-md-4">

@@ -12,6 +12,7 @@ use App\Event;
 use Auth;
 use App\User;
 use App\Usercard;
+use DB;
 
 class UserController extends Controller
 {
@@ -26,6 +27,50 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+
+    /**
+     * Display user dashboard
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dashboard() {
+
+
+         return view('user.dashboard');
+      
+    } 
+
+
+
+    /**
+     * Display user cards
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cards() {
+        //SELECT cards.* FROM cards,usercards WHERE usercards.user_id='1' AND usercards.card_id = cards.id
+        //$cards = Usercard::where('user_id','=',Auth::user()->id)->get();
+
+        // $cards = Card::
+        // join('usercards', 'card.id', '=', 'usercards.card_id')
+        //     ->join('usercards', 'usercards.user_id', '=', Auth::user()->id)
+        //     ->select('cards.*')
+        //     ->get();
+
+
+        // print '<pre>';
+        // print_r($cards);
+        // print '</pre>';
+
+        $cards = Card::take(5);
+
+        //this doesnt return a Card class object, which then cant use the function inside the method
+        //$cards = DB::select("SELECT cards.* FROM cards,usercards WHERE usercards.user_id='".Auth::user()->id."' AND usercards.card_id = cards.id");
+
+         return view('user.cards')
+            ->with('cards',$cards);
+      
+    } 
 
 
     /**

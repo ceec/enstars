@@ -100,7 +100,8 @@
                                 @if (Auth::user()->isAdmin())
                                 <li><a href="{{ url('/home') }}">Admin</a></li>
                                 @endif
-                                <li><a href="">Cards</a></li>
+                                <li><a href="{{ url('/user/'.Auth::user()->name) }}">Dashboard</a></li>
+                                <li><a href="{{ url('/user/'.Auth::user()->name.'/cards') }}">Cards</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();

@@ -30,9 +30,6 @@ Route::get('/chelsea', 'DisplayController@chelsea');
 //specific card
 Route::get('/card/{card_id}', 'DisplayController@card');
 
-//userprofile ->public
-Route::get('/user/{user_id}','DisplayController@user');
-
 //tags
 Route::get('/tag/{tag_name}','DisplayController@tag');
 
@@ -163,5 +160,7 @@ Route::post('/remove/user/card','UserController@removeCard');
 
 ///users pages
 //dashboard
+Route::get('/user/{name}','UserController@dashboard');
+//all cards
 Route::get('/user/{name}/cards','UserController@cards');
 
