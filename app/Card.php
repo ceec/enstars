@@ -13,7 +13,7 @@ class Card extends Model
     //
 
 
-    public function display($view='') {
+    public function display($view='',$text='') {
     	//display the card
 
     	//lets standardize this across all cards!
@@ -68,7 +68,7 @@ class Card extends Model
 <?php							
 						}
 					?>
-
+					<?php print $text; ?>
 				</h3>
 			</div>
 <?php

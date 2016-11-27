@@ -40,6 +40,66 @@
                         ?>
                     @endforeach
                 </div>
+                @if (isset($points->participants))
+                <div class="row">
+                    <h2>Final Ranking - Total Participants {{$points->participants}}</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Points Needed</th>
+                                <th>Reward<th>
+                            </tr>
+                        </thead>
+                        @for ($i = 1; $i < 20; $i++)
+                        <?php
+                            $rank = "rank_".$i;
+                            $next_rank = "rank_".($i + 1);
+                            $tier = "tier_".$i;
+                        ?>
+                        <tr>
+                            <td>
+                                {{$points->$rank}} -
+                                @if ($i < 19)
+                                    {{$points->$next_rank - 1}}
+                                @else
+                                    {{$points->rank_max}}
+                                @endif
+                            </td>
+                            <td>
+                                {{$points->$tier}}
+                            </td>
+                            <td>
+                                @if ($rewards[$i-1]['5_star'] > 0) 
+                                    @foreach($cards as $card)
+                                        @if ($card->id == $event->rank_5)
+                                        {{ $card->display('mini','x'.$rewards[$i-1]['5_star']) }} 
+                                        @endif      
+                                    @endforeach
+                                @endif 
+                                @if ($rewards[$i-1]['4_star'] > 0) 
+                                    @foreach($cards as $card)
+                                        @if ($card->id == $event->rank_4)
+                                        {{ $card->display('mini','x'.$rewards[$i-1]['4_star']) }} 
+                                        @endif      
+                                    @endforeach                                
+                                @endif
+                                @if ($rewards[$i-1]['3_star'] > 0) 
+                                    @foreach($cards as $card)
+                                        @if ($card->id == $event->rank_3)
+                                        {{ $card->display('mini','x'.$rewards[$i-1]['3_star']) }} 
+                                        @endif      
+                                    @endforeach                                
+                                @endif       
+                                @if ($rewards[$i-1]['points'] > 0) 
+                                     {{$rewards[$i-1]['points']}} Points
+                                @endif                                                           
+                            </td>
+                        </tr>
+                        @endfor
+                    </table>
+                </div>    
+                @endif            
                 <!--<div class="row">
                     <table class="table">
                         <thead>

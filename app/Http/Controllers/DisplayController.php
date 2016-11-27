@@ -30,6 +30,10 @@ use App\Message;
 
 use App\User;
 
+use App\Eventpoint;
+use App\Reward;
+
+
 class DisplayController extends Controller {
 
     /**
@@ -616,11 +620,17 @@ class DisplayController extends Controller {
 
         $cards = Card::where('event_id','=',$event->id)->orderBy('stars','desc')->get();
     
+        //get the event points
+        $points = Eventpoint::where('event_id','=',$event->id)->first();
+        //get rewards
+        $rewards = Reward::all();
 
         return view('pages.event')
             ->with('cards',$cards)
             ->with('story',$story)
             ->with('chapters',$chapters)
+            ->with('points',$points)
+            ->with('rewards',$rewards)
             ->with('event',$event);
     }    
 
