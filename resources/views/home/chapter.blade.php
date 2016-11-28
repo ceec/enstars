@@ -15,8 +15,13 @@
 			$event_type = 'character/'.$story->boy_id;
 		}
 	?>
-    <h1>{{$chapter->name_e}} - {{$story->name_e}} <small>({{$count}} slides)</small></h1>
-    
+    <h1>{{$chapter->name_e}} - {{$story->name_e}} <small>({{$count}} slides)</small>
+
+    @if ($chapter->complete == 1)
+        <button id="display-chapter" class="btn btn-danger chapter-display" data-id="{{$chapter->id}}" data-display="hide">Hide</button></h1>
+    @else 
+        <button id="display-chapter" class="btn btn-success chapter-display" data-id="{{$chapter->id}}" data-display="display">Display</button></h1>
+    @endif
     @foreach ($slides as $slide)
     <?php
     	//i just had to put zero prefixes
@@ -149,5 +154,53 @@ $('.ajaxTest').keyup(function(test) {
     });
 
 
+    //displaying/hiding the chapter
+    $('body').on('click','.chapter-display',function() {
+        var chapterID = $(this).data('id');
+
+        var display = $(this).data('display');
+
+        var show;
+
+        if (display == 'display') {
+            //need to display it
+            show = 1;
+        } else {
+            //need to hide it 
+            show = 0;
+        }
+
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
+        //e.preventDefault(); 
+        $.ajax({
+
+            type: "POST",
+            url: '/add/chapterDisplay',
+            data: {chapter_id:chapterID,show:show},
+            dataType: 'json',
+            success: function (data) {
+                if (data.chapter == 1) {
+                    $('#display-chapter').html('Hide')
+                    $('#display-chapter').removeClass('btn-success').addClass('btn-danger');
+                    $('#display-chapter').data('display','hide');
+                } else {
+                    $('#display-chapter').html('Display');
+                    $('#display-chapter').removeClass('btn-danger').addClass('btn-success');
+                    $('#display-chapter').data('display','display');
+                }
+            },
+            error: function (data) {
+                //console.log('Error:', data);
+            }
+        });
+
+
+
+    });
 </script>
 @endsection

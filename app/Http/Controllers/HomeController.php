@@ -230,6 +230,28 @@ class HomeController extends Controller
     } 
 
     /**
+     * update the slide translation WITH AJAX woop
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chapterDisplay(Request $request) {
+        $chapter_id = $request->input('chapter_id');
+
+        $complete = $request->input('show');
+
+        //need to update chapter
+        $c = Chapter::find($chapter_id);
+
+        //test this update
+
+        $c->complete = $complete;
+        $c->save();
+
+        echo json_encode(array('chapter'=>$complete));
+    } 
+
+
+    /**
      * Show the tools page
      *
      * @return \Illuminate\Http\Response

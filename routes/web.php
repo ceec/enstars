@@ -121,6 +121,8 @@ Route::get('/home/translations/{story_id}/{chapter_id}','HomeController@translat
 Route::post('/add/translation','HomeController@addTranslation');
 //ajax posting
 Route::post('/add/translationajax','HomeController@addTranslationAjax');
+//setting chapter live
+Route::post('/add/chapterDisplay','HomeController@chapterDisplay');
 
 //settings
 Route::get('/home/edit/css','HomeController@editCSS');
