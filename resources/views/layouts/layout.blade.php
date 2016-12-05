@@ -83,6 +83,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="/graph/cards-released">Released Cards Graph</a></li>
+                      <li><a href="/graph/five-star-history">Five Star History</a></li>
                     </ul>
                   </li>                                    
                     <li><a href="http://enstars.info/birthdays">Birthday Calendar</a></li>
