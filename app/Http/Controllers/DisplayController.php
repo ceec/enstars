@@ -776,23 +776,19 @@ class DisplayController extends Controller {
     public function cardPrediction() {
         $boys = Boy::where('class','!=','')->orderBy('first_name','asc')->get();
 
-        //get all 5 stars of that boy (just do that for now)
-
-        foreach($boys as $key => $boy) {
-            //get the 5 stars
-            $five_star = Card::where('boy_id','=',$boy->id)->where('stars','=',5)->get();
-
-            //get the event they are from
-            foreach ($five_star as $card) {
-
-                $boys[$key]->card = $card;
-                
-            }
+        //lul why didnt i figure this out before...dumb me
+        // $boys->each(function ($boy) {
+        //     $cards = $boy->cards()->where('stars','=','5')->get();
 
 
-            
 
-        }
+
+        //     $cards->each(function ($card) {
+        //         $event = $card->event;
+        //     });
+        // });
+
+
 
         return view('pages.cardPrediction')
          ->with('boys',$boys);

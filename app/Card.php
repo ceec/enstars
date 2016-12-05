@@ -10,7 +10,22 @@ use App\Usercard;
 
 class Card extends Model
 {
-    //
+  
+    /**
+     * Get the event for this card.
+     */
+    public function event()
+    {
+          return $this->belongsTo('App\Event');
+    }
+
+    /**
+     * Get the scout for this card.
+     */
+    public function scout()
+    {
+          return $this->belongsTo('App\Scout');
+    }
 
 
     public function display($view='',$text='') {
