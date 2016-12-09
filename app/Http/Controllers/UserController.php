@@ -12,6 +12,7 @@ use App\Event;
 use Auth;
 use App\User;
 use App\Usercard;
+use App\Userevent;
 use DB;
 
 class UserController extends Controller
@@ -98,10 +99,7 @@ class UserController extends Controller
 
             echo json_encode(array('card_id'=>$card_id));            
         }
-
-
-      
-    } 
+    }
 
 
     /**
@@ -120,10 +118,60 @@ class UserController extends Controller
         $d->delete();
 
         echo json_encode(array('card_id'=>$card_id));
-      
     } 
 
+    /**
+     * Add event
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addEvent(Request $request) {
+        $event_id = $request->input('event_id');
+
+        //add the user card
+        $user = Auth::user();    
 
 
+        $e = new Userevent;
+        $e->user_id = $user->id;
+        $e->event_id = $event_id;
+        $e->points = 0;
+        $e->rank = 0;
+        $e->updated_by = $user->id;
+        $e->save();
+
+
+         echo json_encode(array('event_id'=>$event_id));            
+
+    }
+
+
+    /**
+     * Update event
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateEvent(Request $request) {
+        $event_id = $request->input('event_id');
+        $rank = $request->input('rank');
+        $points = $request->input('points');
+        //add the user card
+        $user = Auth::user();    
+
+        //do want to update or be able to track all the data?
+        //update for now, would just need to change this to an insert to add lots of data.
+        $e = Userevent::where('user_id','=',$user->id)->where('event_id','=',$event_id)->first();
+
+        $e->user_id = $user->id;
+        $e->event_id = $event_id;
+        $e->points = $points;
+        $e->rank = $rank;
+        $e->updated_by = $user->id;
+        $e->save();
+
+
+         echo json_encode(array('event_id'=>$event_id));            
+
+    }
 
 }

@@ -29,9 +29,12 @@ use App\Type;
 use App\Message;
 
 use App\User;
+use App\Userevent;
 
 use App\Eventpoint;
 use App\Reward;
+
+use Auth;
 
 
 class DisplayController extends Controller {
@@ -589,6 +592,19 @@ class DisplayController extends Controller {
      */
     public function eventAll() {
         $events = Event::orderBy('end','desc')->get();
+
+        //find user events if logged in
+        $user = Auth::user();
+        
+        if (isset($user)) {
+                 foreach($events as $key => $event) {
+            //get all three choices
+            $user_events = Userevent::where('user_id','=',Auth::user()->id)->where('event_id','=',$event->id)->first();
+            $events[$key]->user_event = $user_events;
+         }      
+        }
+
+
 
     
 

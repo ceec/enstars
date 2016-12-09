@@ -158,7 +158,9 @@ Route::post('/edit/blog','BlogController@edit');
 ///user stuff
 Route::post('/add/user/card','UserController@addCard');
 Route::post('/remove/user/card','UserController@removeCard');
-
+//events
+Route::post('/add/user/event','UserController@addEvent');
+Route::post('/update/user/event','UserController@updateEvent');
 
 ///users pages
 //dashboard
