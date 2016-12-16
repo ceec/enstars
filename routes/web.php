@@ -133,6 +133,7 @@ Route::post('/home/save/css','HomeController@saveCSS');
 Route::get('/home/card/add','CardController@addDisplay');
 //posting
 Route::post('/add/card','CardController@add');
+Route::post('/edit/card','CardController@edit');
 
 Route::get('/home/card/edit/{card_id}','CardController@editDisplay');
 //posting

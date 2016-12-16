@@ -221,9 +221,16 @@ class DisplayController extends Controller {
             $source = '';
         }
 
+        //for admins editing
+        $lesson_skills = Skill::where('skilltype_id','=','2')->orderBy('category','ASC')->pluck('english_description','id');
+        $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->pluck('english_description','id');
+
+
         return view('pages.card')
             ->with('dorifes_skill',$dorifes_skill)
             ->with('lesson_skill',$lesson_skill)
+            ->with('dorifes_skills',$dorifes_skills)
+            ->with('lesson_skills',$lesson_skills)            
             ->with('boy',$boy)
             ->with('source',$source)
             ->with('card',$card);

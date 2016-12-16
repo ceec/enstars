@@ -131,15 +131,17 @@ class CardController extends Controller
     public function edit(Request $request) {
         //need to update card
         $c = Card::find($request->input('card_id'));
-        $c->boy_id = $request->input('boy_id');
-        $c->place = $request->input('place');
         $c->stars = $request->input('stars');
         $c->color = $request->input('color');
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
         $c->name_s = $request->input('name_s');
         $c->sentence_j = $request->input('sentence_j');
-        $c->sentence_e = $request->input('sentence_e');        
+        $c->sentence_e = $request->input('sentence_e');  
+        $c->dorifes_j = $request->input('dorifes_j');
+        $c->dorifes_e = $request->input('dorifes_e');  
+        $c->lesson_j = $request->input('lesson_j');
+        $c->lesson_e = $request->input('lesson_e');                        
         $c->dorifes_id = $request->input('dorifes_id');
         $c->lesson_id = $request->input('lesson_id');
 
@@ -150,7 +152,7 @@ class CardController extends Controller
         // return view('pages.card')
         //     ->with('card',$card);
 
-        return redirect('/home');          
+        return redirect('/card/'.$c->id);          
     } 
 
 

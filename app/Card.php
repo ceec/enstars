@@ -96,13 +96,6 @@ class Card extends Model
 			if (isset($user)) {
 				//extra UI for admins
 
-
-
-        		if ($user->isAdmin()) {
-?>
-       				<button class="button">Edit</button>
-<?php  	 
-        		} 
 	        	//normal UI for users
 	        	//change text based on if they have the card
 	        	if ($have > 0 ) {
