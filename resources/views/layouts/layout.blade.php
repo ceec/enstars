@@ -60,7 +60,7 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/event/toyland">Current Event</a></li>
+                      <li><a href="/event/new-year-live">Current Event</a></li>
                       <li><a href="/event/all">All Events</a></li>
                       <li><a href="#">Calculator</a></li>
                     </ul>
@@ -68,7 +68,7 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Scouts <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/scout/bad-boys">Current Scout</a></li>
+                      <li><a href="/scout/eccentric">Current Scout</a></li>
                        <!--<li><a href="/scout/tsumugis-introduction">Current Story Scout</a></li>-->
                       <li><a href="/scout/all">All Scouts</a></li>
                     </ul>
