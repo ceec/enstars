@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="/css/bootstrapyeti.min.css" rel="stylesheet">
-    <link href="/css/enstars.css" rel="stylesheet">
+    <link href="/css/enstars2.css" rel="stylesheet">
     <link href="/css/boy.css" rel="stylesheet">
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
