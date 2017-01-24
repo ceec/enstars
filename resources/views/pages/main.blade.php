@@ -7,68 +7,39 @@ enstars.info - Information and Translations for Ensemble Stars!
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-9">
-            <h3>News</h3>
-            @foreach ($blogs as $blog)
-                <?php
-                    $nicedate = date('F d, Y',strtotime($blog->created_at));
-                    $nicetime = date('h:i A',strtotime($blog->created_at));
-
-                    if ($blog->updated_by == 1) {
-                        $blog->updated_by = 'ankee';
-                    } else if ($blog->updated_by == 3) {
-                        $blog->updated_by = 'cherushi';
-                    }
-                ?>            
-                @if ($blog->image !='')
-                    <div class="">
-                        <a href="/{{$blog->type}}/{{$blog->url}}"><img class="img-responsive" src="/images/{{$blog->image}}" alt=""></a>
-                    </div>
-                @endif
-
-                <h4>
-                    <a href="/{{$blog->type}}/{{$blog->url}}">{{$blog->title}}</a><br>
-                    <small>{{$nicedate}} by {{$blog->updated_by}}</small>
-                </h4>                
-            @endforeach
-            <hr>
             <div class="row">
                 <div class="col-md-4">
                     <h3>Current Event</h3>
                     @foreach ($current_event as $event)
+                        <h4>{{$event->name_e}}</h4>
                         <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a><br>
-                    @endforeach
+                    @endforeach                
                 </div>
-                 <div class="col-md-4">
+                <div class="col-md-4">
                     <h3>Current Scout</h3>
                     @foreach ($current_scout as $scout)
+                    <h4>{{$scout->name_e}}</h4>
                        <a href="/scout/{{$scout->url}}"><img class="img-responsive" src="/images/scouts/{{$scout->id}}.png" alt="{{$scout->name_e}}"></a><br>
-                    @endforeach
+                    @endforeach                
                 </div>
                 <div class="col-md-4">
-                    <h3>Translated Stories</h3>
-                        <h4>Event Stories</h4>
-                        @foreach ($event_stories as $story)
-                            <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
-                        @endforeach
+                    <h3>News</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                <h3>Boys</h3>
+                @foreach($boys as $boy)
+                    <?php 
+                        //name pretty for url
+                        $url = strtolower($boy->first_name);
+                    ?>
 
-                        <h4>Gacha Stories</h4>
-                        @foreach ($gacha_stories as $story)
-                            <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
-                        @endforeach
-
-                        <h4>Character Stories</h4>
-                        @foreach ($character_stories as $story)
-                            <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
-                        @endforeach                    
-                        </div>
-                <div class="col-md-4">
-                    <h3>Tags</h3>
-                        @foreach($tags as $tag)
-                            <a href="/tag/{{$tag->tag}}">{{$tag->tag}}</a><br>
-                        @endforeach
-                </div>                
+                    <a class="boys" href="/idol/{{$url}}"><img class="img-responsive" src="/images/boys/{{$boy->id}}.png"></a> 
+                @endforeach                
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     <h3>Lesson Skills</h3>
                     <h4>Jewels</h4>
@@ -102,43 +73,30 @@ enstars.info - Information and Translations for Ensemble Stars!
                             <td></td>
                         </tr>                                                                        
                     </table>                                                        
-                </div> 
+                </div>  
                 <div class="col-md-4">
-                    <h3>Units</h3>
-                    <?php
-                        //split the units in half for better layout
-                    ?>
-                        @foreach($units as $unit)
-                            <a href="/unit/{{$unit->name}}">{{$unit->name}}</a><br>
+                    <h3>Tags</h3>
+                        @foreach($tags as $tag)
+                            <a href="/tag/{{$tag->tag}}">{{$tag->tag}}</a><br>
                         @endforeach
-                </div>                               
+                </div>
+                <div class="col-md-4">
+                    <h3>Translated Stories</h3>
+                        <h4>Event Stories</h4>
+                        @foreach ($event_stories as $story)
+                            <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
+                        @endforeach
+
+                        <h4>Gacha Stories</h4>
+                        @foreach ($gacha_stories as $story)
+                            <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
+                        @endforeach
+
+                        <h4>Character Stories</h4>
+                        @foreach ($character_stories as $story)
+                            <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
+                        @endforeach                    
+                    </div>                                             
             </div>
-
-        </div>
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-2">
-            <h3>Students</h3>
-            @foreach($boys as $boy)
-                <?php 
-                    //name pretty for url
-                    $url = strtolower($boy->first_name);
-                ?>
-
-                <a href="/idol/{{$url}}">{{$boy->first_name}} {{$boy->last_name}}</a>  <br>
-            @endforeach
-
-            <h3>Teachers</h3>
-            @foreach($teachers as $boy)
-                <?php 
-                    //name pretty for url
-                    $url = strtolower($boy->first_name);
-                ?>
-
-                <a href="/idol/{{$url}}">{{$boy->first_name}} {{$boy->last_name}}</a>  <br>
-            @endforeach            
-        </div>
-
-    </div>
 </div>
 @endsection
