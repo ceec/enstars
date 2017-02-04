@@ -128,7 +128,7 @@
     <div class="row">
       <div class="col-md-4">
       <br>
-
+        Images and Characters From <a href="http://stars.happyelements.co.jp/">あんさんぶるスターズ！</a>
       </div>
       <div class="col-md-3">
             <br>
