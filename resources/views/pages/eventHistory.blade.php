@@ -32,6 +32,7 @@ AmCharts.useUTC = true;
 var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial",
     "theme": "light",
+    "marginRight": 50,
     "dataLoader": {
     "url": "/data/event-border-history",
     "format": "json"
