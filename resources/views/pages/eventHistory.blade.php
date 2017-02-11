@@ -22,6 +22,7 @@ Card Release Graph | enstars.info
 			<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 			<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 			<script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+      <script src="https://www.amcharts.com/lib/3/plugins/responsive/responsive.min.js"></script>
 			<div id="chartdiv"></div>
         </div>
 
@@ -114,7 +115,10 @@ var chart = AmCharts.makeChart("chartdiv", {
     },
     "export": {
         "enabled": true
-    }
+    },
+      "responsive": {
+    "enabled": true
+  }
 });
 </script>
 @endsection
