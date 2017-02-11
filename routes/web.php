@@ -86,6 +86,9 @@ Route::post('/add/link', 'CardController@addLink');
 Route::get('/graph/cards-released','DisplayController@cardsReleased');
 //guessing future cards
 Route::get('/graph/five-star-history','DisplayController@cardPrediction');
+//event history
+Route::get('/graph/event-border-history','DisplayController@eventHistory');
+
 
 //contact form
 Route::get('/contact','DisplayController@contact');
@@ -97,6 +100,7 @@ Route::post('/contact/send','DisplayController@contactSend');
 /////////////////////////////////////////////////////////////////////
 
 Route::get('/data/cards-released','DataController@cardsReleased');
+Route::get('/data/event-border-history','DataController@eventHistory');
 
 
 /////////////////////////////////////////////////////////////////////

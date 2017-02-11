@@ -21,6 +21,7 @@ use App\Slide;
 use App\Blog;
 
 use App\Scout;
+use App\Eventpoint;
 
 
 class DataController extends Controller {
@@ -127,6 +128,34 @@ class DataController extends Controller {
 
     } 
 
+
+    /**
+     * data for event history line grah
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function eventHistory() {
+
+        //need to separate by border
+
+
+        //do tier_2 first
+
+        for ($i=1; $i < 21; $i++) { 
+            $points = Eventpoint::where('position','=',$i)->get();
+            foreach ($points as $key => $point) {
+                $data[$point->event_id.'_points'] = $point->tier_2;
+                $data[$point->event_id.'_rank'] = $point->rank_2;
+
+            }
+
+            $data['position'] = $i;
+            $result[] = $data;
+        }
+       
+        echo json_encode($result);
+
+    } 
 
 
 }

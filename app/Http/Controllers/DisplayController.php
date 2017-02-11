@@ -789,6 +789,16 @@ class DisplayController extends Controller {
     } 
 
 
+    /**
+     * Line of event borders
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function eventHistory() {
+        return view('pages.eventHistory');
+    } 
+
+
     //might not technically be a graph in the end
 
     /**
