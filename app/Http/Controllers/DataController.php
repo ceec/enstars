@@ -141,7 +141,7 @@ class DataController extends Controller {
 
         //do tier_2 first
 
-        for ($i=1; $i < 21; $i++) { 
+        for ($i=0; $i < 21; $i++) { 
             $points = Eventpoint::where('position','=',$i)->get();
             foreach ($points as $key => $point) {
                 $data[$point->event_id.'_points'] = $point->tier_2;
