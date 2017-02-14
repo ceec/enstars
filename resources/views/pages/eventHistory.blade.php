@@ -115,10 +115,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     },
     "export": {
         "enabled": true
-    },
-      "responsive": {
-    "enabled": true
-  }
+    }
 });
 </script>
 @endsection
