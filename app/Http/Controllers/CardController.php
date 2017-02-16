@@ -40,7 +40,7 @@ class CardController extends Controller
             $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
 
 
-            $lesson_skills = Skill::where('skilltype_id','=','2')->orderBy('category','ASC')->pluck('english_description','id');
+            $lesson_skills = Skill::where('skilltype_id','=','2')->orderBy('category','ASC')->orderBy('type','ASC')->orderBy('size','ASC')->pluck('english_description','id');
             $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->pluck('english_description','id');
 
             return view('home.cardAdd')
