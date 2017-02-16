@@ -61,9 +61,9 @@
                 @if ($from == 'pool')
                     <h3>Introduced in: Original Card</h3>
                 @elseif ($from == 'scout')
-                    <h3>Introduced in: Scout: <a href="/scout/{{$source->id}}">{{$source->name_e}}</a></h3>
+                    <h3>Introduced in: Scout: <a href="/scout/{{$source->url}}">{{$source->name_e}}</a></h3>
                 @elseif ($from == 'event')
-                    <h3>Introduced in: Event: <a href="/event/{{$source->id}}">{{$source->name_e}}</a></h3>
+                    <h3>Introduced in: Event: <a href="/event/{{$source->url}}">{{$source->name_e}}</a></h3>
                 @endif
                 
                 @if ($dorifes_skill->id == 0)
