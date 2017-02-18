@@ -665,11 +665,7 @@ class DisplayController extends Controller {
      */
     public function eventCalculator() {
         //need to figure out if there's a current event
-
-        //if there is, return that event info, 
-
-        //or just gest last event, then crosscheck its end date, seems easier
-        $event = Event::orderBy('created_at', 'desc')->first();
+         $event = Event::where('active','=','1')->first();
 
 
         //can pass in url or id

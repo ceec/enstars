@@ -44,7 +44,7 @@ Route::get('/unit/{unit_name}','DisplayController@unit');
 
 //events
 //calculator
-Route::get('/event/calculator','DisplayController@eventCalculator');
+Route::get('/event/calculator/beta','DisplayController@eventCalculator');
 
 //all events
 Route::get('/event/all','DisplayController@eventAll');
@@ -101,7 +101,8 @@ Route::post('/contact/send','DisplayController@contactSend');
 
 Route::get('/data/cards-released','DataController@cardsReleased');
 Route::get('/data/event-border-history','DataController@eventHistory');
-
+//current event borders
+Route::get('/data/event-border','DataController@eventBorder');
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////

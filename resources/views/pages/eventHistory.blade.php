@@ -67,6 +67,12 @@ var chart = AmCharts.makeChart("chartdiv", {
         "bullet": "round",
         "balloonText": "Border: [[44_rank]] <b>[[value]]</b>",
         "valueField": "44_points"
+    },    {
+        "id":"45",
+        "title": "Chocolate Fest 2",
+        "bullet": "round",
+        "balloonText": "Border: [[45_rank]] <b>[[value]]</b>",
+        "valueField": "45_points"
     }],
     "chartCursor": {
         //"categoryBalloonDateFormat": "YYYY",

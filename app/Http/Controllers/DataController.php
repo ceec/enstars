@@ -130,7 +130,7 @@ class DataController extends Controller {
 
 
     /**
-     * data for event history line grah
+     * data for event history line graph
      *
      * @return \Illuminate\Http\Response
      */
@@ -145,12 +145,45 @@ class DataController extends Controller {
             $points = Eventpoint::where('position','=',$i)->get();
             foreach ($points as $key => $point) {
                 $data[$point->event_id.'_points'] = $point->tier_2;
-                $data[$point->event_id.'_rank'] = $point->rank_2;
+                $data[$point->event_id.'_rank'] = $point->rank_2;                    
 
             }
 
             $data['position'] = $i;
             $result[] = $data;
+
+            unset($data);
+        }
+       
+        echo json_encode($result);
+
+    } 
+
+
+    /**
+     * data for current event border
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function eventBorder() {
+
+        //get current event
+        $event = Event::where('active','=','1')->first();
+
+        $points = Eventpoint::where('event_id','=',$event->id)->get();
+
+
+        foreach ($points as $key => $point) {
+            $data['points2'] = $point->tier_2;
+            $data['rank2'] = $point->rank_2;    
+            $data['points7'] = $point->tier_7;
+            $data['rank7'] = $point->rank_7;   
+            $data['points12'] = $point->tier_12;
+            $data['rank12'] = $point->rank_12; 
+
+            $data['position'] = $point->position;
+            $result[] = $data;     
+            unset($data);                                    
         }
        
         echo json_encode($result);

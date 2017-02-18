@@ -60,7 +60,7 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/event/setsubun">Current Event</a></li>
+                      <li><a href="/event/chocolate-fest-2">Current Event</a></li>
                       <li><a href="/event/all">All Events</a></li>
                       <li><a href="#">Calculator</a></li>
                     </ul>
