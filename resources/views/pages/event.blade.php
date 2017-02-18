@@ -42,7 +42,7 @@
                         @endif
                     </div>
                     <div class="col-md-8">
-                        @if (isset($points->participants))
+                        @if (isset($points->participants) && ($event->active === 0))
                         <h2>Final Ranking - Total Participants {{$points->participants}}</h2>
                         <table class="table">
                             <thead>
