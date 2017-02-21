@@ -80,6 +80,9 @@ Route::post('/add/name', 'CardController@addName');
 Route::post('/add/link', 'CardController@addLink');
 
 
+//store
+Route::get('/store','DisplayController@store');
+
 
 //data
 //released cards

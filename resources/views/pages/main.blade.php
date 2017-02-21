@@ -24,6 +24,27 @@ enstars.info - Information and Translations for Ensemble Stars!
                 </div>
                 <div class="col-md-4">
                     <h3>News</h3>
+                                @foreach ($blogs as $blog)
+                <?php
+                    $nicedate = date('F d, Y',strtotime($blog->created_at));
+                    $nicetime = date('h:i A',strtotime($blog->created_at));
+                    if ($blog->updated_by == 1) {
+                        $blog->updated_by = 'ankee';
+                    } else if ($blog->updated_by == 3) {
+                        $blog->updated_by = 'cherushi';
+                    }
+                ?>            
+                @if ($blog->image !='')
+                    <div class="">
+                        <a href="/{{$blog->type}}/{{$blog->url}}"><img class="img-responsive" src="/images/{{$blog->image}}" alt=""></a>
+                    </div>
+                @endif
+                <h5>
+                    <a href="/{{$blog->type}}/{{$blog->url}}">{{$blog->title}}</a><br>
+                    <small>{{$nicedate}} by {{$blog->updated_by}}</small>
+                </h5>                
+            @endforeach
+
                 </div>
             </div>
             <div class="row">

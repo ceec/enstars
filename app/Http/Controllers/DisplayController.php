@@ -741,6 +741,21 @@ class DisplayController extends Controller {
     } 
 
 
+
+    //////store//////
+
+        /**
+     * Show store
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store() {
+
+
+        return view('pages.store');
+    } 
+
+
     ////////contact page //////
 
 
