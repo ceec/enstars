@@ -268,7 +268,6 @@ var getRedValue = function () {
   
 
   var createLpNode = function(color) {
-    var redResult = document.getElementById(color+'-result');
   	var lpContainer = document.createElement('div');
 
   	var lpThree;
@@ -293,18 +292,19 @@ var getRedValue = function () {
   	}
 
   var three = document.createElement('p');
-  three.innerText = '3lp: '+lpThree;
+  three.innerText = '3lp: '+numberWithCommas(lpThree);
   lpContainer.appendChild(three);
   
   var two = document.createElement('p');
-  two.innerText = '2lp: '+lpTwo;
+  two.innerText = '2lp: '+numberWithCommas(lpTwo);
   lpContainer.appendChild(two);
   
   var one = document.createElement('p');
-  one.innerText = '1lp: '+lpOne;
+  one.innerText = '1lp: '+numberWithCommas(lpOne);
   lpContainer.appendChild(one);
 
-  redResult.appendChild(lpContainer);	
+  //redResult.appendChild(lpContainer);	
+  $('#'+color+'-result').html(lpContainer);
   };
 
 
