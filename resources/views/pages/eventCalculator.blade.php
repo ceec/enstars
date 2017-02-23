@@ -22,7 +22,7 @@ var eventEnd = "<?php print $event->end;?>";
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
 <div class="container">
-	<div class="alert alert-warning">
+	<div class="alert alert-warning	">
 		<h3>This calculator is in beta!</h3>
 		<p>Things may change as I add in new features and I may accidentally break things! If you have any feedback or suggestions 
 		I would appreicate it if you sent them to me through our contact form at the bottom of the page!</p>
@@ -66,7 +66,7 @@ var eventEnd = "<?php print $event->end;?>";
           <input class="form-control" type="number" placeholder="" id="blue1">
           <input class="form-control" type="number" id="blue2">
           <input class="form-control" type="number" id="blue3">
-          <div id="red-result">
+          <div id="blue-result">
           </div>
         </div>
         <div class="col-lg-4">
@@ -74,7 +74,7 @@ var eventEnd = "<?php print $event->end;?>";
           <input class="form-control" type="number" id="yellow1">
           <input class="form-control" type="number" id="yellow2">
           <input class="form-control" type="number" id="yellow3">
-          <div id="red-result">
+          <div id="yellow-result">
           </div>
         </div>
       </div>
@@ -254,42 +254,107 @@ var getRedValue = function () {
   localStorage.setItem("yellow1",yellow1);
   localStorage.setItem("yellow2",yellow2);
   localStorage.setItem("yellow3",yellow3);
-  
-  var lp3 = (red1 + red2 + red3) * 2;
-  var lp2 = (red1 + red2) * 1.5;
-  var lp1 = red1;
+
+	//red  
+  var redlp3 = (red1 + red2 + red3) * 2;
+  var redlp2 = (red1 + red2) * 1.5;
+  var redlp1 = red1;
   
   
   //save it in local storage
-  localStorage.setItem("red_lp1",lp1);
-  localStorage.setItem("red_lp2",lp2);
-  localStorage.setItem("red_lp3",lp3);
+  localStorage.setItem("red_lp1",redlp1);
+  localStorage.setItem("red_lp2",redlp2);
+  localStorage.setItem("red_lp3",redlp3);
   
-  var lpContainer = document.createElement('div');
+
+  var createLpNode = function(color) {
+    var redResult = document.getElementById(color+'-result');
+  	var lpContainer = document.createElement('div');
+
+  	var lpThree;
+  	var lpTwo;
+  	var lpOne;
   
+  	//can you create dynamic variables in JS, not sure doesnt look like
+  	//maybe use some properities or something
+
+  	if (color === 'red') {
+  		lpThree = redlp3;
+  		lpTwo = redlp2;
+  		lpOne = redlp1;
+  	} else if (color ==='blue') {
+  		lpThree = bluelp3;
+  		lpTwo = bluelp2;
+  		lpOne = bluelp1;
+  	} else if (color === 'yellow') {
+  		lpThree = yellowlp3;
+  		lpTwo = yellowlp2;
+  		lpOne = yellowlp1;  		
+  	}
+
   var three = document.createElement('p');
-  three.innerText = '3lp: '+lp3;
+  three.innerText = '3lp: '+lpThree;
   lpContainer.appendChild(three);
   
   var two = document.createElement('p');
-  two.innerText = '2lp: '+lp2;
+  two.innerText = '2lp: '+lpTwo;
   lpContainer.appendChild(two);
   
   var one = document.createElement('p');
-  one.innerText = '1lp: '+lp1;
+  one.innerText = '1lp: '+lpOne;
   lpContainer.appendChild(one);
-    
-  return lpContainer;
+
+  redResult.appendChild(lpContainer);	
+  };
+
+
+  //add the calculated totals to the screen
+  //add the result to the red-result div
+  createLpNode('red');
+
+  //blue
+    var bluelp3 = (blue1 + blue2 + blue3) * 2;
+  var bluelp2 = (blue1 + blue2) * 1.5;
+  var bluelp1= blue1;
+  
+  
+  //save it in local storage
+  localStorage.setItem("blue_lp1",bluelp1);
+  localStorage.setItem("blue_lp2",bluelp2);
+  localStorage.setItem("blue_lp3",bluelp3);
+  
+
+  //add the calculated totals to the screen
+  //add the result to the blue-result div
+  createLpNode('blue');
+
+
+  //yellow
+    var yellowlp3 = (yellow1 + yellow2 + yellow3) * 2;
+  var yellowlp2 = (yellow1 + yellow2) * 1.5;
+  var yellowlp1 = yellow1;
+  
+  
+  //save it in local storage
+  localStorage.setItem("yellow_lp1",yellowlp1);
+  localStorage.setItem("yellow_lp2",yellowlp2);
+  localStorage.setItem("yellow_lp3",yellowlp3);
+  
+
+  //add the calculated totals to the screen
+  //add the result to the yellow-result div
+  createLpNode('yellow');
 };
 
 //calculate the total amounts
 var calculate = function() {
   var submit = document.getElementById('calculate');
   submit.addEventListener('click', function() {
-    //add the result to the red-result div
-    var redResult = document.getElementById('red-result');
-    redResult.appendChild(getRedValue());
-    //this is not rendering as html why not
+  	//calculate everything
+  	getRedValue();
+
+
+    //blue
 
   }, false);
 };
