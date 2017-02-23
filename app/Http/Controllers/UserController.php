@@ -63,10 +63,18 @@ class UserController extends Controller
         // print_r($cards);
         // print '</pre>';
 
-        $cards = Card::take(5);
+        //$cards = Card::take(5);
 
         //this doesnt return a Card class object, which then cant use the function inside the method
         //$cards = DB::select("SELECT cards.* FROM cards,usercards WHERE usercards.user_id='".Auth::user()->id."' AND usercards.card_id = cards.id");
+
+        //get all a users 5 stars
+        //SELECT * FROM usercards WHERE user_id=
+        //SELECT * FROM cards WHERE stars = 5
+
+        //$cards = Usercard::where('user_id','=',Auth::user()->id)->get();
+
+        $cards = Card::where('stars','=','5')->get();
 
          return view('user.cards')
             ->with('cards',$cards);

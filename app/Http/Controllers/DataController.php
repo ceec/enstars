@@ -172,6 +172,16 @@ class DataController extends Controller {
 
         $points = Eventpoint::where('event_id','=',$event->id)->get();
 
+        //add zero starting points
+            $data['points2'] = 0;
+            $data['rank2'] = 1200;    
+            $data['points7'] = 0;
+            $data['rank7'] = 11000;   
+            $data['points12'] = 0;
+            $data['rank12'] = 35000;   
+            $data['position'] = 'start';
+            $result[] = $data;     
+            unset($data);     
 
         foreach ($points as $key => $point) {
             $data['points2'] = $point->tier_2;

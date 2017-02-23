@@ -22,6 +22,12 @@ var eventEnd = "<?php print $event->end;?>";
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
 <div class="container">
+	<div class="alert alert-warning">
+		<h3>This calculator is in beta!</h3>
+		<p>Things may change as I add in new features and I may accidentally break things! If you have any feedback or suggestions 
+		I would appreicate it if you sent them to me through our contact form at the bottom of the page!</p>
+		<p>The data is currently stored in local storage so it will save if you use the same browser to access it, but not accross browsers or devices.</p>
+	</div>
   <div class="row">
 
       <div class="col-lg-2">
@@ -38,7 +44,7 @@ var eventEnd = "<?php print $event->end;?>";
       <h3>Time Remaining: <span id="time-remaining"></span></h3>
       </div>
       <div class="col-lg-4">
-      M T W R F S S M T W R F
+      
       </div>
     </div>
 
@@ -146,28 +152,31 @@ var eventEnd = "<?php print $event->end;?>";
     },
     "categoryField": "position",
     "categoryAxis": {
+    	"startOnAxis": "true",
       "labelFunction": function(label) {
 
 
-        if (label == 2) {
+        if (label == 'start') {
           label = 'Day 1';
-        } else if (label == 4) {
+        } else if (label == 1) {
           label = 'Day 2';
-        } else if (label == 6) {
+        } else if (label == 3) {
           label = 'Day 3';
-        } else if (label == 8) {
+        } else if (label == 5) {
           label = 'Day 4';
-        } else if (label == 10) {
+        } else if (label == 7) {
           label = 'Day 5';
-        } else if (label == 12) {
+        } else if (label == 9) {
           label = 'Day 6';
-        } else if (label == 14) {
+        } else if (label == 11) {
           label = 'Day 7';
-        } else if (label == 16) {
+        } else if (label == 13) {
           label = 'Day 8';
-        } else if (label == 18) {
+        } else if (label == 15) {
           label = 'Day 9';
-        } else if (label == 20) {
+        } else if (label == 17) {
+          label = 'Day 10';
+        } else if (label == 19) {
           label = 'End';
         } else {
           label = '';
@@ -180,9 +189,6 @@ var eventEnd = "<?php print $event->end;?>";
       "position": "left",
       "marginTop": 20,
       "valueText": ''
-    },
-    "export": {
-        "enabled": true
     },
       "listeners": [{
     "event": "drawn",
