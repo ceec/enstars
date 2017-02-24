@@ -12,7 +12,7 @@
         <div class="col-md-9 post">
                 <!-- Blog Post -->
                 <!-- Title -->
-                <h1>{{$blog->title}}</h1>
+                <h1>{!! $blog->title !!}</h1>
                 <!-- Author and time -->
                 <?php
                     $nicedate = date('F d, Y',strtotime($blog->created_at));
