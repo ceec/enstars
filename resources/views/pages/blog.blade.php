@@ -50,26 +50,7 @@ s.setAttribute('data-timestamp', +new Date());
         </div>
         <div class="col-md-1">
         </div>
-        <div class="col-md-2">
-            <h3>Students</h3>
-            @foreach($boys as $boy)
-                <?php 
-                    //name pretty for url
-                    $url = strtolower($boy->first_name);
-                ?>
-
-                <a href="/idol/{{$url}}">{{$boy->first_name}} {{$boy->last_name}}</a>  <br>
-            @endforeach
-
-            <h3>Teachers</h3>
-            @foreach($teachers as $boy)
-                <?php 
-                    //name pretty for url
-                    $url = strtolower($boy->first_name);
-                ?>
-
-                <a href="/idol/{{$url}}">{{$boy->first_name}} {{$boy->last_name}}</a>  <br>
-            @endforeach            
+        <div class="col-md-2">         
         </div>
 
     </div>
