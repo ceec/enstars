@@ -40,7 +40,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                     </div>
                 @endif
                 <h5>
-                    <a href="/{{$blog->type}}/{{$blog->url}}">{{$blog->title}}</a><br>
+                    <a href="/{{$blog->type}}/{{$blog->url}}">{!! $blog->title !!}</a><br>
                     <small>{{$nicedate}} by {{$blog->updated_by}}</small>
                 </h5>                
             @endforeach

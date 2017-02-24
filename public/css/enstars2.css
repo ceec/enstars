@@ -62,3 +62,9 @@ body {
 .boys {
 	display: inline-block;
 }
+
+
+:lang(ja) 	{
+    font-family: Latha, "Tamil MN", serif;
+    font-size: 100%;
+    }
