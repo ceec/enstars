@@ -56,7 +56,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                         $url = strtolower($boy->first_name);
                     ?>
 
-                    <a class="boys" href="/idol/{{$url}}"><img class="img-responsive" src="/images/boys/{{$boy->id}}.png"></a> 
+                    <a class="boys" href="/idol/{{$url}}"><img class="img-responsive" src="/images/boys/{{$boy->id}}.png" title="{{$boy->first_name}} {{$boy->last_name}}" alt="{{$boy->first_name}} {{$boy->last_name}}"></a> 
                 @endforeach                
                 </div>
             </div>
