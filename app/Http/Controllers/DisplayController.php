@@ -13,6 +13,7 @@ use App\Event;
 use App\Cardtag;
 use App\Tag;
 use App\Unit;
+use App\Classroom;
 
 use App\Story;
 use App\Chapter;
@@ -438,13 +439,44 @@ class DisplayController extends Controller {
             ->with('cards',$cards);
     }
 
+
+    /**
+     * Show classrooms
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function classroom($classroom_id) {
+        if (intval($classroom_id) < 1) {
+            //its a name, find their id
+
+            $find_id = Classroom::where('class','=',$classroom_id)->first();
+            $classroom_id = $find_id->id;
+        }
+
+        $classroom = Classroom::where('id','=',$classroom_id)->first();
+
+        $boys = Boy::where('classroom_id','=',$classroom->id)->get();
+
+        return view('pages.classroom')
+            ->with('classroom',$classroom)
+            ->with('boys',$boys);
+    }
+
+
     /**
      * Show units
      *
      * @return \Illuminate\Http\Response
      */
-    public function unit($unit_name) {
-        $unit = Unit::where('name','=',$unit_name)->first();
+    public function unit($unit_id) {
+        if (intval($unit_id) < 1) {
+            //its a name, find their id
+
+            $find_id = Unit::where('url','=',$unit_id)->first();
+            $unit_id = $find_id->id;
+        }
+
+        $unit = Unit::where('id','=',$unit_id)->first();
 
         $boys = Boy::where('unit_id','=',$unit->id)->get();
 

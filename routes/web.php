@@ -41,6 +41,9 @@ Route::get('/skill/{category}/{type}/{size}','DisplayController@skillCategory');
 
 //units
 Route::get('/unit/{unit_name}','DisplayController@unit');
+//classes
+Route::get('/class/{class_name}','DisplayController@classroom');
+//clubs
 
 //events
 //calculator

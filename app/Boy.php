@@ -24,8 +24,31 @@ class Boy extends Model
     }
 
 
+    /**
+     * Get the unit for this boy.
+     */
+    public function unit()
+    {
+        return $this->belongsTo('App\Unit');
+    }
 
 
+    /**
+     * Get the class for this boy.
+     */
+    public function classroom()
+    {
+        return $this->belongsTo('App\Classroom');
+    }
+
+
+    /**
+     * Get the unit for this boy.
+     */
+    public function club()
+    {
+        return $this->belongsTo('App\Club');
+    }    
 
    
 }

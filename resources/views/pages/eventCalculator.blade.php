@@ -363,7 +363,8 @@ var calculate = function() {
 //get current time left in event, update it every second.
 var timeLeft = function() {
   var now = Date.now();
-  var end = new Date("2017-02-24 22:00:00");
+  ///this is in MST. Need to get it in JST
+  var end = new Date("2017-02-25 22:00:00");
   //how many miliseconds long between the end of the event and now
   var diff = end.getTime() - now;  
   //calculate time left

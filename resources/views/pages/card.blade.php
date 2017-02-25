@@ -41,7 +41,7 @@
                             $scout_image = '/images/cards/get/'.$card->boy_id.'_'.$card->card_id.'.png';
                             //echo $scout_image;
                         ?>  
-        	<h1>{{$card->name_e}} <small><a href="/idol/{{$boy->first_name}}">{{$boy->first_name}} {{$boy->last_name}}</a></small></h1>
+        	<h1>{{$card->name_e}} <small><a href="/idol/{{ strtolower($boy->first_name)}}">{{$boy->first_name}} {{$boy->last_name}}</a></small></h1>
          <div class="row">
             <div class="col-md-6">
                 <div class="panel {{$color_class}}">

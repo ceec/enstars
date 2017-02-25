@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-{{$unit->name}} | enstars.info
+Class {{$classroom->class}} | enstars.info
 @stop
 
 @section('content')
@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
 
-        	<h1>{{$unit->name}}</h1>
+        	<h1>Class {{$classroom->class}}</h1>
                 <div class="row">
                     <?php $x=1; ?>
                     @foreach($boys as $boy)
