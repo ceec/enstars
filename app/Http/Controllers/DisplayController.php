@@ -446,7 +446,7 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function classroom($classroom_id) {
-        if (intval($classroom_id) < 1) {
+        if (strpos($classroom_id,'-') !== false) {
             //its a name, find their id
 
             $find_id = Classroom::where('class','=',$classroom_id)->first();
