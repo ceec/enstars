@@ -46,8 +46,8 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $boys = Boy::where('class','!=','')->orderBy('first_name','asc')->get();
-        $teachers = Boy::where('class','=','')->orderBy('first_name','asc')->get();
+        $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
+        $teachers = Boy::where('classroom_id','=','7')->orderBy('first_name','asc')->get();
         $blogs = Blog::orderBy('created_at','desc')->where('active','=','1')->take(4)->get();
         $units = Unit::all();
 
@@ -763,8 +763,8 @@ class DisplayController extends Controller {
      */
     public function blog($url) {
         $blog = Blog::where('url','=',$url)->first();
-        $boys = Boy::where('class','!=','')->orderBy('first_name','asc')->get();
-        $teachers = Boy::where('class','=','')->orderBy('first_name','asc')->get();
+        $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
+        $teachers = Boy::where('classroom_id','=','7')->orderBy('first_name','asc')->get();
 
         return view('pages.blog')
         ->with('blog',$blog)
@@ -850,7 +850,7 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function cardPrediction() {
-        $boys = Boy::where('class','!=','')->orderBy('first_name','asc')->get();
+        $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
 
         //lul why didnt i figure this out before...dumb me
         // $boys->each(function ($boy) {
