@@ -176,7 +176,7 @@ var eventEnd = "<?php print $event->end;?>";
           label = 'Day 9';
         } else if (label == 17) {
           label = 'Day 10';
-        } else if (label == 19) {
+        } else if (label == 20) {
           label = 'End';
         } else {
           label = '';
