@@ -12,8 +12,14 @@ Dashboard | enstars.info
         	<h1>{{Auth::user()->name}} Cards</h1>
                 <div class="row">
                     <?php $x=1; ?>
+                    <?php 
+
+
+                    //{{ $card->display('mini') }}    
+
+                    ?>
                     @foreach($cards as $card)
-                        {{ $card->display('mini') }}          
+                        {{ $card->display('mini') }}    
                         <?php
                             if ($x%6==0) {
 ?>

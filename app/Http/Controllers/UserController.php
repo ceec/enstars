@@ -73,8 +73,17 @@ class UserController extends Controller
         //SELECT * FROM cards WHERE stars = 5
 
         //$cards = Usercard::where('user_id','=',Auth::user()->id)->get();
+        //$test = new Usercard;
 
-        $cards = Card::where('stars','=','5')->get();
+        //$cards = $test->select('cards.*')->join('cards', 'cards.id', '=', 'usercards.card_id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = '.Auth::user()->id)->get();
+
+
+        $card = new Card;
+        $cards = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','asc')->get();
+
+
+       // dd($cards);
+
 
          return view('user.cards')
             ->with('cards',$cards);

@@ -9,7 +9,29 @@ class Usercard extends Model
     /**
      * Get the card information
      */
-    public function cards()
+    public function card()
     {
-        return $this->hasMany('App\Card');
-    }}
+        return $this->belongsTo('App\Card');
+    }
+
+
+    /**
+     * Get the 5 stars
+     */
+    public function cardFiveStars()
+    {
+    	//WHY IS THIS SO HARD
+    	//$test = $this->card;
+
+    	return 'test worked';
+
+
+        //return $this->belongsTo('App\Card');
+    }
+
+
+
+
+}
+
+

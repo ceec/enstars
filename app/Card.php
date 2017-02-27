@@ -28,6 +28,17 @@ class Card extends Model
     }
 
 
+
+    /**
+     * Get 5 star cards
+     */
+    public function stars($stars)
+    {
+          return $this->where('stars', '=',$stars);
+    }
+
+
+
     public function display($view='',$text='') {
     	//display the card
 
