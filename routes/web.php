@@ -165,6 +165,9 @@ Route::get('/home/blog/list','BlogController@listDisplay');
 Route::post('/add/blog','BlogController@add');
 Route::post('/edit/blog','BlogController@edit');
 
+//adding event data
+Route::get('/home/event/data','HomeController@eventData');
+Route::post('/add/event/data','HomeController@addEventData');
 
 
 ///user stuff

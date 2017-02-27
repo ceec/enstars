@@ -14,6 +14,7 @@
 
                 <div class="row">
                     <div class="col-md-4">
+                        <h3>Translations</h3>
                         <a href="/home/translations">Translations</a><br>
 
                     </div>
@@ -27,6 +28,12 @@
                         <a href="/home/card/add">Add New Card</a><br>
                         <a href="">Edit Card</a><br>                    
                     </div>                                        
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>Event Data</h3>
+                        <a href="/home/event/data">Add Event Data</a><br>
+                    </div>
                 </div>
                 </div>
             </div>

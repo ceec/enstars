@@ -12,6 +12,7 @@ use App\Chapter;
 use App\Slide;
 use App\Boy;
 use App\User;
+use App\Eventpoint;
 
 class HomeController extends Controller
 {
@@ -259,6 +260,76 @@ class HomeController extends Controller
     public function tools() {
         return view('home.tool');
     }  
+
+
+    /**
+     * Show the event Data page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function eventData() {
+        return view('home.eventData');
+    }  
+
+
+    /**
+     * adding the data
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addEventData(Request $request) {
+        $d = new Eventpoint;
+
+        $d->event_id = $request->event_id;
+        $d->position = $request->position;
+        $d->participants = $request->participants;
+        $d->rank_1 = $request->rank_1;
+        $d->tier_1 = $request->tier_1;
+        $d->rank_2 = $request->rank_2;
+        $d->tier_2 = $request->tier_2;
+        $d->rank_3 = $request->rank_3;
+        $d->tier_3 = $request->tier_3;
+        $d->rank_4 = $request->rank_4;
+        $d->tier_4 = $request->tier_4;
+        $d->rank_5 = $request->rank_5;
+        $d->tier_5 = $request->tier_5;
+        $d->rank_6 = $request->rank_6;
+        $d->tier_6 = $request->tier_6;
+        $d->rank_7 = $request->rank_7;
+        $d->tier_7 = $request->tier_7;
+        $d->rank_8 = $request->rank_8;
+        $d->tier_8 = $request->tier_8;                                                        
+        $d->rank_9 = $request->rank_9;
+        $d->tier_9 = $request->tier_9;   
+        $d->rank_10 = $request->rank_10;
+        $d->tier_10 = $request->tier_10;
+        $d->rank_11 = $request->rank_11;
+        $d->tier_11 = $request->tier_11;
+        $d->rank_12 = $request->rank_12;
+        $d->tier_12 = $request->tier_12;
+        $d->rank_13 = 0;
+        $d->tier_13 = 0;
+        $d->rank_14 = 0;
+        $d->tier_14 = 0;
+        $d->rank_15 = 0;
+        $d->tier_15 = 0;
+        $d->rank_16 = 0;
+        $d->tier_16 = 0;     
+        $d->rank_17 = 0;
+        $d->tier_17 = 0;
+        $d->rank_18 = 0;
+        $d->tier_18 = 0;
+        $d->rank_19 = 0;
+        $d->tier_19 = 0;   
+        $d->rank_max = 300000;
+        $d->updated_by = Auth::user()->id;                                                     
+        $d->save();
+
+
+        return redirect('/home');      
+    }  
+
+
 
     /**
      * Adding slides - from tools page
