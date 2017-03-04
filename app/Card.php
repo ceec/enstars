@@ -39,7 +39,7 @@ class Card extends Model
 
 
 
-    public function display($view='',$text='',$settings='') {
+    public function display($view='',$text='') {
     	//display the card
 
     	//lets standardize this across all cards!
@@ -61,7 +61,7 @@ class Card extends Model
 
 			$have = Usercard::where('user_id','=',$user->id)->where('card_id','=',$this->id)->count();
 
-			if (($have > 0) && ($settings['user_page'] == 0)) {
+			if ($have > 0 ) {
 				$background = 'panel-info';
 			} else {
 				$background = '';
