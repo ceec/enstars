@@ -32,11 +32,9 @@
     	<img class="img-responsive" src="/images/translate/{{$event_type}}/{{$story->id}}/minievent/{{$minievent->id}}_{{$slide_number}}.{{$minievent->file_type}}">
     	</div>
     	<div class="col-md-6">
-			{{$slide->id}}
-			{!! Form::textarea('text_j',$slide->text_j,['class'=>'form-control ajaxTest','id'=>$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Japanese Text']) !!} <br>
-			{!! Form::textarea('text_e', $slide->text_e,['class'=>'form-control ajaxTest','id'=>$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'English Text']) !!} <br>
-			{!! Form::textarea('notes', $slide->notes,['class'=>'form-control ajaxTest', 'id'=>$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Notes']) !!} <br>
-            {!! Form::hidden('type', 'text') !!}
+			{!! Form::textarea('text_j',$slide->text_j,['class'=>'form-control ajaxTest','id'=>$slide->id, 'choice_type'=>'text','rows' => 3, 'cols' => 100, 'placeholder'=>'Japanese Text']) !!} <br>
+			{!! Form::textarea('text_e', $slide->text_e,['class'=>'form-control ajaxTest','id'=>$slide->id,'choice_type'=>'text', 'rows' => 3, 'cols' => 100, 'placeholder'=>'English Text']) !!} <br>
+			{!! Form::textarea('notes', $slide->notes,['class'=>'form-control ajaxTest', 'id'=>$slide->id, 'choice_type'=>'text','rows' => 3, 'cols' => 100, 'placeholder'=>'Notes']) !!} <br>
 			{!! Form::hidden('slide_id', $slide->id) !!}
 			{!! Form::hidden('minievent_id', $minievent->id) !!}
 			{!! Form::hidden('story_id', $story->id) !!}
@@ -51,8 +49,7 @@
         @foreach($choices as $choice)
             @if ($choice->slide == 1)
             <h2>Choice {{$choice->choice_id}}: 
-                {!! Form::text('text_e', $choice->text_e,['class'=>'form-control ajaxTest','id'=>$choice->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'English Text']) !!} 
-                {!! Form::hidden('type', 'choice') !!}
+                {!! Form::text('text_e', $choice->text_e,['class'=>'form-control ajaxTest','id'=>$choice->id, 'choice_type'=>'choice', 'rows' => 3, 'cols' => 100, 'placeholder'=>'English Text']) !!} 
                 </h2>
             @elseif ($choice->slide > 1)
                 <?php
@@ -64,11 +61,10 @@
                     <img class="img-responsive" src="/images/translate/{{$event_type}}/{{$story->id}}/minievent/choice/{{$choice->choice_id}}_{{$slide_number}}.{{$minievent->file_type}}">
                     </div>
                     <div class="col-md-6">
-                        {!! Form::textarea('text_j',$choice->text_j,['class'=>'form-control ajaxTest','id'=>$choice->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Japanese Text']) !!} <br>
-                        {!! Form::textarea('text_e', $choice->text_e,['class'=>'form-control ajaxTest','id'=>$choice->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'English Text']) !!} <br>
-                        {!! Form::textarea('notes', $choice->notes,['class'=>'form-control ajaxTest', 'id'=>$choice->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Notes']) !!} <br>
+                        {!! Form::textarea('text_j',$choice->text_j,['class'=>'form-control ajaxTest','id'=>$choice->id, 'choice_type'=>'choice','rows' => 3, 'cols' => 100, 'placeholder'=>'Japanese Text']) !!} <br>
+                        {!! Form::textarea('text_e', $choice->text_e,['class'=>'form-control ajaxTest','id'=>$choice->id, 'choice_type'=>'choice','rows' => 3, 'cols' => 100, 'placeholder'=>'English Text']) !!} <br>
+                        {!! Form::textarea('notes', $choice->notes,['class'=>'form-control ajaxTest', 'id'=>$choice->id, 'choice_type'=>'choice','rows' => 3, 'cols' => 100, 'placeholder'=>'Notes']) !!} <br>
                         {!! Form::hidden('slide_id', $choice->id) !!}
-                        {!! Form::hidden('type', 'choice') !!}
                         {!! Form::hidden('minievent_id', $minievent->id) !!}
                         {!! Form::hidden('story_id', $story->id) !!}
                         Last updated: <span id="lastupdated-{{$choice->id}}">{{$choice->updated_at}}</span>
@@ -108,7 +104,7 @@ $('.ajaxTest').keyup(function(test) {
 	slideValue = $self.val();
 	slideID = $self.attr('id');
 	slideName = $self.attr('name');
-    type = $self.attr('type');
+    type = $self.attr('choice_type');
 
 	//do i need to pass through the type? or just use it as a variable in PHP
 
