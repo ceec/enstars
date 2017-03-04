@@ -11,7 +11,7 @@ Store | enstars.info
         <div class="col-md-12">
 
 		    <h1>Store</h1>
-		    <div id='product-component-bacd36bc72d'></div>
+		    <div id='collection-component-f9457d5836a'></div>
 <script type="text/javascript">
 /*<![CDATA[*/
 
@@ -43,15 +43,15 @@ Store | enstars.info
     });
 
     ShopifyBuy.UI.onReady(client).then(function (ui) {
-      ui.createComponent('product', {
-        id: [9825416078],
-        node: document.getElementById('product-component-bacd36bc72d'),
+      ui.createComponent('collection', {
+        id: 413162062,
+        node: document.getElementById('collection-component-f9457d5836a'),
         moneyFormat: '%24%7B%7Bamount%7D%7D',
         options: {
   "product": {
     "variantId": "all",
-    "width": "240px",
     "contents": {
+      "imgWithCarousel": false,
       "variantTitle": false,
       "description": false,
       "buttonWithQuantity": false,
@@ -60,13 +60,10 @@ Store | enstars.info
     "styles": {
       "product": {
         "@media (min-width: 601px)": {
-          "max-width": "100%",
-          "margin-left": "0",
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
           "margin-bottom": "50px"
         }
-      },
-      "compareAt": {
-        "font-size": "12px"
       }
     }
   },
@@ -82,6 +79,8 @@ Store | enstars.info
   },
   "modalProduct": {
     "contents": {
+      "img": false,
+      "imgWithCarousel": true,
       "variantTitle": false,
       "buttonWithQuantity": true,
       "button": false,
@@ -113,7 +112,6 @@ Store | enstars.info
 })();
 /*]]>*/
 </script>
-
         </div>
 
     </div>
