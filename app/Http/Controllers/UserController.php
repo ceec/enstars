@@ -81,28 +81,25 @@ class UserController extends Controller
         $card = new Card;
         $fivestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','asc');
         $fivestarcards = $fivestarcardsq->get();
-        $fivestarcards_count = $fivestarcardsq->count();
+        //$fivestarcards_count = $fivestarcardsq->count();
 
         //four star
         $fourstarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='4'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','asc');
         $fourstarcards = $fourstarcardsq->get();
-        $fourstarcards_count = $fourstarcardsq->count();
+        //$fourstarcards_count = $fourstarcardsq->count();
 
         //three star
         $threestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='3'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','asc');
         $threestarcards = $threestarcardsq->get();
-        $threestarcards_count = $threestarcardsq->count();        
+        //$threestarcards_count = $threestarcardsq->count();        
 
        // dd($cards);
 
 
          return view('user.cards')
             ->with('fivestarcards',$fivestarcards)
-            ->with('fivestarcards_count',$fivestarcards_count)
             ->with('fourstarcards',$fourstarcards)
-            ->with('fourstarcards_count',$fourstarcards_count)
-            ->with('threestarcards',$threestarcards)
-            ->with('threestarcards_count',$threestarcards_count);
+            ->with('threestarcards',$threestarcards);
       
     } 
 

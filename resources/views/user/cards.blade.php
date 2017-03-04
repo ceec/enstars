@@ -10,7 +10,7 @@ Dashboard | enstars.info
     <div class="row">
         <div class="col-md-12">
         	<h1>{{Auth::user()->name}} Cards</h1>
-                <h3>5 Stars - {{$fivestarcards_count}} cards</h3>
+                <h3>5 Stars - {{count($fivestarcards)}} cards</h3>
                 <div class="row">
                     <?php $x=1; ?>
                     @foreach($fivestarcards as $card)
@@ -26,7 +26,7 @@ Dashboard | enstars.info
                         ?>
                     @endforeach
                 </div>  
-                <h3>4 Stars - {{$fourstarcards_count}} cards</h3>
+                <h3>4 Stars - {{count($fourstarcards)}} cards</h3>
                 <div class="row">
                     <?php $x=1; ?>
                     @foreach($fourstarcards as $card)
@@ -42,7 +42,7 @@ Dashboard | enstars.info
                         ?>
                     @endforeach
                 </div>                  
-                <h3>3 Stars - {{$threestarcards_count}} cards</h3>
+                <h3>3 Stars - {{count($threestarcards)}} cards</h3>
 
         </div>
 
