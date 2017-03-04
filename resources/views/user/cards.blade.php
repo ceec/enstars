@@ -10,15 +10,10 @@ Dashboard | enstars.info
     <div class="row">
         <div class="col-md-12">
         	<h1>{{Auth::user()->name}} Cards</h1>
+                <h3>5 Stars - {{$fivestarcards_count}} cards</h3>
                 <div class="row">
                     <?php $x=1; ?>
-                    <?php 
-
-
-                    //{{ $card->display('mini') }}    
-
-                    ?>
-                    @foreach($cards as $card)
+                    @foreach($fivestarcards as $card)
                         {{ $card->display('mini') }}    
                         <?php
                             if ($x%6==0) {
@@ -31,7 +26,23 @@ Dashboard | enstars.info
                         ?>
                     @endforeach
                 </div>  
-
+                <h3>4 Stars - {{$fourstarcards_count}} cards</h3>
+                <div class="row">
+                    <?php $x=1; ?>
+                    @foreach($fourstarcards as $card)
+                        {{ $card->display('mini') }}    
+                        <?php
+                            if ($x%6==0) {
+?>
+                            </div>
+                            <div class="row">
+<?php                            
+                            }
+                            $x++;
+                        ?>
+                    @endforeach
+                </div>                  
+                <h3>3 Stars - {{$threestarcards_count}} cards</h3>
 
         </div>
 
