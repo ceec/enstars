@@ -127,11 +127,13 @@ Route::get('/home/album/builder','HomeController@albumBuilder');
 //translation area
 Route::get('/home/translations','HomeController@translations');
 Route::get('/home/translations/{story_id}','HomeController@translationStory');
+Route::get('/home/translations/{story_id}/minievent/{mini_id}','HomeController@translationMiniEvent');
 Route::get('/home/translations/{story_id}/{chapter_id}','HomeController@translationChapter');
 //posting
 Route::post('/add/translation','HomeController@addTranslation');
 //ajax posting
 Route::post('/add/translationajax','HomeController@addTranslationAjax');
+Route::post('/add/minievent/translationajax','HomeController@addMiniEventTranslationAjax');
 //setting chapter live
 Route::post('/add/chapterDisplay','HomeController@chapterDisplay');
 

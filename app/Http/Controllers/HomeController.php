@@ -13,6 +13,9 @@ use App\Slide;
 use App\Boy;
 use App\User;
 use App\Eventpoint;
+use App\Minievent;
+use App\Minieventchoice;
+use App\Minieventslide;
 
 class HomeController extends Controller
 {
@@ -146,9 +149,40 @@ class HomeController extends Controller
             $chapters[$key]->percent = round(($amount_complete/$amount_total) * 100);
         }
 
+        //get the mini events tied to this event
+        $mini = Minievent::where('event_id','=',$story->type_id)->get();
+
         return view('home.story')
         ->with('story',$story)
+        ->with('mini',$mini)
         ->with('chapters',$chapters);
+    }  
+
+
+
+    /**
+     * Show the mini event's slides
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function translationMiniEvent($story_id,$minievent_id) {
+        $minievent = Minievent::where('id','=',$minievent_id)->first();
+        $story = Story::where('id','=',$story_id)->first();
+        $slides = Minieventslide::where('minievent_id','=',$minievent->id)->get();
+        //get the boys info
+        $boy = Boy::where('id','=',$minievent->boy_id)->first();
+
+        $choices = Minieventchoice::where('minievent_id','=',$minievent->id)->orderBy('choice_id','asc')->get();
+
+
+
+
+        return view('home.miniEvent')
+        ->with('minievent',$minievent)
+        ->with('choices',$choices)
+        ->with('story',$story)
+        ->with('boy',$boy)
+        ->with('slides',$slides);
     }  
 
     /**
@@ -219,6 +253,41 @@ class HomeController extends Controller
 
         //need to update slide
         $slide = Slide::find($slide_id);
+
+        //test this update
+
+        $slide->$field = $value;
+        $slide->save();
+
+
+
+        echo json_encode($slide->updated_at);
+    } 
+
+
+    /**
+     * update the minieevent translation WITH AJAX woop
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addMiniEventTranslationAjax(Request $request) {
+        $slide_id = $request->input('slide_id');
+
+        $field = $request->input('name');
+
+        $value = $request->input('value');
+
+        $type = $request->input('type');
+
+        if ($type == 'text') {
+            $slide = Minieventslide::find($slide_id);
+        } else {
+            $slide = Minieventchoice::find($slide_id);
+        }
+
+
+        //need to update slide
+        
 
         //test this update
 
