@@ -8,6 +8,7 @@ use App\Boy;
 use App\Skill;
 use App\Minievent;
 use App\Minieventchoice;
+use App\Minieventslide;
 use App\Event;
 
 use App\Cardtag;
@@ -680,14 +681,50 @@ class DisplayController extends Controller {
         //get rewards
         $rewards = Reward::all();
 
+        //get the mini events
+        $minievents = Minievent::where('event_id','=',$event->id)->get();
+
         return view('pages.event')
             ->with('cards',$cards)
             ->with('story',$story)
             ->with('chapters',$chapters)
             ->with('points',$points)
             ->with('rewards',$rewards)
+            ->with('minievents',$minievents)
             ->with('event',$event);
     }    
+
+
+
+    /**
+     * Show specific Mini event
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function miniEvent($event_id) {
+        $event_id = intval($event_id);
+
+        $minievent = Minievent::find($event_id);
+        $event = Event::find($minievent->event_id);
+        //get the slides
+        $slides = Minieventslide::where('minievent_id','=',$minievent->id)->get();
+        //choices
+        $choices = Minieventchoice::where('minievent_id','=',$minievent->id)->orderBy('choice_id','asc')->get();
+
+        //boy
+        $boy = Boy::find($minievent->boy_id);
+        //story
+        $story = Story::where('type_id','=',$minievent->event_id)->where('type','=',1)->first();
+
+
+        return view('pages.miniEvent')
+            ->with('slides',$slides)
+            ->with('story',$story)
+            ->with('choices',$choices)
+            ->with('boy',$boy)
+            ->with('minievent',$minievent)
+            ->with('event',$event);
+    } 
 
 
     /**

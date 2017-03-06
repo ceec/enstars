@@ -41,6 +41,14 @@
                             @endforeach
                         @endif
                     </div>
+                    <div class="col-md-4">
+                            <h3>Mini Events</h3>
+                            @foreach ($minievents as $event)
+                                    <a href="/minievent/{{$event->id}}">{{$event->name_e}}</a><br>
+                            @endforeach
+                    </div>                    
+
+                <div class="row">
                     <div class="col-md-8">
                         @if (isset($points->participants) && ($event->active === 0))
                         <h2>Final Ranking - Total Participants {{$points->participants}}</h2>

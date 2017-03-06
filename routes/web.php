@@ -55,6 +55,9 @@ Route::get('/event/all','DisplayController@eventAll');
 //specific event
 Route::get('/event/{event_id}','DisplayController@event');
 
+//mini event
+Route::get('/minievent/{event_id}','DisplayController@miniEvent');
+
 
 //all scouts
 Route::get('/scout/all','DisplayController@scoutAll');
