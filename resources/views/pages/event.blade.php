@@ -29,7 +29,7 @@
                     @endforeach
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="story">
                         @if ($chapters != '')
                             <h3>Event Story</h3>
                             @foreach ($chapters as $chapter)
