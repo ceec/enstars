@@ -44,7 +44,12 @@
                     <div class="col-md-4">
                             <h3>Mini Events</h3>
                             @foreach ($minievents as $event)
-                                    <a href="/minievent/{{$event->id}}">{{$event->name_e}}</a><br>
+                                @if ($event->complete == 1)
+                                     <a href="/minievent/{{$event->id}}">{{$event->name_e}}</a><br>
+                                @else
+                                    {{$event->name_e}}<br>
+                                @endif
+                                   
                             @endforeach
                     </div>                    
 
