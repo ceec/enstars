@@ -105,6 +105,11 @@ enstars.info - Information and Translations for Ensemble Stars!
                     <h3>Translated Stories</h3>
                         <h4>Event Stories</h4>
                         @foreach ($event_stories as $story)
+
+                        <?php
+                            //dd($story->event());
+                        ?>
+
                             <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                         @endforeach
 

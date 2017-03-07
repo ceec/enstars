@@ -168,7 +168,7 @@
             $slide_number = str_pad($choice->slide,2,'0',STR_PAD_LEFT);
 ?>
               <div class="slide-{{$source}}">
-                  <img src="/images/translate/{{$event_type}}/{{$story->id}}/minievent/choice/{{$minievent->id}}_{{$slide_number}}.{{$minievent->file_type}}">
+                  <img src="/images/translate/{{$event_type}}/{{$story->id}}/minievent/choice/{{$choice->id}}_{{$slide_number}}.{{$minievent->file_type}}">
                     <p class="name-text-{{$source}}">{{$boy->first_name}}</p>
                   <p class="slide-text-{{$source}}">{!! $choice->text_e !!}</p>
                 </div>
