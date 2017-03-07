@@ -96,10 +96,9 @@ enstars.info - Information and Translations for Ensemble Stars!
                     </table>                                                        
                 </div>  
                 <div class="col-md-4">
-                    <h3>Tags</h3>
-                        @foreach($tags as $tag)
-                            <a href="/tag/{{$tag->tag}}">{{$tag->tag}}</a><br>
-                        @endforeach
+                    <a href="/store"><h3>Magnets Available!!!</h3></a>
+                    <a href="/store"><img class="img-responsive" src="/images/magnets.png"></a>
+                    <a href="/news/character-magnets-available-for-purchase">Read about how we got them here!</a>
                 </div>
                 <div class="col-md-4">
                     <h3>Translated Stories</h3>
