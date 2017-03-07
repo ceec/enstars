@@ -17,10 +17,14 @@
                 <?php
                     $nicedate = date('F d, Y',strtotime($blog->created_at));
 
-                    //$blog->content = html_entity_decode($blog->content);
+                    if ($blog->updated_by == 1) {
+                        $blog->updated_by = 'ankee';
+                    } else if ($blog->updated_by == 3) {
+                        $blog->updated_by = 'cherushi';
+                    }
                 ?>
                 <p>
-                    Posted on {{$nicedate}} by <a href="#">{{$blog->author}}</a>
+                    Posted on {{$nicedate}} by {{$blog->updated_by}}
                 </p>
                 <hr>
                 <!-- Post Content -->
