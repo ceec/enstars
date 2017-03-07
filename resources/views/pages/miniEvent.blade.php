@@ -166,9 +166,16 @@
               <div class="col-md-7">
 <?php
             $slide_number = str_pad($choice->slide,2,'0',STR_PAD_LEFT);
+            //calculate the choice id
+
+            if ($minievent->id < 3) {
+              $choiceid = $minievent->id;
+            } else {
+              $choiceid = $minievent->id + $choice->id;
+            }
 ?>
               <div class="slide-{{$source}}">
-                  <img src="/images/translate/{{$event_type}}/{{$story->id}}/minievent/choice/{{$choice->id}}_{{$slide_number}}.{{$minievent->file_type}}">
+                  <img src="/images/translate/{{$event_type}}/{{$story->id}}/minievent/choice/{{$choiceid}}_{{$slide_number}}.{{$minievent->file_type}}">
                     <p class="name-text-{{$source}}">{{$boy->first_name}}</p>
                   <p class="slide-text-{{$source}}">{!! $choice->text_e !!}</p>
                 </div>
