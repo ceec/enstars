@@ -167,11 +167,10 @@
 <?php
             $slide_number = str_pad($choice->slide,2,'0',STR_PAD_LEFT);
             //calculate the choice id
-
-            if ($minievent->id < 3) {
-              $choiceid = $minievent->id;
+            if ($minievent->id < 2) {
+              $choiceid = $choice->choice_id;
             } else {
-              $choiceid = $minievent->id + $choice->id;
+              $choiceid = $minievent->id + $choice->choice_id;
             }
 ?>
               <div class="slide-{{$source}}">
@@ -185,7 +184,8 @@
                 </div>
            </div>
            <br>
-          @endif     
+          @endif
+          <?php $choiceid = 0; ?>     
         @endforeach
 
 
