@@ -682,7 +682,7 @@ class DisplayController extends Controller {
         $rewards = Reward::all();
 
         //get the mini events
-        $minievents = Minievent::where('event_id','=',$event->id)->get();
+        $minievents = Minievent::where('event_id','=',$event->id)->orderBy('precedence','asc')->get();
 
         return view('pages.event')
             ->with('cards',$cards)
