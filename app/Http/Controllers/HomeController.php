@@ -148,6 +148,7 @@ class HomeController extends Controller
                 $amount_total = 1;
             }
             $chapters[$key]->percent = round(($amount_complete/$amount_total) * 100);
+            $chapters[$key]->total_slides = $amount_total;
         }
 
         //get the mini events tied to this event

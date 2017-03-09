@@ -7,7 +7,10 @@
 		<div class="col-md-6">
 			<h2>Chapters</h2>
 		    @foreach ($chapters as $chapter)
-		        {{$chapter->percent}}% <a href="/home/translations/{{$story->id}}/{{$chapter->id}}">{{$chapter->name_e}}</a><br>
+		    	@if ($chapter->total_slides > 1)
+		    	{{$chapter->percent}}%
+		    	@endif
+		         <a href="/home/translations/{{$story->id}}/{{$chapter->id}}">{{$chapter->name_e}}</a><br>
 		    @endforeach
 		</div>
 		<div class="col-md-6">
