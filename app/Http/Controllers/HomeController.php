@@ -16,6 +16,7 @@ use App\Eventpoint;
 use App\Minievent;
 use App\Minieventchoice;
 use App\Minieventslide;
+use App\Chapterboy;
 
 class HomeController extends Controller
 {
@@ -191,12 +192,18 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function translationChapter($story_id,$chapter_id) {
+        $chapter_id = intval($chapter_id);
+
         $chapter = Chapter::where('id','=',$chapter_id)->first();
         $story = Story::where('id','=',$story_id)->first();
         $slides = Slide::where('chapter_id','=',$chapter_id)->get();
         //need list of the boys who could be talking
-        $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
+        //$boys = CHap::orderBy('first_name','ASC')->pluck('first_name','id');
 
+        //lets write a join
+        $boy = new Boy;
+        $boysq = $boy->select('boys.*')->join('chapterboys','chapterboys.boy_id','=','boys.id')->whereRaw('chapterboys.chapter_id = '.$chapter_id);
+        $boys = $boysq->pluck('first_name','id');
 
         //create percentages
 
@@ -327,7 +334,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function tools() {
-        return view('home.tool');
+        //return a list of all the boys
+        $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
+
+        return view('home.tool')
+            ->with('boys',$boys);
     }  
 
 
@@ -407,6 +418,7 @@ class HomeController extends Controller
      */
     public function addSlides(Request $request) {
         $chapter_id = $request->input('chapter_id');
+        $boys = $request->input('boys');
         $amount = $request->input('amount');
 
         for ($i=1; $i <= $amount; $i++) { 
@@ -416,6 +428,16 @@ class HomeController extends Controller
             $s->slide = $i;
             //$s->updated_by = Auth::
             $s->save();
+        }
+
+        //add the boys to this chapter
+
+        foreach($boys as $boy) {
+            $c = new Chapterboy;
+            $c->chapter_id = $chapter_id;
+            $c->boy_id = $boy;
+            $c->updated_by = Auth::user()->id;
+            $c->save();
         }
         
         return redirect('/home/translations/');      
