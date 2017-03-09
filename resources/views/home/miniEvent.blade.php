@@ -55,10 +55,16 @@
                 <?php
                     //i just had to put zero prefixes
                     $slide_number = str_pad($choice->slide,2,'0',STR_PAD_LEFT);
+                    //calculate the choice id
+                    if ($minievent->id < 2) {
+                      $choiceid = $choice->choice_id;
+                    } else {
+                      $choiceid = $minievent->id + $choice->choice_id;
+                    }                    
                 ?>            
                 <div class="row">
                     <div class="col-md-6">
-                    <img class="img-responsive" src="/images/translate/{{$event_type}}/{{$story->id}}/minievent/choice/{{$choice->choice_id}}_{{$slide_number}}.{{$minievent->file_type}}">
+                    <img class="img-responsive" src="/images/translate/{{$event_type}}/{{$story->id}}/minievent/choice/{{$choiceid}}_{{$slide_number}}.{{$minievent->file_type}}">
                     </div>
                     <div class="col-md-6">
                         {!! Form::textarea('text_j',$choice->text_j,['class'=>'form-control ajaxTest','id'=>$choice->id, 'choice_type'=>'choice','rows' => 3, 'cols' => 100, 'placeholder'=>'Japanese Text']) !!} <br>

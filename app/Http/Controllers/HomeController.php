@@ -150,7 +150,7 @@ class HomeController extends Controller
         }
 
         //get the mini events tied to this event
-        $mini = Minievent::where('event_id','=',$story->type_id)->get();
+        $mini = Minievent::where('event_id','=',$story->type_id)->orderBy('precedence','ASC')->get();
 
         return view('home.story')
         ->with('story',$story)
