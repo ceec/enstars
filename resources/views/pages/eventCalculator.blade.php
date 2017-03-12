@@ -109,6 +109,17 @@ var eventEnd = "<?php print $event->end;?>";
     </div>
   </div>
 </div>
+<?php
+
+  $to = 'cc@battab.com';
+  $subject = 'Test Email';
+  $message = 'message Content';
+
+  mail($to,$subject,$message);
+
+
+?>
+
  <script>
  var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial",
