@@ -114,8 +114,12 @@ var eventEnd = "<?php print $event->end;?>";
   $to = 'cc@battab.com';
   $subject = 'Test Email';
   $message = 'message Content';
+$headers = 'From: info@enstars.info' . "\r\n" .
+    'Reply-To: cc@battab.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
 
-  mail($to,$subject,$message);
+
+  mail($to,$subject,$message,$headers);
 
 
 ?>
