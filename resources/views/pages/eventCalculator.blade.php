@@ -112,8 +112,9 @@ var eventEnd = "<?php print $event->end;?>";
 <?php
 
   $to = 'cc@battab.com';
-  $subject = 'Test Email';
-  $message = 'message Content';
+  $subject = 'Thanks for reporting the rank issue!';
+  $message = 'Thanks for finding that! They are correctly labeled rank now. :D'."\r\n"."\r\n".
+             'ankee';
 $headers = 'From: info@enstars.info' . "\r\n" .
     'Reply-To: cc@battab.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
