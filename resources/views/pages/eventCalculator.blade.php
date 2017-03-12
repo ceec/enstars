@@ -111,16 +111,16 @@ var eventEnd = "<?php print $event->end;?>";
 </div>
 <?php
 
-  $to = 'j2a1m1i2e@gmail.com';
-  $subject = 'Thanks for reporting the rank issue!';
-  $message = 'Thanks for finding that! They are correctly labeled rank now. :D'."\r\n"."\r\n".
-             'ankee';
-$headers = 'From: info@enstars.info' . "\r\n" .
-    'Reply-To: cc@battab.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+//   $to = 'j2a1m1i2e@gmail.com';
+//   $subject = 'Thanks for reporting the rank issue!';
+//   $message = 'Thanks for finding that! They are correctly labeled rank now. :D'."\r\n"."\r\n".
+//              'ankee';
+// $headers = 'From: info@enstars.info' . "\r\n" .
+//     'Reply-To: cc@battab.com' . "\r\n" .
+//     'X-Mailer: PHP/' . phpversion();
 
 
-  mail($to,$subject,$message,$headers);
+//   mail($to,$subject,$message,$headers);
 
 
 ?>
