@@ -111,7 +111,7 @@ var eventEnd = "<?php print $event->end;?>";
 </div>
 <?php
 
-//   $to = 'j2a1m1i2e@gmail.com';
+//   $to = 'cc@battab.com';
 //   $subject = 'Thanks for reporting the rank issue!';
 //   $message = 'Thanks for finding that! They are correctly labeled rank now. :D'."\r\n"."\r\n".
 //              'ankee';
