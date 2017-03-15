@@ -84,16 +84,16 @@ var eventEnd = "<?php print $event->end;?>";
     <div class="col-lg-6">
     	<div class="row">
       	<div class="col-lg-2">
-        	<span class="btn btn-danger"><img class="img-responsive" src="/images/cards/2_27b.png">Normal<br>500000&nbsp;</span>
+        	<span class="btn btn-danger"><img class="img-responsive" src="/images/cards/31_28b.png">Normal<br>500000&nbsp;</span>
         </div>
         <div class="col-lg-2">
-        	<span class="btn btn-info"><img class="img-responsive" src="/images/cards/17_26b.png">Normal<br>500000&nbsp;</span>
+        	<span class="btn btn-warning"><img class="img-responsive" src="/images/cards/24_24b.png">Normal<br>500000&nbsp;</span>
         </div>
         <div class="col-lg-2">
-        	<span class="btn btn-warning"><img class="img-responsive" src="/images/cards/20_26b.png">Halfway<br>750000&#8203;</span>
+        	<span class="btn btn-info"><img class="img-responsive" src="/images/cards/30_25b.png">Halfway<br>750000&#8203;</span>
         </div>
         <div class="col-lg-2">
-        	<span class="btn btn-warning"><img class="img-responsive" src="/images/cards/3_22b.png">Urgent<br>1000000</span>
+        	<span class="btn btn-info"><img class="img-responsive" src="/images/cards/22_28b.png">Urgent<br>1000000</span>
        	</div>
        	</div>
       <h3>Max Natural LP remaining: <span id="lp-remaining"></span></h3>
@@ -380,7 +380,7 @@ var calculate = function() {
 var timeLeft = function() {
   var now = Date.now();
   ///this is in MST. Need to get it in JST
-  var end = new Date("2017-02-25 22:00:00");
+  var end = new Date("2017-03-25 07:00:00");
   //how many miliseconds long between the end of the event and now
   var diff = end.getTime() - now;  
   //calculate time left
