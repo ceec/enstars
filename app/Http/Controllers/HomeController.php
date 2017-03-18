@@ -74,6 +74,40 @@ class HomeController extends Controller
         ->with('cards',$allcards);
     } 
 
+
+    /**
+     * Translation status page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function translationStatus(){
+        //all the stories
+
+        //events -> separate out by year
+
+        //back to having issues with joins, WHY SO HARD
+        //what do i want in the end -> chapter names, event info
+        //$chapter = new Chapter;        
+        //$event_2015 = $chapter->select('chapters.*')->join('events','events.id','=','chapters.event_id')->whereRaw("events.start < '2016-01-01'")->orderBy('events.start','asc')->get();
+
+
+       // $event_2015 = Story::event()->where('start','<','2016-01-01')->get();
+
+        $event_2015 = Event::where('start','<','2016-01-01')->get();
+
+
+       $event_stories = Story::where('type','=',1)->get();
+       $gacha_stories = Story::where('type','=',2)->get();
+       $character_stories = Story::where('type','=',3)->get();   
+        
+
+
+        return view('home.translationStatus')
+        ->with('event_stories',$event_stories)
+        ->with('gacha_stories',$gacha_stories)
+        ->with('character_stories',$character_stories);
+    }     
+
     /**
      * Show the translation page
      *

@@ -36,6 +36,9 @@ use App\Userevent;
 use App\Eventpoint;
 use App\Reward;
 
+use App\Loginevent;
+use App\Logineventday;
+
 use Auth;
 
 
@@ -857,9 +860,71 @@ class DisplayController extends Controller {
     }    
 
 
+
+
+///////////// login bonus ///////////////////
+
+
+
+
+     /**
+     * Display all login bonus
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function loginBonusAll() {
+        $all = Loginevent::all();
+
+        return view('pages.loginBonusAll')
+            ->with('all',$all);
+    } 
+
+
+     /**
+     * Display all login bonus
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function loginBonus($bonus_id) {
+        if (intval($bonus_id) < 1) {
+            //its a name, find their id
+
+            $find_id = Loginevent::where('url','=',$bonus_id)->first();
+            $bonus_id = $find_id->id;
+        } else {
+            $bonus_id = intval($bonus_id);
+        }      
+         
+
+          $event = Loginevent::find($bonus_id);
+
+          $days = Logineventday::where('event_id','=',$event->id)->get();
+
+
+        return view('pages.loginBonus')
+            ->with('event',$event)
+            ->with('days',$days);
+    } 
+
+
 ///////////graphs//////////////
 
-        /**
+
+    /**
+     * Timeline of events and scouts
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function timeline() {
+
+        $scouts = Scout::all();
+
+
+        return view('pages.timeline')
+        ->with('scouts',$scouts);
+    } 
+
+     /**
      * Show card release gnatt
      *
      * @return \Illuminate\Http\Response

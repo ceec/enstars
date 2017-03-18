@@ -90,6 +90,10 @@ Route::post('/add/link', 'CardController@addLink');
 Route::get('/store','DisplayController@store');
 
 
+//login events
+Route::get('/bonus/all','DisplayController@loginBonusAll');
+Route::get('/bonus/{name}','DisplayController@loginBonus');
+
 //data
 //released cards
 Route::get('/graph/cards-released','DisplayController@cardsReleased');
@@ -97,6 +101,8 @@ Route::get('/graph/cards-released','DisplayController@cardsReleased');
 Route::get('/graph/five-star-history','DisplayController@cardPrediction');
 //event history
 Route::get('/graph/event-border-history','DisplayController@eventHistory');
+//timeline of events and scouts
+Route::get('/graph/timeline','DisplayController@timeline');
 
 
 //contact form
@@ -132,6 +138,8 @@ Route::get('/home/translations','HomeController@translations');
 Route::get('/home/translations/{story_id}','HomeController@translationStory');
 Route::get('/home/translations/{story_id}/minievent/{mini_id}','HomeController@translationMiniEvent');
 Route::get('/home/translations/{story_id}/{chapter_id}','HomeController@translationChapter');
+Route::get('/home/status','HomeController@translationStatus');
+
 //posting
 Route::post('/add/translation','HomeController@addTranslation');
 //ajax posting
@@ -139,6 +147,7 @@ Route::post('/add/translationajax','HomeController@addTranslationAjax');
 Route::post('/add/minievent/translationajax','HomeController@addMiniEventTranslationAjax');
 //setting chapter live
 Route::post('/add/chapterDisplay','HomeController@chapterDisplay');
+
 
 //settings
 Route::get('/home/edit/css','HomeController@editCSS');
