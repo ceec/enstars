@@ -37,7 +37,7 @@
    left: 45px; 
    width: 200px;
    height: 45px;
-   font-size: 12px;
+   font-size: 10.5px;
    background-color: #ede7e7;
 }
 

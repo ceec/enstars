@@ -105,11 +105,32 @@
 
 
 	</style>
+<?php
 
+  //figure out chapter pagination
+
+  //need to know the total number of chapters
+
+  //if chapter == 1 only show next +1
+
+  //if chapter < total, only show previous -1
+
+  //else show previous and next -1 and +1
+
+  //chapters arent always in order so cant just add/remove from the id need to lookup the ids
+//maybe have them in an arrya somewhere to check against
+
+//functionalize this maybe?
+
+
+  $total = count($slides);
+  echo $
+
+?>
 <div class="container">
 
 
-		    <h1>{{$story->name_e}} - {{$chapter->name_e}}</h1>
+		    <h1>{{$story->name_e}} - {{$chapter->name_e}} <small><a href="/story/{{$story->id}}/{{$chapter->id}}">Chapter 2</a></h1>
 
 		    @foreach ($slides as $slide)
 		    	@if ($slide->slide > 1)
