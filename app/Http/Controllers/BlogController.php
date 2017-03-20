@@ -54,6 +54,11 @@ class BlogController extends Controller {
      */
     public function add(Request $request) {
 
+        $this->validate($request, [
+            'title' => 'required',
+            'url' => 'required|unique:blogs|max:255',
+        ]);
+
         $b = new Blog;
         $b->active = 0;
         $b->type = 'news';
