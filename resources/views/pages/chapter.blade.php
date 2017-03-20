@@ -120,11 +120,11 @@
   //chapters arent always in order so cant just add/remove from the id need to lookup the ids
 //maybe have them in an arrya somewhere to check against
 
-//functionalize this maybe?
+//functionalize
 
 
   $total = count($slides);
-  echo $
+  //echo $
 
 ?>
 <div class="container">
