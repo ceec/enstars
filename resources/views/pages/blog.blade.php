@@ -16,15 +16,9 @@
                 <!-- Author and time -->
                 <?php
                     $nicedate = date('F d, Y',strtotime($blog->created_at));
-
-                    if ($blog->updated_by == 1) {
-                        $blog->updated_by = 'ankee';
-                    } else if ($blog->updated_by == 3) {
-                        $blog->updated_by = 'cherushi';
-                    }
                 ?>
                 <p>
-                    Posted on {{$nicedate}} by {{$blog->updated_by}}
+                    Posted on {{$nicedate}} by {{$blog->author->name}}
                 </p>
                 <hr>
                 <!-- Post Content -->

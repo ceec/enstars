@@ -28,11 +28,6 @@ enstars.info - Information and Translations for Ensemble Stars!
                 <?php
                     $nicedate = date('F d, Y',strtotime($blog->created_at));
                     $nicetime = date('h:i A',strtotime($blog->created_at));
-                    if ($blog->updated_by == 1) {
-                        $blog->updated_by = 'ankee';
-                    } else if ($blog->updated_by == 3) {
-                        $blog->updated_by = 'cherushi';
-                    }
                 ?>            
                 @if ($blog->image !='')
                     <div class="">
@@ -41,7 +36,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                 @endif
                 <h5>
                     <a href="/{{$blog->type}}/{{$blog->url}}">{!! $blog->title !!}</a><br>
-                    <small>{{$nicedate}} by {{$blog->updated_by}}</small>
+                    <small>{{$nicedate}} by {{$blog->author->name}}</small>
                 </h5>                
             @endforeach
 
