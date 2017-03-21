@@ -44,6 +44,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        mail('cc@battab.com','Enstars Error', $request);
         return parent::render($request, $exception);
     }
 
