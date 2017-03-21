@@ -33,8 +33,12 @@
     <h2>Information</h2>
     <div class="row">
         <div class="col-md-6">
+        @if ($boy->unit_id > 0)
         <h3>Unit: <a href="/unit/{{$boy->unit->url}}">{{$boy->unit->name}}</a></h3>
+        @endif
+        @if ($boy->class_id > 0)
         <h3>Class: <a href="/class/{{$boy->classroom->class}}">{{$boy->classroom->class}}</a></h3>
+        @endif
         <!--<h3>Club: <a href="">{{$boy->unit_id}}</a></h3>-->
 
         </div>
