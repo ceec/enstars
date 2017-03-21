@@ -24,6 +24,8 @@
                             } else if ($card->color == 'yellow'){
                                 $button_class = 'btn-warning';
                             }
+
+
                         ?>
 
                     @if(isset($card->event))
@@ -37,14 +39,14 @@
                             @endif
                             <br>
                             {{$card->event->name_e}}<br>
-                            {{$card->event->start}}
+                            {{date('Y-m-d',strtotime($card->event->start))}}
                         </td>
                     @elseif(isset($card->scout))
                         <td>
                             <a href="/card/{{$card->id}}"><button class="btn {{$button_class}}">Scout</button></a>
                             <br>{{$card->scout->name_e}}
                             <br>
-                            {{$card->scout->start}}
+                            {{date('Y-m-d',strtotime($card->scout->start))}}
                         </td>
                     @endif                    
                 @endforeach
