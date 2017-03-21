@@ -46,7 +46,9 @@ var chart = AmCharts.makeChart("chartdiv", {
     "lineAlpha": 1,
     "lineColor": "#fff",
     "fillAlphas": 0.85,
-    "balloonText": "<b>[[task]]</b>:<br />[[open]] -- [[value]]"
+    "balloonText": "<b>[[task]]</b>:<br />[[open]] - [[value]]",
+    "labelText": "[[stars]]",
+    "labelPosition": "left"
   },
   "rotate": true,
   "categoryField": "category",

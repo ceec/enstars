@@ -94,7 +94,7 @@ Route::get('/store','DisplayController@store');
 Route::get('/bonus/all','DisplayController@loginBonusAll');
 Route::get('/bonus/{name}','DisplayController@loginBonus');
 
-//data
+//graphs
 //released cards
 Route::get('/graph/cards-released','DisplayController@cardsReleased');
 //guessing future cards
@@ -118,6 +118,8 @@ Route::get('/data/cards-released','DataController@cardsReleased');
 Route::get('/data/event-border-history','DataController@eventHistory');
 //current event borders
 Route::get('/data/event-border','DataController@eventBorder');
+//timeline of events and scouts
+Route::get('/data/timeline','DataController@timeline');
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////

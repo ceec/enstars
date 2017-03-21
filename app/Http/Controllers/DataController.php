@@ -66,6 +66,16 @@ class DataController extends Controller {
                 //get the info
                 $boy = Boy::where('id','=',$card->boy_id)->first();
 
+
+                if ($card->color == 'red') {
+                    $card->color = "#f04124";
+                } else if ($card->color == 'blue') {
+                    $card->color = "#008cba";
+                } else if ($card->color == 'yellow') {
+                    $card->color = "#e99002";
+                }
+
+
                 if ($card->scout_id != 0) {
                     //get that scout
                     $scout = Scout::where('id','=',$card->scout_id)->first();
@@ -73,7 +83,8 @@ class DataController extends Controller {
                     $dates[$card->id]['start'] = date('Y-m-d',strtotime($scout->start));
                     $dates[$card->id]['end'] = date('Y-m-d',strtotime($scout->end));
                     $dates[$card->id]['task'] = $scout->name_e;
-                    $dates[$card->id]['color'] = $boy->color;
+                    $dates[$card->id]['stars'] = $card->stars;
+                    $dates[$card->id]['color'] = $card->color;
                                      
                 } else if ($card->event_id != 0) {
                     //get that event
@@ -81,8 +92,9 @@ class DataController extends Controller {
                     
                     $dates[$card->id]['start'] = date('Y-m-d',strtotime($event->start));
                     $dates[$card->id]['end'] = date('Y-m-d',strtotime($event->end));
-                    $dates[$card->id]['task'] = $event->name_e;       
-                    $dates[$card->id]['color'] = $boy->color;        
+                    $dates[$card->id]['task'] = $event->name_e;    
+                    $dates[$card->id]['stars'] = $card->stars;   
+                    $dates[$card->id]['color'] = $card->color;        
                 }
 
 
@@ -127,6 +139,97 @@ class DataController extends Controller {
         echo json_encode($main);
 
     } 
+
+
+
+    /**
+     *  data for timeline gantt
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function timeline() {
+        //want same formatting as below but with events
+        $events = Event::where('start','<','2016-05-21')->orderBy('start','desc')->get();
+
+        //formatting goal
+
+      //   "category": "Events",
+      //   "segments": [ {
+      //     "start": "2016-01-01",
+      //     "end": "2016-01-14",
+      //     "color": "#b9783f",
+      //     "task": "Gathering requirements"
+      //   } ]        
+
+            $result['category'] = "Events";
+
+        foreach($events as $event) {
+            $dates[$event->id]['start'] = date('Y-m-d',strtotime($event->start));
+            $dates[$event->id]['end'] = date('Y-m-d',strtotime($event->end));
+            $dates[$event->id]['task'] = $event->name_e;
+            $dates[$event->id]['color'] = $event->color;          
+
+           
+        }
+
+
+            $result['segments'] = array_values($dates);
+
+            $main[] = $result;
+            unset($result);
+            $result = array();
+
+            unset($dates);
+            $dates = array();   
+
+        // foreach ($boys as $boy) {
+        //     //need to start the array here
+        //     $result['category'] = $boy->first_name;
+
+        //     //get all the cards
+        //     $cards = Card::where('boy_id','=',$boy->id)->get();
+        //     foreach($cards as $card) {
+        //         //get the info
+        //         $boy = Boy::where('id','=',$card->boy_id)->first();
+
+        //         if ($card->scout_id != 0) {
+        //             //get that scout
+        //             $scout = Scout::where('id','=',$card->scout_id)->first();
+                    
+        //             $dates[$card->id]['start'] = date('Y-m-d',strtotime($scout->start));
+        //             $dates[$card->id]['end'] = date('Y-m-d',strtotime($scout->end));
+        //             $dates[$card->id]['task'] = $scout->name_e;
+        //             $dates[$card->id]['color'] = $boy->color;
+                                     
+        //         } else if ($card->event_id != 0) {
+        //             //get that event
+        //             $event = Event::where('id','=',$card->event_id)->first();
+                    
+        //             $dates[$card->id]['start'] = date('Y-m-d',strtotime($event->start));
+        //             $dates[$card->id]['end'] = date('Y-m-d',strtotime($event->end));
+        //             $dates[$card->id]['task'] = $event->name_e;       
+        //             $dates[$card->id]['color'] = $boy->color;        
+        //         }
+
+
+        //     }
+
+        //     $result['segments'] = array_values($dates);
+
+        //     $main[] = $result;
+        //     unset($result);
+        //     $result = array();
+
+        //     unset($dates);
+        //     $dates = array();
+        // } //end boys
+
+
+
+        echo json_encode($main);
+
+    } 
+
 
 
     /**
