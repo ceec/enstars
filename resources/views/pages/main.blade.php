@@ -118,5 +118,14 @@ enstars.info - Information and Translations for Ensemble Stars!
                         @endforeach                    
                     </div>                                             
             </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Tags</h3>
+                    @foreach($tags as $tag)
+                        <a href="/tag/{{$tag->tag}}">{{$tag->tag}}</a><br>
+                    @endforeach
+                    <br><br><br><br>
+                </div>
+            </div>
 </div>
 @endsection
