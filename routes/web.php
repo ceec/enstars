@@ -65,6 +65,13 @@ Route::get('/scout/all','DisplayController@scoutAll');
 Route::get('/scout/{scout_id}','DisplayController@scout');
 
 
+//listing large groups of stories
+Route::get('/translation/event','DisplayController@translationEvent');
+Route::get('/translation/scout','DisplayController@translationScout');
+Route::get('/translation/character','DisplayController@translationCharacter');
+Route::get('/translation','DisplayController@translation');
+
+
 //stories
 Route::get('/story/{story_id}','DisplayController@story');
 Route::get('/story/{story_id}/{chaper_id}','DisplayController@chapter');

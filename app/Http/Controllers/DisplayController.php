@@ -756,6 +756,77 @@ class DisplayController extends Controller {
          ->with('event',$event);
     }  
 
+    ////translations//////
+
+
+
+    /**
+     * Show all translations
+     * this is duplicate code from main for now, can make this better
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function translation() {
+        //stories that are complete
+        $event_stories = Story::where('type','=',1)->where('active','=','1')->get();
+        $gacha_stories = Story::where('type','=',2)->where('active','=','1')->get();
+        $character_stories = Story::where('type','=',3)->where('active','=','1')->get();
+
+
+        return view('pages.translation')
+        ->with('event_stories',$event_stories)
+        ->with('gacha_stories',$gacha_stories)
+        ->with('character_stories',$character_stories);
+    }
+
+
+    /**
+     * Show all translations
+     * this is duplicate code from main for now, can make this better
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function translationEvent() {
+        //stories that are complete
+        $event_stories = Story::where('type','=',1)->where('active','=','1')->get();
+
+        return view('pages.translationEvent')
+        ->with('event_stories',$event_stories);
+    }
+
+
+    /**
+     * Show all translations
+     * this is duplicate code from main for now, can make this better
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function translationScout() {
+        //stories that are complete
+        $gacha_stories = Story::where('type','=',2)->where('active','=','1')->get();
+
+
+        return view('pages.translationScout')
+        ->with('gacha_stories',$gacha_stories);
+    }
+
+
+
+    /**
+     * Show all translations
+     * this is duplicate code from main for now, can make this better
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function translationCharacter() {
+        //stories that are complete
+        $character_stories = Story::where('type','=',3)->where('active','=','1')->get();
+
+
+        return view('pages.translationCharacter')
+        ->with('character_stories',$character_stories);
+    }
+
     /**
      * Show specific story
      *

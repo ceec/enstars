@@ -74,12 +74,14 @@
                     </ul>
                   </li>    
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Translations <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/tag/tums">Tums</a></li>
-                      <li><a href="/tag/blades">Blades</a></li>
+                      <li><a href="/translation/event">Event Stories</a></li>
+                      <li><a href="/translation/scout">Scout Stories</a></li>
+                      <li><a href="/translation/character">Character Stories</a></li>
+                      <li><a href="/translation">All Stories</a></li>
                     </ul>
-                  </li>                      
+                  </li>                                       
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Skills <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -91,10 +93,11 @@
                     <ul class="dropdown-menu">
                       <li><a href="/graph/cards-released">Released Cards Graph</a></li>
                       <li><a href="/graph/five-star-history">Five Star History</a></li>
+                       <li><a href="/birthdays">Birthday Calendar</a></li>                      
                     </ul>
                   </li>                                    
                   <li><a href="/store">Store</a></li>
-                    <li><a href="/birthdays">Birthday Calendar</a></li>
+                   
                                   <!-- Authentication Links -->
                     @if (Auth::guest())
                         <!--<li><a href="{{ url('/login') }}">Login</a></li>-->
