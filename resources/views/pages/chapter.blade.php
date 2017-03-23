@@ -130,7 +130,7 @@
 <div class="container">
 
 
-		    <h1>{{$story->name_e}} - {{$chapter->name_e}} <small><a href="/story/{{$story->id}}/{{$chapter->id}}">Chapter 2</a></h1>
+		    <h1>{{$story->name_e}} - {{$chapter->name_e}}</h1>
 
 		    @foreach ($slides as $slide)
 		    	@if ($slide->slide > 1)
