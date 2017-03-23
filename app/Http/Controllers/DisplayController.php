@@ -858,9 +858,24 @@ class DisplayController extends Controller {
 
         }
 
+        //figure out next and previous chapter
+          //figur eout if next chapter is available
+
+          $current_chapter = $chapter_info->chapter;
+
+          $next_chapter = $current_chapter +1;
+
+          $check_next = Chapter::where('story_id','=',$story->id)->where('chapter','=',$next_chapter)->where('complete','=',1)->first();
+
+          $previous_chapter = $current_chapter -1;
+          $check_previous = Chapter::where('story_id','=',$story->id)->where('chapter','=',$previous_chapter)->where('complete','=',1)->first();
+
+
         return view('pages.chapter')
         ->with('story',$story)
         ->with('chapter',$chapter_info)
+        ->with('previous_chapter',$check_previous)
+        ->with('next_chapter',$check_next)
         ->with('slides',$slides);
     } 
 
