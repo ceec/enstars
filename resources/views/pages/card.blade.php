@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-{{$card->english_name}} | enstars.info
+{{$card->name_e}} | enstars.info
 @stop
 
 @section('content')
@@ -89,6 +89,11 @@
                 @if (!Auth::guest())
 
                     @if (Auth::user()->isAdmin())
+
+
+
+
+
                     
                             {!! Form::open(['url' => '/edit/card']) !!}             
                                   <div class="form-group">
