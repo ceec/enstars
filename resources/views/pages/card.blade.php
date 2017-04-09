@@ -89,7 +89,280 @@
                 @if (!Auth::guest())
 
                     @if (Auth::user()->isAdmin())
+                    <div id="test">
+                    </div>
 
+                    <script>
+                    var road = <?php print $road; ?>;
+                    var stars = <?php print $card->stars; ?>;
+                    </script>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+                    <script>
+                      //intial settings
+                      var y = 50;
+                      var starty;
+                      //starting square this moves based on the type of card
+                      //1 2 3? stars would be at 100?
+                      if (stars < 4) {
+                        //start at 100
+                        starty = 100;
+                      } else {
+                        starty = 150;
+                      }                      
+
+                      //Make an SVG Container
+                      var svgContainer = d3.select("#test").append("svg")
+                                                         .attr("width", 2000)
+                                                         .attr("height", starty *2);
+
+
+                       //Draw the Rectangle
+                      var rectangle = svgContainer.append("rect")
+                                                 .attr("fill", 'white')
+                                                 .style("stroke", '#074886')
+                                                 .style("stroke-width", 1)
+                                                 .attr("x", 0)
+                                                .attr("y", starty)
+                                                .attr("width", 40)
+                                                .attr("height", 40);
+
+                        //add start container text
+                        var text = svgContainer.append('text')
+                                                .text('Start')
+                                                .attr("x", 5)
+                                                .attr("y", starty+25)
+                                                .attr("font-size", 13)
+                                                .attr('fill', '#074886')
+
+
+
+//function node(color,position,points) {
+  function node(nodeData) {
+    var color =  nodeData.type;
+    var placement = nodeData.placement;
+    var points = nodeData.points;
+  var x = placement * 70;
+  
+  //if the position 1, dont build this
+
+  if ((nodeData.position > 1) || (nodeData.parent == 0)) {
+    var connector = svgContainer.append("rect")
+                             .attr("fill", '#a0df88')
+                             .attr("x", x-29)
+                            .attr("y", y+12)
+                            .attr("width", 30)
+                            .attr("height", 15);    
+  } 
+
+  //build the vertical thing if its parent isn't 0 and its position is 1
+  if ((nodeData.position == 1)  && (nodeData.parent != 0)) {
+    var vx;
+    var vy;
+
+    var hx;
+    var hy;
+
+      vx = x - 20;
+      hx = x - 20;
+      //var y;
+
+    if (nodeData.direction == 'up') {
+      vy = y + 30;
+      hy = y + 15;
+    } else {
+     
+      vy = y - 10;
+      hy = y + 10;
+    }
+
+
+    //verical piece
+    var verticalConnector = svgContainer.append("rect")
+                               .attr("fill", '#a0df88')
+                               .attr("x", vx)
+                              .attr("y", vy)
+                              .attr("width", 15)
+                              .attr("height", 25);
+
+
+
+    //horizontal piece
+    var horizontalConnector = svgContainer.append("rect")
+                               .attr("fill", '#a0df88')
+                               .attr("x", hx)
+                              .attr("y", hy)
+                              .attr("width", 25)
+                              .attr("height", 15);                           
+  }
+
+
+   //Draw the Rectangle
+ var rectangle = svgContainer.append("rect")
+                             .attr("fill", nodeData.color)
+                             .style("stroke", '#074886')
+                             .style("stroke-width", 1)
+                             .attr("x", x)
+                            .attr("y", y)
+                            .attr("width", 40)
+                            .attr("height", 40);
+
+
+
+var text = svgContainer.append('text').text(points)
+                .attr("x", x+2)
+                .attr("y", y+35)
+                .attr("font-size", 13)
+                .attr('fill', 'white')
+
+}
+
+
+var totalDance = 0;
+var totalVocal = 0;
+var totalPerformance = 0;
+var totalStories = 0;
+
+
+for (var i = 0; i < road.length; i++) {
+
+
+
+//  _  .-')     ('-.   ('-.     _ .-') _         .-') _    ('-. .-.           .-')    
+// ( \( -O )  _(  OO) ( OO ).-.( (  OO) )       (  OO) )  ( OO )  /          ( OO ).  
+//  ,------. (,------./ . --. / \     .'_       /     '._ ,--. ,--.  ,-.-') (_)---\_) 
+//  |   /`. ' |  .---'| \-.  \  ,`'--..._)      |'--...__)|  | |  |  |  |OO)/    _ |  
+//  |  /  | | |  |  .-'-'  |  | |  |  \  '      '--.  .--'|   .|  |  |  |  \\  :` `.  
+//  |  |_.' |(|  '--.\| |_.'  | |  |   ' |         |  |   |       |  |  |(_/ '..`''.) 
+//  |  .  '.' |  .--' |  .-.  | |  |   / :         |  |   |  .-.  | ,|  |_.'.-._)   \ 
+//  |  |\  \  |  `---.|  | |  | |  '--'  /         |  |   |  | |  |(_|  |   \       / 
+//  `--' '--' `------'`--' `--' `-------'          `--'   `--' `--'  `--'    `-----'  
+
+
+//thoughts of where to go next 2017-04-06 01:27
+
+
+//check this on a 3 star and see how it looks
+
+//create count of total points per card
+
+//create count of total gems
+//signify how many copies it is.
+
+//add in the level info
+
+
+
+  //lets figure out the level its on, set the offset
+  var level;
+  var offset;
+  if (road[i].parent == 0) {
+    level = 'start';
+    offset = 0;
+  } else if (road[i].parent.indexOf('_') > -1) {
+    //parent has an underscore, its the top/bottom
+    level = 'second';
+    offset = -0.1;
+  } else {
+    //its the inbetween level
+    level = 'first';
+    offset = .5;
+  }
+
+
+
+  //if its the first node in a set it needs the elbow connector
+  //then it wont connect to the one infront
+
+  var direction;
+  //clean up the letters
+  //get everything before u
+  if (road[i].parent != 0) {
+    var motherNode = road[i].node.substr(0, road[i].node.indexOf('u')); 
+    if (motherNode < 1) {
+      motherNode = road[i].node.substr(0, road[i].node.indexOf('d')); 
+      //verticalConnector('down',motherNode);  
+      direction = 'down';
+    } else {
+      //verticalConnector('up',motherNode);
+      direction = 'up';
+    }
+  } else {
+    var motherNode = 0;
+  }
+  
+  //get everything after _
+  var position = road[i].node.substr(road[i].node.indexOf('_') + 1); 
+  //need to remove letters if there are any
+  if (position < 1) {
+     position = road[i].node.substr(0, road[i].node.indexOf('u')); 
+    if (position < 1) {
+      position = road[i].node.substr(0, road[i].node.indexOf('d')); 
+      //verticalConnector('down',position);
+      direction = 'down';
+    }   else {
+      //verticalConnector('up',position);
+      direction = 'up';
+    }
+  }
+
+
+  //set the nodes colors
+  var color;
+  if (road[i].type == 'bloom') {
+    color = '#f86fbc';
+    road[i].points = '\u273F';
+  } else if (road[i].type == 'story') {
+    color = '#f39c5c';
+    road[i].points = 'story';
+    totalStories++;
+  } else if ((road[i].type == 'lesson') || (road[i].type == 'live')) {
+    color = '#5f52a0';
+    road[i].points = 'Skill';
+  } else if (road[i].type == 'red') {
+    totalDance += road[i].points;
+    color = "#f3726b";
+  } else if (road[i].type == 'blue') {
+    totalVocal += road[i].points;
+    color = "#1db0ed";
+  } else if (road[i].type == 'yellow') {
+    totalPerformance += road[i].points;
+    color = "#fed54b";
+  }
+
+  var placement = parseInt(motherNode,10) + parseInt(position,10) - offset;
+
+  //draw the node
+  var nodeData = {
+    "type": road[i].type,
+    "placement": placement,
+    "points": road[i].points,
+    "position": position,
+    "parent": road[i].parent,
+    "direction": direction,
+    "color": color
+  }
+
+
+  //send it an object?
+
+  //node(road[i].type,placement,road[i].points);
+  node(nodeData);
+
+  //console.log(road[i].points+' pos: '+placement+ ' mother: '+motherNode+' position: '+position);
+
+  //check if its the end of the road, move it down
+  if (road[i].end == 1) {
+    y = y+50;
+  }
+
+} //end looping through all the nodes
+
+
+console.log('total dance: '+totalDance+ 'total vocal: '+totalVocal+' total totalPerformance:'+totalPerformance);
+
+
+                    </script>
 
 
 

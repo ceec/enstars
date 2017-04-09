@@ -127,6 +127,8 @@ Route::get('/data/event-border-history','DataController@eventHistory');
 Route::get('/data/event-border','DataController@eventBorder');
 //timeline of events and scouts
 Route::get('/data/timeline','DataController@timeline');
+//idolroad
+Route::get('/data/road/{card_id}','DataController@idolRoad');
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////

@@ -39,6 +39,8 @@ use App\Reward;
 use App\Loginevent;
 use App\Logineventday;
 
+use App\Cardroad;
+
 use Auth;
 
 
@@ -231,6 +233,60 @@ class DisplayController extends Controller {
         $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->pluck('english_description','id');
 
 
+
+        //building the idol road
+        //get the parent nodes
+        $road = Cardroad::where('card_id','=',$card->id)->where('parent','=',0)->get();
+
+        //loop through them and see if they have children, this is recusrive? maybe.
+
+        //this is a svg that is built from the top down.
+
+        //check that any nodes with a parent of u also have a u -- topmost row
+
+        $top = Cardroad::where('card_id','=',$card->id)->where('parent','like','%u%')->where('node','like','%u%')->get();
+        
+        //check that any nodes with a parent that does not have u but has u -- first row up
+        $upper = Cardroad::where('card_id','=',$card->id)->where('parent','not like','%u%')->where('node','like','%u%')->get();
+        
+        //check that parent is 0 - middle
+        $middle = Cardroad::where('card_id','=',$card->id)->where('parent','=','0')->get();
+
+
+        //check that any nodes with a parent that does not have d but has d -- first row down
+        $lower = Cardroad::where('card_id','=',$card->id)->where('parent','not like','%d%')->where('node','like','%d%')->get();
+
+
+        //check that nodes with a parent with a d that also has a d -- second row down.
+        $bottom = Cardroad::where('card_id','=',$card->id)->where('parent','like','%d%')->where('node','like','%d%')->get();
+
+
+        // foreach($road as $node) {
+        //     $childrencheck = Cardroad::where('parent','=',$node->node)->count();
+        //     if ($count > 0 ) {
+        //         //there are children
+        //         $children = Cardroad::where('parent','=',$node->node)->get();
+
+        //         //add these to that node.
+        //         $road
+
+        //     }
+        // }
+
+
+        //add arrays
+        $top = json_encode($top);
+        $upper = json_encode($upper);
+        $middle = json_encode($middle);
+        $lower = json_encode($lower);
+        $bottom = json_encode($bottom);
+
+
+
+        $road = json_encode(array_merge(json_decode($top, true),json_decode($upper, true),json_decode($middle, true),json_decode($lower, true),json_decode($bottom, true)));
+
+
+
         return view('pages.card')
             ->with('dorifes_skill',$dorifes_skill)
             ->with('lesson_skill',$lesson_skill)
@@ -238,6 +294,7 @@ class DisplayController extends Controller {
             ->with('lesson_skills',$lesson_skills)            
             ->with('boy',$boy)
             ->with('source',$source)
+            ->with('road',$road)
             ->with('card',$card);
     } 
 

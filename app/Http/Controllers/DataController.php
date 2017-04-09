@@ -23,6 +23,8 @@ use App\Blog;
 use App\Scout;
 use App\Eventpoint;
 
+use App\Cardroad;
+
 
 class DataController extends Controller {
 
@@ -302,6 +304,59 @@ class DataController extends Controller {
         echo json_encode($result);
 
     } 
+
+    //////////
+    //idol road tree
+    /////////
+
+    /**
+     * data for current event border
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function idolRoad($card_id) {
+        //building the idol road
+        //$road = Cardroad::where('card_id','=',$card_id)->where('parent','=',0)->get();
+
+        $top = Cardroad::where('card_id','=',$card_id)->where('parent','like','%u%')->where('node','like','%u%')->get();
+        
+        //check that any nodes with a parent that does not have u but has u -- first row up
+        $upper = Cardroad::where('card_id','=',$card_id)->where('parent','not like','%u%')->where('node','like','%u%')->get();
+        
+        //check that parent is 0 - middle
+
+        //check that any nodes with a parent that does not have d but has d -- first row down
+
+        //check that nodes with a parent with a d that also has a d -- second row down.
+
+
+
+        $top = json_encode($top);
+        $upper = json_encode($upper);
+
+        // foreach($road as $node) {
+        //     $childrencheck = Cardroad::where('parent','=',$node->node)->count();
+        //     if ($count > 0 ) {
+        //         //there are children
+        //         $children = Cardroad::where('parent','=',$node->node)->get();
+
+        //         //add these to that node.
+        //         $road
+
+        //     }
+        // }
+
+
+
+
+
+        echo json_encode(array_merge(json_decode($top, true),json_decode($upper, true)));
+
+    }     
+
+
+
+
 
 
 }
