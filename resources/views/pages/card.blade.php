@@ -86,10 +86,11 @@
                 <img class="img-responsive" src="/images/cards/get/{{$card->boy_id}}_{{$card->card_id}}.png">
                 @endif
 
-                @if (!Auth::guest())
+                
 
-                    @if (Auth::user()->isAdmin())
-                    <div id="test">
+                @if (strlen($road) > 5)
+                    <h3>Idol Road</h3>
+                    <div id="road">
                     </div>
 
                     <script>
@@ -112,7 +113,7 @@
                       }                      
 
                       //Make an SVG Container
-                      var svgContainer = d3.select("#test").append("svg")
+                      var svgContainer = d3.select("#road").append("svg")
                                                          .attr("width", 2000)
                                                          .attr("height", starty *2);
 
@@ -225,34 +226,6 @@ var totalStories = 0;
 
 
 for (var i = 0; i < road.length; i++) {
-
-
-
-//  _  .-')     ('-.   ('-.     _ .-') _         .-') _    ('-. .-.           .-')    
-// ( \( -O )  _(  OO) ( OO ).-.( (  OO) )       (  OO) )  ( OO )  /          ( OO ).  
-//  ,------. (,------./ . --. / \     .'_       /     '._ ,--. ,--.  ,-.-') (_)---\_) 
-//  |   /`. ' |  .---'| \-.  \  ,`'--..._)      |'--...__)|  | |  |  |  |OO)/    _ |  
-//  |  /  | | |  |  .-'-'  |  | |  |  \  '      '--.  .--'|   .|  |  |  |  \\  :` `.  
-//  |  |_.' |(|  '--.\| |_.'  | |  |   ' |         |  |   |       |  |  |(_/ '..`''.) 
-//  |  .  '.' |  .--' |  .-.  | |  |   / :         |  |   |  .-.  | ,|  |_.'.-._)   \ 
-//  |  |\  \  |  `---.|  | |  | |  '--'  /         |  |   |  | |  |(_|  |   \       / 
-//  `--' '--' `------'`--' `--' `-------'          `--'   `--' `--'  `--'    `-----'  
-
-
-//thoughts of where to go next 2017-04-06 01:27
-
-
-//check this on a 3 star and see how it looks
-
-//create count of total points per card
-
-//create count of total gems
-//signify how many copies it is.
-
-//add in the level info
-
-
-
   //lets figure out the level its on, set the offset
   var level;
   var offset;
@@ -359,10 +332,17 @@ for (var i = 0; i < road.length; i++) {
 } //end looping through all the nodes
 
 
-console.log('total dance: '+totalDance+ 'total vocal: '+totalVocal+' total totalPerformance:'+totalPerformance);
+//console.log('total dance: '+totalDance+ 'total vocal: '+totalVocal+' total totalPerformance:'+totalPerformance);
 
 
                     </script>
+
+
+                @endif
+
+                @if (!Auth::guest())
+
+                    @if (Auth::user()->isAdmin())
 
 
 
