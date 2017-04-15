@@ -104,8 +104,8 @@
                       var y = 50;
                       var starty;
                       //starting square this moves based on the type of card
-                      //1 2 3? stars would be at 100?
-                      if (stars < 4) {
+                      //1 2 3? stars would be at 100? and 4!
+                      if (stars < 5) {
                         //start at 100
                         starty = 100;
                       } else {
@@ -114,7 +114,7 @@
 
                       //Make an SVG Container
                       var svgContainer = d3.select("#road").append("svg")
-                                                         .attr("width", 2000)
+                                                         .attr("width", 1000)
                                                          .attr("height", starty *2);
 
 
@@ -252,6 +252,7 @@ for (var i = 0; i < road.length; i++) {
   //get everything before u
   if (road[i].parent != 0) {
     var motherNode = road[i].node.substr(0, road[i].node.indexOf('u')); 
+    //console.log('mother defined: '+motherNode);
     if (motherNode < 1) {
       motherNode = road[i].node.substr(0, road[i].node.indexOf('d')); 
       //verticalConnector('down',motherNode);  
@@ -289,9 +290,15 @@ for (var i = 0; i < road.length; i++) {
     color = '#f39c5c';
     road[i].points = 'story';
     totalStories++;
-  } else if ((road[i].type == 'lesson') || (road[i].type == 'live')) {
+  } else if (road[i].type == 'outfit') {
+    color = '#f39c5c';
+    road[i].points = 'Outfit';
+  } else if (road[i].type == 'lesson') {
     color = '#5f52a0';
-    road[i].points = 'Skill';
+    road[i].points = 'Lesson';
+  } else if (road[i].type == 'live') {
+    color = '#5f52a0';
+    road[i].points = 'Live';
   } else if (road[i].type == 'red') {
     totalDance += road[i].points;
     color = "#f3726b";
@@ -303,6 +310,7 @@ for (var i = 0; i < road.length; i++) {
     color = "#fed54b";
   }
 
+  //console.log('mother: '+motherNode+' position: '+position);
   var placement = parseInt(motherNode,10) + parseInt(position,10) - offset;
 
   //draw the node
