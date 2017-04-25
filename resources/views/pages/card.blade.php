@@ -131,7 +131,6 @@
                         </div>
                     <div id="road">
                     </div>
-
                     <script>
                     var road = <?php print $road; ?>;
                     var stars = <?php print $card->stars; ?>;
