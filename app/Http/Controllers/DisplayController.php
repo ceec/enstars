@@ -286,6 +286,19 @@ class DisplayController extends Controller {
         $road = json_encode(array_merge(json_decode($top, true),json_decode($upper, true),json_decode($middle, true),json_decode($lower, true),json_decode($bottom, true)));
 
 
+        //get total gem count for the road
+
+        $red_large = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('large','!=','0')->count();
+        $red_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('medium','!=','0')->count();
+        $red_small = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('small','!=','0')->count();
+
+        $blue_large = Cardroad::where('card_id','=',$card->id)->where('color','=','blue')->where('large','!=','0')->count();
+        $blue_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','blue')->where('medium','!=','0')->count();
+        $blue_small = Cardroad::where('card_id','=',$card->id)->where('color','=','blue')->where('small','!=','0')->count();
+
+        $yellow_large = Cardroad::where('card_id','=',$card->id)->where('color','=','yellow')->where('large','!=','0')->count();
+        $yellow_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','yellow')->where('medium','!=','0')->count();
+        $yellow_small = Cardroad::where('card_id','=',$card->id)->where('color','=','yellow')->where('small','!=','0')->count();
 
         return view('pages.card')
             ->with('dorifes_skill',$dorifes_skill)
@@ -295,6 +308,15 @@ class DisplayController extends Controller {
             ->with('boy',$boy)
             ->with('source',$source)
             ->with('road',$road)
+            ->with('red_large',$red_large)
+            ->with('red_medium',$red_medium)
+            ->with('red_small',$red_small)
+            ->with('blue_large',$blue_large)
+            ->with('blue_medium',$blue_medium)
+            ->with('blue_small',$blue_small)
+            ->with('yellow_large',$yellow_large)
+            ->with('yellow_medium',$yellow_medium)
+            ->with('yellow_small',$yellow_small)                        
             ->with('card',$card);
     } 
 

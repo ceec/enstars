@@ -90,6 +90,9 @@
 
                 @if (strlen($road) > 5)
                     <h3>Idol Road</h3>
+                    <h5>Red Large: {{$red_large}} Medium: {{$red_medium}} Small: {{$red_small}}</h5>
+                    <h5>Blue Large: {{$blue_large}} Medium: {{$blue_medium}} Small: {{$blue_small}}</h5>
+                    <h5>Yellow Large: {{$yellow_large}} Medium: {{$yellow_medium}} Small: {{$yellow_small}}</h5>
                     <div id="road">
                     </div>
 
@@ -114,7 +117,7 @@
 
                       //Make an SVG Container
                       var svgContainer = d3.select("#road").append("svg")
-                                                         .attr("width", 1000)
+                                                         .attr("width", 1200)
                                                          .attr("height", starty *2);
 
 
