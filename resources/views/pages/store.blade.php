@@ -11,6 +11,10 @@ Store | enstars.info
         <div class="col-md-12">
 
 		    <h1>Store</h1>
+
+        <p>The items sold here go towards keeping enstars.info running! We also provide box split services, if anyone has an item they are interested in please message us using the contact form.</p>
+        <p>All items are shipped from Colorado using USPS.</p>
+
 		    <div id='collection-component-f9457d5836a'></div>
 <script type="text/javascript">
 /*<![CDATA[*/
