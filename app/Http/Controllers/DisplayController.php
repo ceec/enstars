@@ -288,17 +288,17 @@ class DisplayController extends Controller {
 
         //get total gem count for the road
 
-        $red_large = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('large','!=','0')->count();
-        $red_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('medium','!=','0')->count();
-        $red_small = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('small','!=','0')->count();
+        $red_large = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('large','!=','0')->sum('large');
+        $red_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('medium','!=','0')->sum('medium');
+        $red_small = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('small','!=','0')->sum('small');
 
-        $blue_large = Cardroad::where('card_id','=',$card->id)->where('color','=','blue')->where('large','!=','0')->count();
-        $blue_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','blue')->where('medium','!=','0')->count();
-        $blue_small = Cardroad::where('card_id','=',$card->id)->where('color','=','blue')->where('small','!=','0')->count();
+        $blue_large = Cardroad::where('card_id','=',$card->id)->where('color','=','blue')->where('large','!=','0')->sum('large');
+        $blue_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','blue')->where('medium','!=','0')->sum('medium');
+        $blue_small = Cardroad::where('card_id','=',$card->id)->where('color','=','blue')->where('small','!=','0')->sum('small');
 
-        $yellow_large = Cardroad::where('card_id','=',$card->id)->where('color','=','yellow')->where('large','!=','0')->count();
-        $yellow_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','yellow')->where('medium','!=','0')->count();
-        $yellow_small = Cardroad::where('card_id','=',$card->id)->where('color','=','yellow')->where('small','!=','0')->count();
+        $yellow_large = Cardroad::where('card_id','=',$card->id)->where('color','=','yellow')->where('large','!=','0')->sum('large');
+        $yellow_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','yellow')->where('medium','!=','0')->sum('medium');
+        $yellow_small = Cardroad::where('card_id','=',$card->id)->where('color','=','yellow')->where('small','!=','0')->sum('small');
 
         return view('pages.card')
             ->with('dorifes_skill',$dorifes_skill)
