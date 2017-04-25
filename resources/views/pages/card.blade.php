@@ -90,9 +90,45 @@
 
                 @if (strlen($road) > 5)
                     <h3>Idol Road</h3>
-                    <h5>Red Large: {{$red_large}} Medium: {{$red_medium}} Small: {{$red_small}}</h5>
-                    <h5>Blue Large: {{$blue_large}} Medium: {{$blue_medium}} Small: {{$blue_small}}</h5>
-                    <h5>Yellow Large: {{$yellow_large}} Medium: {{$yellow_medium}} Small: {{$yellow_small}}</h5>
+         
+                        <strong>Total Gems Needed</strong><br>
+                        <div class="col-md-4">
+                        <table>
+                          <tr>
+                            <td>
+                              <img src="/images/red_small.png" width="25px" alt="red small"> x{{$red_small}} 
+                            </td>
+                            <td>
+                              <img src="/images/red_medium.png" width="25px" alt="red medium"> x{{$red_medium}}
+                            </td>
+                            <td>
+                              <img src="/images/red_large.png" width="25px" alt="red large"> x{{$red_large}} 
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="/images/blue_small.png" width="25px" alt="blue small"> x{{$blue_small}} 
+                            </td>
+                            <td>
+                              <img src="/images/blue_medium.png" width="25px" alt="blue small"> x{{$blue_medium}} 
+                            </td>
+                            <td>
+                              <img src="/images/blue_large.png" width="25px" alt="blue small"> x{{$blue_large}} 
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="/images/yellow_small.png" width="25px" alt="yellow small"> x{{$yellow_small}} 
+                            </td>
+                            <td>
+                              <img src="/images/yellow_medium.png" width="25px" alt="yellow small"> x{{$yellow_medium}} 
+                            </td>
+                            <td>
+                              <img src="/images/yellow_large.png" width="25px" alt="yellow small"> x{{$yellow_large}} 
+                            </td>
+                          </tr>                          
+                        </table>
+                        </div>
                     <div id="road">
                     </div>
 
