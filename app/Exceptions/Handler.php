@@ -32,6 +32,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        mail('cc@battab.com','Enstars Error', $exception);
         parent::report($exception);
     }
 
@@ -44,7 +45,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        mail('cc@battab.com','Enstars Error', $request);
+        //mail('cc@battab.com','Enstars Error', $request);
         return parent::render($request, $exception);
     }
 
