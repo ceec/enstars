@@ -198,6 +198,12 @@ class DisplayController extends Controller {
     public function card($card_id) {
         $card = Card::where('id','=',$card_id)->first();
 
+        //when bad url is passed
+        if (empty($card)) {
+            //want to go to 404 page 
+            abort(404);
+        }  
+
         $boy = Boy::where('id','=',$card->boy_id)->first();
 
         //lesson skill
@@ -327,20 +333,22 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function idol($boy_id) {
-        //if its their name, find their boy id
-        if (intval($boy_id) < 1) {
-            //its a name, find their id
-            //format it
+        //can pass through an id or an url
+        if (ctype_digit($boy_id)){
+            $boy = Boy::where('id','=',$boy_id)->first();
+        } else {
             $first_name = ucfirst($boy_id);
-
-            $find_id = Boy::where('first_name','=',$first_name)->first();
-            $boy_id = $find_id->id;
+            $boy = Boy::where('first_name','=',$first_name)->first();
         }
 
+        //when bad url is passed
+        if (empty($boy)) {
+            //want to go to 404 page 
+            abort(404);
+        }  
 
+        $cards = Card::where('boy_id','=',$boy->id)->orderBy('place','ASC')->get();
 
-        $boy = Boy::where('id','=',$boy_id)->first();
-        $cards = Card::where('boy_id','=',$boy_id)->orderBy('place','ASC')->get();
 
         //skills, tie them to the cards
         foreach($cards as $key => $card) {
@@ -463,6 +471,12 @@ class DisplayController extends Controller {
     public function tag($tag_name) {
         $tag = Tag::where('tag','=',$tag_name)->first();
 
+        //when bad url is passed
+        if (empty($tag)) {
+            //want to go to 404 page 
+            abort(404);
+        }  
+
         $cards = CardTag::where('tag_id','=',$tag->id)->get();
 
         return view('pages.tag')
@@ -477,6 +491,13 @@ class DisplayController extends Controller {
      */
     public function skill($skill_id) {
         $skill = Skill::where('id','=',$skill_id)->first();
+
+        //when bad url is passed
+        if (empty($skill)) {
+            //want to go to 404 page 
+            abort(404);
+        }  
+
 
         $cards = Card::where('lesson_id','=',$skill_id)->get();
 
@@ -504,6 +525,11 @@ class DisplayController extends Controller {
 
         $skills = Skill::where('category','=','gem')->where('type','=',$type)->where('size','=',$size)->get();
 
+        //when bad url is passed
+        if ($skills->isEmpty()) {
+            //want to go to 404 page 
+            abort(404);
+        }  
 
         foreach ($skills as $skill) {
             //lets use where in
@@ -512,10 +538,6 @@ class DisplayController extends Controller {
 
         $cards = Card::whereIn('lesson_id',$in)->get();
         $skill = Skill::where('id','=',$in[0])->first();
-
-        // print '<pre>';
-        // print_r($skill);
-        // print '</pre>';
 
         return view('pages.skill')
             ->with('skill',$skill)
@@ -529,14 +551,18 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function classroom($classroom_id) {
-        if (strpos($classroom_id,'-') !== false) {
-            //its a name, find their id
-
-            $find_id = Classroom::where('class','=',$classroom_id)->first();
-            $classroom_id = $find_id->id;
+        //can pass through an id or an url
+        if (ctype_digit($classroom_id)){
+            $classroom = Classroom::where('id','=',$classroom_id)->first();
+        } else {
+            $classroom = Classroom::where('url','=',$classroom_id)->first();
         }
 
-        $classroom = Classroom::where('id','=',$classroom_id)->first();
+        //when bad url is passed
+        if (empty($classroom)) {
+            //want to go to 404 page 
+            abort(404);
+        }   
 
         $boys = Boy::where('classroom_id','=',$classroom->id)->get();
 
@@ -552,14 +578,18 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function unit($unit_id) {
-        if (intval($unit_id) < 1) {
-            //its a name, find their id
-
-            $find_id = Unit::where('url','=',$unit_id)->first();
-            $unit_id = $find_id->id;
+        //can pass through an id or an url
+        if (ctype_digit($unit_id)){
+            $unit = Unit::where('id','=',$unit_id)->first();
+        } else {
+            $unit = Unit::where('url','=',$unit_id)->first();
         }
 
-        $unit = Unit::where('id','=',$unit_id)->first();
+        //when bad url is passed
+        if (empty($unit)) {
+            //want to go to 404 page 
+            abort(404);
+        }           
 
         $boys = Boy::where('unit_id','=',$unit->id)->get();
 
@@ -612,6 +642,12 @@ class DisplayController extends Controller {
         } else {
             $skill = Unitskill::where('url','=',$skill_id)->first();
         }
+
+            //when bad event url is passed
+            if (empty($skill)) {
+                //want to go to 404 page 
+                abort(404);
+            }   
 
         //setup card color because its hardcoded and not an id like it should be - fix this eventually
         if ($skill->type_id == '1') {
@@ -677,6 +713,12 @@ class DisplayController extends Controller {
         } else {
             $scout = Scout::where('url','=',$url)->first();
         }
+
+            //when bad scout url is passed
+            if (empty($scout)) {
+                //want to go to 404 page 
+                abort(404);
+            }   
 
         $cards = Card::where('scout_id','=',$scout->id)->orderBy('stars','desc')->get();
         
@@ -747,6 +789,12 @@ class DisplayController extends Controller {
             $event = Event::where('url','=',$url)->first();
         }
 
+        //when bad event url is passed
+        if (empty($event)) {
+            //want to go to 404 page 
+            abort(404);
+        }
+
         //get the stories
         $story = Story::where('type_id','=',$event->id)->where('type','=',1)->first();
         //chatpers
@@ -787,6 +835,13 @@ class DisplayController extends Controller {
         $event_id = intval($event_id);
 
         $minievent = Minievent::find($event_id);
+
+            //when bad minievent url is passed
+            if (empty($minievent)) {
+                //want to go to 404 page 
+                abort(404);
+            }   
+
         $event = Event::find($minievent->event_id);
         //get the slides
         $slides = Minieventslide::where('minievent_id','=',$minievent->id)->get();
@@ -913,6 +968,14 @@ class DisplayController extends Controller {
      */
     public function story($story_id) {
         $story = Story::where('id','=',$story_id)->first();
+
+        //when bad story url is passed
+        if (empty($story)) {
+            //want to go to 404 page 
+            abort(404);
+        }
+
+
         $chapters = Chapter::where('story_id','=',$story_id)->get();
 
         return view('pages.story')
@@ -927,7 +990,21 @@ class DisplayController extends Controller {
      */
     public function chapter($story_id,$chapter) {
         $story = Story::where('id','=',$story_id)->first();
+
+        //when bad story url is passed
+        if (empty($story)) {
+            //want to go to 404 page 
+            abort(404);
+        }
+
         $chapter_info = Chapter::where('story_id','=',$story_id)->where('chapter','=',$chapter)->first();
+
+        //when bad chapter url is passed
+        if (empty($chapter_info)) {
+            //want to go to 404 page 
+            abort(404);
+        }
+
         $slides = Slide::where('chapter_id','=',$chapter_info->id)->get();
 
         //get the boy talking
@@ -968,6 +1045,13 @@ class DisplayController extends Controller {
      */
     public function blog($url) {
         $blog = Blog::where('url','=',$url)->first();
+
+        //when bad blog url is passed
+        if (empty($blog)) {
+            //want to go to 404 page 
+            abort(404);
+        }
+
         $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
         $teachers = Boy::where('classroom_id','=','7')->orderBy('first_name','asc')->get();
 
@@ -1058,10 +1142,14 @@ class DisplayController extends Controller {
             $bonus_id = $find_id->id;
         } else {
             $bonus_id = intval($bonus_id);
-        }      
-         
+        }     
 
           $event = Loginevent::find($bonus_id);
+            //when bad event url is passed
+            if (empty($event)) {
+                //want to go to 404 page 
+                abort(404);
+            }          
 
           $days = Logineventday::where('event_id','=',$event->id)->get();
 
