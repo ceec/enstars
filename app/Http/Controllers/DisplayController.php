@@ -250,7 +250,8 @@ class DisplayController extends Controller {
             $user_card = '';
         }
 
-        
+        //get the admin name who updated it last
+        $updated_by = User::find($card->updated_by);
 
         //building the idol road
         //get the parent nodes
@@ -317,7 +318,8 @@ class DisplayController extends Controller {
             ->with('yellow_large',$yellow_large)
             ->with('yellow_medium',$yellow_medium)
             ->with('yellow_small',$yellow_small)  
-            ->with('user_card',$user_card)                      
+            ->with('user_card',$user_card)      
+            ->with('updated_by',$updated_by)                
             ->with('card',$card);
     } 
 

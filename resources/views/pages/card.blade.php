@@ -387,7 +387,7 @@ for (var i = 0; i < road.length; i++) {
                 @if (!Auth::guest())
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">Card Statistics</h3>
+                    <h3 class="panel-title">Card Statistics <span class="pull-right">Added:   {{$user_card->created_at}}</span></h3>
                   </div>
                   <div class="panel-body">
                   <div class="row">
@@ -491,7 +491,7 @@ for (var i = 0; i < road.length; i++) {
                     @if (Auth::user()->isAdmin())
                       <div class="panel panel-default">
                         <div class="panel-heading">
-                          <h3 class="panel-title">Admin - Edit Card</h3>
+                          <h3 class="panel-title">Admin - Edit Card <span class="pull-right">Last Updated on {{$card->updated_at}} by {{$updated_by->name}} </span></h3>
                         </div>
                         <div class="panel-body">
                             {!! Form::open(['url' => '/edit/card']) !!}             
