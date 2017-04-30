@@ -42,6 +42,7 @@
                         @endif
                     </div>
                     <div class="col-md-4">
+                        @if ($minievents != '')
                             <h3>Mini Events</h3>
                             @foreach ($minievents as $event)
                                 @if ($event->complete == 1)
@@ -51,6 +52,7 @@
                                 @endif
                                    
                             @endforeach
+                        @endif
                     </div>                    
 
                 <div class="row">

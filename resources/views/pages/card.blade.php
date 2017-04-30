@@ -385,6 +385,7 @@ for (var i = 0; i < road.length; i++) {
                 @endif
 
                 @if (!Auth::guest())
+                  @if ($user_card !='')
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3 class="panel-title">Card Statistics <span class="pull-right">Added:   {{$user_card->created_at}}</span></h3>
@@ -418,9 +419,6 @@ for (var i = 0; i < road.length; i++) {
                         </div>
                       </div>
                     </div>
-
-
-
                     <div class="col-md-4">
                       <div class="row">
                         <div class="col-md-2">
@@ -447,8 +445,6 @@ for (var i = 0; i < road.length; i++) {
                         </div>
                       </div>
                     </div>
-
-
                     <div class="col-md-4">
                       <div class="row">
                         <div class="col-md-2">
@@ -474,13 +470,11 @@ for (var i = 0; i < road.length; i++) {
                         </div>
                       </div>
                     </div>
-
                   </div>
-
                             {!! Form::close() !!}                  
                   </div>
                 </div>
-
+                  @endif
                 @endif
 
 
