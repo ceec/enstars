@@ -79,17 +79,17 @@ class UserController extends Controller
 
 
         $card = new Card;
-        $fivestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','asc');
+        $fivestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','desc');
         $fivestarcards = $fivestarcardsq->get();
         //$fivestarcards_count = $fivestarcardsq->count();
 
         //four star
-        $fourstarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='4'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','asc');
+        $fourstarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='4'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','desc');
         $fourstarcards = $fourstarcardsq->get();
         //$fourstarcards_count = $fourstarcardsq->count();
 
         //three star
-        $threestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='3'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','asc');
+        $threestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='3'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','desc');
         $threestarcards = $threestarcardsq->get();
         //$threestarcards_count = $threestarcardsq->count();        
 
@@ -125,6 +125,14 @@ class UserController extends Controller
             $u = new Usercard;
             $u->user_id = $user->id;
             $u->card_id = $card_id;
+             $u->bloom = 0;
+             $u->copies = 1;
+             $u->level = 0;
+             $u->da = 0;
+             $u->vo = 0;
+             $u->pf = 0;
+             $u->percent = 0;
+             $u->affection = 0;
             $u->save();
 
             echo json_encode(array('card_id'=>$card_id));            
@@ -201,6 +209,53 @@ class UserController extends Controller
 
 
          echo json_encode(array('event_id'=>$event_id));            
+
+    }
+
+    /**
+     * Update card
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCard(Request $request) {
+         $user = Auth::user();
+
+         $card_id = $request->input('card_id');
+         $usercard_id = $request->input('usercard_id');
+
+         $c = Usercard::find($usercard_id);
+         $c->bloom = $request->input('bloom');
+         $c->copies = $request->input('copies');
+         $c->level = $request->input('level');
+         $c->da = $request->input('da');
+         $c->vo = $request->input('vo');
+         $c->pf = $request->input('pf');
+         $c->percent = $request->input('percent');
+         $c->affection = $request->input('affection');
+         $c->save();
+
+
+
+        // $event_id = $request->input('event_id');
+        // $rank = $request->input('rank');
+        // $points = $request->input('points');
+        // //add the user card
+        // $user = Auth::user();    
+
+        // //do want to update or be able to track all the data?
+        // //update for now, would just need to change this to an insert to add lots of data.
+        // $e = Userevent::where('user_id','=',$user->id)->where('event_id','=',$event_id)->first();
+
+        // $e->user_id = $user->id;
+        // $e->event_id = $event_id;
+        // $e->points = $points;
+        // $e->rank = $rank;
+        // $e->updated_by = $user->id;
+        // $e->save();
+
+
+        // echo json_encode(array('usercard_id'=>$usercard_id));            
+         return redirect('/card/'.$card_id);      
 
     }
 

@@ -3,10 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 
 use App\User;
 use Auth;
 use App\Usercard;
+
 
 class Card extends Model
 {
@@ -63,6 +67,13 @@ class Card extends Model
 
 			if ($have > 0 ) {
 				$background = 'panel-info';
+				$current_page = Route::getFacadeRoot()->current()->uri();
+				//dont show blue if on user page
+				if ($current_page == 'user/{name}/cards') {
+					$background = '';
+				} else {
+					$background = 'panel-info';
+				}
 			} else {
 				$background = '';
 			}

@@ -208,3 +208,7 @@ Route::get('/user/{name}','UserController@dashboard');
 //all cards
 Route::get('/user/{name}/cards','UserController@cards');
 
+
+//edit user card
+Route::post('/user/edit/card','UserController@updateCard');
+

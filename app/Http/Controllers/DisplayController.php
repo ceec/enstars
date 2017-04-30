@@ -40,6 +40,7 @@ use App\Loginevent;
 use App\Logineventday;
 
 use App\Cardroad;
+use App\Usercard;
 
 use Auth;
 
@@ -239,6 +240,17 @@ class DisplayController extends Controller {
         $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->pluck('english_description','id');
 
 
+        //user editing
+        //if someone is logged in
+        if (!Auth::guest()) {
+
+         $user = Auth::user();    
+         $user_card = Usercard::where('user_id','=',$user->id)->where('card_id','=',$card_id)->first();
+        } else {
+            $user_card = '';
+        }
+
+        
 
         //building the idol road
         //get the parent nodes
@@ -266,20 +278,6 @@ class DisplayController extends Controller {
         //check that nodes with a parent with a d that also has a d -- second row down.
         $bottom = Cardroad::where('card_id','=',$card->id)->where('parent','like','%d%')->where('node','like','%d%')->get();
 
-
-        // foreach($road as $node) {
-        //     $childrencheck = Cardroad::where('parent','=',$node->node)->count();
-        //     if ($count > 0 ) {
-        //         //there are children
-        //         $children = Cardroad::where('parent','=',$node->node)->get();
-
-        //         //add these to that node.
-        //         $road
-
-        //     }
-        // }
-
-
         //add arrays
         $top = json_encode($top);
         $upper = json_encode($upper);
@@ -287,11 +285,7 @@ class DisplayController extends Controller {
         $lower = json_encode($lower);
         $bottom = json_encode($bottom);
 
-
-
         $road = json_encode(array_merge(json_decode($top, true),json_decode($upper, true),json_decode($middle, true),json_decode($lower, true),json_decode($bottom, true)));
-
-
         //get total gem count for the road
 
         $red_large = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('large','!=','0')->sum('large');
@@ -322,7 +316,8 @@ class DisplayController extends Controller {
             ->with('blue_small',$blue_small)
             ->with('yellow_large',$yellow_large)
             ->with('yellow_medium',$yellow_medium)
-            ->with('yellow_small',$yellow_small)                        
+            ->with('yellow_small',$yellow_small)  
+            ->with('user_card',$user_card)                      
             ->with('card',$card);
     } 
 

@@ -265,7 +265,7 @@ Birthday Calendar | enstars.info
                         </tr>
                         <tr>
                             <td>15</td>
-                            <td>16</td>
+                            <td><span class="birthday">16</span></td>
                             <td>17</td>
                             <td>18</td>
                             <td>19</td>
@@ -293,6 +293,7 @@ Birthday Calendar | enstars.info
                     </table>
                     <ul>
                         <li>5 - Tsukinaga Leo</li>
+                        <li>5 - Mikejima Madara</li>
                     </ul>                                    
                 </div>
                 <div class="col-md-3">
