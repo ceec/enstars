@@ -35,9 +35,14 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function dashboard() {
+        $user = Auth::user();    
 
 
-         return view('user.dashboard');
+        $card = Card::find($user->card);
+
+         return view('user.dashboard')
+            ->with('user',$user)
+            ->with('card',$card);
       
     } 
 
@@ -157,6 +162,31 @@ class UserController extends Controller
 
         echo json_encode(array('card_id'=>$card_id));
     } 
+
+
+
+    //////
+
+
+    /**
+     * Display user scouts
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function scouts() {
+        
+       // $scouts = 
+
+        $card = Card::find($user->card);
+
+         return view('user.scouts')
+            ->with('user',$user)
+            ->with('card',$card);
+      
+    } 
+
+
+    /////
 
     /**
      * Add event

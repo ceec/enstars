@@ -207,6 +207,8 @@ Route::post('/update/user/event','UserController@updateEvent');
 Route::get('/user/{name}','UserController@dashboard');
 //all cards
 Route::get('/user/{name}/cards','UserController@cards');
+//scouts
+Route::get('/user/{name}/scouts','UserController@scouts');
 
 
 //edit user card
