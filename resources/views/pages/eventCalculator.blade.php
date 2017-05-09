@@ -15,6 +15,7 @@ Event Calculator | enstars.info
 
 <script>
 var eventEnd = "<?php print $utc_end;?> UTC";
+var eventID = "<?php print $event->id; ?>";
 </script>
 <style>
 #chartdiv {
@@ -119,6 +120,16 @@ var eventEnd = "<?php print $utc_end;?> UTC";
 </div>
 
  <script>
+
+ //set up the new border for event 50 and onward
+ var fiveStarBorder;
+
+ if (eventID > 49) {
+  fiveStarBorder = '2000';
+ } else {
+  fiveStarBorder = '1200';
+ }
+
  var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial",
     "theme": "light",
@@ -133,7 +144,7 @@ var eventEnd = "<?php print $utc_end;?> UTC";
     }],
     "graphs": [{
         "id":"1 5 Star - 1200",
-        "title": "1200",
+        "title": fiveStarBorder,
         "bullet": "round",
         "balloonText": "[[value]]",
         "valueField": "points2"

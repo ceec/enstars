@@ -277,29 +277,39 @@ class DataController extends Controller {
 
         $points = Eventpoint::where('event_id','=',$event->id)->get();
 
-        //add zero starting points
-            $data['points2'] = 0;
+
+        //changes made in events 50 and up, the 1200 border is now 2k
+
+        if ($event->id > 49) {
+            $data['rank2'] = 2000;     
+
+        } else {    
             $data['rank2'] = 1200;    
-            $data['points7'] = 0;
-            $data['rank7'] = 11000;   
-            $data['points12'] = 0;
-            $data['rank12'] = 35000;   
-            $data['position'] = 'start';
-            $result[] = $data;     
-            unset($data);     
-
-        foreach ($points as $key => $point) {
-            $data['points2'] = $point->tier_2;
-            $data['rank2'] = $point->rank_2;    
-            $data['points7'] = $point->tier_7;
-            $data['rank7'] = $point->rank_7;   
-            $data['points12'] = $point->tier_12;
-            $data['rank12'] = $point->rank_12; 
-
-            $data['position'] = $point->position;
-            $result[] = $data;     
-            unset($data);                                    
+        
         }
+                //add zero starting points
+                $data['points2'] = 0;
+                $data['points7'] = 0;
+                $data['rank7'] = 11000;   
+                $data['points12'] = 0;
+                $data['rank12'] = 35000;   
+                $data['position'] = 'start';
+                $result[] = $data;     
+                unset($data);      
+
+            foreach ($points as $key => $point) {
+                $data['points2'] = $point->tier_2;
+                $data['rank2'] = $point->rank_2;    
+                $data['points7'] = $point->tier_7;
+                $data['rank7'] = $point->rank_7;   
+                $data['points12'] = $point->tier_12;
+                $data['rank12'] = $point->rank_12; 
+
+                $data['position'] = $point->position;
+                $result[] = $data;     
+                unset($data);                                    
+            }
+
        
         echo json_encode($result);
 
