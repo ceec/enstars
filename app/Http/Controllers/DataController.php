@@ -302,8 +302,16 @@ class DataController extends Controller {
                 $data['rank2'] = $point->rank_2;    
                 $data['points7'] = $point->tier_7;
                 $data['rank7'] = $point->rank_7;   
-                $data['points12'] = $point->tier_12;
-                $data['rank12'] = $point->rank_12; 
+
+                if ($event->id > 49) {
+                    $data['points12'] = $point->tier_11;
+                    $data['rank12'] = $point->rank_11; 
+                } else {    
+                   $data['points12'] = $point->tier_12;
+                    $data['rank12'] = $point->rank_12;  
+                
+                }                
+                
 
                 $data['position'] = $point->position;
                 $result[] = $data;     
