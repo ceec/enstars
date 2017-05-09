@@ -62,7 +62,7 @@
                     <ul class="dropdown-menu">
                       <li><a href="/event/{{ \App\Event::current() }}">Current Event</a></li>
                       <li><a href="/event/all">All Events</a></li>
-                      <li><a href="#">Calculator</a></li>
+                      <li><a href="/event/calculator">Calculator</a></li>
                     </ul>
                   </li>
                   <li class="dropdown">

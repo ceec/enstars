@@ -47,7 +47,7 @@ Route::get('/class/{class_name}','DisplayController@classroom');
 
 //events
 //calculator
-Route::get('/event/calculator/beta','DisplayController@eventCalculator');
+Route::get('/event/calculator','DisplayController@eventCalculator');
 
 //all events
 Route::get('/event/all','DisplayController@eventAll');
