@@ -870,6 +870,74 @@ class DisplayController extends Controller {
         //need to figure out if there's a current event
          $event = Event::where('active','=','1')->first();
 
+         //get the url id of the cards that are in this event
+
+         $urgent = Card::where('id','=',$event->points_4)->first();
+
+         if ($urgent->color == 'yellow') {
+            $urgent->button_color = 'warning';
+         } else if ($urgent->color == 'red') {
+            $urgent->button_color = 'danger';
+         } else {
+            $urgent->button_color = 'info';
+         }
+
+         //the halfway challenger will be the duplicate color card of the ranking 3 star
+         $ranking_3 = Card::where('id','=',$event->rank_3)->first();
+
+         //find the matching event card of that color
+         if ($ranking_3->color == 'yellow') {
+            $type = 'pf';
+            $button_color = 'warning';
+         } else if ($ranking_3->color == 'red') {
+            $type = 'da';
+            $button_color = 'danger';
+         } else {
+            $type = 'vo';
+            $button_color = 'info';
+         }
+
+
+         function twitterClass($card_color) {
+            if ($card_color == 'yellow') {
+                $class = 'warning';
+            } else if ($card_color == 'red') {
+                $class = 'danger';
+            } else {
+                $class = 'info';
+            }    
+            return $class;
+         }
+
+
+
+         $halfwaycard = 'points_3_'.$type;
+
+
+         $halfway = Card::where('id','=',$event->$halfwaycard)->first();
+         $halfway->button_color = $button_color;
+
+
+        $types[] = 'pf';
+        $types[] = 'da';
+        $types[] = 'vo';
+
+        //remove the one it was
+        if(($key = array_search($type, $types)) !== false) {
+            unset($types[$key]);
+        }
+
+        //reset the keys
+        $types = array_values($types);
+
+
+        $first_card = 'points_3_'.$types[0];
+        $first = Card::where('id','=',$event->$first_card)->first();
+        $first->button_color = twitterClass($first->color);
+
+        $second_card = 'points_3_'.$types[1];
+        $second = Card::where('id','=',$event->$second_card)->first();
+        $second->button_color = twitterClass($second->color);
 
         //can pass in url or id
        // $event = Event::where('id','=',$url)->first();
@@ -884,7 +952,11 @@ class DisplayController extends Controller {
     
 
         return view('pages.eventCalculator')
-         ->with('event',$event);
+         ->with('event',$event)
+         ->with('first',$first)
+         ->with('second',$second)
+         ->with('urgent',$urgent)
+         ->with('halfway',$halfway);
     }  
 
     ////translations//////

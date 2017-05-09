@@ -15,18 +15,33 @@ use App\Usercard;
 use App\Userevent;
 use DB;
 
+//testing
+use App\Repositories\CardRepository;
+
 class UserController extends Controller
 {
+
+    /**
+     * The task repository instance.
+     *
+     * @var CardRepository
+     */
+    protected $cards;
 
     /**
      * Only can do this when logged in
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CardRepository $cards)
     {
         $this->middleware('auth');
+
+        $this->cards = $cards;
     }
+
+
+
 
 
     /**
@@ -38,6 +53,11 @@ class UserController extends Controller
         $user = Auth::user();    
 
 
+        print_r($this->cards->forUser($user));
+
+        if ($user->card == 0) {
+            $user->card = 899;
+        }
         $card = Card::find($user->card);
 
          return view('user.dashboard')

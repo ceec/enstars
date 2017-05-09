@@ -503,4 +503,22 @@ class HomeController extends Controller
         echo json_encode(array('result'=>'saved'));
     }  
 
+
+    /////emails
+
+    /**
+     * view emails
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function messages() {
+        return view('home.messages');
+    }  
+
+
+
+
+
+
+
 }

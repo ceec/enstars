@@ -6,8 +6,15 @@ Event Calculator | enstars.info
 @stop
 
 @section('content')
+
+<?php
+  //convert from JST to UTC
+  $utc_end = date('Y-m-d H:i:s',strtotime($event->end) - 60 * 60 * 9);
+?>
+
+
 <script>
-var eventEnd = "<?php print $event->end;?>";
+var eventEnd = "<?php print $utc_end;?> UTC";
 </script>
 <style>
 #chartdiv {
@@ -42,10 +49,11 @@ var eventEnd = "<?php print $event->end;?>";
   	<div class="row">
   	<div class="col-lg-8">
       <h3>Time Remaining: <span id="time-remaining"></span></h3>
-      </div>
-      <div class="col-lg-4">
-      
-      </div>
+    </div>
+    <div class="col-lg-4">
+        <br>
+    End: {{$event->end}} JST
+    </div>
     </div>
 
   <div class="row">
@@ -84,16 +92,16 @@ var eventEnd = "<?php print $event->end;?>";
     <div class="col-lg-6">
     	<div class="row">
       	<div class="col-lg-2">
-        	<span class="btn btn-danger"><img class="img-responsive" src="/images/cards/31_28b.png">Normal<br>500000&nbsp;</span>
+        	<a href="/card/{{$first->id}}"><span class="btn btn-{{$first->button_color}}"><img class="img-responsive" src="/images/cards/{{$first->boy_id}}_{{$first->card_id}}b.png">Normal<br>500000&nbsp;</span></a>
         </div>
         <div class="col-lg-2">
-        	<span class="btn btn-warning"><img class="img-responsive" src="/images/cards/24_24b.png">Normal<br>500000&nbsp;</span>
+        	<a href="/card/{{$second->id}}"><span class="btn btn-{{$second->button_color}}"><img class="img-responsive" src="/images/cards/{{$second->boy_id}}_{{$second->card_id}}b.png">Normal<br>500000&nbsp;</span></a>
         </div>
         <div class="col-lg-2">
-        	<span class="btn btn-info"><img class="img-responsive" src="/images/cards/30_25b.png">Halfway<br>750000&#8203;</span>
+        	<a href="/card/{{$halfway->id}}"><span class="btn btn-{{$halfway->button_color}}"><img class="img-responsive" src="/images/cards/{{$halfway->boy_id}}_{{$halfway->card_id}}b.png">Halfway<br>750000&#8203;</span></a>
         </div>
         <div class="col-lg-2">
-        	<span class="btn btn-info"><img class="img-responsive" src="/images/cards/22_28b.png">Urgent<br>1000000</span>
+        	<a href="/card/{{$urgent->id}}"><span class="btn btn-{{$urgent->button_color}}"><img class="img-responsive" src="/images/cards/{{$urgent->boy_id}}_{{$urgent->card_id}}b.png">Urgent<br>1000000</span></a>
        	</div>
        	</div>
       <h3>Max Natural LP remaining: <span id="lp-remaining"></span></h3>
@@ -109,21 +117,6 @@ var eventEnd = "<?php print $event->end;?>";
     </div>
   </div>
 </div>
-<?php
-
-//   $to = 'cc@battab.com';
-//   $subject = 'Thanks for reporting the rank issue!';
-//   $message = 'Thanks for finding that! They are correctly labeled rank now. :D'."\r\n"."\r\n".
-//              'ankee';
-// $headers = 'From: info@enstars.info' . "\r\n" .
-//     'Reply-To: cc@battab.com' . "\r\n" .
-//     'X-Mailer: PHP/' . phpversion();
-
-
-//   mail($to,$subject,$message,$headers);
-
-
-?>
 
  <script>
  var chart = AmCharts.makeChart("chartdiv", {
@@ -380,7 +373,7 @@ var calculate = function() {
 var timeLeft = function() {
   var now = Date.now();
   ///this is in MST. Need to get it in JST
-  var end = new Date("2017-03-25 07:00:00");
+  var end = new Date(eventEnd);
   //how many miliseconds long between the end of the event and now
   var diff = end.getTime() - now;  
   //calculate time left
@@ -433,13 +426,24 @@ var lpLeft = function(diff) {
   naturalBase3.textContent = numberWithCommas(naturalPoints3);  
 
 
-var lp1points = parseInt(naturalPoints1,10) + parseInt(localStorage.getItem("currentPoints"),10);
+var current = parseInt(localStorage.getItem("currentPoints"),10);
+if (isNaN(current)) {
+  current = 0;
+}
+
+
+var lp1points = parseInt(naturalPoints1,10) + current;
 $('#base-total-points').html(numberWithCommas(lp1points));
 
-var lp2points = parseInt(naturalPoints2,10) + parseInt(localStorage.getItem("currentPoints"),10);
+
+
+
+
+
+var lp2points = parseInt(naturalPoints2,10) + current;
 $('#base-total-points2').html(numberWithCommas(lp2points));
 
-var lp3points = parseInt(naturalPoints3,10) + parseInt(localStorage.getItem("currentPoints"),10);
+var lp3points = parseInt(naturalPoints3,10) + current;
 $('#base-total-points3').html(numberWithCommas(lp3points));
 
 
