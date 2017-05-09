@@ -15,7 +15,7 @@
             {!! Form::text('rank_3', '4000',['class'=>'']) !!} {!! Form::text('tier_3', '',['class'=>'',  'placeholder'=>'Rank 3 Points']) !!} <br>
             {!! Form::text('rank_4', '6000',['class'=>'']) !!} {!! Form::text('tier_4', '',['class'=>'',  'placeholder'=>'Rank 4 Points']) !!} <br>
             {!! Form::text('rank_5', '8500',['class'=>'']) !!} {!! Form::text('tier_5', '',['class'=>'',  'placeholder'=>'Rank 5 Points']) !!} <br>
-            {!! Form::text('rank_6', '1100',['class'=>'']) !!} {!! Form::text('tier_6', '',['class'=>'',  'placeholder'=>'Rank 6 Points']) !!} <br>
+            {!! Form::text('rank_6', '11000',['class'=>'']) !!} {!! Form::text('tier_6', '',['class'=>'',  'placeholder'=>'Rank 6 Points']) !!} <br>
             {!! Form::text('rank_7', '15000',['class'=>'']) !!} {!! Form::text('tier_7', '',['class'=>'',  'placeholder'=>'Rank 7 Points']) !!} <br>
             {!! Form::text('rank_8', '19000',['class'=>'']) !!} {!! Form::text('tier_8', '',['class'=>'',  'placeholder'=>'Rank 8 Points']) !!} <br>
             {!! Form::text('rank_9', '23000',['class'=>'']) !!} {!! Form::text('tier_9', '',['class'=>'',  'placeholder'=>'Rank 9 Points']) !!} <br>
