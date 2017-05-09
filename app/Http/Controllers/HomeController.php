@@ -419,9 +419,8 @@ class HomeController extends Controller
         $d->rank_10 = $request->rank_10;
         $d->tier_10 = $request->tier_10;
         $d->rank_11 = $request->rank_11;
-        $d->tier_11 = $request->tier_11;
-        $d->rank_12 = $request->rank_12;
-        $d->tier_12 = $request->tier_12;
+        $d->tier_11 = 0;
+        $d->tier_12 = 0;
         $d->rank_13 = 0;
         $d->tier_13 = 0;
         $d->rank_14 = 0;
