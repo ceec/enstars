@@ -32,7 +32,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        mail('cc@battab.com','Enstars Error', $exception);
+        //only want to mail if its not a 404.
+         if (!($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)) {
+             mail('cc@battab.com','Enstars Error', $exception);
+         }
         parent::report($exception);
     }
 
