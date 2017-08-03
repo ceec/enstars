@@ -110,6 +110,8 @@ Route::get('/graph/five-star-history','DisplayController@cardPrediction');
 Route::get('/graph/event-border-history','DisplayController@eventHistory');
 //timeline of events and scouts
 Route::get('/graph/timeline','DisplayController@timeline');
+//fivestar history color
+Route::get('/graph/five-star-color','DisplayController@cardFiveStarColor');
 
 
 //contact form

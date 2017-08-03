@@ -15,4 +15,15 @@ class Event extends Model
 
 			return $current->url;      
     }
+
+
+    /**
+     * Get the cards for this event.
+     */
+    public function cards()
+    {
+        return $this->hasMany('App\Card');
+    }
+
+
 }

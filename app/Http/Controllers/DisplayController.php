@@ -1276,24 +1276,28 @@ class DisplayController extends Controller {
     public function cardPrediction() {
         $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
 
-        //lul why didnt i figure this out before...dumb me
-        // $boys->each(function ($boy) {
-        //     $cards = $boy->cards()->where('stars','=','5')->get();
-
-
-
-
-        //     $cards->each(function ($card) {
-        //         $event = $card->event;
-        //     });
-        // });
-
 
 
         return view('pages.cardPrediction')
          ->with('boys',$boys);
     } 
 
+
+    /**
+     * predict future cards - by color and time
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardFiveStarColor() {
+        $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
+
+        $events = Event::orderBy('end','asc')->get();
+
+
+        return view('pages.cardFivestarColor')
+        ->with('events',$events)
+         ->with('boys',$boys);
+    } 
 
 
 }

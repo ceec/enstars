@@ -58,6 +58,7 @@
             </div>
             <div class="col-md-6">
                 <h3>Released: {{$start_date}}</h3> 
+                <hr>
                 @if ($from == 'pool')
                     <h3>Introduced in: Original Card</h3>
                 @elseif ($from == 'scout')
@@ -65,18 +66,20 @@
                 @elseif ($from == 'event')
                     <h3>Introduced in: Event: <a href="/event/{{$source->url}}">{{$source->name_e}}</a></h3>
                 @endif
-                
+                <hr>
                 @if ($dorifes_skill->id == 0)
                     <h3>Dream Festival Skill: {{$dorifes_skill->english_description}} </h3>
                 @else
                     <h3>Dream Festival Skill: <a href="/skill/{{$dorifes_skill->id}}">{{$dorifes_skill->english_description}}</a></h3>
                 @endif
-
+                <h4>{{$card->dorifes_e}}</h4>
+                <hr>
                 @if ($lesson_skill->id == 0)
                     <h3>Lesson Skill: {{$lesson_skill->english_description}} </h3>
                 @else
                     <h3>Lesson Skill: <a href="/skill/{{$lesson_skill->id}}">{{$lesson_skill->english_description}}</a></h3>
                 @endif
+                <h4>{{$card->lesson_e}}</h4>
 
             </div>
          </div>   

@@ -32,6 +32,14 @@ class Card extends Model
     }
 
 
+    /**
+     * Get the boy for this card.
+     */
+    public function boy()
+    {
+          return $this->belongsTo('App\Boy');
+    }
+
 
     /**
      * Get 5 star cards
