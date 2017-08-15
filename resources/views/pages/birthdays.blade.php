@@ -384,7 +384,7 @@ Birthday Calendar | enstars.info
                         <tr>
                             <td>22</td>
                             <td>23</td>
-                            <td>24</td>
+                            <td><span class="birthday">24</span></td>
                             <td>25</td>
                             <td>26</td>
                             <td>27</td>
@@ -404,6 +404,7 @@ Birthday Calendar | enstars.info
                         <li>1 - Harukawa Sora</li>
                         <li>15 - Shino Hajime</li>
                         <li>18 - Ogami Koga</li>
+                        <li>24 - Tomoe Hiyori</li>
                     </ul>                    
                 </div>  
                 <div class="col-md-3">
@@ -429,7 +430,7 @@ Birthday Calendar | enstars.info
                         </tr>
                         <tr>
                             <td>15</td>
-                            <td>16</td>
+                            <td><span class="birthday">16</span></td>
                             <td>17</td>
                             <td>18</td>
                             <td>19</td>
@@ -457,6 +458,7 @@ Birthday Calendar | enstars.info
                     </table>
                     <ul>
                         <li>7 - Aoba Tsumugi</li>
+                        <li>16 - Sazanami Jun</li>
                         <li>29 - Otogari Adonis</li>
                         <li>29 - Takamine Midori</li>
                         <li>30 - Shinkai Kanata</li>
