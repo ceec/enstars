@@ -6,6 +6,11 @@
 @stop
 
 @section('content')
+<style>
+ .card-title {
+  font-weight: 400;
+ } 
+</style>
 <div class="container">
                         <?php
                             //set up the colors
@@ -57,29 +62,34 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h3>Released: {{$start_date}}</h3> 
-                <hr>
+                <h4><span class="card-title">Released:</span> {{$start_date}}</h4> 
                 @if ($from == 'pool')
-                    <h3>Introduced in: Original Card</h3>
+                    <h4><span class="card-title">Introduced in:</span> Original Card</h4>
                 @elseif ($from == 'scout')
-                    <h3>Introduced in: Scout: <a href="/scout/{{$source->url}}">{{$source->name_e}}</a></h3>
+                    <h4><span class="card-title">Introduced in Scout:</span> <a href="/scout/{{$source->url}}">{{$source->name_e}}</a></h4>
                 @elseif ($from == 'event')
-                    <h3>Introduced in: Event: <a href="/event/{{$source->url}}">{{$source->name_e}}</a></h3>
+                    <h4><span class="card-title">Introduced in Event:</span> <a href="/event/{{$source->url}}">{{$source->name_e}}</a></h4>
                 @endif
                 <hr>
                 @if ($dorifes_skill->id == 0)
-                    <h3>Dream Festival Skill: {{$dorifes_skill->english_description}} </h3>
+                    <h4><span class="card-title">Dream Festival Skill:</span> {{$dorifes_skill->english_description}} </h4>
                 @else
-                    <h3>Dream Festival Skill: <a href="/skill/{{$dorifes_skill->id}}">{{$dorifes_skill->english_description}}</a></h3>
+                    <h4><span class="card-title">Dream Festival Skill:</span> <a href="/skill/{{$dorifes_skill->id}}">{{$dorifes_skill->english_description}}</a></h4>
                 @endif
                 <h4>{{$card->dorifes_e}}</h4>
-                <hr>
                 @if ($lesson_skill->id == 0)
-                    <h3>Lesson Skill: {{$lesson_skill->english_description}} </h3>
+                    <h4><span class="card-title">Lesson Skill:</span> {{$lesson_skill->english_description}} </h4>
                 @else
-                    <h3>Lesson Skill: <a href="/skill/{{$lesson_skill->id}}">{{$lesson_skill->english_description}}</a></h3>
+                    <h4><span class="card-title">Lesson Skill:</span> <a href="/skill/{{$lesson_skill->id}}">{{$lesson_skill->english_description}}</a></h4>
                 @endif
                 <h4>{{$card->lesson_e}}</h4>
+                <hr>
+                Base stats<br>
+                @if ($card->da !== 0) 
+                  Da: {{$card->da}}<br>
+                  Vo: {{$card->vo}}<br>
+                  Pf: {{$card->pf}} 
+                @endif
 
             </div>
          </div>   

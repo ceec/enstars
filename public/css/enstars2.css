@@ -68,3 +68,8 @@ body {
     font-family: Latha, "Tamil MN", serif;
     font-size: 100%;
     }
+
+
+ .card-title {
+ 	font-weight: 400;
+ }   
