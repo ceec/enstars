@@ -491,19 +491,17 @@ for (var i = 0; i < road.length; i++) {
                           <h3 class="panel-title">Admin - Edit Card <span class="pull-right">Last Updated on {{$card->updated_at}} by {{$updated_by->name}} </span></h3>
                         </div>
                         <div class="panel-body">
-                            {!! Form::open(['url' => '/edit/card']) !!}             
+                            {!! Form::open(['url' => '/edit/card']) !!}    
+                            <div class="row">
+                              <div class="col-md-6">
                                   <div class="form-group form-inline">
                                     <label for="japanese-name">Japanese Name</label>
                                      {!! Form::text('japanese_name',$card->name_j,['class'=>'form-control','id'=>'japanese-name']) !!}
-                                  </div>                  
+                                  </div> 
                                   <div class="form-group form-inline">
                                     <label for="english-name">English Name</label>
                                      {!! Form::text('english_name',$card->name_e,['class'=>'form-control','id'=>'english-name']) !!}
-                                  </div>   
-                                  <div class="form-group form-inline">
-                                    <label for="s-name">Placeholder Name</label>
-                                     {!! Form::text('name_s',$card->name_s,['class'=>'form-control','id'=>'s-name']) !!}
-                                  </div>   
+                                  </div>
                                   <div class="form-group form-inline">
                                     <label for="sentence-j">Japanese Sentence (when scouted or on promo materials)</label>
                                      {!! Form::text('sentence_j',$card->sentence_j,['class'=>'form-control','id'=>'sentence-j']) !!}
@@ -527,7 +525,9 @@ for (var i = 0; i < road.length; i++) {
                                   <div class="form-group form-inline">
                                     <label for="lesson_e">English Lesson Skill</label>
                                      {!! Form::text('lesson_e',$card->lesson_e,['class'=>'form-control','id'=>'lesson_e']) !!}
-                                  </div>                                                                                           
+                                  </div>                                                                                                         
+                              </div>
+                              <div class="col-md-6">
                                 <div class="form-group form-inline">
                                     <label for="stars">Stars</label>
                                      {!! Form::text('stars',$card->stars,['class'=>'form-control','id'=>'stars']) !!}
@@ -536,6 +536,18 @@ for (var i = 0; i < road.length; i++) {
                                     <label for="stars">Color</label>
                                      {!! Form::text('color',$card->color,['class'=>'form-control','id'=>'color']) !!}
                                   </div>
+                                <div class="form-group form-inline">
+                                    <label for="da">Da</label>
+                                     {!! Form::text('da',$card->da,['class'=>'form-control','id'=>'da']) !!}
+                                  </div>
+                                <div class="form-group form-inline">
+                                    <label for="vo">Vo</label>
+                                     {!! Form::text('vo',$card->vo,['class'=>'form-control','id'=>'vo']) !!}
+                                  </div>
+                                <div class="form-group form-inline">
+                                    <label for="pf">Pf</label>
+                                     {!! Form::text('pf',$card->pf,['class'=>'form-control','id'=>'pf']) !!}
+                                  </div>                                                                                                      
                                   <div class="form-group form-inline">
                                     <label for="lesson-skill">Lesson Skill</label>
                                     {!! Form::select('lesson_id', $lesson_skills,$card->lesson_id ,['class'=>'form-control', 'id'=>'lesson-skill','placeholder' => 'Lesson Skill']) !!} 
@@ -543,7 +555,13 @@ for (var i = 0; i < road.length; i++) {
                                   <div class="form-group form-inline">
                                     <label for="dorifes-id">Dream Festival Skill</label>
                                     {!! Form::select('dorifes_id', $dorifes_skills,$card->dorifes_id,['class'=>'form-control', 'id'=>'dorifes-id','placeholder' => 'Dream Festival Skill']) !!} 
-                                  </div>                   
+                                  </div>                                  
+                              </div>
+                            </div>
+                
+ 
+                                                                                          
+                 
                                   {!! Form::hidden('card_id', $card->id) !!}                                                      
                             {!! Form::submit('Edit') !!}
                             {!! Form::close() !!}

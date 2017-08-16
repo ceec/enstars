@@ -133,9 +133,11 @@ class CardController extends Controller
         $c = Card::find($request->input('card_id'));
         $c->stars = $request->input('stars');
         $c->color = $request->input('color');
+        $c->da = $request->input('da');
+        $c->vo = $request->input('vo');
+        $c->pf = $request->input('pf');                        
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
-        $c->name_s = $request->input('name_s');
         $c->sentence_j = $request->input('sentence_j');
         $c->sentence_e = $request->input('sentence_e');  
         $c->dorifes_j = $request->input('dorifes_j');
