@@ -14,9 +14,15 @@ Dashboard | enstars.info
                 <div class="row">
                     <?php $x=1; ?>
                     @foreach($fivestarcards as $card)
-                        {{ $card->display('mini') }}    
+                    <?php
+                        print '<pre>';
+                        print_r($card);
+                        print '</pre>';
+                        exit;
+                    ?>
+                        {{ $card->display() }}    
                         <?php
-                            if ($x%6==0) {
+                            if ($x%4==0) {
 ?>
                             </div>
                             <div class="row">

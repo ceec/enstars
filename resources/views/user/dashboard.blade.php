@@ -14,9 +14,6 @@ Dashboard | enstars.info
         	<div class="row">
         		<div class="col-md-3">
                     <img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png">
-        			Fav card here?
-        			Wanted cards?
-        			Recently got cards?
         		</div>
                 <div class="row">
                     <div class="col-md-4">

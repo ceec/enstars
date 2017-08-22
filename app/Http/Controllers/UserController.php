@@ -53,7 +53,7 @@ class UserController extends Controller
         $user = Auth::user();    
 
 
-        print_r($this->cards->forUser($user));
+        //print_r($this->cards->forUser($user));
 
         if ($user->card == 0) {
             $user->card = 899;
@@ -104,7 +104,7 @@ class UserController extends Controller
 
 
         $card = new Card;
-        $fivestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','desc');
+        $fivestarcardsq = $card->select('cards.*, usercards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','desc');
         $fivestarcards = $fivestarcardsq->get();
         //$fivestarcards_count = $fivestarcardsq->count();
 
