@@ -272,6 +272,7 @@ class HomeController extends Controller
         $slide->text_e = $request->input('text_e');
         $slide->notes = $request->input('notes');
         $slide->boy_id = $boy_id;
+        $slide->updated_by = Auth::user()->id;
         $slide->save();
 
 
