@@ -160,6 +160,9 @@ Route::post('/add/translationajax','HomeController@addTranslationAjax');
 Route::post('/add/minievent/translationajax','HomeController@addMiniEventTranslationAjax');
 //setting chapter live
 Route::post('/add/chapterDisplay','HomeController@chapterDisplay');
+//changing chapter name
+Route::post('/add/chapterName','HomeController@chapterName');
+
 
 
 //settings

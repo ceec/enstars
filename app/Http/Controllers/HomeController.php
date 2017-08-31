@@ -300,6 +300,7 @@ class HomeController extends Controller
         //test this update
 
         $slide->$field = $value;
+        $slide->updated_by = Auth::user()->id;
         $slide->save();
 
 
@@ -335,6 +336,7 @@ class HomeController extends Controller
         //test this update
 
         $slide->$field = $value;
+         $slide->updated_by = Auth::user()->id;
         $slide->save();
 
 
@@ -358,6 +360,30 @@ class HomeController extends Controller
         //test this update
 
         $c->complete = $complete;
+        $c->updated_by = Auth::user()->id;
+        $c->save();
+
+        echo json_encode(array('chapter'=>$complete));
+    } 
+
+
+    /**
+     * update the chapter name with AJAX
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chapterName(Request $request) {
+        $chapter_id = $request->input('chapter_id');
+
+        $name_e = $request->input('name_e');
+
+        //need to update chapter
+        $c = Chapter::find($chapter_id);
+
+        //test this update
+
+        $c->name_e = $name_e;
+        $c->updated_by = Auth::user()->id;
         $c->save();
 
         echo json_encode(array('chapter'=>$complete));

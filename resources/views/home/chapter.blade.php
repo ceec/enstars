@@ -15,7 +15,7 @@
 			$event_type = 'character/'.$story->boy_id;
 		}
 	?>
-    <h1>{{$chapter->name_e}} - {{$story->name_e}} <small>({{$count}} slides)</small>
+    <h1><div class="col-xs-6"> {!! Form::text('name_e',$chapter->name_e,['class'=>'form-control name_e','id'=>$chapter->id]) !!} </div>- {{$story->name_e}} <small>({{$count}} slides)</small>
 
     @if ($chapter->complete == 1)
         <button id="display-chapter" class="btn btn-danger chapter-display" data-id="{{$chapter->id}}" data-display="hide">Hide</button></h1>
@@ -53,6 +53,13 @@
 
 	//jQuery('body').on('click','')
 
+
+
+
+
+
+
+
 	//lets copy code
 	//http://stackoverflow.com/questions/14042193/how-to-trigger-an-event-in-input-text-after-i-stop-typing-writing
 	var delay = (function(){
@@ -62,6 +69,38 @@
   			timer = setTimeout(callback, ms);
  		};
 	})();
+
+    //2017-08-30 adding ajax for the title box
+
+
+$('.name_e').keyup(function(test) {
+    var $self = $(this);
+    //make this global to get into the delay function
+    name_e = $self.val();
+    chapterID = $self.attr('id');
+
+
+  delay(function(){
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
+        $.ajax({
+            type: "POST",
+            url: '/add/chapterName',
+            data: {chapter_id:chapterID,name_e:name_e},
+            dataType: 'json',
+            success: function (data) {
+                //console.log(data);
+            },
+            error: function (data) {
+                //console.log('Error:', data);
+            }
+        });
+  }, 1000 );
+});
 
 
 
