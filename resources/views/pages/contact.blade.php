@@ -28,7 +28,7 @@ Contact Us | enstars.info
               <label for="s-name">Message</label>
                {!! Form::textarea('message','',['class'=>'form-control','id'=>'message']) !!}
             </div>    
-               
+               {!! Form::hidden('enstars','',['class'=>'form-control','id'=>'message']) !!}
                                                                        
             {!! Form::submit('Send') !!}
             {!! Form::close() !!}

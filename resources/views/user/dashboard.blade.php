@@ -13,11 +13,13 @@ Dashboard | enstars.info
         	<h1>Dashboard - <a href="/user/{{Auth::user()->name}}">{{Auth::user()->name}}</a></h1>
         	<div class="row">
         		<div class="col-md-3">
+                        
                     <img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png">
         		</div>
                 <div class="row">
                     <div class="col-md-4">
                         <h3><a href="{{ url('/user/'.Auth::user()->name.'/cards') }}">My Cards</a></h3>
+                        <h3><a href="{{ url('/user/'.Auth::user()->name.'/scouts') }}">My Scouts</a></h3>
                     </div>
                     <div class="col-md-8">
 

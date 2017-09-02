@@ -1166,13 +1166,18 @@ class DisplayController extends Controller {
      */
     public function contactSend(Request $request) {
 
-        $m = new Message;
+        
+        if ($request->enstars == '') {
+            $m = new Message;
+            $m->name = $request->name;
+            $m->email = $request->email;
+            $m->message = $request->message;
+            $m->updated_by = 0;
+            $m->save();  
+    
+        }
 
-        $m->name = $request->name;
-        $m->email = $request->email;
-        $m->message = $request->message;
-        $m->updated_by = 0;
-        $m->save();
+
 
         return view('pages.contactThankYou');
     }    
