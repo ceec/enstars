@@ -60,6 +60,7 @@ class Card extends Model
     	//bg maybe only if you have that card.
 
 
+
     	//how to check if this card is already had by the user
 
 		//get current user
@@ -126,7 +127,12 @@ class Card extends Model
 			if (isset($user)) {
 				//extra UI for admins
 
-	        	//normal UI for users
+
+				//make sure its not the user display page
+				$route = $route = Route::current()->uri();
+
+				if ($route != "user/{name}/cards") {
+						        	//normal UI for users
 	        	//change text based on if they have the card
 	        	if ($have > 0 ) {
 	        		$button_text = 'Remove';
@@ -139,6 +145,9 @@ class Card extends Model
 ?>
 				<button class="btn <?php print $button_class; ?> btn-xs" data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
 <?php
+				}
+
+
 
 			}			
 		}
