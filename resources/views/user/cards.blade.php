@@ -15,10 +15,10 @@ Dashboard | enstars.info
                     <?php $x=1; ?>
                     @foreach($fivestarcards as $card)
                     <?php
-                        print '<pre>';
-                        print_r($card);
-                        print '</pre>';
-                        exit;
+                        // print '<pre>';
+                        // print_r($card);
+                        // print '</pre>';
+                        // exit;
                     ?>
                         {{ $card->display() }}    
                         <?php

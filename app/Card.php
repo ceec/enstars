@@ -130,14 +130,14 @@ class Card extends Model
 	        	//change text based on if they have the card
 	        	if ($have > 0 ) {
 	        		$button_text = 'Remove';
-	        		$button_class = 'remove-card';
+	        		$button_class = 'btn-danger remove-card';
 	        	} else {
 	        		$button_text = 'Add';
 	        		$button_class = 'add-card';
 	        	}
 
 ?>
-				<button class="button <?php print $button_class; ?>" data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
+				<button class="btn <?php print $button_class; ?> btn-xs" data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
 <?php
 
 			}			
