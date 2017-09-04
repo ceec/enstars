@@ -100,7 +100,7 @@
                    
                                   <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <!--<li><a href="{{ url('/login') }}">Login</a></li>-->
+                        <li><a href="{{ url('/login') }}">Login</a></li>
                        
                     @else
                         <li class="dropdown">
@@ -112,7 +112,7 @@
                                 @if (Auth::user()->isAdmin())
                                 <li><a href="{{ url('/home') }}">Admin</a></li>
                                 @endif
-                                <li><a href="{{ url('/user/'.Auth::user()->name) }}">Dashboard</a></li>
+                                <li><a href="{{ url('/user/dashboard') }}">Dashboard</a></li>
                                 <li><a href="{{ url('/user/'.Auth::user()->name.'/cards') }}">Cards</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"

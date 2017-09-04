@@ -9,7 +9,7 @@ Dashboard | enstars.info
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-        	<h1>Cards - <a href="/user/{{Auth::user()->name}}">{{Auth::user()->name}}</a></h1>
+        	<h1>Cards - <a href="/user/dashboard">{{Auth::user()->name}}</a></h1>
                 <h3>5 Stars - {{count($fivestarcards)}} cards</h3>
                 <div class="row">
                     <?php $x=1; ?>

@@ -1,9 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+
+            <p>
+                        <h2>Don't have an account? <a href="/register">Create one here!</a></h2>
+                        <p>With a user account you can track your card collection and share your collection with others!</p>
+                    </p>    
+            <br>
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">

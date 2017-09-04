@@ -309,4 +309,27 @@ class UserController extends Controller
 
     }
 
+
+    /**
+     * Update dashboard card - Added 2017-09-04
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function updateDashboardCard(Request $request) {
+         $user = Auth::user();
+
+         $card_id = $request->input('card_id');
+         $usercard_id = $request->input('usercard_id');
+
+         $c = User::find($user->id);
+         $c->card = $card_id;
+         $c->save();
+
+
+        // echo json_encode(array('usercard_id'=>$usercard_id));            
+         return redirect('/card/'.$card_id);      
+
+    }
+
+
 }

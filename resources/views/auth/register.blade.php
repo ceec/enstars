@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
@@ -7,6 +7,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
+                    <div class="alert alert-warning ">
+                        <h3>The user account feature is in beta!</h3>
+                        <p>Things may change as I add in new features and I may accidentally break things! If you have any feedback or suggestions 
+                        I would appreicate it if you sent them to me through our contact form at the bottom of the page!</p>
+                    </div>          
+                    <p>
+                        <h2>Create an enstars.info account!</h2>
+                        <p>With a user account you can track your card collection and share your collection with others!</p>
+                    </p>      
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 

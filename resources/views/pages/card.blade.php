@@ -401,7 +401,16 @@ for (var i = 0; i < road.length; i++) {
                   @if ($user_card !='')
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">Card Statistics <span class="pull-right">Added:   {{$user_card->created_at}}</span></h3>
+                    <h3 class="panel-title">
+                          Card Statistics 
+
+                          {!! Form::open(['url' => '/user/edit/dashboardCard','style'=>'display:inline!important']) !!}    
+                          {!! Form::hidden('card_id', $card->id) !!}
+                          {!! Form::hidden('usercard_id', $user_card->id) !!} 
+                          {!! Form::submit('Set as Dashboard Card',['class'=>'btn btn-primary btn-xs']) !!}         
+                          {!! Form::close() !!}  
+                          <span class="pull-right">Added:   {{$user_card->created_at}}</span>
+                    </h3>
                   </div>
                   <div class="panel-body">
                   <div class="row">
@@ -461,10 +470,10 @@ for (var i = 0; i < road.length; i++) {
                     <div class="col-md-4">
                       <div class="row">
                         <div class="col-md-2">
-                         <label for="display">Display</label>
+                         <label for="display">Card Display</label>
                         </div>
                         <div class="col-md-4">
-                           {!! Form::number('bloom',$user_card->bloom,['class'=>'form-control','id'=>'display']) !!}            
+                           {!! Form::select('bloom', array('0' => 'Unbloomed', '1' => 'Bloomed'), $user_card->bloom,['class'=>'form-control','id'=>'bloom']) !!}
                         </div>
                       </div>
                       <div class="row">

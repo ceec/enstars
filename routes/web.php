@@ -219,7 +219,7 @@ Route::post('/update/user/event','UserController@updateEvent');
 
 ///users pages
 //dashboard
-Route::get('/user/{name}','UserController@dashboard');
+Route::get('/user/dashboard','UserController@dashboard');
 //all cards
 Route::get('/user/{name}/cards','UserController@cards');
 //scouts
@@ -228,4 +228,6 @@ Route::get('/user/{name}/scouts','UserController@scouts');
 
 //edit user card
 Route::post('/user/edit/card','UserController@updateCard');
+
+Route::post('/user/edit/dashboardCard','UserController@updateDashboardCard');
 
