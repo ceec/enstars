@@ -55,7 +55,11 @@ class DisplayController extends Controller {
     public function index() {
         $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
         $teachers = Boy::where('classroom_id','=','7')->orderBy('first_name','asc')->get();
-        $blogs = Blog::orderBy('created_at','desc')->where('active','=','1')->take(4)->get();
+
+        //only show reecentish blog posts
+        $recent = date('Y-m-d h:i:s', strtotime("-2 months"));
+
+        $blogs = Blog::orderBy('created_at','desc')->where('active','=','1')->where('created_at','>',$recent)->take(4)->get();
         $units = Unit::all();
 
         //stories that are complete
