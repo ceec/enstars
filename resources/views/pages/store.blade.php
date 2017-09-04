@@ -22,61 +22,61 @@ Store | enstars.info
           <a href="/news/character-magnets-available-for-purchase">See how we got them here!</a>
         </p>
         <h3>Magnet Box</h3>
-        <img src="/images/store/1.JPG">
+        <img class="img-responsive" src="/images/store/1.JPG">
         <h3>Magnets Available</h3>
         <div class="row">
           <div class="col-md-4">
-          <img src="/images/2.JPG">
+          <img class="img-responsive" src="/images/store/2.JPG">
           <h5>Subaru</h5>
           </div>
           <div class="col-md-4">
-            <img src="/images/3.JPG">
+            <img class="img-responsive" src="/images/store/3.JPG">
             <h5>Hokuto</h5>
           </div>
           <div class="col-md-4">
-             <img src="/images/4.JPG"> 
+             <img class="img-responsive" src="/images/store/4.JPG"> 
              <h5>Makoto</h5>
           </div>                    
         </div>
         <div class="row">
           <div class="col-md-4">
-          <img src="/images/8.JPG">
+          <img class="img-responsive" src="/images/store/8.JPG">
           <h5>Kaoru</h5>
           </div>
           <div class="col-md-4">
-            <img src="/images/9.JPG">
+            <img class="img-responsive" src="/images/store/9.JPG">
             <h5>Adonis</h5>
           </div>
           <div class="col-md-4">
-             <img src="/images/14.JPG"> 
+             <img class="img-responsive" src="/images/store/14.JPG"> 
              <h5>Arashi</h5>
           </div>                    
         </div>           
         <div class="row">
           <div class="col-md-4">
-          <img src="/images/16.JPG">
+          <img class="img-responsive" src="/images/store/16.JPG">
           <h5>Izumi</h5>
           </div>
           <div class="col-md-4">
-            <img src="/images/20.JPG">
+            <img class="img-responsive" src="/images/store/20.JPG">
             <h5>Yuzuru</h5>
           </div>
           <div class="col-md-4">
-             <img src="/images/21.JPG"> 
+             <img class="img-responsive" src="/images/store/21.JPG"> 
              <h5>Eichi</h5>
           </div>                    
         </div>   
         <div class="row">
-          <div class="col-md-4">
-          <img src="/images/24.JPG">
+          <div class="img-responsive" class="col-md-4">
+          <img class="img-responsive" src="/images/store/24.JPG">
           <h5>Keito</h5>
           </div>
           <div class="col-md-4">
-            <img src="/images/26.JPG">
+            <img class="img-responsive" src="/images/store/26.JPG">
             <h5>Yuta</h5>
           </div>
           <div class="col-md-4">
-             <img src="/images/27.JPG"> 
+             <img class="img-responsive" src="/images/store/27.JPG"> 
              <h5>Hinata</h5>
           </div>                    
         </div>           
