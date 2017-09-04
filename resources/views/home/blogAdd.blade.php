@@ -29,11 +29,11 @@
             </div>   
             <div class="form-group">
               <label for="s-name">Story</label>
-               {!! Form::number('story_id','',['class'=>'form-control','id'=>'story_id','placeholder'=>'Story id translated here, dont need to write content']) !!}
+               {!! Form::number('story_id','0',['class'=>'form-control','id'=>'story_id','placeholder'=>'Story id translated here, dont need to write content']) !!}
             </div>                
             <div class="form-group">
               <label for="s-name">Chapter</label>
-               {!! Form::number('chapter_id','',['class'=>'form-control','id'=>'chapter_id','placeholder'=>'Chapter id translated here, dont need to write content']) !!}
+               {!! Form::number('chapter_id','0',['class'=>'form-control','id'=>'chapter_id','placeholder'=>'Chapter id translated here, dont need to write content']) !!}
             </div>              
             <div class="form-group">
               <label for="s-name">Content</label>
