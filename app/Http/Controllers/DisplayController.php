@@ -1305,4 +1305,50 @@ class DisplayController extends Controller {
     } 
 
 
+
+    /////user area - not logged in
+
+    /**
+     * show users card collection 5 and 4 stars
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userCollection($name) {
+
+        ////this shares sql with userController->cards!!!!!!
+
+        //get the userid from the name
+        //can pass through an id or an url
+        if (ctype_digit($name)){
+            $user = User::where('id','=',$name)->first();
+        } else {
+            $user = User::where('name','=',$name)->first();
+        }
+
+
+
+
+        $card = new Card;
+        $fivestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = '.$user->id)->orderBy('usercards.created_at','desc');
+        $fivestarcards = $fivestarcardsq->get();
+        //$fivestarcards_count = $fivestarcardsq->count();
+
+        //four star
+        $fourstarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='4'")->whereRaw('usercards.user_id = '.$user->id)->orderBy('usercards.created_at','desc');
+        $fourstarcards = $fourstarcardsq->get();
+        //$fourstarcards_count = $fourstarcardsq->count();
+
+ 
+
+       // dd($cards);
+
+
+         return view('pages.collection')
+            ->with('fivestarcards',$fivestarcards)
+            ->with('fourstarcards',$fourstarcards)
+            ->with('user',$user);
+
+    }     
+
+
 }

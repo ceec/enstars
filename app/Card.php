@@ -128,10 +128,10 @@ class Card extends Model
 				//extra UI for admins
 
 
-				//make sure its not the user display page
+				//make sure its not the user display page, hide buttons there - 2017-09-02
 				$route = $route = Route::current()->uri();
 
-				if ($route != "user/{name}/cards") {
+				if ($route != "collection/{name}") {
 						        	//normal UI for users
 	        	//change text based on if they have the card
 	        	if ($have > 0 ) {
