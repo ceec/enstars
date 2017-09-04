@@ -23,9 +23,29 @@ enstars.info - Information and Translations for Ensemble Stars!
                     @endforeach                
                 </div>
                 <div class="col-md-4">
-                    <h3></h3>
-
-
+                    <h3>News</h3>
+                        <!--sticky-->
+                        <h5><strong>
+                            <a href="/store">Get your best boy as a magnet!</a><br>
+                            </strong>
+                             <small>September 3, 2017 by ankee</small>
+                        </h5>
+                        <hr>                          
+                        @foreach ($blogs as $blog)
+                            <?php
+                                $nicedate = date('F d, Y',strtotime($blog->created_at));
+                                $nicetime = date('h:i A',strtotime($blog->created_at));
+                            ?>            
+                            @if ($blog->image !='')
+                                <div class="">
+                                    <a href="/{{$blog->type}}/{{$blog->url}}"><img class="img-responsive" src="/images/{{$blog->image}}" alt=""></a>
+                                </div>
+                            @endif
+                        <h5>
+                            <a href="/{{$blog->type}}/{{$blog->url}}">{!! $blog->title !!}</a><br>
+                            <small>{{$nicedate}} by {{$blog->author->name}}</small>
+                        </h5>                
+                        @endforeach
                 </div>
             </div>
             <div class="row">

@@ -1325,7 +1325,11 @@ class DisplayController extends Controller {
             $user = User::where('name','=',$name)->first();
         }
 
-
+        //when the user doesn't exist
+        if (empty($user)) {
+            //want to go to 404 page 
+            abort(404);
+        }    
 
 
         $card = new Card;
