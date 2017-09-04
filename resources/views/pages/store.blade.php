@@ -67,7 +67,7 @@ Store | enstars.info
           </div>                    
         </div>   
         <div class="row">
-          <div class="img-responsive" class="col-md-4">
+          <div class="col-md-4">
           <img class="img-responsive" src="/images/store/24.JPG">
           <h5>Keito</h5>
           </div>
