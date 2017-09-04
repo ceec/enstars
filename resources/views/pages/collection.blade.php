@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-Contact Us | enstars.info
+Collection - {{$user->name}} | enstars.info
 @stop
 
 @section('content')
