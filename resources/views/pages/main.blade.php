@@ -42,7 +42,14 @@ enstars.info - Information and Translations for Ensemble Stars!
                                 </div>
                             @endif
                         <h5>
+                        @if ($blog->chapter_id !=0)
+                            <a href="/story/{{$blog->story_id}}/{{$blog->chapter_id}}">{!! $blog->title !!}</a><br>
+                        @else
                             <a href="/{{$blog->type}}/{{$blog->url}}">{!! $blog->title !!}</a><br>
+                        @endif
+
+
+                            
                             <small>{{$nicedate}} by {{$blog->author->name}}</small>
                         </h5>                
                         @endforeach

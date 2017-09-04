@@ -28,6 +28,14 @@
                {!! Form::text('blurb','',['class'=>'form-control','id'=>'blurb']) !!}
             </div>   
             <div class="form-group">
+              <label for="s-name">Story</label>
+               {!! Form::number('story_id','',['class'=>'form-control','id'=>'story_id','placeholder'=>'Story id translated here, dont need to write content']) !!}
+            </div>                
+            <div class="form-group">
+              <label for="s-name">Chapter</label>
+               {!! Form::number('chapter_id','',['class'=>'form-control','id'=>'chapter_id','placeholder'=>'Chapter id translated here, dont need to write content']) !!}
+            </div>              
+            <div class="form-group">
               <label for="s-name">Content</label>
                {!! Form::textarea('content','',['class'=>'form-control','id'=>'content']) !!}
             </div>    

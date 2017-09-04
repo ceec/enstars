@@ -65,6 +65,8 @@ class BlogController extends Controller {
         $b->keywords = '';
         $b->title = $request->input('title');
         $b->blurb = $request->input('blurb');
+        $b->story_id = $request->input('story_id');
+        $b->chapter_id = $request->input('chapter_id');
         $b->content = $request->input('content');
         $b->image = $request->input('image');
         $b->url = $request->input('url');
@@ -82,7 +84,7 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function listDisplay() {
-            $blogs = Blog::all();
+            $blogs = Blog::orderBy('created_at','DESC')->get();
 
             return view('home.blogList')
             ->with('blogs',$blogs);
