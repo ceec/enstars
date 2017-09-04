@@ -22,7 +22,7 @@ Store | enstars.info
           <a href="/news/character-magnets-available-for-purchase">See how we got them here!</a>
         </p>
         <h3>Magnet Box</h3>
-        <img class="img-responsive" src="/images/store/1.JPG">
+        <img src="/images/store/1.JPG">
         <h3>Magnets Available</h3>
         <div class="row">
           <div class="col-md-4">
