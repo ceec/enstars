@@ -79,7 +79,20 @@ Store | enstars.info
              <img class="img-responsive" src="/images/store/27.JPG"> 
              <h5>Hinata</h5>
           </div>                    
-        </div>           
+        </div>   
+        <div class="row">
+          <div class="col-md-4">
+          <img class="img-responsive" src="/images/store/6.JPG">
+          <h5>Koga</h5>
+          </div>
+          <div class="col-md-4">
+            <img class="img-responsive" src="/images/store/18.JPG">
+            <h5>Nazuna</h5>
+          </div>
+          <div class="col-md-4">
+
+          </div>                    
+        </div>                   
 
 
 
