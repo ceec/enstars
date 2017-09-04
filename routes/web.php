@@ -77,9 +77,10 @@ Route::get('/story/{story_id}','DisplayController@story');
 Route::get('/story/{story_id}/{chaper_id}','DisplayController@chapter');
 
 
+//all old blogs
+Route::get('/news/all','DisplayController@blogAll');
 //news/blog
 Route::get('/news/{friendly_url}','DisplayController@blog');
-//all old blogs
 
 
 //unitskills

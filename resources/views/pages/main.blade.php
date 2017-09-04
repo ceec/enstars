@@ -29,8 +29,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                             <a href="/store">Get your best boy as a magnet!</a><br>
                             </strong>
                              <small>September 3, 2017 by ankee</small>
-                        </h5>
-                        <hr>                          
+                        </h5>                       
                         @foreach ($blogs as $blog)
                             <?php
                                 $nicedate = date('F d, Y',strtotime($blog->created_at));
@@ -53,6 +52,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                             <small>{{$nicedate}} by {{$blog->author->name}}</small>
                         </h5>                
                         @endforeach
+                        <a href="/news/all">All News</a>
                 </div>
             </div>
             <div class="row">

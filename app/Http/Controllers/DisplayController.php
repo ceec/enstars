@@ -1135,6 +1135,20 @@ class DisplayController extends Controller {
     } 
 
 
+    /**
+     * Show all blogss
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function blogAll() {
+        //blogList in blogController does this kinda too
+        $blogs = Blog::where('active','=',1)->orderBy('created_at','DESC')->get();
+
+
+        return view('pages.blogAll')
+        ->with('blogs',$blogs);
+    } 
+
 
     //////store//////
 
