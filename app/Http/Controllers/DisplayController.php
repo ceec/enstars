@@ -1339,7 +1339,6 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function userCollection($name) {
-
         ////this shares sql with userController->cards!!!!!!
 
         //get the userid from the name
@@ -1355,6 +1354,14 @@ class DisplayController extends Controller {
             //want to go to 404 page 
             abort(404);
         }    
+
+
+        //check if they even have it public, otherwise reply with hidden view
+        if ($user->display_collection == 0) {
+         return view('pages.collectionHidden')
+            ->with('user',$user);
+            exit;
+        }
 
 
         $card = new Card;

@@ -346,5 +346,32 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Update user account - Added 2017-09-18
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAccount(Request $request) {
+         $user = Auth::user();
+         $display = $request->display_collection;
+
+         if ($display == 'Hide Collection') {
+            $display_value = 0;
+         } else {
+            $display_value = 1;
+         }
+
+
+
+         $c = User::find($user->id);
+         $c->display_collection = $display_value;
+         $c->save();
+
+
+        // echo json_encode(array('usercard_id'=>$usercard_id));            
+         return redirect('/user/'.$user->name.'/account');      
+
+    }
+
 
 }
