@@ -22,6 +22,7 @@ Contact Us | enstars.info
                {!! Form::textarea('message','',['class'=>'form-control','id'=>'message']) !!}
             </div>    
                {!! Form::hidden('card_id',$card->id,['class'=>'form-control','id'=>'message']) !!}
+                {!! Form::hidden('enstars','',['class'=>'form-control','id'=>'message']) !!}
                                                                        
             {!! Form::submit('Send') !!}
             {!! Form::close() !!}
