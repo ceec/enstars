@@ -42,6 +42,8 @@ use App\Logineventday;
 use App\Cardroad;
 use App\Usercard;
 
+use App\Cardissue;
+
 use Auth;
 
 
@@ -1207,7 +1209,53 @@ class DisplayController extends Controller {
         return view('pages.contactThankYou');
     }    
 
+////////////////card error/////
 
+        /**
+     * Contact page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardIssue($card_id) {
+        $card = Card::find($card_id);
+
+            if (empty($card)) {
+                //want to go to 404 page 
+                abort(404);
+            }           
+
+
+        return view('pages.cardIssue')
+            ->with('card',$card);
+    }
+
+
+    /**
+     * Contact page - > send
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardIssueSend(Request $request) {
+
+        
+        if ($request->enstars == '') {
+            $m = new Cardissue;
+            $m->card_id = $request->card_id;
+            $m->message = $request->message;
+            $m->save();  
+
+            $to = 'info@enstars.info';
+            $subject = "enstars.info - New Card Issue ".$request->card_id;
+            $message = $request->message;
+
+            mail($to,$subject,$message);
+    
+        }
+
+
+
+        return view('pages.contactThankYou');
+    }    
 
 
 ///////////// login bonus ///////////////////

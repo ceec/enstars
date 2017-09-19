@@ -122,6 +122,10 @@ Route::post('/contact/send','DisplayController@contactSend');
 //displaying user profile without being logged in, anyone can see
 Route::get('/collection/{name}','DisplayController@userCollection');
 
+//card error form
+Route::get('/cardissue/{card}','DisplayController@cardIssue');
+Route::post('/cardissue/send','DisplayController@cardIssueSend');
+
 
 /////////////////////////////////////////////////////////////////////
 //    Data

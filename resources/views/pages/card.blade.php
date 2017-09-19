@@ -94,6 +94,13 @@
             </div>
          </div>   
          <div class="row">
+          <div class="col-md-8">
+          </div>
+          <div class="col-md-4">
+            <a href="/cardissue/{{$card->id}}">See something wrong with this card? Let us know!</a>
+          </div>
+         </div>
+         <div class="row">
             <div class="col-md-12">
                 @if (file_exists($scout_image))
                 <img class="img-responsive" src="/images/cards/get/{{$card->boy_id}}_{{$card->card_id}}.png">
