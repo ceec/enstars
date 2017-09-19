@@ -1192,6 +1192,13 @@ class DisplayController extends Controller {
             $m->message = $request->message;
             $m->updated_by = 0;
             $m->save();  
+
+            $to = 'info@enstars.info';
+            $subject = "enstars.info - New Message from ".$request->name;
+            $message = $request->message;
+            $headers = 'From: '.$request->email;     
+
+            mail($to,$subject,$message,$headers);
     
         }
 

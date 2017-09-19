@@ -224,7 +224,8 @@ Route::get('/user/dashboard','UserController@dashboard');
 Route::get('/user/{name}/cards','UserController@cards');
 //scouts
 Route::get('/user/{name}/scouts','UserController@scouts');
-
+//account options
+Route::get('/user/{name}/account','UserController@account');
 
 //edit user card
 Route::post('/user/edit/card','UserController@updateCard');

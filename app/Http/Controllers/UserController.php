@@ -206,6 +206,21 @@ class UserController extends Controller
     } 
 
 
+    /**
+     * Display user account settings
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function account() {
+        //add the user card
+        $user = Auth::user();            
+
+         return view('user.account')
+            ->with('user',$user);
+      
+    } 
+
+
     /////
 
     /**
