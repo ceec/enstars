@@ -573,15 +573,15 @@ for (var i = 0; i < road.length; i++) {
                                 <div class="form-group form-inline">
                                     <label for="pf">Pf</label>
                                      {!! Form::text('pf',$card->pf,['class'=>'form-control','id'=>'pf']) !!}
-                                  </div>                                                                                                      
-                                  <div class="form-group form-inline">
-                                    <label for="lesson-skill">Lesson Skill</label>
-                                    {!! Form::select('lesson_id', $lesson_skills,$card->lesson_id ,['class'=>'form-control', 'id'=>'lesson-skill','placeholder' => 'Lesson Skill']) !!} 
-                                  </div>
+                                  </div>    
                                   <div class="form-group form-inline">
                                     <label for="dorifes-id">Dream Festival Skill</label>
                                     {!! Form::select('dorifes_id', $dorifes_skills,$card->dorifes_id,['class'=>'form-control', 'id'=>'dorifes-id','placeholder' => 'Dream Festival Skill']) !!} 
-                                  </div>                                  
+                                  </div>                                                                                                                                      
+                                  <div class="form-group form-inline">
+                                    <label for="lesson-skill">Lesson Skill</label>
+                                    {!! Form::select('lesson_id', $lesson_skills,$card->lesson_id ,['class'=>'form-control', 'id'=>'lesson-skill','placeholder' => 'Lesson Skill']) !!} 
+                                  </div>                                
                               </div>
                             </div>
                 
