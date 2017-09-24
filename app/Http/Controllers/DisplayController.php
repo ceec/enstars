@@ -1257,9 +1257,19 @@ class DisplayController extends Controller {
 
         
         if ($request->enstars == '') {
+            //save who submitted it
+            if (!Auth::guest()) {
+                $submitted_by =  Auth::id();  
+            } else {
+                $submitted_by = 0;
+            }
+
+
+
             $m = new Cardissue;
             $m->card_id = $request->card_id;
             $m->message = $request->message;
+            $m->submitted_by = $submitted_by;
             $m->save();  
 
             $to = 'info@enstars.info';
