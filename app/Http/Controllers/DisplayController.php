@@ -1206,10 +1206,20 @@ class DisplayController extends Controller {
 
         
         if ($request->enstars == '') {
+
+            //save who submitted it
+            if (!Auth::guest()) {
+                $submitted_by =  Auth::id();  
+            } else {
+                $submitted_by = 0;
+            }
+
+
             $m = new Message;
             $m->name = $request->name;
             $m->email = $request->email;
             $m->message = $request->message;
+            $m->submitted_by = $submitted_by;
             $m->updated_by = 0;
             $m->save();  
 
