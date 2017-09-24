@@ -242,9 +242,8 @@ class DisplayController extends Controller {
         }
 
         //for admins editing
-        $lesson_skills = Skill::where('skilltype_id','=','2')->orderBy('category','ASC')->pluck('english_description','id');
-        $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->pluck('english_description','id');
-
+        $lesson_skills = Skill::where('skilltype_id','=','2')->orderBy('category','ASC')->orderBy('type','ASC')->orderBy('size','ASC')->pluck('english_description','id');
+        $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->orderBy('type','ASC')->orderBy('size','ASC')->pluck('english_description','id');
 
         //user editing
         //if someone is logged in
