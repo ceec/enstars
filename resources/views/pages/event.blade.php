@@ -19,10 +19,10 @@
                         {{ $card->display() }}          
                         <?php
                             if ($x%4==0) {
-?>
+                        ?>
                             </div>
                             <div class="row">
-<?php                            
+                        <?php                            
                             }
                             $x++;
                         ?>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-md-4">
                         @if ($minievents != '')
-                            <h3>Mini Events</h3>
+                           <!-- <h3>Mini Events</h3>-->
                             @foreach ($minievents as $event)
                                 @if ($event->complete == 1)
                                      <a href="/minievent/{{$event->id}}">{{$event->name_e}}</a><br>
@@ -156,6 +156,55 @@
         </div>
 
     </div>
+
+
+
+                @if (!Auth::guest())
+                    @if (Auth::user()->isAdmin())
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">Admin - Edit Event <span class="pull-right">Last Updated on {{$event->updated_at}} by {{$event->name}} </span></h3>
+                        </div>
+                        <div class="panel-body">
+                            {!! Form::open(['url' => '/edit/event']) !!}    
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label for="japanese-name">Japanese Name</label>
+                                     {!! Form::text('japanese_name',$event->name_j,['class'=>'form-control','id'=>'japanese-name']) !!}
+                                  </div> 
+                                  <div class="form-group">
+                                    <label for="english-name">English Name</label>
+                                     {!! Form::text('english_name',$event->name_e,['class'=>'form-control','id'=>'english-name']) !!}
+                                  </div>   
+                                  <div class="form-group">
+                                    <label for="start">Start</label>
+                                     {!! Form::text('start',$event->start,['class'=>'form-control','id'=>'start']) !!}
+                                  </div> 
+                                  <div class="form-group">
+                                    <label for="end">End</label>
+                                     {!! Form::text('end',$event->end,['class'=>'form-control','id'=>'end']) !!}
+                                  </div>                                                                    
+                              </div>
+
+                              <div class="col-md-6"></div>
+                            </div>
+                                                       
+   
+                
+ 
+                                                                                          
+                 
+                                  {!! Form::hidden('event_id', $event->id) !!}                                                      
+                            {!! Form::submit('Edit') !!}
+                            {!! Form::close() !!}
+                        </div>
+                      </div>
+
+                    @endif   
+                @endif    
+
+
      <script src="/js/enstars.js"></script>        
 </div>
 @endsection

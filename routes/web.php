@@ -184,6 +184,9 @@ Route::get('/home/card/add','CardController@addDisplay');
 Route::post('/add/card','CardController@add');
 Route::post('/edit/card','CardController@edit');
 
+//events
+Route::post('/edit/event','EventController@edit');
+
 Route::get('/home/card/edit/{card_id}','CardController@editDisplay');
 //posting
 Route::post('/home/edit/card','CardController@edit');
