@@ -535,23 +535,7 @@ for (var i = 0; i < road.length; i++) {
                                   <div class="form-group form-inline">
                                     <label for="sentence-e">English Sentence (when scouted or on promo materials)</label>
                                      {!! Form::text('sentence_e',$card->sentence_e,['class'=>'form-control','id'=>'sentence-e']) !!}
-                                  </div> 
-                                  <div class="form-group form-inline">
-                                    <label for="dorifes_j">Japanese Dorifes Skill </label>
-                                     {!! Form::text('dorifes_j',$card->dorifes_j,['class'=>'form-control','id'=>'dorifes_j']) !!}
-                                  </div>  
-                                  <div class="form-group form-inline">
-                                    <label for="dorifes_e">English Dorifes Skill</label>
-                                     {!! Form::text('dorifes_e',$card->dorifes_e,['class'=>'form-control','id'=>'dorifes_e']) !!}
-                                  </div>      
-                                  <div class="form-group form-inline">
-                                    <label for="lesson_j">Japanese Lesson Skill </label>
-                                     {!! Form::text('lesson_j',$card->lesson_j,['class'=>'form-control','id'=>'lesson_j']) !!}
-                                  </div>  
-                                  <div class="form-group form-inline">
-                                    <label for="lesson_e">English Lesson Skill</label>
-                                     {!! Form::text('lesson_e',$card->lesson_e,['class'=>'form-control','id'=>'lesson_e']) !!}
-                                  </div>                                                                                                         
+                                  </div>                                                                                                        
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group form-inline">
@@ -573,7 +557,31 @@ for (var i = 0; i < road.length; i++) {
                                 <div class="form-group form-inline">
                                     <label for="pf">Pf</label>
                                      {!! Form::text('pf',$card->pf,['class'=>'form-control','id'=>'pf']) !!}
-                                  </div>    
+                                  </div>                                 
+                              </div>
+                            </div>
+                              <hr>
+                              <h3>Leveled Skills</h3>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group form-inline">
+                                    <label for="dorifes_j">Japanese Dorifes Skill </label>
+                                     {!! Form::text('dorifes_j',$card->dorifes_j,['class'=>'form-control','id'=>'dorifes_j']) !!}
+                                  </div>  
+                                  <div class="form-group form-inline">
+                                    <label for="dorifes_e">English Dorifes Skill</label>
+                                     {!! Form::text('dorifes_e',$card->dorifes_e,['class'=>'form-control','id'=>'dorifes_e']) !!}
+                                  </div>      
+                                  <div class="form-group form-inline">
+                                    <label for="lesson_j">Japanese Lesson Skill </label>
+                                     {!! Form::text('lesson_j',$card->lesson_j,['class'=>'form-control','id'=>'lesson_j']) !!}
+                                  </div>  
+                                  <div class="form-group form-inline">
+                                    <label for="lesson_e">English Lesson Skill</label>
+                                     {!! Form::text('lesson_e',$card->lesson_e,['class'=>'form-control','id'=>'lesson_e']) !!}
+                                  </div>                                    
+                                </div>
+                                <div class="col-md-6">
                                   <div class="form-group form-inline">
                                     <label for="dorifes-id">Dream Festival Skill</label>
                                     {!! Form::select('dorifes_id', $dorifes_skills,$card->dorifes_id,['class'=>'form-control', 'id'=>'dorifes-id','placeholder' => 'Dream Festival Skill']) !!} 
@@ -581,8 +589,41 @@ for (var i = 0; i < road.length; i++) {
                                   <div class="form-group form-inline">
                                     <label for="lesson-skill">Lesson Skill</label>
                                     {!! Form::select('lesson_id', $lesson_skills,$card->lesson_id ,['class'=>'form-control', 'id'=>'lesson-skill','placeholder' => 'Lesson Skill']) !!} 
-                                  </div>                                
+                                  </div>                                   
+                                </div>
                               </div>
+                              <hr>
+                              <h3>Uneveled Skills</h3>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group form-inline">
+                                    <label for="u_dorifes_j">Japanese Dorifes Skill </label>
+                                     {!! Form::text('u_dorifes_j',$card->u_dorifes_j,['class'=>'form-control','id'=>'u_dorifes_j']) !!}
+                                  </div>  
+                                  <div class="form-group form-inline">
+                                    <label for="u_dorifes_e">English Dorifes Skill</label>
+                                     {!! Form::text('u_dorifes_e',$card->u_dorifes_e,['class'=>'form-control','id'=>'u_dorifes_e']) !!}
+                                  </div>      
+                                  <div class="form-group form-inline">
+                                    <label for="u_lesson_j">Japanese Lesson Skill </label>
+                                     {!! Form::text('u_lesson_j',$card->u_lesson_j,['class'=>'form-control','id'=>'u_lesson_j']) !!}
+                                  </div>  
+                                  <div class="form-group form-inline">
+                                    <label for="u_lesson_e">English Lesson Skill</label>
+                                     {!! Form::text('u_lesson_e',$card->u_lesson_e,['class'=>'form-control','id'=>'u_lesson_e']) !!}
+                                  </div>                                    
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group form-inline">
+                                    <label for="u_dorifes-id">Dream Festival Skill</label>
+                                    {!! Form::select('u_dorifes_id', $dorifes_skills,$card->u_dorifes_id,['class'=>'form-control', 'id'=>'u_dorifes-id','placeholder' => 'Dream Festival Skill']) !!} 
+                                  </div>                                                                                                                                      
+                                  <div class="form-group form-inline">
+                                    <label for="u_lesson-skill">Lesson Skill</label>
+                                    {!! Form::select('u_lesson_id', $lesson_skills,$card->u_lesson_id ,['class'=>'form-control', 'id'=>'u_lesson-skill','placeholder' => 'Lesson Skill']) !!} 
+                                  </div>                                   
+                                </div>
+                              </div>                              
                             </div>
                 
  

@@ -85,6 +85,13 @@ class CardController extends Controller
         $c->lesson_j = '';
         $c->lesson_e = '';
         $c->lesson_id = $request->input('lesson_id');
+        //unleveled skills
+        $c->u_dorifes_j = '';
+        $c->u_dorifes_e = '';  
+        $c->u_lesson_j = '';
+        $c->u_lesson_e = '';                        
+        $c->u_dorifes_id = 74;
+        $c->u_lesson_id = 75;               
         $c->scout_id = 0;
         $c->event_id = 0;
         $c->sentence_j = '';
@@ -146,6 +153,13 @@ class CardController extends Controller
         $c->lesson_e = $request->input('lesson_e');                        
         $c->dorifes_id = $request->input('dorifes_id');
         $c->lesson_id = $request->input('lesson_id');
+        //unleveled skills
+        $c->u_dorifes_j = $request->input('u_dorifes_j');
+        $c->u_dorifes_e = $request->input('u_dorifes_e');  
+        $c->u_lesson_j = $request->input('u_lesson_j');
+        $c->u_lesson_e = $request->input('u_lesson_e');                        
+        $c->u_dorifes_id = $request->input('u_dorifes_id');
+        $c->u_lesson_id = $request->input('u_lesson_id');        
 
         $c->updated_by = Auth::id();  
         $c->save();

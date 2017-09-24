@@ -217,7 +217,7 @@ class DisplayController extends Controller {
         if ($card->lesson_id == 0) {
             $lesson_skill = Skill::where('id','=',1)->first();
             $lesson_skill->id = '';
-            $lesson_skill->english_description = 'Unkown';
+            $lesson_skill->english_description = 'Unknown';
         } else {
             $lesson_skill = Skill::where('id','=',$card->lesson_id)->first();
         }
@@ -226,11 +226,28 @@ class DisplayController extends Controller {
         if ($card->dorifes_id == 0) {
             $dorifes_skill = Skill::where('id','=',1)->first();
             $dorifes_skill->id = '';
-            $dorifes_skill->english_description = 'Unkown';
+            $dorifes_skill->english_description = 'Unknown';
         } else {
             $dorifes_skill = Skill::where('id','=',$card->dorifes_id)->first();
         }
 
+
+        ///unleveled skills
+
+
+        //lesson skill
+        if ($card->u_lesson_id == 0) {
+            $u_lesson_skill = Skill::where('id','=',74)->first();
+        } else {
+            $u_lesson_skill = Skill::where('id','=',$card->u_lesson_id)->first();
+        }
+
+        //dorifes skill
+        if ($card->u_dorifes_id == 0) {
+            $u_dorifes_skill = Skill::where('id','=',75)->first();
+        } else {
+            $u_dorifes_skill = Skill::where('id','=',$card->u_dorifes_id)->first();
+        }
 
         //get event or scout
         if ($card->event_id !=0) {
@@ -309,6 +326,8 @@ class DisplayController extends Controller {
         return view('pages.card')
             ->with('dorifes_skill',$dorifes_skill)
             ->with('lesson_skill',$lesson_skill)
+            ->with('u_dorifes_skill',$u_dorifes_skill)
+            ->with('u_lesson_skill',$u_lesson_skill)            
             ->with('dorifes_skills',$dorifes_skills)
             ->with('lesson_skills',$lesson_skills)            
             ->with('boy',$boy)
