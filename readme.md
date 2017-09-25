@@ -10,5 +10,14 @@ I am working on this by myself so any data errors you find let me know at cc@ens
 # Versions
 
 2016-09-18 Version 1.1
---	Added ability to hide collections
---  Added card issue form for each card
+* Added ability to hide collections
+* Added card issue form for each card
+
+2016-09-24 Version 1.2
+Admin:
+* Add unupgraded lesson and dream festival skills to the database
+* Added ability to edit scout and event names and times
+* Added boy class buttons to Translation UI
+
+General:
+* Tied users to messages and card issues.
