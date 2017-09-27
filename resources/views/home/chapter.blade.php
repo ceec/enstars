@@ -38,6 +38,8 @@
             @foreach($boys as $key => $boy)
                 <button class="add-boy-css" data-class="{{$boy}}" data-slide="{{$slide->id}}">{{$boy}}</button> 
             @endforeach
+            <!-- tooltip button -->
+                <button class="add-boy-css" data-class="tooltip" data-slide="{{$slide->id}}">Tooltip</button>
             <br>
 			{!! Form::textarea('notes', $slide->notes,['class'=>'form-control ajaxTest', 'id'=>'n-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Notes']) !!} <br>
 			{!! Form::hidden('slide_id', $slide->id) !!}
@@ -114,10 +116,19 @@ $('.add-boy-css').on('click',function(){
     
     //get selected text
     var text = window.getSelection().toString();
-
-    //wrap selected text in a class with boy's name <span class="Tori">text</span>
     var el = document.getElementById("e-"+slideID);
-    replaceSelectedText(el, '<span class="'+className+'">'+text+'</span>');
+
+    //check if its a tooltip and do special case, other wise boy class name
+    if (className == 'tooltip') {
+        //addin bootstraptooltip text
+        //<span data-toggle="tooltip" title="bread filled with red bean paste">anpan</span>
+        replaceSelectedText(el, '<span data-toggle="tooltip" title="">'+text+'</span>');
+    } else {
+        //wrap selected text in a class with boy's name <span class="Tori">text</span>
+        replaceSelectedText(el, '<span class="'+className+'">'+text+'</span>');
+    }
+
+
 
     //save added classes 
     var slideName = 'text_e';
