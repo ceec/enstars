@@ -38,6 +38,7 @@ class EventController extends Controller
         $e = Event::find($request->input('event_id'));
         $e->name_j = $request->input('japanese_name');
         $e->name_e = $request->input('english_name');
+        $e->text = $request->input('text');
         $e->start = $request->input('start');
         $e->end = $request->input('end');
         $e->updated_by = Auth::id();  

@@ -38,6 +38,7 @@ class ScoutController extends Controller
         $s = Scout::find($request->input('scout_id'));
         $s->name_j = $request->input('japanese_name');
         $s->name_e = $request->input('english_name');
+        $s->text = $request->input('text');
         $s->start = $request->input('start');
         $s->end = $request->input('end');
         $s->updated_by = Auth::id();  

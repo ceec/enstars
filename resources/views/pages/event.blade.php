@@ -178,6 +178,10 @@
                                      {!! Form::text('english_name',$event->name_e,['class'=>'form-control','id'=>'english-name']) !!}
                                   </div>   
                                   <div class="form-group">
+                                    <label for="english-name">Description</label>
+                                      {!! Form::textarea('text', $event->text,['class'=>'form-control', 'id'=>'text', 'rows' => 3, 'cols' => 100, 'placeholder'=>'Description']) !!}
+                                  </div>                                     
+                                  <div class="form-group">
                                     <label for="start">Start</label>
                                      {!! Form::text('start',$event->start,['class'=>'form-control','id'=>'start']) !!}
                                   </div> 

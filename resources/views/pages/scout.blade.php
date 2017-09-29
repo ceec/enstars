@@ -72,6 +72,10 @@
                                      {!! Form::text('english_name',$scout->name_e,['class'=>'form-control','id'=>'english-name']) !!}
                                   </div>   
                                   <div class="form-group">
+                                    <label for="english-name">Description</label>
+                                      {!! Form::textarea('text', $scout->text,['class'=>'form-control', 'id'=>'text', 'rows' => 3, 'cols' => 100, 'placeholder'=>'Description']) !!}
+                                  </div>                                     
+                                  <div class="form-group">
                                     <label for="start">Start</label>
                                      {!! Form::text('start',$scout->start,['class'=>'form-control','id'=>'start']) !!}
                                   </div> 
@@ -83,6 +87,7 @@
 
                               <div class="col-md-6"></div>
                             </div>
+
                                                     
                             {!! Form::hidden('scout_id', $scout->id) !!}                                                      
                             {!! Form::submit('Edit') !!}
