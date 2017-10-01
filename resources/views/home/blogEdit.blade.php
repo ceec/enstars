@@ -33,7 +33,11 @@
             <div class="form-group">
               <label for="url">Url Slug - URL friendly characters (no spaces just characters) eg this-is-a-good-url </label>
                {!! Form::text('url',$blog->url,['class'=>'form-control','id'=>'url']) !!}
-            </div>                  
+            </div>
+            <div class="form-group">
+              <label for="s-name">User ankee - 1, Chelsaur - 3, Squirrel - 91</label>
+               {!! Form::number('updated_by',$blog->updated_by,['class'=>'form-control','id'=>'user_id','placeholder'=>'']) !!}
+            </div>                                 
                {!! Form::hidden('blog_id',$blog->id) !!}                                                                       
             {!! Form::submit('Edit') !!}
             {!! Form::close() !!}

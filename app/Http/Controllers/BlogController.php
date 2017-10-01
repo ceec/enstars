@@ -70,7 +70,7 @@ class BlogController extends Controller {
         $b->content = $request->input('content');
         $b->image = $request->input('image');
         $b->url = $request->input('url');
-        $b->updated_by = Auth::id();  
+        $b->updated_by = $request->input('updated_by');  
         $b->save();
 
 
@@ -118,7 +118,7 @@ class BlogController extends Controller {
         $up->content = $request->input('content');
         $up->image = $request->input('image');
         $up->url = $request->input('url');
-        $up->updated_by = Auth::id();  
+        $up->updated_by = $request->input('updated_by');  
         $up->save();
 
 
