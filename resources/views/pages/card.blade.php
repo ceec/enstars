@@ -69,6 +69,29 @@
                     <h4><span class="card-title">Introduced in Scout:</span> <a href="/scout/{{$source->url}}">{{$source->name_e}}</a></h4>
                 @elseif ($from == 'event')
                     <h4><span class="card-title">Introduced in Event:</span> <a href="/event/{{$source->url}}">{{$source->name_e}}</a></h4>
+                    <?php
+                     // print '<pre>';
+                     // print_r($source);
+                     // print '</pre>'; 
+
+                      //figure out what kind of card it is, this logic should be moved to the controller
+
+                    ?>
+                    @if ($source->rank_5 == $card->id)
+                      Ranking 5 star
+                    @elseif($source->rank_4 == $card->id)
+                      Ranking 4 star
+                    @elseif($source->rank_3 == $card->id)
+                      Ranking 3 star
+                    @elseif($source->points_5 == $card->id)
+                      Points 5 star
+                    @elseif($source->points_4 == $card->id)
+                      Points 4 star                      
+                    @else
+                      Points 3 star
+                    @endif
+
+
                 @endif
                 <hr>
                 @if ($dorifes_skill->id == 0)
