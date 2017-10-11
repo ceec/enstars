@@ -29,8 +29,8 @@ All Events | enstars.info
 ?>
                 @if (isset($user))
                     @if(isset($event->user_event))
-                        Rank: <input type="text" id="rank-event-{{$event->id}}" value="{{$event->user_event->rank}}"><br>
-                        Points: <input type="text" id="points-event-{{$event->id}}" value="{{$event->user_event->points}}">
+                        Rank: <input type="number" id="rank-event-{{$event->id}}" value="{{$event->user_event->rank}}"><br>
+                        Points: <input type="number" id="points-event-{{$event->id}}" value="{{$event->user_event->points}}">
                         <button class="btn btn-primary update-event" data-id="{{$event->id}}">Update</button>
                     @else
                     <div class="user-event">
