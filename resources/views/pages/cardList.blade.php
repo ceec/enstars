@@ -10,7 +10,8 @@ Contact Us | enstars.info
     <div class="row">
         <div class="col-md-12">
 
-        <table class="table">
+        <table id="card-table" class="table tablesorter">
+          <thead>
           <tr>
             <th>Id</th>
             <th>Boy</th>
@@ -21,7 +22,9 @@ Contact Us | enstars.info
             <th>Base Pf</th>
             <th>Name J</th>
             <th>Name E</th>
+            <th>Road</th>
           </tr>
+          </thead>
         @foreach($cards as $card)
           <tr>
             <td>{{$card->id}}</td>
@@ -33,6 +36,7 @@ Contact Us | enstars.info
             <td>{{$card->pf}}</td>
             <td><a href="/card/{{$card->id}}">{{$card->name_j}}</a></td>
             <td><a href="/card/{{$card->id}}">{{$card->name_e}}</a></td>
+            <td><?php if(count($card->idolRoad->pluck(1)) > 0) { print 'yes';} ?></td>
           </tr>
         @endforeach
         </table>
@@ -43,4 +47,10 @@ Contact Us | enstars.info
 
     </div>
 </div>
+<script type="text/javascript" src="/js/jquery.tablesorter.js"></script>
+<script>
+$(function(){
+  $("#card-table").tablesorter();
+});
+</script>
 @endsection

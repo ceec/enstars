@@ -40,6 +40,19 @@ class Card extends Model
           return $this->belongsTo('App\Boy');
     }
 
+    /**
+     * Get the boy for this card.
+     */
+    public function idolRoad()
+    {
+          return $this->hasMany('App\Cardroad');
+    }
+
+
+
+
+
+
 
     /**
      * Get 5 star cards
