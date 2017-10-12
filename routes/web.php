@@ -126,6 +126,9 @@ Route::get('/collection/{name}','DisplayController@userCollection');
 Route::get('/cardissue/{card}','DisplayController@cardIssue');
 Route::post('/cardissue/send','DisplayController@cardIssueSend');
 
+//list of all cards data
+Route::get('/graph/cardlist','DisplayController@cardList');
+
 
 /////////////////////////////////////////////////////////////////////
 //    Data

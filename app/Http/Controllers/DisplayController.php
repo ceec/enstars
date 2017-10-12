@@ -1415,6 +1415,19 @@ class DisplayController extends Controller {
          ->with('boys',$boys);
     } 
 
+    /**
+     * card list
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardList() {
+        $cards = Card::all();
+
+
+
+        return view('pages.cardList')
+            ->with('cards',$cards);
+    } 
 
 
     /////user area - not logged in
