@@ -285,21 +285,21 @@ class DisplayController extends Controller {
 
         //check that any nodes with a parent of u also have a u -- topmost row
 
-        $top = Cardroad::where('card_id','=',$card->id)->where('parent','like','%u%')->where('node','like','%u%')->get();
+        $top = Cardroad::where('card_id','=',$card->id)->where('parent','like','%u%')->where('node','like','%u%')->orderBy('id','asc')->get();
         
         //check that any nodes with a parent that does not have u but has u -- first row up
-        $upper = Cardroad::where('card_id','=',$card->id)->where('parent','not like','%u%')->where('node','like','%u%')->get();
+        $upper = Cardroad::where('card_id','=',$card->id)->where('parent','not like','%u%')->where('node','like','%u%')->orderBy('id','asc')->get();
         
         //check that parent is 0 - middle
-        $middle = Cardroad::where('card_id','=',$card->id)->where('parent','=','0')->get();
+        $middle = Cardroad::where('card_id','=',$card->id)->where('parent','=','0')->orderBy('id','asc')->get();
 
 
         //check that any nodes with a parent that does not have d but has d -- first row down
-        $lower = Cardroad::where('card_id','=',$card->id)->where('parent','not like','%d%')->where('node','like','%d%')->get();
+        $lower = Cardroad::where('card_id','=',$card->id)->where('parent','not like','%d%')->where('node','like','%d%')->orderBy('id','asc')->get();
 
 
         //check that nodes with a parent with a d that also has a d -- second row down.
-        $bottom = Cardroad::where('card_id','=',$card->id)->where('parent','like','%d%')->where('node','like','%d%')->get();
+        $bottom = Cardroad::where('card_id','=',$card->id)->where('parent','like','%d%')->where('node','like','%d%')->orderBy('id','asc')->get();
 
         //add arrays
         $top = json_encode($top);
@@ -310,6 +310,7 @@ class DisplayController extends Controller {
 
         $road = json_encode(array_merge(json_decode($top, true),json_decode($upper, true),json_decode($middle, true),json_decode($lower, true),json_decode($bottom, true)));
         //get total gem count for the road
+        //dd($road);
 
         $red_large = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('large','!=','0')->sum('large');
         $red_medium = Cardroad::where('card_id','=',$card->id)->where('color','=','red')->where('medium','!=','0')->sum('medium');

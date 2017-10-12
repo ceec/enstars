@@ -186,6 +186,10 @@ Route::get('/home/card/add','CardController@addDisplay');
 //posting
 Route::post('/add/card','CardController@add');
 Route::post('/edit/card','CardController@edit');
+//add a road for a card that doesnt have one
+Route::post('/edit/card/addRoad','CardController@addRoad');
+//edit one node
+Route::post('/edit/card/editRoadNode','CardController@editRoadNode');
 
 //events
 Route::post('/edit/event','EventController@edit');

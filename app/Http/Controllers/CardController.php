@@ -11,6 +11,7 @@ use App\Minieventchoice;
 use App\Event;
 use Auth;
 use App\User;
+use App\Cardroad;
 
 class CardController extends Controller
 {
@@ -218,6 +219,404 @@ class CardController extends Controller
 
         return redirect('/idol/'.$first_name);          
     } 
+
+
+
+    /**
+     * Add road
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addRoad(Request $request) {
+        $stars = $request->input('stars');
+        $card_id = $request->input('card_id');
+
+        //okay so all cards have base roads
+
+        //nodes 0 -> 15
+        //add in the parent nodes
+        for ($i=1; $i < 14; $i++) { 
+            //add the base nodes
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = 0;
+            $n->node = $i;
+
+            //13th spot is the bloom
+            if ($i == 13) {
+                $type = 'bloom';
+            } else {
+                $type = '';
+            }
+            $n->type = $type;
+
+            $n->color = '';
+            $n->points = 0;
+
+            //based on the i, change the small amount
+            if ($i < 3) {
+                $small = 4;
+            } else if ($i <7) {
+                $small = 6;
+            } else if ($i < 10) {
+                $small = 7;
+            } else {
+                $small = 10;
+            }
+            $n->small = $small;
+
+            //based on the i, change the medium amount
+            if ($i < 3) {
+                $medium = 0;
+            } else if ($i < 5) {
+                $medium = 1;
+            } else if ($i < 7) {
+                $medium = 7;
+            } else if ($i < 10) {
+                $medium = 3;
+            } else {
+                $medium = 5;
+            }
+            $n->medium = $medium;
+
+            //based on the i, change the large amount
+            if ($i < 10) {
+                $large = 0;
+            } else if ($i < 12) {
+                $large = 1;
+            } else {
+                $large = 3;
+            }
+            $n->large = $large;
+
+            //set up the level
+            if ($i == 3) {
+                $level = 10;
+            } else if ($i == 5) {
+                $level = 25;
+            } else if ($i == 7) {
+                $level = 40;
+            } else if ($i == 9) {
+                $level = 50;
+            } else if ($i == 11) {
+                $level = 60;
+            } else {
+                $level = 0;
+            }
+            $n->level = $level;
+
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 1;
+            $n->save();
+        }
+
+        //start the upper level
+        if ($stars == 4) {
+            //determine the parent, 4 stars start on the 3rd node maybe don't use loop here?
+            //3u_1
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '3';
+            $n->node = '3u_1';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();
+  
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '3';
+            $n->node = '3u_2';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();          
+                
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '5';
+            $n->node = '5u_1';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();   
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '5';
+            $n->node = '5u_2';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();    
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '7';
+            $n->node = '7u_1';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();  
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '7';
+            $n->node = '7u_2';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();    
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '10';
+            $n->node = '10u_1';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();    
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '10';
+            $n->node = '10u_2';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '10';
+            $n->node = '10u_3';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 1;
+            $n->updated_by = 0;
+            $n->save();         
+
+            //lower level   
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '2';
+            $n->node = '2d_1';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();                   
+ 
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '2';
+            $n->node = '2d_2';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();   
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '6';
+            $n->node = '6d_1';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();     
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '6';
+            $n->node = '6d_2';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();   
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '9';
+            $n->node = '9d_1';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();   
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '9';
+            $n->node = '9d_2';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save(); 
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = 11;
+            $n->node = '11d_1';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();  
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = 11;
+            $n->node = '11d_2';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 1;
+            $n->updated_by = 0;
+            $n->save();                                                       
+        }
+
+
+
+
+        return redirect('/card/'.$card_id);          
+    } 
+
+
+
+    /**
+     * Edit road node
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editRoadNode(Request $request) {
+        $card_id = $request->input('card_id');
+        //need to update card
+        $n = Cardroad::find($request->input('node_id'));
+        $n->type = $request->input('type');
+        $n->color = $request->input('color');
+        $n->points = $request->input('points');
+        $n->updated_by = Auth::id();  
+        $n->save();
+
+
+
+        return redirect('/card/'.$card_id);          
+    } 
+
 
 
 }

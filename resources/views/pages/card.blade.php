@@ -172,6 +172,22 @@
                           </tr>                          
                         </table>
                         </div>
+                  @if (!Auth::guest())
+                      @if (Auth::user()->isAdmin())
+                          <div class="col-md-4">
+                          {!! Form::open(['url' => '/edit/card/editRoadNode']) !!}    
+                          Node: {!! Form::text('node_id', '',['id'=>'edit-node-id']) !!}<br>
+                          Type: {!! Form::text('type', '',['id'=>'edit-node-type']) !!}<br>
+                          Color: {!! Form::text('color', '',['id'=>'edit-node-color']) !!}<br>     
+                          Points: {!! Form::text('points', '',['id'=>'edit-node-points']) !!}<br>                                               
+                          {!! Form::hidden('card_id', $card->id) !!}<br>
+                          {!! Form::submit('Edit Node',['class'=>'btn btn-primary btn-xs']) !!}         
+                          {!! Form::close() !!} 
+                          </div>
+                      @endif
+                  @endif
+
+
                     <div id="road">
                     </div>
                     <script>
@@ -281,6 +297,11 @@
 
    //Draw the Rectangle
  var rectangle = svgContainer.append("rect")
+                            .attr("class","road-node")
+                            .attr("id",nodeData.id)
+                            .attr("data-type",nodeData.type)
+                            .attr("data-color",nodeData.colorType)
+                            .attr("data-points",nodeData.points)
                              .attr("fill", nodeData.color)
                              .style("stroke", '#074886')
                              .style("stroke-width", 1)
@@ -374,6 +395,12 @@ for (var i = 0; i < road.length; i++) {
   } else if (road[i].type == 'outfit') {
     color = '#f39c5c';
     road[i].points = 'Outfit';
+  } else if (road[i].type == 'background') {
+    color = '#f39c5c';
+    road[i].points = 'Background';
+  } else if (road[i].type == 'voice') {
+    color = '#f39c5c';
+    road[i].points = 'Voice';
   } else if (road[i].type == 'lesson') {
     color = '#5f52a0';
     road[i].points = 'Lesson';
@@ -396,12 +423,14 @@ for (var i = 0; i < road.length; i++) {
 
   //draw the node
   var nodeData = {
+    "id": road[i].id,
     "type": road[i].type,
     "placement": placement,
     "points": road[i].points,
     "position": position,
     "parent": road[i].parent,
     "direction": direction,
+    "colorType": road[i].color,
     "color": color
   }
 
@@ -424,7 +453,39 @@ for (var i = 0; i < road.length; i++) {
 //console.log('total dance: '+totalDance+ 'total vocal: '+totalVocal+' total totalPerformance:'+totalPerformance);
 
 
+
+
+//see if i can get id from on click on a svg class???
+
+
+$('.road-node').on('click',function(){
+  //
+  var nodeId = $(this).attr('id');
+  var nodeColor = $(this).data('color');
+  var nodePoints = $(this).data('points');
+  var nodeType = $(this).data('type');
+
+  $('#edit-node-id').val(nodeId);
+  $('#edit-node-color').val(nodeColor);
+  $('#edit-node-points').val(nodePoints);
+  $('#edit-node-type').val(nodeType);      
+});
                     </script>
+                @else
+                  @if (!Auth::guest())
+                      @if (Auth::user()->isAdmin())
+                        <!-- check if there is a road in the db -->
+                        @if ($card->idolRoad->count() < 1)
+                          {!! Form::open(['url' => '/edit/card/addRoad']) !!}    
+                          {!! Form::hidden('card_id', $card->id) !!}
+                          {!! Form::hidden('stars', $card->stars) !!}
+                          {!! Form::submit('Add Road',['class'=>'btn btn-primary btn-xs']) !!}         
+                          {!! Form::close() !!} 
+                          <br>                         
+                        @endif
+                      @endif
+                  @endif
+
                 @endif
 
                 @if (!Auth::guest())
