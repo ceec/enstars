@@ -621,7 +621,7 @@ $('.road-node').on('click',function(){
                                      {!! Form::text('sentence_e',$card->sentence_e,['class'=>'form-control','id'=>'sentence-e']) !!}
                                   </div>                                                                                                        
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-3">
                                 <div class="form-group form-inline">
                                     <label for="stars">Stars</label>
                                      {!! Form::text('stars',$card->stars,['class'=>'form-control','id'=>'stars']) !!}
@@ -643,6 +643,20 @@ $('.road-node').on('click',function(){
                                      {!! Form::text('pf',$card->pf,['class'=>'form-control','id'=>'pf']) !!}
                                   </div>                                 
                               </div>
+                              <div class="col-md-3">
+                                <div class="form-group form-inline">
+                                    <label for="da_max">Da Max</label>
+                                     {!! Form::text('da_max',$card->da_max,['class'=>'form-control','id'=>'da_max']) !!}
+                                  </div>
+                                <div class="form-group form-inline">
+                                    <label for="vo_max">Vo Max</label>
+                                     {!! Form::text('vo_max',$card->vo_max,['class'=>'form-control','id'=>'vo_max']) !!}
+                                  </div>
+                                <div class="form-group form-inline">
+                                    <label for="pf_max">Pf Max</label>
+                                     {!! Form::text('pf_max',$card->pf_max,['class'=>'form-control','id'=>'pf_max']) !!}
+                                  </div>                                 
+                              </div>                              
                             </div>
                               <hr>
                               <h3>Leveled Skills</h3>

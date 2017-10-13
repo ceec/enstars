@@ -80,6 +80,9 @@ class CardController extends Controller
         $c->da = 0;
         $c->vo = 0;
         $c->pf = 0;
+        $c->da_max = 0;
+        $c->vo_max = 0;
+        $c->pf_max = 0;        
         $c->dorifes_j = '';
         $c->dorifes_e = '';
         $c->dorifes_id = $request->input('dorifes_id');
@@ -143,7 +146,10 @@ class CardController extends Controller
         $c->color = $request->input('color');
         $c->da = $request->input('da');
         $c->vo = $request->input('vo');
-        $c->pf = $request->input('pf');                        
+        $c->pf = $request->input('pf');  
+        $c->da_max = $request->input('da_max');
+        $c->vo_max = $request->input('vo_max');
+        $c->pf_max = $request->input('pf_max');                                
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
         $c->sentence_j = $request->input('sentence_j');
