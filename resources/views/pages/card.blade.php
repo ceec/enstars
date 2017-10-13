@@ -107,13 +107,25 @@
                 @endif
                 <h4>{{$card->lesson_e}}</h4>
                 <hr>
-                Base stats<br>
-                @if ($card->da !== 0) 
-                  Da: {{$card->da}}<br>
-                  Vo: {{$card->vo}}<br>
-                  Pf: {{$card->pf}} 
-                @endif
-
+                
+                <div class="row">
+                  <div class="col-md-2">
+                    @if ($card->da !== 0) 
+                      Base stats<br>
+                      Da: {{$card->da}}<br>
+                      Vo: {{$card->vo}}<br>
+                      Pf: {{$card->pf}} 
+                    @endif
+                  </div>
+                  <div class="col-md-3  ">
+                    @if ($card->da_max !== 0) 
+                      Max stats 1 Copy<br>
+                      Da: {{$card->da_max}}<br>
+                      Vo: {{$card->vo_max}}<br>
+                      Pf: {{$card->pf_max}} 
+                    @endif                  
+                  </div>
+                </div>
             </div>
          </div>   
          <div class="row">
@@ -197,6 +209,7 @@
 
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
                     <script>
+                    console.log(road);
                       //intial settings
                       var y = 50;
                       var starty;
