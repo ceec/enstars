@@ -312,7 +312,13 @@ class CardController extends Controller
             $n->level = $level;
 
             $n->chapter_id = 0;
-            $n->end = 0;
+            //13th spot is the bloom
+            if ($i == 13) {
+                $end = 1;
+            } else {
+                $end = 0;
+            }
+            $n->end = $end;
             $n->updated_by = 1;
             $n->save();
         }
@@ -518,6 +524,22 @@ class CardController extends Controller
             $n->card_id = $card_id;
             $n->parent = '6';
             $n->node = '6d_2';
+            $n->type = '';
+            $n->color = '';
+            $n->points = 0;
+            $n->small = 0;
+            $n->medium = 0;
+            $n->large = 0;
+            $n->level = 0;
+            $n->chapter_id = 0;
+            $n->end = 0;
+            $n->updated_by = 0;
+            $n->save();   
+
+            $n = new Cardroad;
+            $n->card_id = $card_id;
+            $n->parent = '6';
+            $n->node = '6d_3';
             $n->type = '';
             $n->color = '';
             $n->points = 0;
