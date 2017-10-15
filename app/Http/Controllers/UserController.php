@@ -14,6 +14,7 @@ use App\User;
 use App\Usercard;
 use App\Userevent;
 use DB;
+use App\Scout;
 
 //testing
 use App\Repositories\CardRepository;
@@ -60,7 +61,15 @@ class UserController extends Controller
         }
         $card = Card::find($user->card);
 
+
+        //get the set data
+        //loop through all the scouts.
+        //tie the cards they have
+        $scouts = Scout::orderBy('end','desc')->get();
+
+
          return view('user.dashboard')
+            ->with('scouts',$scouts)
             ->with('user',$user)
             ->with('card',$card);
       

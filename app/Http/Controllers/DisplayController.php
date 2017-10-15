@@ -58,6 +58,19 @@ class DisplayController extends Controller {
         $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
         $teachers = Boy::where('classroom_id','=','7')->orderBy('first_name','asc')->get();
 
+        //yumenosaki
+        $yume_boys = Boy::where('school_id','=','1')->where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
+        $yume_teachers = Boy::where('school_id','=','1')->where('classroom_id','=','7')->orderBy('first_name','asc')->get();
+
+        //reimei
+        $rei_boys = Boy::where('school_id','=','2')->orderBy('first_name','asc')->get();
+
+        //third school 
+        $third_boys = Boy::where('school_id','=','3')->orderBy('first_name','asc')->get();
+
+        //random other peeps
+        $others = Boy::where('school_id','=','4')->orderBy('first_name','asc')->get();
+
         //only show reecentish blog posts
         $recent = date('Y-m-d h:i:s', strtotime("-2 months"));
 
@@ -95,6 +108,11 @@ class DisplayController extends Controller {
 
 
         return view('pages.main')
+        ->with('yume_boys',$yume_boys)
+        ->with('yume_teachers',$yume_teachers)
+        ->with('rei_boys',$rei_boys)
+        ->with('third_boys',$third_boys)
+        ->with('others',$others)
         ->with('boys',$boys)
         ->with('teachers',$teachers)
         ->with('units',$units)
