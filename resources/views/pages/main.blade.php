@@ -88,7 +88,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                 @endforeach                
                 </div>
                 <div class="col-md-12">
-                <h3>Hidekoshi Academy</h3>
+                <h3>Shuetsu Academy</h3>
                 @foreach($third_boys as $boy)
                     <?php 
                         //name pretty for url
