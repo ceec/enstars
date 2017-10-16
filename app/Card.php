@@ -96,11 +96,21 @@ class Card extends Model
 				} else {
 					$background = 'panel-info';
 				}
+
+				$bloomcheck = Usercard::where('user_id','=',$user->id)->where('card_id','=',$this->id)->first();
+
+				if ($bloomcheck->bloom == 1) {
+					$bloom = true;
+				} else {
+					$bloom = false;
+				}	
 			} else {
 				$background = '';
+				$bloom = false;
 			}
 		} else {
 			$background = '';
+			$bloom = false;
 		}
 
 		//check for mini
@@ -118,7 +128,18 @@ class Card extends Model
 		<div id="card-panel-<?php print $this->id; ?>" class="panel <?php print $background; ?>">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					<a href="/card/<?php print $this->id ?>"><div class="card-container" id="card-<?php print $this->id ?>"><img class="img-responsive" src="/images/cards/<?php print $this->boy_id ?>_<?php print $this->card_id ?>.png"></div></a>
+					<a href="/card/<?php print $this->id ?>">
+						<div class="card-container" id="card-<?php print $this->id ?>">
+<?php 
+							if($bloom) {
+								$displaybloom = 'b';
+							} else {
+								$displaybloom = '';
+							}
+?>
+							<img class="img-responsive" src="/images/cards/<?php print $this->boy_id ?>_<?php print $this->card_id.$displaybloom; ?>.png">
+						</div>
+					</a>
 					<?php
 						if ($view != 'mini') {
 ?>
