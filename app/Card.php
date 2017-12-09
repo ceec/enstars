@@ -173,7 +173,7 @@ class Card extends Model
 	        		$button_class = 'btn-danger remove-card';
 	        	} else {
 	        		$button_text = 'Add';
-	        		$button_class = 'add-card';
+	        		$button_class = 'add-card btn-success';
 	        	}
 
 ?>
