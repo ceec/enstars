@@ -62,27 +62,27 @@ var eventID = "<?php print $event->id; ?>";
       Current points: <input type="number" id="current-points">
       <div class="row">
         <div class="col-lg-4">
-          Red<br>
-          <input class="form-control" type="number" placeholder="" id="red1">
-          <input class="form-control" type="number" id="red2">
-          <input class="form-control" type="number" id="red3">
+          Da<br>
+          <input class="form-control" type="number" placeholder="Main Team Points" id="red1">
+          <input class="form-control" type="number" placeholder="2nd Team Points" id="red2">
+          <input class="form-control" type="number" placeholder="3rd Team Points" id="red3">
 
           <div id="red-result">
           </div>
         </div>
         <div class="col-lg-4">
-          Blue<br>
-          <input class="form-control" type="number" placeholder="" id="blue1">
-          <input class="form-control" type="number" id="blue2">
-          <input class="form-control" type="number" id="blue3">
+          Vo<br>
+          <input class="form-control" type="number" placeholder="Main Team Points" id="blue1">
+          <input class="form-control" type="number" placeholder="2nd Team Points" id="blue2">
+          <input class="form-control" type="number" placeholder="3rd Team Points" id="blue3">
           <div id="blue-result">
           </div>
         </div>
         <div class="col-lg-4">
-          Yellow<br>
-          <input class="form-control" type="number" id="yellow1">
-          <input class="form-control" type="number" id="yellow2">
-          <input class="form-control" type="number" id="yellow3">
+          Pf<br>
+          <input class="form-control" type="number" placeholder="Main Team Points"  id="yellow1">
+          <input class="form-control" type="number" placeholder="2nd Team Points" id="yellow2">
+          <input class="form-control" type="number" placeholder="3rd Team Points" id="yellow3">
           <div id="yellow-result">
           </div>
         </div>

@@ -117,7 +117,7 @@
                       Pf: {{$card->pf}} 
                     @endif
                   </div>
-                  <div class="col-md-3  ">
+                  <div class="col-md-3">
                     @if ($card->da_max !== 0) 
                       Max stats 1 Copy<br>
                       Da: {{$card->da_max}}<br>
@@ -125,6 +125,14 @@
                       Pf: {{$card->pf_max}} 
                     @endif                  
                   </div>
+                  <div class="col-md-4">
+                    @if ($card->da_max5 !== 0) 
+                      Max stats 5 Copies<br>
+                      Da: {{$card->da_max5}}<br>
+                      Vo: {{$card->vo_max5}}<br>
+                      Pf: {{$card->pf_max5}} 
+                    @endif                  
+                  </div>                  
                 </div>
             </div>
          </div>   
