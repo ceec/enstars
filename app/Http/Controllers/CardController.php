@@ -82,7 +82,10 @@ class CardController extends Controller
         $c->pf = 0;
         $c->da_max = 0;
         $c->vo_max = 0;
-        $c->pf_max = 0;        
+        $c->pf_max = 0;   
+        $c->da_max5 = 0;
+        $c->vo_max5 = 0;
+        $c->pf_max5 = 0;                
         $c->dorifes_j = '';
         $c->dorifes_e = '';
         $c->dorifes_id = $request->input('dorifes_id');
