@@ -262,6 +262,7 @@ class CardController extends Controller
             $n->color = '';
             $n->points = 0;
 
+            //this amount is for 4 stars, and probably 5 stars too.
             //based on the i, change the small amount
             if ($i < 3) {
                 $small = 4;
@@ -337,8 +338,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 6;
+            $n->medium = 1;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -353,8 +354,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 6;
+            $n->medium = 1;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -369,8 +370,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 6
+            $n->medium = 2;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -385,8 +386,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 6;
+            $n->medium = 2;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -401,8 +402,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 6;
+            $n->medium = 2;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -417,8 +418,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 7;
+            $n->medium = 3;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -433,9 +434,9 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
-            $n->large = 0;
+            $n->small = 7;
+            $n->medium = 5;
+            $n->large = 1;
             $n->level = 0;
             $n->chapter_id = 0;
             $n->end = 0;
@@ -449,9 +450,9 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
-            $n->large = 0;
+            $n->small = 7;
+            $n->medium = 5;
+            $n->large = 1;
             $n->level = 0;
             $n->chapter_id = 0;
             $n->end = 0;
@@ -465,9 +466,9 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
-            $n->large = 0;
+            $n->small = 7;
+            $n->medium = 5;
+            $n->large = 1;
             $n->level = 0;
             $n->chapter_id = 0;
             $n->end = 1;
@@ -482,7 +483,7 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
+            $n->small = 4;
             $n->medium = 0;
             $n->large = 0;
             $n->level = 0;
@@ -498,8 +499,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 6;
+            $n->medium = 1;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -514,8 +515,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 6;
+            $n->medium = 2;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -530,8 +531,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 6;
+            $n->medium = 2;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -546,8 +547,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 7;
+            $n->medium = 3;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -562,8 +563,8 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
+            $n->small = 7;
+            $n->medium = 3;
             $n->large = 0;
             $n->level = 0;
             $n->chapter_id = 0;
@@ -578,9 +579,9 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
-            $n->large = 0;
+            $n->small = 7;
+            $n->medium = 5;
+            $n->large = 1;
             $n->level = 0;
             $n->chapter_id = 0;
             $n->end = 0;
@@ -594,9 +595,9 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
-            $n->large = 0;
+            $n->small = 7;
+            $n->medium = 5;
+            $n->large = 1;
             $n->level = 0;
             $n->chapter_id = 0;
             $n->end = 0;
@@ -610,9 +611,9 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 0;
-            $n->medium = 0;
-            $n->large = 0;
+            $n->small = 10;
+            $n->medium = 5;
+            $n->large = 2;
             $n->level = 0;
             $n->chapter_id = 0;
             $n->end = 1;
