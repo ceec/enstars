@@ -370,7 +370,7 @@ class CardController extends Controller
             $n->type = '';
             $n->color = '';
             $n->points = 0;
-            $n->small = 6
+            $n->small = 6;
             $n->medium = 2;
             $n->large = 0;
             $n->level = 0;
