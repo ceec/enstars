@@ -13,7 +13,7 @@ class CreateUserscoutcardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('userscoutcardss', function (Blueprint $table) {
+        Schema::create('userscoutcards', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userscout_id');
             $table->integer('card_id');
