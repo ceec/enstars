@@ -13,6 +13,8 @@ use Auth;
 use App\User;
 use App\Usercard;
 use App\Userevent;
+use App\Userteam;
+
 use DB;
 use App\Scout;
 
@@ -381,6 +383,74 @@ class UserController extends Controller
          return redirect('/user/'.$user->name.'/account');      
 
     }
+
+    /**
+     * Update user team/event calculator - Added 2017-12-18
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function updateTeam(Request $request) {
+         $user = Auth::user();
+
+         $da = $request->da;
+         $da_2 = $request->da_2;
+         $da_3 = $request->da_3;
+
+         $vo = $request->vo;
+         $vo_2 = $request->vo_2;
+         $vo_3 = $request->vo_3;
+
+         $pf = $request->pf;
+         $pf_2 = $request->pf_2;
+         $pf_3 = $request->pf_3;
+
+         //check if team is already there
+
+        $check = Userteam::where('user_id','=',$user->id)->count();
+
+        if ($check < 1) {
+            //only add if it isnt already there
+            $t = new Userteam;
+            $t->user_id = $user->id;
+            $t->da = $da;
+            $t->da_2 = $da_2;
+            $t->da_3 = $da_3;
+            $t->vo = $vo;
+            $t->vo_2 = $vo_2;
+            $t->vo_3 = $vo_3;
+            $t->pf = $pf;
+            $t->pf_2 = $pf_2;
+            $t->pf_3 = $pf_3;
+            $t->save();
+
+            echo json_encode(array('work'=>$t->da));            
+        } else {
+            //update the team
+            $t = Userteam::where('user_id','=',$user->id)->first();
+            $t->da = $da;
+            $t->da_2 = $da_2;
+            $t->da_3 = $da_3;
+            $t->vo = $vo;
+            $t->vo_2 = $vo_2;
+            $t->vo_3 = $vo_3;
+            $t->pf = $pf;
+            $t->pf_2 = $pf_2;
+            $t->pf_3 = $pf_3;
+            $t->save();
+        }
+
+
+
+
+
+        echo json_encode(array('work'=>$t->da));            
+         //return redirect('/user/'.$user->name.'/account');      
+
+    }
+
+
+
+
 
 
 }

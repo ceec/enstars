@@ -251,3 +251,6 @@ Route::post('/user/edit/card','UserController@updateCard');
 
 Route::post('/user/edit/dashboardCard','UserController@updateDashboardCard');
 
+//update user team for event calculator
+Route::post('/user/edit/team','UserController@updateTeam');
+

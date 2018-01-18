@@ -43,6 +43,7 @@ use App\Cardroad;
 use App\Usercard;
 
 use App\Cardissue;
+use App\Userteam;
 
 use Auth;
 
@@ -994,7 +995,32 @@ class DisplayController extends Controller {
         // }
     
 
+        //need to pull users team if they are logged in
+        if (!Auth::guest()) {
+            //theyre logged in
+
+            //what if theyre logged in but don't have a team saved
+            $userteam = Userteam::where('user_id','=',Auth::id())->first();
+
+            if (empty($userteam->id)) {
+                 $userteamcheck = 0;
+            } else {
+                 $userteamcheck = 1;
+            }
+
+
+           
+        } else {
+            //set the deam to 0?
+            $userteamcheck = 0;
+            $userteam = '';
+        }
+
+
+
         return view('pages.eventCalculator')
+         ->with('userteam',$userteam)
+         ->with('userteamcheck',$userteamcheck)
          ->with('event',$event)
          ->with('first',$first)
          ->with('second',$second)

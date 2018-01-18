@@ -32,9 +32,9 @@ var eventID = "<?php print $event->id; ?>";
 <div class="container">
 	<div class="alert alert-warning	">
 		<h3>This calculator is in beta!</h3>
+    <p>Calculator Update - 2018-01-17 - Data is now tied to your user account, log in to save your team totals.</p>
 		<p>Things may change as I add in new features and I may accidentally break things! If you have any feedback or suggestions 
 		I would appreicate it if you sent them to me through our contact form at the bottom of the page!</p>
-		<p>The data is currently stored in local storage so it will save if you use the same browser to access it, but not accross browsers or devices.</p>
 	</div>
   <div class="row">
 
@@ -57,32 +57,45 @@ var eventID = "<?php print $event->id; ?>";
     </div>
     </div>
 
+    <?php
+      //this is ghetto, fix to use a standard empty object
+      use App\Userteam;
+      //catch not logged in users
+      if($userteamcheck === 0) {
+        $userteam = new Userteam;
+        $userteam->da = '';
+      }
+
+    ?>
+
   <div class="row">
     <div class="col-lg-6">
       Current points: <input type="number" id="current-points">
       <div class="row">
         <div class="col-lg-4">
           Da<br>
-          <input class="form-control" type="number" placeholder="Main Team Points" id="red1">
-          <input class="form-control" type="number" placeholder="2nd Team Points" id="red2">
-          <input class="form-control" type="number" placeholder="3rd Team Points" id="red3">
-
+          <input class="form-control" type="number" placeholder="Main Team Points" id="red1" value="{{$userteam->da}}">
+          <input class="form-control" type="number" placeholder="2nd Team Points" id="red2" value="{{$userteam->da_2}}">
+          <input class="form-control" type="number" placeholder="3rd Team Points" id="red3" value="{{$userteam->da_3}}">
+          Total: {{$userteam->da + $userteam->da_2 + $userteam->da_3}}
           <div id="red-result">
           </div>
         </div>
         <div class="col-lg-4">
           Vo<br>
-          <input class="form-control" type="number" placeholder="Main Team Points" id="blue1">
-          <input class="form-control" type="number" placeholder="2nd Team Points" id="blue2">
-          <input class="form-control" type="number" placeholder="3rd Team Points" id="blue3">
+          <input class="form-control" type="number" placeholder="Main Team Points" id="blue1" value="{{$userteam->vo}}">
+          <input class="form-control" type="number" placeholder="2nd Team Points" id="blue2" value="{{$userteam->vo_2}}">
+          <input class="form-control" type="number" placeholder="3rd Team Points" id="blue3" value="{{$userteam->vo_3}}">
+          Total: {{$userteam->vo + $userteam->vo_2 + $userteam->vo_3}}
           <div id="blue-result">
           </div>
         </div>
         <div class="col-lg-4">
           Pf<br>
-          <input class="form-control" type="number" placeholder="Main Team Points"  id="yellow1">
-          <input class="form-control" type="number" placeholder="2nd Team Points" id="yellow2">
-          <input class="form-control" type="number" placeholder="3rd Team Points" id="yellow3">
+          <input class="form-control" type="number" placeholder="Main Team Points"  id="yellow1" value="{{$userteam->pf}}">
+          <input class="form-control" type="number" placeholder="2nd Team Points" id="yellow2" value="{{$userteam->pf_2}}">
+          <input class="form-control" type="number" placeholder="3rd Team Points" id="yellow3" value="{{$userteam->pf_3}}">
+          Total: {{$userteam->pf + $userteam->pf_2 + $userteam->pf_3}}
           <div id="yellow-result">
           </div>
         </div>
@@ -228,15 +241,24 @@ function addLegendLabel(e) {
 
 //load from local storage
 $('#current-points').val(localStorage.getItem("currentPoints"));
-$('#red1').val(localStorage.getItem("red1"));
-$('#red2').val(localStorage.getItem("red2"));
-$('#red3').val(localStorage.getItem("red3"));
-$('#blue1').val(localStorage.getItem("blue1"));
-$('#blue2').val(localStorage.getItem("blue2"));
-$('#blue3').val(localStorage.getItem("blue3"));
-$('#yellow1').val(localStorage.getItem("yellow1"));
-$('#yellow2').val(localStorage.getItem("yellow2"));
-$('#yellow3').val(localStorage.getItem("yellow3"));
+
+//if they have saved their teams, only display localstoarge if the vlaue is empty
+// var red1Check = parseInt(localStorage.getItem("red1"),10);
+// console.log(red1Check);
+// console.log('red1 '+red1Check);
+// if (red1Check > 0 ) {
+//   $('#red1').val(localStorage.getItem("red1"));
+//   $('#red2').val(localStorage.getItem("red2"));
+//   $('#red3').val(localStorage.getItem("red3"));
+//   $('#blue1').val(localStorage.getItem("blue1"));
+//   $('#blue2').val(localStorage.getItem("blue2"));
+//   $('#blue3').val(localStorage.getItem("blue3"));
+//   $('#yellow1').val(localStorage.getItem("yellow1"));
+//   $('#yellow2').val(localStorage.getItem("yellow2"));
+//   $('#yellow3').val(localStorage.getItem("yellow3"));
+// }
+
+
 
 
 
@@ -378,6 +400,60 @@ var calculate = function() {
 
   }, false);
 };
+
+//instead of using js, switch to just a php submit?? ->lets use JS
+//looks like I wasnt using jquery for this. -> lets continue!! -> eh its included for bootstrap anyway
+//so need to figure out if they are logged in, if so call new function otherwise call old function????
+
+$('#calculate').on('click',function(){
+  console.log('click');
+
+  //whatever it was doing before, lets first update the values in the db, the
+
+  //grab the values typed into the red
+  var red1 = parseFloat(document.getElementById('red1').value);
+  var red2 = parseFloat(document.getElementById('red2').value);
+  var red3 = parseFloat(document.getElementById('red3').value);
+
+  //grab the values typed into blue
+  var blue1 = parseFloat(document.getElementById('blue1').value);
+  var blue2 = parseFloat(document.getElementById('blue2').value);
+  var blue3 = parseFloat(document.getElementById('blue3').value);
+
+
+  //grab the values typed into yellow
+  var yellow1 = parseFloat(document.getElementById('yellow1').value);
+  var yellow2 = parseFloat(document.getElementById('yellow2').value);
+  var yellow3 = parseFloat(document.getElementById('yellow3').value);
+
+  //update the db, where is my ajax call -> this should be functionalized or something
+  $.ajaxSetup({
+                headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                          }
+              });
+
+  $.ajax({
+
+      type: "POST",
+      url: '/user/edit/team',
+      data: {da:red1,da_2:red2,da_3:red3,vo:blue1,vo_2:blue2,vo_3:blue3,pf:yellow1,pf_2:yellow2,pf_3:yellow3},
+      dataType: 'json',
+      success: function (data) {
+          //need to update the values in the boxes.
+          console.log(data);
+          console.log('it worked');
+
+      },
+      error: function (data) {
+          console.log('Error:', data.responseText);
+      }
+  });
+
+
+
+})
+
 
 
 //get current time left in event, update it every second.
