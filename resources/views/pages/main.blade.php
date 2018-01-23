@@ -26,9 +26,9 @@ enstars.info - Information and Translations for Ensemble Stars!
                     <h3>News</h3>
                         <!--sticky-->
                         <h5><strong>
-                            <a href="/store">Get your best boy as a magnet!</a><br>
+                            <a href="/news/user-accounts-now-in-beta">User Accounts Now in Beta!</a><br>
                             </strong>
-                             <small>September 3, 2017 by ankee</small>
+                             <small>September 4, 2017 by ankee</small>
                         </h5>                       
                         @foreach ($blogs as $blog)
                             <?php
