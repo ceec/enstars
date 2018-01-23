@@ -300,14 +300,14 @@ class UserController extends Controller
          $usercard_id = $request->input('usercard_id');
 
          $c = Usercard::find($usercard_id);
-         $c->bloom = $request->input('bloom');
-         $c->copies = $request->input('copies');
-         $c->level = $request->input('level');
-         $c->da = $request->input('da');
-         $c->vo = $request->input('vo');
-         $c->pf = $request->input('pf');
-         $c->percent = $request->input('percent');
-         $c->affection = $request->input('affection');
+         $c->bloom = intval($request->input('bloom'));
+         $c->copies = intval($request->input('copies'));
+         $c->level = intval($request->input('level'));
+         $c->da = intval($request->input('da'));
+         $c->vo = intval($request->input('vo'));
+         $c->pf = intval($request->input('pf'));
+         $c->percent = intval($request->input('percent'));
+         $c->affection = intval($request->input('affection'));
          $c->save();
 
 
