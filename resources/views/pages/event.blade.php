@@ -28,6 +28,7 @@
                         ?>
                     @endforeach
                 </div>
+                <p><a href="{{$event->website}}">Event Website</a></p>
                 <div class="row">
                     <div class="col-md-4" id="story">
                         @if ($chapters != '')
@@ -54,7 +55,6 @@
                             @endforeach
                         @endif
                     </div>                    
-
                 <div class="row">
                     <div class="col-md-8">
                         @if (isset($points->participants) && ($event->active === 0))

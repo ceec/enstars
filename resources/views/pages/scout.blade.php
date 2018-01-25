@@ -31,6 +31,7 @@
                 </div>                    
                 </div>
             </div>
+            <p><a href="{{$scout->website}}">Scout Website</a></p>
             <div class="row">
                             <div class="col-md-4">
                     @if ($scout->type_id == 1)
