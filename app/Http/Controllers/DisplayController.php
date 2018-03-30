@@ -98,7 +98,7 @@ class DisplayController extends Controller {
         //neeed 
 
         $current_event = Event::where('active','=',1)->get();
-        $current_scout = Scout::where('active','=',1)->get();
+        $current_scout = Scout::where('active','=',1)->orderBy('start','desc')->get();
 
 
 
