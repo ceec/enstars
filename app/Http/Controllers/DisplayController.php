@@ -540,7 +540,18 @@ class DisplayController extends Controller {
         }  
 
 
-        $cards = Card::where('lesson_id','=',$skill_id)->get();
+
+        //2018-04-045
+        //so there are both the lesson and dorifes skill!
+        if ($skill->skilltype_id == 2) {
+            //its a lesson skill
+             $cards = Card::where('lesson_id','=',$skill_id)->get();
+        } else {
+            //its a dorifes skill
+             $cards = Card::where('dorifes_id','=',$skill_id)->get();
+        }
+       
+
 
         return view('pages.skill')
             ->with('skill',$skill)
