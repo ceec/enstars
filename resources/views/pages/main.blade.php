@@ -13,7 +13,52 @@ enstars.info - Information and Translations for Ensemble Stars!
                     @foreach ($current_event as $event)
                         <h4>{{$event->name_e}}</h4>
                         <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a><br>
-                    @endforeach                
+                        @if ($event->end > date('Y-m-d h:i:s'))
+                            <h4>Time Remaining:<br> <span id="time-remaining"></span></h4>
+                            
+                            <?php
+                                  //convert from JST to UTC
+  $utc_end = date('Y-m-d H:i:s',strtotime($event->end) - 60 * 60 * 9);
+                            ?>
+
+                            <script>
+                            var eventEnd = "<?php print $utc_end;?> UTC";
+var eventID = "<?php print $event->id; ?>";
+                            //get current time left in event, update it every second.
+var timeLeft = function() {
+  var now = Date.now();
+  ///this is in MST. Need to get it in JST
+  var end = new Date(eventEnd);
+  //how many miliseconds long between the end of the event and now
+  var diff = end.getTime() - now;  
+  //calculate time left
+  var days = Math.floor(diff /(1000 * 60 * 60 * 24));
+  //get the remanining time
+  var fullDays = (days * 1000 * 60 * 60 * 24);
+  var remaining = diff - fullDays;
+  
+  var hours = Math.floor(remaining /(1000 * 60 * 60));
+  var fullHours = (hours * 1000 * 60 * 60);
+  remaining = diff - (fullDays + fullHours);
+  
+  var minutes = Math.floor(remaining/(1000 * 60));
+  var fullMinutes = (minutes * 1000 * 60);
+  remaining = diff - (fullDays + fullHours + fullMinutes);
+  
+  var seconds = Math.floor(remaining/(1000));
+  
+  var timeSpan = document.getElementById('time-remaining');
+  timeSpan.textContent = days+' days '+hours+' hours '+minutes+' minutes '+seconds+' seconds';
+  
+  //lpLeft(diff);
+}
+
+
+//show remaining time, calculate points/LP
+var showTime = setInterval(timeLeft,1000);
+                            </script>
+                        @endif
+                    @endforeach             
                 </div>
                 <div class="col-md-4">
                     <h3>Current Scout</h3>
