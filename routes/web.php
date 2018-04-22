@@ -190,6 +190,10 @@ Route::post('/edit/card','CardController@edit');
 Route::post('/edit/card/addRoad','CardController@addRoad');
 //edit one node
 Route::post('/edit/card/editRoadNode','CardController@editRoadNode');
+//add suggestion
+Route::post('/add/cardsuggestion','CardController@addsuggestion');
+//edit suggestion
+Route::post('/edit/cardsuggestion','CardController@editsuggestion');
 
 //events
 Route::post('/edit/event','EventController@edit');

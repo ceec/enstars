@@ -12,6 +12,7 @@ use App\Event;
 use Auth;
 use App\User;
 use App\Cardroad;
+use App\Cardsuggestion;
 
 class CardController extends Controller
 {
@@ -649,6 +650,112 @@ class CardController extends Controller
         return redirect('/card/'.$card_id);          
     } 
 
+    //card suggestions
 
+
+    /**
+     * Add card suggestion
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addSuggestion(Request $request) {
+        $card_id = $request->input('acard_id');
+
+        //copy card in the database
+        $card = Card::find($card_id);
+
+        //can probably do this easier but i dont understand eloquent enough
+
+        $c = new Cardsuggestion;
+        $c->acard_id = $card_id;
+        $c->boy_id = $card->boy_id;
+        $c->card_id = $card->card_id;
+        $c->place = $card->place;
+        $c->stars = $card->stars;
+        $c->color = $card->color;
+        $c->name_j = $card->name_j;
+        $c->name_e = $card->name_e;
+        $c->name_s = $card->name_s;
+        $c->da = $card->da;
+        $c->vo = $card->vo;
+        $c->pf = $card->pf;
+        $c->da_max = $card->da_max;
+        $c->vo_max = $card->vo_max;
+        $c->pf_max = $card->pf_max;
+        $c->da_max5 = $card->da_max5;
+        $c->vo_max5 = $card->vo_max5;
+        $c->pf_max5 = $card->pf_max5;            
+        $c->dorifes_j = $card->dorifes_j;
+        $c->dorifes_e = $card->dorifes_e;
+        $c->dorifes_id = $card->dorifes_id;
+        $c->lesson_j = $card->lesson_j;
+        $c->lesson_e = $card->lesson_e;
+        $c->lesson_id = $card->lesson_id;
+        //unleveled skills
+        $c->u_dorifes_j = $card->u_dorifes_j;
+        $c->u_dorifes_e = $card->u_dorifes_e;
+        $c->u_lesson_j = $card->u_lesson_j;
+        $c->u_lesson_e = $card->u_lesson_e;      
+        $c->u_dorifes_id = $card->u_dorifes_id;
+        $c->u_lesson_id = $card->u_lesson_id;               
+        $c->scout_id = $card->scout_id;
+        $c->event_id = $card->event_id;
+        $c->sentence_j = $card->sentence_j;
+        $c->sentence_e = $card->sentence_e;    
+        $c->stories = $card->stories;
+        $c->suggested_name = $card->suggested_name;
+        $c->suggested_link = $card->suggested_link;
+        $c->updated_by = Auth::id();
+        $c->save();
+
+        return redirect('/card/'.$card_id);            
+    } 
+
+
+
+
+
+    /**
+     * Edit card suggestion
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editSuggestion(Request $request) {
+        //need to update card
+        $c = Cardsuggestion::find($request->input('suggestion_id'));
+        $c->stars = $request->input('stars');
+        $c->color = $request->input('color');
+        $c->da = $request->input('da');
+        $c->vo = $request->input('vo');
+        $c->pf = $request->input('pf');  
+        $c->da_max = $request->input('da_max');
+        $c->vo_max = $request->input('vo_max');
+        $c->pf_max = $request->input('pf_max');   
+        $c->da_max5 = $request->input('da_max5');
+        $c->vo_max5 = $request->input('vo_max5');
+        $c->pf_max5 = $request->input('pf_max5');                                        
+        $c->name_j = $request->input('japanese_name');
+        $c->name_e = $request->input('english_name');
+        $c->sentence_j = $request->input('sentence_j');
+        $c->sentence_e = $request->input('sentence_e');  
+        $c->dorifes_j = $request->input('dorifes_j');
+        $c->dorifes_e = $request->input('dorifes_e');  
+        $c->lesson_j = $request->input('lesson_j');
+        $c->lesson_e = $request->input('lesson_e');                        
+        $c->dorifes_id = $request->input('dorifes_id');
+        $c->lesson_id = $request->input('lesson_id');
+        //unleveled skills
+        $c->u_dorifes_j = $request->input('u_dorifes_j');
+        $c->u_dorifes_e = $request->input('u_dorifes_e');  
+        $c->u_lesson_j = $request->input('u_lesson_j');
+        $c->u_lesson_e = $request->input('u_lesson_e');                        
+        $c->u_dorifes_id = $request->input('u_dorifes_id');
+        $c->u_lesson_id = $request->input('u_lesson_id');        
+
+        $c->updated_by = Auth::id();  
+        $c->save();
+
+        return redirect('/card/'.$c->acard_id);          
+    }     
 
 }

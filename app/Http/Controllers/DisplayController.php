@@ -47,6 +47,8 @@ use App\Userteam;
 
 use Auth;
 
+use App\Cardsuggestion;
+
 
 class DisplayController extends Controller {
 
@@ -287,8 +289,11 @@ class DisplayController extends Controller {
 
          $user = Auth::user();    
          $user_card = Usercard::where('user_id','=',$user->id)->where('card_id','=',$card_id)->first();
+         //card suggestion
+         $card_suggestion = Cardsuggestion::where('updated_by','=',$user->id)->where('acard_id','=',$card_id)->first();
         } else {
             $user_card = '';
+            $card_suggestion = '';
         }
 
         //get the admin name who updated it last
@@ -363,7 +368,8 @@ class DisplayController extends Controller {
             ->with('yellow_medium',$yellow_medium)
             ->with('yellow_small',$yellow_small)  
             ->with('user_card',$user_card)      
-            ->with('updated_by',$updated_by)                
+            ->with('updated_by',$updated_by)  
+            ->with('card_suggestion',$card_suggestion)              
             ->with('card',$card);
     } 
 
