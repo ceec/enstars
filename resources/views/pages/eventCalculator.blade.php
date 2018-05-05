@@ -63,7 +63,7 @@ var eventID = "<?php print $event->id; ?>";
       //catch not logged in users
       if($userteamcheck === 0) {
         $userteam = new Userteam;
-        $userteam->da = '';
+        $userteam->da = 0;
       }
 
     ?>

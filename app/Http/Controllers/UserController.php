@@ -392,17 +392,17 @@ class UserController extends Controller
     public function updateTeam(Request $request) {
          $user = Auth::user();
 
-         $da = $request->da;
-         $da_2 = $request->da_2;
-         $da_3 = $request->da_3;
+         $da = (int)$request->da;
+         $da_2 = (int)$request->da_2;
+         $da_3 = (int)$request->da_3;
 
-         $vo = $request->vo;
-         $vo_2 = $request->vo_2;
-         $vo_3 = $request->vo_3;
+         $vo = (int)$request->vo;
+         $vo_2 = (int)$request->vo_2;
+         $vo_3 = (int)$request->vo_3;
 
-         $pf = $request->pf;
-         $pf_2 = $request->pf_2;
-         $pf_3 = $request->pf_3;
+         $pf = (int)$request->pf;
+         $pf_2 = (int)$request->pf_2;
+         $pf_3 = (int)$request->pf_3;
 
          //check if team is already there
 
