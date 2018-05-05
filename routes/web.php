@@ -228,6 +228,9 @@ Route::post('/add/event/data','HomeController@addEventData');
 Route::get('/home/messages','HomeController@messages');
 Route::get('/home/message/new','HomeController@newMessage');
 
+//suggestions
+Route::get('/home/suggestions','HomeController@suggestions');
+
 
 /////////////// USER ///////////////
 

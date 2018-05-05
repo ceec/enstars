@@ -17,6 +17,7 @@ use App\Minievent;
 use App\Minieventchoice;
 use App\Minieventslide;
 use App\Chapterboy;
+use App\Cardsuggestion;
 
 class HomeController extends Controller
 {
@@ -543,9 +544,20 @@ class HomeController extends Controller
     }  
 
 
+    /////suggestions
+
+    /**
+     * view suggestions
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function suggestions() {
+        //get all the suggestions
+        $suggestions = Cardsuggestion::all();
 
 
-
-
+        return view('home.suggestions')
+            ->with('suggestions',$suggestions);
+    }      
 
 }

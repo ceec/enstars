@@ -26,7 +26,7 @@
                     <div class="col-md-4">
                        <h3>Cards</h3>
                         <a href="/home/card/add">Add New Card</a><br>
-                        <a href="">Edit Card</a><br>                    
+                        <a href="">Edit Card</a><br>                   
                     </div>                                        
                 </div>
                 <div class="row">
@@ -39,6 +39,10 @@
                         <a href="/home/messages">View Messages</a><br>
                         <a href="/home/message/new">Create New Message</a><br>
                     </div>
+                    <div class="col-md-4">
+                       <h3>Suggestions</h3>
+                        <a href="/home/suggestions">Suggestions</a><br>                
+                    </div>                       
                 </div>
                 </div>
             </div>
