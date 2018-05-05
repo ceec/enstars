@@ -43,7 +43,7 @@ class HomeController extends Controller
 
         //$cards = $usercards;
 
-        $allcards = '';
+        $allcards = [];
 
         $cards = Usercard::where('user_id','=',Auth::user()->id)->get();
 
