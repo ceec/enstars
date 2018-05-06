@@ -23,7 +23,7 @@ enstars.info - Information and Translations for Ensemble Stars!
 
                             <script>
                             var eventEnd = "<?php print $utc_end;?>Z";
-                            console.log(eventEnd);
+                            //console.log(eventEnd);
 var eventID = "<?php print $event->id; ?>";
                             //get current time left in event, update it every second.
 var timeLeft = function() {
