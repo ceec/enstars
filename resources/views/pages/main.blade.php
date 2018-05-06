@@ -22,15 +22,19 @@ enstars.info - Information and Translations for Ensemble Stars!
                             ?>
 
                             <script>
-                            var eventEnd = "<?php print $utc_end;?> UTC";
+                            var eventEnd = "<?php print $utc_end;?>Z";
+                            console.log(eventEnd);
 var eventID = "<?php print $event->id; ?>";
                             //get current time left in event, update it every second.
 var timeLeft = function() {
   var now = Date.now();
   ///this is in MST. Need to get it in JST
   var end = new Date(eventEnd);
+  //console.log(eventEnd);
+  //console.log(end);
   //how many miliseconds long between the end of the event and now
   var diff = end.getTime() - now;  
+  //console.log(end.getTime());
   //calculate time left
   var days = Math.floor(diff /(1000 * 60 * 60 * 24));
   //get the remanining time
@@ -39,8 +43,9 @@ var timeLeft = function() {
   
   var hours = Math.floor(remaining /(1000 * 60 * 60));
   var fullHours = (hours * 1000 * 60 * 60);
-  remaining = diff - (fullDays + fullHours);
   
+  remaining = diff - (fullDays + fullHours);
+
   var minutes = Math.floor(remaining/(1000 * 60));
   var fullMinutes = (minutes * 1000 * 60);
   remaining = diff - (fullDays + fullHours + fullMinutes);
