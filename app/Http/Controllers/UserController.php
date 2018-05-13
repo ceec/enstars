@@ -269,6 +269,12 @@ class UserController extends Controller
         $event_id = $request->input('event_id');
         $rank = $request->input('rank');
         $points = $request->input('points');
+
+        //clean up rank and points to just be integers!!
+        $rank = preg_replace("/[^0-9]/", "",$rank);
+        $points = preg_replace("/[^0-9]/", "",$points);
+
+
         //add the user card
         $user = Auth::user();    
 
