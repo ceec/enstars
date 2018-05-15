@@ -510,6 +510,146 @@ class DisplayController extends Controller {
     }
 
 
+    //////temporary data check! 
+        /**
+     * Show the homepage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function idolData($boy_id) {
+        //can pass through an id or an url
+        if (ctype_digit($boy_id)){
+            $boy = Boy::where('id','=',$boy_id)->first();
+        } else {
+            $first_name = ucfirst($boy_id);
+            $boy = Boy::where('first_name','=',$first_name)->first();
+        }
+
+        //when bad url is passed
+        if (empty($boy)) {
+            //want to go to 404 page 
+            abort(404);
+        }  
+
+        $cards = Card::where('boy_id','=',$boy->id)->where('da','=',0)->orderBy('place','ASC')->get();
+
+
+        //skills, tie them to the cards
+        foreach($cards as $key => $card) {
+            $skill = Skill::select('english_description')->where('id','=',$card->dorifes_id)->first();
+            //$test =  $skill->japanese_description;
+            $cards[$key]->dorifes_skill = $skill['english_description'];
+        }
+
+        foreach($cards as $key => $card) {
+            $skill = Skill::select('english_description')->where('id','=',$card->lesson_id)->first();
+            //$test =  $skill->japanese_description;
+            $cards[$key]->lesson_skill = $skill['english_description'];
+        }
+
+        $total_cards = count($cards);
+
+        //only do all this if there are cards
+        if ($total_cards > 1) {
+              //need a blank template card for filling in the array
+            //php 5+ passes objects by reference so $template = $cards[0] is not making a copy, need to clone it
+            $template = clone $cards[0];
+            //set up special senario blank card would have stars=0
+            $template->stars = 0;
+           
+            //need to order cards by even and odd, first separate them
+            foreach ($cards as $card) {
+                if ($card->place %2 == 0) {
+                    $even[] = $card;
+                } else {
+                    $odd[] = $card;
+                }
+            }
+
+            //the ui has them in rows of 4, break them into pieces of 4
+            $odd = array_chunk($odd,4);
+            $even = array_chunk($even,4);
+
+            //need to fill in the last chunks if they are less than four
+
+            $slice_odd = array_slice($odd, -1);
+            $last_odd = array_pop($slice_odd);
+
+            $last_key_odd = key( array_slice($odd, -1, 1, TRUE));
+
+             if (count($last_odd) < 4) {
+                //add in the ones left
+                for ($i=count($last_odd); $i < 4; $i++) { 
+                   //add the missing pieces
+                    $odd[$last_key_odd][$i] = $template;
+                }
+             }
+
+             //need to fill in the last chunks if they are less than four
+             $slice_even = array_slice($even, -1);
+             $last_even = array_pop($slice_even);
+             $last_key_even = key( array_slice($even, -1, 1, TRUE));
+
+             //echo '<h2>last even count'.count($last_even).'</h2>';
+
+             if (count($last_even) < 4) {
+                //add in the ones left
+                for ($i=count($last_even); $i < 4; $i++) { 
+                   //add the missing pieces
+                    $even[$last_key_even][$i] = $template;
+                }
+             }
+
+             //combine them into one array
+             for ($i=0; $i < count($odd); $i++) {   
+                foreach($odd[$i] as $chunk) {
+                    $final[] = $chunk;
+                }
+
+                if(isset($even[$i])) {
+                    foreach($even[$i] as $chunk) {
+                        $final[] = $chunk;
+                    }                
+                }
+             }
+       
+         } else {
+            $final = clone $cards;
+         }
+
+        //mini events
+        $minievents = Minievent::where('boy_id','=',$boy_id)->get();
+
+        foreach($minievents as $key => $event) {
+            //get all three choices
+            $choices = Minievent::find($event->id)->choices;
+            $minievents[$key]->choices = $choices;
+         }   
+
+         //normal events
+        // $events = Event::where('boy_id','=',$boy_id)->get();
+
+        // foreach($events as $key => $event) {
+        //     //get all three choices
+        //     $choices = Event::find($event->id)->choices;
+        //     $events[$key]->choices = $choices;
+        //  }   
+
+        // print '<pre>';
+        // print_r($final);
+        // print '</pre>';
+
+        return view('pages.idol')
+            ->with('boy',$boy)
+            ->with('cards',$final)
+            ->with('minievents',$minievents);
+            //->with('events',$events);
+    }
+
+
+
+
+
     /**
      * Show tags
      *

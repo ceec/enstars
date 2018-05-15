@@ -21,6 +21,10 @@ Route::get('/birthdays', 'DisplayController@birthdays');
 
 //specific boys page
 Route::get('/idol/{boy_id}', 'DisplayController@idol');
+
+//data check on boys page
+Route::get('/data/idol/{boy_id}', 'DisplayController@idolData');
+
 //all of a boys cards
 Route::get('/idol/{boy_id}/all', 'DisplayController@idolAll');
 
