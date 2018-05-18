@@ -141,7 +141,7 @@ Route::get('/graph/cardlist','DisplayController@cardList');
 Route::get('/data/cards-released','DataController@cardsReleased');
 Route::get('/data/event-border-history','DataController@eventHistory');
 //current event borders
-Route::get('/data/event-border','DataController@eventBorder');
+Route::get('/data/event-border.json','DataController@eventBorder');
 //timeline of events and scouts
 Route::get('/data/timeline','DataController@timeline');
 //idolroad

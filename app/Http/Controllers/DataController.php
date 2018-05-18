@@ -276,7 +276,7 @@ class DataController extends Controller {
         $event = Event::where('active','=','1')->first();
 
         $points = Eventpoint::where('event_id','=',$event->id)->get();
-
+echo json_encode($points);
 
         //changes made in events 50 and up, the 1200 border is now 2k
 
@@ -288,38 +288,38 @@ class DataController extends Controller {
         
         }
                 //add zero starting points
-                $data['points2'] = 0;
-                $data['points7'] = 0;
-                $data['rank7'] = 11000;   
-                $data['points12'] = 0;
-                $data['rank12'] = 35000;   
-                $data['position'] = 'start';
-                $result[] = $data;     
-                unset($data);      
+                // $data['points2'] = 0;
+                // $data['points7'] = 0;
+                // $data['rank7'] = 11000;   
+                // $data['points12'] = 0;
+                // $data['rank12'] = 35000;   
+                // $data['position'] = 'start';
+                // $result[] = $data;     
+                // unset($data);      
 
-            foreach ($points as $key => $point) {
-                $data['points2'] = $point->tier_2;
-                $data['rank2'] = $point->rank_2;    
-                $data['points7'] = $point->tier_7;
-                $data['rank7'] = $point->rank_7;   
+            // foreach ($points as $key => $point) {
+            //     $data['points2'] = $point->tier_2;
+            //     $data['rank2'] = $point->rank_2;    
+            //     $data['points7'] = $point->tier_7;
+            //     $data['rank7'] = $point->rank_7;   
 
-                if ($event->id > 49) {
-                    $data['points12'] = $point->tier_11;
-                    $data['rank12'] = $point->rank_11; 
-                } else {    
-                   $data['points12'] = $point->tier_12;
-                    $data['rank12'] = $point->rank_12;  
+            //     if ($event->id > 49) {
+            //         $data['points12'] = $point->tier_11;
+            //         $data['rank12'] = $point->rank_11; 
+            //     } else {    
+            //        $data['points12'] = $point->tier_12;
+            //         $data['rank12'] = $point->rank_12;  
                 
-                }                
+            //     }                
                 
 
-                $data['position'] = $point->position;
-                $result[] = $data;     
-                unset($data);                                    
-            }
+            //     $data['position'] = $point->position;
+            //     $result[] = $data;     
+            //     unset($data);                                    
+            // }
 
        
-        echo json_encode($result);
+        //echo json_encode($result);
 
     } 
 

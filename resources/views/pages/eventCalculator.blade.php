@@ -132,6 +132,8 @@ var eventID = "<?php print $event->id; ?>";
   </div>
 </div>
 
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
  <script>
 
  //set up the new border for event 50 and onward
@@ -143,91 +145,127 @@ var eventID = "<?php print $event->id; ?>";
   fiveStarBorder = '1200';
  }
 
- var chart = AmCharts.makeChart("chartdiv", {
-    "type": "serial",
-    "theme": "light",
-    "dataDateFormat": "YYYY-MM-DD HH:NN",
-    "dataLoader": {
-    "url": "/data/event-border",
-    "format": "json"
-  },
-      "valueAxes": [{
-        "axisAlpha": 0,
-        "position": "left"
-    }],
-    "graphs": [{
-        "id":"1 5 Star - 1200",
-        "title": fiveStarBorder,
-        "bullet": "round",
-        "balloonText": "[[value]]",
-        "valueField": "points2"
-    },{
-        "id":"40",
-        "title": "11000",
-        "bullet": "round",
-        "balloonText": "[[value]]",
-        "valueField": "points7"
-    },{
-        "id":"41",
-        "title": "35000",  
-        "bullet": "round",
-        "balloonText": "[[value]]",
-        "valueField": "points12"
-    }],
-    "chartCursor": {
-        //"categoryBalloonDateFormat": "YYYY",
-        "categoryBalloonEnabled": false,
-        "cursorAlpha": 1,
-        //"valueLineEnabled":true,
-        //"valueLineBalloonEnabled":true,
-        "valueLineAlpha":0.5,
-        //"fullWidth":true
-    },
-    "categoryField": "position",
-    "categoryAxis": {
-    	"startOnAxis": "true",
-      "labelFunction": function(label) {
 
 
-        if (label == 'start') {
-          label = 'Day 1';
-        } else if (label == 1) {
-          label = 'Day 2';
-        } else if (label == 3) {
-          label = 'Day 3';
-        } else if (label == 5) {
-          label = 'Day 4';
-        } else if (label == 7) {
-          label = 'Day 5';
-        } else if (label == 9) {
-          label = 'Day 6';
-        } else if (label == 11) {
-          label = 'Day 7';
-        } else if (label == 13) {
-          label = 'Day 8';
-        } else if (label == 15) {
-          label = 'Day 9';
-        } else if (label == 17) {
-          label = 'Day 10';
-        } else if (label == 19) {
-          label = 'End';
-        } else {
-          label = '';
-        }
+//create the chart instance
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.XYChart);
 
-        return label;
-      },
-    },
-    "legend": {
-      "position": "left",
-      "marginTop": 20,
-      "valueText": ''
-    },
-      "listeners": [{
-    "event": "drawn",
-    "method": addLegendLabel
-  }]
-});
+// Add data
+//chart.data = [{"id":107,"event_id":75,"position":4,"participants":212396,"rank_1":1,"tier_1":50195271,"rank_2":2000,"tier_2":1753240,"rank_3":4000,"tier_3":0,"rank_4":6000,"tier_4":0,"rank_5":8500,"tier_5":0,"rank_6":11000,"tier_6":0,"rank_7":15000,"tier_7":0,"rank_8":19000,"tier_8":0,"rank_9":23000,"tier_9":0,"rank_10":28000,"tier_10":0,"rank_11":35000,"tier_11":0,"rank_12":0,"tier_12":0,"rank_13":0,"tier_13":0,"rank_14":0,"tier_14":0,"rank_15":0,"tier_15":0,"rank_16":0,"tier_16":0,"rank_17":0,"tier_17":0,"rank_18":0,"tier_18":0,"rank_19":0,"tier_19":0,"rank_max":300000,"updated_at":"2018-05-18 05:44:46","updated_by":1,"created_at":"2018-05-18 05:44:46"},{"id":108,"event_id":75,"position":4,"participants":212396,"rank_1":1,"tier_1":55195271,"rank_2":2000,"tier_2":1753240,"rank_3":4000,"tier_3":0,"rank_4":6000,"tier_4":0,"rank_5":8500,"tier_5":0,"rank_6":11000,"tier_6":34834,"rank_7":15000,"tier_7":0,"rank_8":19000,"tier_8":0,"rank_9":23000,"tier_9":0,"rank_10":28000,"tier_10":0,"rank_11":35000,"tier_11":0,"rank_12":0,"tier_12":0,"rank_13":0,"tier_13":0,"rank_14":0,"tier_14":0,"rank_15":0,"tier_15":0,"rank_16":0,"tier_16":0,"rank_17":0,"tier_17":0,"rank_18":0,"tier_18":0,"rank_19":0,"tier_19":0,"rank_max":300000,"updated_at":"2018-05-18 07:44:46","updated_by":1,"created_at":"2018-05-18 06:44:46"}];
+//chart.dataSource.url = "/test.json";
+chart.dataSource.url = "/data/event-border.json";
+chart.dataSource.parser = new am4core.JSONParser();
+
+// Create axes
+let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "created_at";
+categoryAxis.title.text = "Countries";
+
+let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.title.text = "Points";
+
+// Create series
+var series2 = chart.series.push(new am4charts.LineSeries());
+series2.name = "Tier 1";
+series2.stroke = am4core.color("#CDA2AB");
+series2.strokeWidth = 3;
+series2.dataFields.valueY = "tier_1";
+series2.dataFields.categoryX = "created_at";
+
+var series3 = chart.series.push(new am4charts.LineSeries());
+series3.name = "Tier 7";
+series3.stroke = am4core.color("#CDA2AB");
+series3.strokeWidth = 3;
+series3.dataFields.valueY = "tier_7";
+series3.dataFields.categoryX = "created_at";
+
+
+//  var chart = AmCharts.makeChart("chartdiv", {
+//     "type": "serial",
+//     "theme": "light",
+//     "dataDateFormat": "YYYY-MM-DD HH:NN",
+//     "dataLoader": {
+//     "url": "/data/event-border",
+//     "format": "json",
+//   },
+//       "valueAxes": [{
+//         "axisAlpha": 0,
+//         "position": "left"
+//     }],
+//     "graphs": [{
+//         "id":"1 5 Star - 1200",
+//         "title": fiveStarBorder,
+//         "bullet": "round",
+//         "balloonText": "[[value]]",
+//         "valueField": "tier1"
+//     },{
+//         "id":"40",
+//         "title": "11000",
+//         "bullet": "round",
+//         "balloonText": "[[value]]",
+//         "valueField": "tier7"
+//     },{
+//         "id":"41",
+//         "title": "35000",  
+//         "bullet": "round",
+//         "balloonText": "[[value]]",
+//         "valueField": "tier12"
+//     }],
+//     "chartCursor": {
+//         //"categoryBalloonDateFormat": "YYYY",
+//         "categoryBalloonEnabled": false,
+//         "cursorAlpha": 1,
+//         //"valueLineEnabled":true,
+//         //"valueLineBalloonEnabled":true,
+//         "valueLineAlpha":0.5,
+//         //"fullWidth":true
+//     },
+//     "categoryField": "created_at",
+//     "categoryAxis": {
+//     	"startOnAxis": "true",
+//       "labelFunction": function(label) {
+
+
+//         if (label == 'start') {
+//           label = 'Day 1';
+//         } else if (label == 1) {
+//           label = 'Day 2';
+//         } else if (label == 3) {
+//           label = 'Day 3';
+//         } else if (label == 5) {
+//           label = 'Day 4';
+//         } else if (label == 7) {
+//           label = 'Day 5';
+//         } else if (label == 9) {
+//           label = 'Day 6';
+//         } else if (label == 11) {
+//           label = 'Day 7';
+//         } else if (label == 13) {
+//           label = 'Day 8';
+//         } else if (label == 15) {
+//           label = 'Day 9';
+//         } else if (label == 17) {
+//           label = 'Day 10';
+//         } else if (label == 19) {
+//           label = 'End';
+//         } else {
+//           label = '';
+//         }
+
+//         return label;
+//       },
+//     },
+//     "legend": {
+//       "position": "left",
+//       "marginTop": 20,
+//       "valueText": ''
+//     },
+//       "listeners": [{
+//     "event": "drawn",
+//     "method": addLegendLabel
+//   }]
+// });
 
 
 function addLegendLabel(e) {
