@@ -69,10 +69,20 @@ class UserController extends Controller
         //tie the cards they have
         $scouts = Scout::orderBy('end','desc')->get();
 
+        //check for bloomed card settings
+        $bloomcheck = Usercard::where('user_id','=',$user->id)->where('card_id','=',$user->card)->first();
+
+        if ($bloomcheck->bloom == 1) {
+            $bloom = true;
+        } else {
+            $bloom = false;
+        }	
+
 
          return view('user.dashboard')
             ->with('scouts',$scouts)
             ->with('user',$user)
+            ->with('bloom',$bloom)
             ->with('card',$card);
       
     } 

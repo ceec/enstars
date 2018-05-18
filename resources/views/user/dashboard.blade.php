@@ -13,8 +13,11 @@ Dashboard | enstars.info
         	<h1>Dashboard - <a href="/user/dashboard">{{Auth::user()->name}}</a></h1>
         	<div class="row">
         		<div class="col-md-3">
-                        
-                    <img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png">
+                    @if($bloom)
+                        <img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}b.png">
+                    @else
+                        <img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png">
+                    @endif
         		</div>
                 <div class="col-md-9">
                 <div class="row">
