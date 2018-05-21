@@ -24,7 +24,13 @@
             <td>Pf Max 1</td>
             <td>Da Max 5</td>
             <td>Vo Max 5</td>
-            <td>Pf Max 5</td>            
+            <td>Pf Max 5</td>    
+            <td>D J</td>        
+            <td>D E</td>
+            <td>D Id</td>
+            <td>L J</td>        
+            <td>L E</td>
+            <td>L Id</td>            
           </tr>
         </thead>
       @foreach($suggestions as $suggestion)
@@ -44,7 +50,13 @@
           <td>{{$suggestion->card->pf_max}}</td>    
           <td>{{$suggestion->card->da_max5}}</td>
           <td>{{$suggestion->card->vo_max5}}</td>
-          <td>{{$suggestion->card->pf_max5}}</td>                
+          <td>{{$suggestion->card->pf_max5}}</td>
+          <td>{{$suggestion->card->dorifes_j}}</td>
+          <td>{{$suggestion->card->dorifes_e}}</td>
+          <td>{{$suggestion->card->dorifes_id}}</td>  
+          <td>{{$suggestion->card->lesson_j}}</td>
+          <td>{{$suggestion->card->lesson_e}}</td>
+          <td>{{$suggestion->card->lesson_id}}</td>                      
         </tr>       
         <tr class="warning">
           <td>{{$suggestion->acard_id}}</td>
@@ -62,7 +74,13 @@
           <td>{{$suggestion->pf_max}}</td>    
           <td>{{$suggestion->da_max5}}</td>
           <td>{{$suggestion->vo_max5}}</td>
-          <td>{{$suggestion->pf_max5}}</td>                
+          <td>{{$suggestion->pf_max5}}</td> 
+          <td>{{$suggestion->dorifes_j}}</td>
+          <td>{{$suggestion->dorifes_e}}</td>
+          <td>{{$suggestion->dorifes_id}}</td>    
+          <td>{{$suggestion->lesson_j}}</td>
+          <td>{{$suggestion->lesson_e}}</td>
+          <td>{{$suggestion->lesson_id}}</td>                                     
         </tr>   
         <tr>
           <td>
