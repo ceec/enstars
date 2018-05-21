@@ -26,37 +26,21 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('admin');
     }
 
     /**
-     * Show the application dashboard.
+     * Show the admin dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //need to get that users cards
-
-        //$usercards = Usercard::where('user_id','=',Auth::user()->id)->cards;
-
-        //$cards = $usercards;
-
-        $allcards = [];
-
-        $cards = Usercard::where('user_id','=',Auth::user()->id)->get();
-
-        foreach ($cards as $key => $card) {
-            //get the card
-            $card = Card::where('id','=',$card->card_id)->first();
-            $allcards[] = $card;
-
-        }
+    public function index() {
+        //count suggestions
+        $suggestions = Cardsuggestion::where('status','=',0)->count();
 
         return view('home')
-        ->with('cards',$allcards);
+        ->with('suggestions',$suggestions);
     }
 
 

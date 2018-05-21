@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-md-4">
                        <h3>Suggestions</h3>
-                        <a href="/home/suggestions">Suggestions</a><br>                
+                        <strong>{{$suggestions}}</strong> <a href="/home/suggestions">Suggestions</a><br>                
                     </div>                       
                 </div>
                 </div>
