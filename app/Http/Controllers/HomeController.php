@@ -553,11 +553,29 @@ class HomeController extends Controller
      */
     public function suggestions() {
         //get all the suggestions
-        $suggestions = Cardsuggestion::all();
+        $suggestions = Cardsuggestion::where('status','=',0)->get();
 
 
         return view('home.suggestions')
             ->with('suggestions',$suggestions);
     }      
+
+    /**
+     * clear suggestions
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function suggestionClear(Request $request) {
+        //clear the suggestion
+
+        $suggestion = Cardsuggestion::find($request->suggestion_id);
+
+        $suggestion->status = 1;
+
+        $suggestion->save();
+
+        return redirect('/home/suggestions/');
+    }  
+
 
 }

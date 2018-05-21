@@ -235,6 +235,8 @@ Route::get('/home/message/new','HomeController@newMessage');
 //suggestions
 Route::get('/home/suggestions','HomeController@suggestions');
 
+Route::post('/home/suggestion/clear','HomeController@suggestionClear');
+
 
 /////////////// USER ///////////////
 

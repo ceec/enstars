@@ -667,6 +667,7 @@ class CardController extends Controller
         //can probably do this easier but i dont understand eloquent enough
 
         $c = new Cardsuggestion;
+        $c->status = 0;
         $c->acard_id = $card_id;
         $c->boy_id = $card->boy_id;
         $c->card_id = $card->card_id;

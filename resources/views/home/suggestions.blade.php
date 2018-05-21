@@ -65,6 +65,14 @@
           <td>{{$suggestion->pf_max5}}</td>                
         </tr>   
         <tr>
+          <td>
+            {!! Form::open(['url' => '/home/suggestion/clear']) !!}
+            {!! Form::hidden('suggestion_id',$suggestion->id) !!}                                                                       
+            {!! Form::submit('Clear') !!}
+            {!! Form::close() !!}
+          </td>
+        </tr>
+        <tr>
           <td><br></td>
         </tr>                             
       @endforeach
