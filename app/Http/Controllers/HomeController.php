@@ -18,7 +18,6 @@ use App\Minieventchoice;
 use App\Minieventslide;
 use App\Chapterboy;
 use App\Cardsuggestion;
-use thiagoalessio\TesseractOCR\TesseractOCR;
 
 class HomeController extends Controller
 {
@@ -100,12 +99,6 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function translations() {
-        echo 'WHAT';
-echo (new TesseractOCR('/images/translate/gacha/14/1_02.jpg'))
-    ->run();
-
-
-
        $event_stories = Story::where('type','=',1)->get();
        $gacha_stories = Story::where('type','=',2)->get();
        $character_stories = Story::where('type','=',3)->get();
