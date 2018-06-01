@@ -212,9 +212,45 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function birthdays() {
-        $boys = Boy::all();
+        //get just boys with birthday info
+        $boys = Boy::where('school_id','!=',4)->orderBy('birthday','asc')->get();
+
+        //should probably move logic here
+
+
+        $months = array('January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July ',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+        );
+
+
+        $birthdays = [];
+
+        foreach($months as $m => $month) {
+            foreach($boys as $boy) {
+                if (date('n',strtotime($boy->birthday)) == ($m+1)) {
+                    
+                    $birthdays[$month][] = $boy;
+                }
+
+            }
+        }
+
+
+        //dd($birthdays);
+
 
         return view('pages.birthdays')
+            ->with('birthdays',$birthdays)
             ->with('boys',$boys);
     }
 
