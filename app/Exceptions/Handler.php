@@ -56,8 +56,28 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        //hide whoops message from users
+        if( ! config('app.debug') ) {
+            // MethodNotAllowedHttpException
+            if( $e instanceof MethodNotAllowedHttpException )
+                $e = new HttpException( 405, $e->getMessage() );
+
+            // TokenMismatchException
+            if( $e instanceof TokenMismatchException )
+                $e = new HttpException( 400, $e->getMessage() );
+        }        
+
+
+
+
+        // if ($exception instanceof TokenMismatchException) {
+        //         $exception = new HttpException(400, $exception->getMessage());
+        //         return redirect()->guest('login');
+        //     }
+
         //mail('cc@battab.com','Enstars Error', $request);
-        return parent::render($request, $exception);
+        return parent::render($request, $exception);    
+        //return redirect()->guest('login');
     }
 
     /**
