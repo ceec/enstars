@@ -32,10 +32,18 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        //2018-06-02
+        //lets update this, dont want Illuminate\Auth\AuthenticationException
+        //Illuminate\Validation\ValidationException
+
         //only want to mail if its not a 404.
-         if (!($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)) {
+         if (!($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) && !($exception instanceof \Symfony\Component\HttpKernel\Exception\AuthenticationException)) {
              mail('cc@battab.com','Enstars Error', $exception);
          }
+
+
+
+
         parent::report($exception);
     }
 
