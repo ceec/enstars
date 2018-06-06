@@ -32,8 +32,15 @@
     	<img class="img-responsive" src="/images/translate/{{$event_type}}/{{$story->id}}/{{$chapter->chapter}}_{{$slide_number}}.{{$chapter->file_type}}">
     	</div>
     	<div class="col-md-6">
-			
-			{!! Form::textarea('text_j',$slide->text_j,['class'=>'form-control ajaxTest','id'=>'j-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Japanese Text']) !!} <br>
+			<div class="row">
+                    <div class="col-md-6">
+                        {!! Form::textarea('text_j',$slide->text_j,['class'=>'form-control ajaxTest','id'=>'j-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Japanese Text']) !!} 
+                    </div>
+                    <div class="col-md-6">
+                        {!! Form::textarea('text_g',$slide->text_g,['class'=>'form-control ajaxTest','id'=>'j-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Generated Text']) !!} 
+                    </div>
+            </div>
+            <br>
 			{!! Form::textarea('text_e', $slide->text_e,['class'=>'form-control ajaxTest','id'=>'e-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'English Text']) !!} 
             @foreach($boys as $key => $boy)
                 <button class="add-boy-css" data-class="{{$boy}}" data-slide="{{$slide->id}}">{{$boy}}</button> 
