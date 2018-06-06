@@ -48,6 +48,7 @@
                     @else
                      <li><a href="/home">Dashboard</a></li>
                      <li><a href="/home/translations">Translations</a></li>
+                     <li><a href="/home/tools">Tools</a></li>
                     @endif
                 </ul>
 

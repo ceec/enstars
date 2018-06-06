@@ -211,10 +211,14 @@ Route::post('/home/edit/card','CardController@edit');
 
 //tool page
 Route::get('/home/tools','HomeController@tools');
+//individual tools
+Route::get('/home/tools/addSlides','HomeController@toolAddSlides');
+Route::get('/home/tools/generatedText','HomeController@toolAddGeneratedText');
 
 //adding slides
 Route::post('/add/translation/slides','HomeController@addSlides');
-
+//adding generated text
+Route::post('/add/translation/generatedText','HomeController@addGeneratedText');
 
 //add edit blog
 Route::get('/home/blog/add','BlogController@addDisplay');

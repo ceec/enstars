@@ -372,21 +372,43 @@ class HomeController extends Controller
         $c->save();
 
         echo json_encode(array('chapter'=>$complete));
-    } 
+    }  
 
 
     /**
-     * Show the tools page
+     * Actually Show the tools page
      *
      * @return \Illuminate\Http\Response
      */
     public function tools() {
+        return view('home.tools');
+    }   
+
+    /**
+     * UI for generating chapter slides
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function toolAddSlides() {
         //return a list of all the boys
         $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
 
-        return view('home.tool')
+        return view('home.toolAddSlides')
             ->with('boys',$boys);
-    }  
+    } 
+
+    /**
+     * UI for adding generated text
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function toolAddGeneratedText() {
+        //return a list of all the boys
+        $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
+
+        return view('home.toolAddGeneratedText')
+            ->with('boys',$boys);
+    }     
 
 
     /**
@@ -488,6 +510,30 @@ class HomeController extends Controller
         }
         
         return redirect('/home/translations/');      
+    }
+
+
+    /**
+     * Adding generated text - from tools page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addGeneratedText(Request $request) {
+        $chapter_id = $request->input('chapter_id');
+        $text = $request->input('text_g');
+
+        //need to parse $text into JSON
+        $data = json_decode($text);
+
+        foreach($data as $slide) {
+            $c = Slide::where('chapter_id','=',$chapter_id)->where('slide','=',$slide->id)->first();
+            $c->text_g = $slide->english;
+            $c->text_j = $slide->japanese;
+            $c->save();
+        }
+
+        
+        return redirect('/home/tools/');      
     }
 
 
