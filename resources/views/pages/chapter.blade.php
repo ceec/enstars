@@ -127,7 +127,13 @@
 				        	@if ($slide->boy_id !=0)
 				        		<p class="name-text-{{$source}}">{{$slide->boy_name}}</p>
 				        	@endif
-				        	<p class="slide-text-{{$source}}">{!! $slide->text_e !!}</p>
+                  <p class="slide-text-{{$source}}">
+                    @if ($generated == 'generated')
+                    {!! $slide->text_g !!}
+                    @else
+                    {!! $slide->text_e !!}
+                    @endif
+                  </p>
 				        </div>
 		          	</div>
 		          	<div class="col-md-5 bottom-align-text">
