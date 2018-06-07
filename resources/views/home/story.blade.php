@@ -8,7 +8,13 @@
 			<h2>Chapters</h2>
 		    @foreach ($chapters as $chapter)
 		    	@if ($chapter->total_slides > 1)
-		    	{{$chapter->percent}}%
+					{{$chapter->percent}}%
+
+					
+					@if ($chapter->generated == true)
+						<span class="badge">G</span>
+					@endif
+					
 		    	@endif
 		         <a href="/home/translations/{{$story->id}}/{{$chapter->id}}">{{$chapter->name_e}}</a><br>
 		    @endforeach

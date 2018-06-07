@@ -163,11 +163,28 @@ class HomeController extends Controller
             $amount_complete = Slide::where('chapter_id','=',$chapter->id)->where('text_e','!=','')->count();
             $amount_total = Slide::where('chapter_id','=',$chapter->id)->count();
 
+            //check for generated text
+            $generated_check = Slide::where('chapter_id','=',$chapter->id)->where('slide','=',2)->first();
+
+           // dd($generated_check);
+            
+            if (isset($generated_check)) {
+                if ($generated_check->text_e == '') {
+                    $generated = true;
+                } else {
+                    $generated = false;
+                }
+            } else {
+                $generated = false;
+            }
+
+
             if ($amount_total == 0) {
                 $amount_total = 1;
             }
             $chapters[$key]->percent = round(($amount_complete/$amount_total) * 100);
             $chapters[$key]->total_slides = $amount_total;
+            $chapters[$key]->generated = $generated;
         }
 
         //get the mini events tied to this event
