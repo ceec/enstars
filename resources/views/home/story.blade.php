@@ -12,6 +12,7 @@
 
 					
 					@if ($chapter->generated == true)
+					<?php var_dump($chapter->generated); ?>
 						<span class="badge">G</span>
 					@endif
 					

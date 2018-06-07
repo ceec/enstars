@@ -167,10 +167,11 @@ class HomeController extends Controller
             $generated_check = Slide::where('chapter_id','=',$chapter->id)->where('slide','=',2)->first();
 
            // dd($generated_check);
-           $generated = false;
+           
             
             if (isset($generated_check)) {
-                if ($generated_check->text_e == '') {
+                 echo $generated_check->id;
+                if ($generated_check->text_e != '') {
                     $generated = true;
                 } else {
                     $generated = false;
@@ -178,7 +179,8 @@ class HomeController extends Controller
             } else {
                 $generated = false;
             }
-
+           
+            var_dump($generated);
 
             if ($amount_total == 0) {
                 $amount_total = 1;

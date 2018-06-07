@@ -128,7 +128,7 @@
 				        		<p class="name-text-{{$source}}">{{$slide->boy_name}}</p>
 				        	@endif
                   <p class="slide-text-{{$source}}">
-                    @if (($generated == 'generated')
+                    @if ($generated == 'generated')
                     {!! $slide->text_g !!}
                     @else
                     {!! $slide->text_e !!}
