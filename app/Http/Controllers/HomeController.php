@@ -167,6 +167,7 @@ class HomeController extends Controller
             $generated_check = Slide::where('chapter_id','=',$chapter->id)->where('slide','=',2)->first();
 
            // dd($generated_check);
+           $generated = false;
             
             if (isset($generated_check)) {
                 if ($generated_check->text_e == '') {
