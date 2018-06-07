@@ -170,8 +170,7 @@ class HomeController extends Controller
            
             
             if (isset($generated_check)) {
-                 echo $generated_check->id;
-                if ($generated_check->text_e != '') {
+                if ($generated_check->text_g != '') {
                     $generated = true;
                 } else {
                     $generated = false;
@@ -179,8 +178,7 @@ class HomeController extends Controller
             } else {
                 $generated = false;
             }
-           
-            var_dump($generated);
+        
 
             if ($amount_total == 0) {
                 $amount_total = 1;
