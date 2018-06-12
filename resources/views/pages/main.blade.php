@@ -13,6 +13,13 @@ enstars.info - Information and Translations for Ensemble Stars!
                     @foreach ($current_event as $event)
                         <h4>{{$event->name_e}}</h4>
                         <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a><br>
+                        <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a><br>
+                        <?php
+                            //this date is in JST but intrepreted in local? MST?
+                            //switch to JST
+                            
+                            date_default_timezone_set('Asia/Tokyo');
+                        ?>                        
                         @if ($event->end > date('Y-m-d h:i:s'))
                             <h4>Time Remaining:<br> <span id="time-remaining"></span></h4>
                             
