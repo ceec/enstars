@@ -1237,11 +1237,19 @@ class DisplayController extends Controller {
         $gacha_stories = Story::where('type','=',2)->where('active','=','1')->get();
         $character_stories = Story::where('type','=',3)->where('active','=','1')->get();
 
+        //bad stories that are complete
+        $event_stories_bad = Story::where('type','=',1)->where('name_j','!=','')->get();
+        $gacha_stories_bad = Story::where('type','=',2)->where('name_j','!=','')->get();
+        $character_stories_bad = Story::where('type','=',3)->where('name_j','=','')->get();  
+
 
         return view('pages.translation')
         ->with('event_stories',$event_stories)
         ->with('gacha_stories',$gacha_stories)
-        ->with('character_stories',$character_stories);
+        ->with('character_stories',$character_stories)
+        ->with('event_stories_bad',$event_stories_bad)
+        ->with('gacha_stories_bad',$gacha_stories_bad)
+        ->with('character_stories_bad',$character_stories_bad);
     }
 
 
