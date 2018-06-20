@@ -1240,7 +1240,7 @@ class DisplayController extends Controller {
         //bad stories that are complete
         $event_stories_bad = Story::where('type','=',1)->where('name_j','!=','')->get();
         $gacha_stories_bad = Story::where('type','=',2)->where('name_j','!=','')->get();
-        $character_stories_bad = Story::where('type','=',3)->where('name_j','=','')->get();  
+        $character_stories_bad = Story::where('type','=',3)->where('name_j','!=','')->get();  
 
 
         return view('pages.translation')
