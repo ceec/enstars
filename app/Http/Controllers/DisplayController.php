@@ -1524,6 +1524,7 @@ class DisplayController extends Controller {
 
 
             $m = new Cardissue;
+            $m->status = 0;
             $m->card_id = $request->card_id;
             $m->message = $request->message;
             $m->submitted_by = $submitted_by;

@@ -241,6 +241,9 @@ Route::get('/home/suggestions','HomeController@suggestions');
 
 Route::post('/home/suggestion/clear','HomeController@suggestionClear');
 
+//card issues
+Route::get('/home/cardissues','HomeController@cardIssues');
+
 
 /////////////// USER ///////////////
 

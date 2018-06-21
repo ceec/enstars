@@ -18,6 +18,7 @@ use App\Minieventchoice;
 use App\Minieventslide;
 use App\Chapterboy;
 use App\Cardsuggestion;
+use App\Cardissue;
 
 class HomeController extends Controller
 {
@@ -38,9 +39,12 @@ class HomeController extends Controller
     public function index() {
         //count suggestions
         $suggestions = Cardsuggestion::where('status','=',0)->count();
+        //count issues
+        $issues = Cardissue::where('status','=',0)->count();
 
         return view('home')
-        ->with('suggestions',$suggestions);
+        ->with('suggestions',$suggestions)
+        ->with('issues',$issues);
     }
 
 
@@ -625,5 +629,23 @@ class HomeController extends Controller
         return redirect('/home/suggestions/');
     }  
 
+
+
+
+///card issues
+
+    /**
+     * view issues
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardIssues() {
+        //get all the issues
+        $issues = Cardissue::where('status','=',0)->get();
+
+
+        return view('home.cardissues')
+            ->with('issues',$issues);
+    }  
 
 }

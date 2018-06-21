@@ -40,8 +40,9 @@
                         <a href="/home/message/new">Create New Message</a><br>
                     </div>
                     <div class="col-md-4">
-                       <h3>Suggestions</h3>
-                        <strong>{{$suggestions}}</strong> <a href="/home/suggestions">Suggestions</a><br>                
+                       <h3>Suggestions/Issues</h3>
+                        <strong>{{$suggestions}}</strong> <a href="/home/suggestions">Card Suggestions</a><br>                
+                        <strong>{{$issues}}</strong> <a href="/home/cardissues">Card Issues</a><br>                
                     </div>                       
                 </div>
                 </div>
