@@ -7,7 +7,7 @@
 		<div class="col-md-12">
       <h2>New Issues</h2>
       @foreach($issues as $issue)
-        <p>{{$issue->card_id}} - {{$issue->message}}</p>
+        <p>{{$issue->created_at}} | {{$issue->card_id}} - {{$issue->message}}</p>
       @endforeach
 		</div>
 	</div>
