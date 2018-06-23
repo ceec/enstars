@@ -641,7 +641,7 @@ class HomeController extends Controller
      */
     public function cardIssues() {
         //get all the issues
-        $issues = Cardissue::where('status','=',0)->get();
+        $issues = Cardissue::where('status','=',0)->orderBy('created_at','desc')->get();
 
 
         return view('home.cardissues')
