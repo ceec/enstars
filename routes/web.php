@@ -243,7 +243,7 @@ Route::post('/home/suggestion/clear','HomeController@suggestionClear');
 
 //card issues
 Route::get('/home/cardissues','HomeController@cardIssues');
-
+Route::post('/home/cardissues/clear','HomeController@cardIssueClear');
 
 /////////////// USER ///////////////
 

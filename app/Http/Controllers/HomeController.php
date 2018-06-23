@@ -648,4 +648,23 @@ class HomeController extends Controller
             ->with('issues',$issues);
     }  
 
+    /**
+     * clear issues
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardIssueClear(Request $request) {
+        //clear the issue
+
+        $issue = Cardissue::find($request->issue_id);
+
+        $issue->status = 1;
+
+        $issue->save();
+
+        return redirect('/home/cardissues/');
+    } 
+
+
+
 }
