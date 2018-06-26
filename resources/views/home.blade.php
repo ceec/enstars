@@ -35,9 +35,9 @@
                         <a href="/home/event/data">Add Event Data</a><br>
                     </div>
                     <div class="col-md-4">
-                        <h3>Messages</h3>
+                       <!-- <h3>Messages</h3>
                         <a href="/home/messages">View Messages</a><br>
-                        <a href="/home/message/new">Create New Message</a><br>
+                        <a href="/home/message/new">Create New Message</a><br>-->
                     </div>
                     <div class="col-md-4">
                        <h3>Suggestions/Issues</h3>
