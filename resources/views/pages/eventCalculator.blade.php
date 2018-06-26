@@ -25,7 +25,7 @@ var eventID = "<?php print $event->id; ?>";
 
 #chartdiv2 {
 	width	: 100%;
-	height	: 300px;
+	height	: 400px;
 }	
 </style>
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -160,20 +160,23 @@ var chart = am4core.create("chartdiv2", am4charts.XYChart);
 // Add data
 chart.dataSource.url = "/data/event-border";
 chart.dataSource.parser = new am4core.JSONParser();
+chart.dateFormatter.dateFormat = 'yyyy-MM-dd hh:mm:ss';
 
 // // Create axes
 let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
 dateAxis.dataFields.category = "created_at";
-dateAxis.dataDateFormat = 'YYYY-MM-DD JJ:NN:SS';
-dateAxis.baseInterval = {
- "timeUnit": "second",
- "count": 1
-};
+dateAxis.dateFormatter = new am4core.DateFormatter();
+dateAxis.dateFormatter.dateFormat = "yyyy";
+//https://www.amcharts.com/docs/v4/concepts/formatters/formatting-date-time/
+// dateAxis.baseInterval = {
+//  "timeUnit": "hour",
+//  "count": 1
+// };
 dateAxis.title.text = "";
 
 let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.title.text = "Points";
-
+valueAxis.title.text = "";
+valueAxis.cursorTooltipEnabled = false;
 // // Create series
 var series1 = chart.series.push(new am4charts.LineSeries());
 series1.name = "2000";
@@ -190,18 +193,28 @@ series2.name = "11000";
 series2.strokeWidth = 3;
 series2.dataFields.valueY = "tier_6";
 series2.dataFields.dateX = "created_at";
+series2.tooltipText = "{valueY}";
 series2.bullets.push(new am4charts.CircleBullet());
+var bullet2 = series2.bullets.push(new am4charts.CircleBullet());
+var bullet2hover = bullet2.states.create("hover");
+bullet2hover.properties.scale = 1.3;
 
 var series3 = chart.series.push(new am4charts.LineSeries());
 series3.name = "35000";
 series3.strokeWidth = 3;
 series3.dataFields.valueY = "tier_11";
 series3.dataFields.dateX = "created_at";
+series3.tooltipText = "{valueY}";
 series3.bullets.push(new am4charts.CircleBullet());
+var bullet3 = series3.bullets.push(new am4charts.CircleBullet());
+var bullet3hover = bullet3.states.create("hover");
+bullet3hover.properties.scale = 1.3;
 
 //legend
 chart.legend = new am4charts.Legend();
+//chart.legend.title.text = 'Borders';
 //chart.legend.position = "left";
+//chart.legend.marginRight = 0;
 
 //bullets
 var bullet = series1.bullets.create();
@@ -209,6 +222,8 @@ bullet.fill = series1.stroke;
 
 //cursor
 chart.cursor = new am4charts.XYCursor();
+chart.cursor.lineY.disabled = true;
+chart.cursor.lineX.strokeDasharray = "";
 
 
  var chart = AmCharts.makeChart("chartdiv", {
