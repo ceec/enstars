@@ -395,7 +395,24 @@ class DataController extends Controller {
     }     
 
 
+    /**
+     * data for card frequency per boy
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function frequencyChart($boy_id) {
+        $cards2018 = Card::where('boy_id','=',$boy_id)->where('created_at','>','2017-12-31')->orderBy('created_at','asc')->get();
 
+      
+        foreach($cards2018 as $card) {
+            $data2018['x'] = date('W',strtotime($card->created_at));
+            $data2018['y'] = $card->stars;
+            $data2018['source'] = $card->event_id;
+            $data[] = $data2018;
+        }
+
+        echo json_encode($data);
+    }
 
 
 

@@ -146,6 +146,8 @@ Route::get('/data/event-border','DataController@eventBorder');
 Route::get('/data/timeline','DataController@timeline');
 //idolroad
 Route::get('/data/road/{card_id}','DataController@idolRoad');
+//cardfrequency
+Route::get('/data/frequency/{boy_id}','DataController@frequencyChart');
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
