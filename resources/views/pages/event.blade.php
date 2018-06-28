@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-        	<h1>{{$event->name_e}} <small>{{$event->start}} - {{$event->end}}</small></h1>
+        	<h1>{{$event->name_e}} <small>{{date('F j, Y H:i',strtotime($event->start))}} - {{date('F j, Y H:i',strtotime($event->end))}}</small></h1>
             <p>{!! $event->text !!}</p>
             <div class="row">
                 <div class="col-md-12">

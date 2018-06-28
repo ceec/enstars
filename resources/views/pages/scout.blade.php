@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
 
-        	<h1>{{$scout->name_e}} <small>{{$scout->start}} - {{$scout->end}}</small></h1>
+        	<h1>{{$scout->name_e}} <small>{{date('F j, Y H:i',strtotime($scout->start))}} - {{date('F j, Y H:i',strtotime($scout->end))}}</small></h1>
             <p>{!! $scout->text !!}</p>
             <div class="row">
                 <div class="col-md-12">
