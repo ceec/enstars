@@ -124,7 +124,7 @@ class Card extends Model
     <div class="col-md-<?php print $col; ?>">
 <?php
 	if ($this->stars != '') {
-?>
+?>	
 		<div id="card-panel-<?php print $this->id; ?>" class="panel <?php print $background; ?>">
 			<div class="panel-heading">
 				<h3 class="panel-title">
@@ -145,6 +145,16 @@ class Card extends Model
 ?>
 					<span class="glyphicon glyphicon-certificate bloom hoverhand" id="bloom-<?php print $this->id ?>" data-id="<?php print $this->id ?>" data-card-id="<?php print $this->card_id ?>" data-boy="<?php print $this->boy_id ?>" aria-hidden="true"></span>
 			 		<?php print $this->id ?> <?php print $this->name_e ?>
+					 <?php
+						if (!Auth::guest()) {
+							if (Auth::user()->isAdmin()) {
+					?>
+					 <div class="pull-right"><?php print $this->da; ?></div>
+					<?php
+							}
+						 }                  
+					 ?>
+
 <?php							
 						}
 					?>
