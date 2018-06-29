@@ -16,4 +16,13 @@ class Chapterboy extends Model {
         return $this->hasOne('App\Boy');
     }
 
+
+    /**
+     * Get the chapters
+     */
+    public function chapter()
+    {
+        return $this->belongsTo('App\Chapter');
+    }    
+
 }

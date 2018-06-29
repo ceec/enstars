@@ -48,6 +48,7 @@ use App\Userteam;
 use Auth;
 
 use App\Cardsuggestion;
+use App\Chapterboy;
 
 
 class DisplayController extends Controller {
@@ -538,9 +539,14 @@ class DisplayController extends Controller {
         // print_r($final);
         // print '</pre>';
 
+        //get the characters stories
+        $chapters = Chapterboy::where('boy_id','=',$boy->id)->get();
+
+
         return view('pages.idol')
             ->with('boy',$boy)
             ->with('cards',$final)
+            ->with('chapters',$chapters)
             ->with('minievents',$minievents);
             //->with('events',$events);
     }

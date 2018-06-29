@@ -47,6 +47,11 @@
         </div>
     </div>
     <h2>Stories</h2>
+        @foreach($chapters as $chapter)
+            @if($chapter->chapter->complete == 1)
+            <a href="/story/{{$chapter->chapter->story->id}}">{{$chapter->chapter->story->name_e}}</a> - <a href="/story/{{$chapter->chapter->story->id}}/{{$chapter->chapter->chapter}}">{{$chapter->chapter->name_e}}</a><br>
+            @endif
+        @endforeach
     <h2>Card Frequency</h2>
     
     <style>
