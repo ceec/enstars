@@ -67,7 +67,7 @@
                                     <th>Reward<th>
                                 </tr>
                             </thead>
-                            @for ($i = 1; $i < 20; $i++)
+                            @for ($i = 1; $i < 12; $i++)
                             <?php
                                 $rank = "rank_".$i;
                                 $next_rank = "rank_".($i + 1);
@@ -75,12 +75,7 @@
                             ?>
                             <tr>
                                 <td>
-                                    {{$points->$rank}} -
-                                    @if ($i < 19)
-                                        {{$points->$next_rank - 1}}
-                                    @else
-                                        {{$points->rank_max}}
-                                    @endif
+                                    {{$points->$rank}} 
                                 </td>
                                 <td>
                                     {{$points->$tier}}

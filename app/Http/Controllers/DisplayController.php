@@ -1047,7 +1047,7 @@ class DisplayController extends Controller {
         $cards = Card::where('event_id','=',$event->id)->orderBy('stars','desc')->get();
     
         //get the event points
-        $points = Eventpoint::where('event_id','=',$event->id)->first();
+        $points = Eventpoint::where('event_id','=',$event->id)->orderBy('created_at','desc')->first();
         //get rewards
         $rewards = Reward::all();
 
