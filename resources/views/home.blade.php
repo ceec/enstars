@@ -38,16 +38,34 @@
                        <!-- <h3>Messages</h3>
                         <a href="/home/messages">View Messages</a><br>
                         <a href="/home/message/new">Create New Message</a><br>-->
-                    </div>
-                    <div class="col-md-4">
-                       <h3>Suggestions/Issues</h3>
-                        <strong>{{$suggestions}}</strong> <a href="/home/suggestions">Card Suggestions</a><br>                
-                        <strong>{{$issues}}</strong> <a href="/home/cardissues">Card Issues</a><br>                
-                    </div>                       
+                    </div>                     
                 </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Data</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3>Users</h3>
+                            <strong>{{$userstotal}}</strong> Total Users<br>
+                            <strong>{{$usersweek}}</strong> Users This Week<br>
+                            <strong>{{$userstoday}}</strong> Users Today
+
+                        </div>
+                        <div class="col-md-4">
+                        <h3>Suggestions/Issues</h3>
+                            <strong>{{$suggestions}}</strong> <a href="/home/suggestions">Card Suggestions</a><br>                
+                            <strong>{{$issues}}</strong> <a href="/home/cardissues">Card Issues</a><br>                
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>    
     </div>
 </div>
 @endsection

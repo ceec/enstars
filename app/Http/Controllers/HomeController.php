@@ -42,7 +42,29 @@ class HomeController extends Controller
         //count issues
         $issues = Cardissue::where('status','=',0)->count();
 
+        //count user states
+        $userstotals = User::all()->count();
+        //weekly users
+        //lets use Carbon
+        \Carbon\Carbon::setWeekStartsAt(\Carbon\Carbon::SUNDAY);
+        \Carbon\Carbon::setWeekEndsAt(\Carbon\Carbon::SATURDAY);        
+        $now = \Carbon\Carbon::now();
+
+        //make them strings not objects
+        $startofday = $now->startOfDay()->toDateTimeString();
+        $endofday = $now->endOfDay()->toDateTimeString();
+        $startofweek = $now->startOfWeek()->toDateTimeString();
+        $endofweek = $now->endOfWeek()->toDateTimeString();
+
+        $usersweek = User::whereBetween('created_at', [$startofweek, $endofweek])->get()->count();
+
+        //get todays
+        $userstoday = User::whereBetween('created_at', [$startofday, $endofday])->get()->count();
+        
         return view('home')
+        ->with('userstotal',$userstotals)
+        ->with('usersweek',$usersweek)
+        ->with('userstoday',$userstoday)
         ->with('suggestions',$suggestions)
         ->with('issues',$issues);
     }
