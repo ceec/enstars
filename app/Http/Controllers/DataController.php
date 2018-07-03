@@ -277,71 +277,33 @@ class DataController extends Controller {
 
         $points = Eventpoint::where('event_id','=',$event->id)->get();
 
-        //add in the 0 data point for event start
-        //is this not copying it???, its not is this that reference thing i never understood???
-        //use clone instead
-        $start = clone $points[0];
-        $start->participants = 0;
-        $start->tier_1 = 0;
-        $start->tier_2 = 0;
-        $start->tier_3 = 0;
-        $start->tier_4 = 0;
-        $start->tier_5 = 0;
-        $start->tier_6 = 0;
-        $start->tier_7 = 0;
-        $start->tier_8 = 0;
-        $start->tier_9 = 0;
-        $start->tier_10 = 0;
-        $start->tier_11 = 0;
-        $start->created_at = $event->start;
-        
-        $points->prepend($start);
-
+        //if there arent any, just return []
+        //when bad url is passed
+        if (empty($points[0])) {
+            $points = [];
+        } else {
+            //add in the 0 data point for event start
+            //is this not copying it???, its not is this that reference thing i never understood???
+            //use clone instead
+            $start = clone $points[0];
+            $start->participants = 0;
+            $start->tier_1 = 0;
+            $start->tier_2 = 0;
+            $start->tier_3 = 0;
+            $start->tier_4 = 0;
+            $start->tier_5 = 0;
+            $start->tier_6 = 0;
+            $start->tier_7 = 0;
+            $start->tier_8 = 0;
+            $start->tier_9 = 0;
+            $start->tier_10 = 0;
+            $start->tier_11 = 0;
+            $start->created_at = $event->start;
+            
+            $points->prepend($start);
+        }
 
         echo json_encode($points);
-
-        //changes made in events 50 and up, the 1200 border is now 2k
-
-        if ($event->id > 49) {
-            $data['rank2'] = 2000;     
-
-        } else {    
-            $data['rank2'] = 1200;    
-        
-        }
-                //add zero starting points
-                // $data['points2'] = 0;
-                // $data['points7'] = 0;
-                // $data['rank7'] = 11000;   
-                // $data['points12'] = 0;
-                // $data['rank12'] = 35000;   
-                // $data['position'] = 'start';
-                // $result[] = $data;     
-                // unset($data);      
-
-            // foreach ($points as $key => $point) {
-            //     $data['points2'] = $point->tier_2;
-            //     $data['rank2'] = $point->rank_2;    
-            //     $data['points7'] = $point->tier_7;
-            //     $data['rank7'] = $point->rank_7;   
-
-            //     if ($event->id > 49) {
-            //         $data['points12'] = $point->tier_11;
-            //         $data['rank12'] = $point->rank_11; 
-            //     } else {    
-            //        $data['points12'] = $point->tier_12;
-            //         $data['rank12'] = $point->rank_12;  
-                
-            //     }                
-                
-
-            //     $data['position'] = $point->position;
-            //     $result[] = $data;     
-            //     unset($data);                                    
-            // }
-
-       
-        //echo json_encode($result);
 
     } 
 
