@@ -140,6 +140,8 @@ Route::get('/graph/cardlist','DisplayController@cardList');
 
 Route::get('/data/cards-released','DataController@cardsReleased');
 Route::get('/data/event-border-history','DataController@eventHistory');
+//specific event border
+Route::get('/data/event-border/{event_id}','DataController@eventBorder');
 //current event borders
 Route::get('/data/event-border','DataController@eventBorder');
 //timeline of events and scouts

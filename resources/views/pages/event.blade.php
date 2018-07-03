@@ -30,7 +30,100 @@
                 </div>
                 <p><a href="{{$event->website}}">Event Website</a></p>
                 <div class="row">
-                    <div class="col-md-4" id="story">
+                    <div class="col-md-6">
+                        <h3>Graph</h3>
+                        <style>
+                            #chartdiv {
+                                width	: 100%;
+                                height	: 300px;
+                            }										
+                        </style>
+                         <div id="chartdiv"></div>
+<?php
+                            //convert from JST to UTC
+                            $utc_end = date('Y-m-d H:i:s',strtotime($event->end) - 60 * 60 * 9);
+?>
+                         <script>
+                            var eventEnd = "<?php print $utc_end;?> UTC";
+                            var eventID = "<?php print $event->id; ?>";
+                        </script>
+                         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+                        <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+                        <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+                        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+                        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+                        <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+                         <script>
+                              //set up the new border for event 50 and onward
+                                var fiveStarBorder;
+
+                                if (eventID > 49) {
+                                fiveStarBorder = '2000';
+                                } else {
+                                fiveStarBorder = '1200';
+                                }
+                              var chart = AmCharts.makeChart("chartdiv", {
+                                "type": "serial",
+                                "theme": "light",
+                                "dataDateFormat": "YYYY-MM-DD HH:NN",
+                                "dataLoader": {
+                                    "url": "/data/event-border/"+eventID,
+                                    "format": "json",
+                                },
+                                "valueAxes": [{
+                                    "axisAlpha": 0,
+                                    "position": "left"
+                                }],
+                                "graphs": [{
+                                    "id":"1 5 Star - 1200",
+                                    "title": fiveStarBorder,
+                                    "bullet": "round",
+                                    "balloonText": "[[value]]",
+                                    "valueField": "tier_2"
+                                },{
+                                    "id":"40",
+                                    "title": "11000",
+                                    "bullet": "round",
+                                    "balloonText": "[[value]]",
+                                    "valueField": "tier_6"
+                                },{
+                                    "id":"41",
+                                    "title": "35000",  
+                                    "bullet": "round",
+                                    "balloonText": "[[value]]",
+                                    "valueField": "tier_11"
+                                }],
+                                "chartCursor": {
+                                    "categoryBalloonEnabled": false,
+                                    "cursorAlpha": 1,
+                                    "valueLineAlpha":0.5,
+                                },
+                                "categoryField": "created_at",
+                                "categoryAxis": {
+                                "parseDates": true,
+                                "minPeriod": "hh"
+                                },
+                                "legend": {
+                                "position": "left",
+                                "marginTop": 20,
+                                "valueText": ''
+                                },
+                                "listeners": [{
+                                "event": "drawn",
+                                "method": addLegendLabel
+                            }]
+                            });
+
+
+                            function addLegendLabel(e) {
+                            var title = document.createElement("div");
+                            title.innerHTML = "Borders";
+                            title.className = "legend-title";
+                            e.chart.legendDiv.appendChild(title)
+                            }
+                         </script>
+                    </div>
+                    <div class="col-md-3" id="story">
                         @if ($chapters != '')
                             <h3>Event Story</h3>
                             @foreach ($chapters as $chapter)
@@ -42,7 +135,7 @@
                             @endforeach
                         @endif
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         @if ($minievents != '')
                            <!-- <h3>Mini Events</h3>-->
                             @foreach ($minievents as $event)

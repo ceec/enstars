@@ -270,10 +270,10 @@ class DataController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function eventBorder() {
+    public function eventBorder($event_id) {
 
         //get current event
-        $event = Event::where('active','=','1')->first();
+        $event = Event::find($event_id);
 
         $points = Eventpoint::where('event_id','=',$event->id)->get();
 

@@ -191,7 +191,7 @@ var eventID = "<?php print $event->id; ?>";
     "theme": "light",
     "dataDateFormat": "YYYY-MM-DD HH:NN",
     "dataLoader": {
-    "url": "/data/event-border",
+    "url": "/data/event-border/"+eventID,
     "format": "json",
   },
       "valueAxes": [{
