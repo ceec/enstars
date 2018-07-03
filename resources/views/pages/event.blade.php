@@ -49,79 +49,9 @@
                         </script>
                          <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
                         <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-                        <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-                        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
                         <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
                         <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
-                         <script>
-                              //set up the new border for event 50 and onward
-                                var fiveStarBorder;
-
-                                if (eventID > 49) {
-                                fiveStarBorder = '2000';
-                                } else {
-                                fiveStarBorder = '1200';
-                                }
-                              var chart = AmCharts.makeChart("chartdiv", {
-                                "type": "serial",
-                                "theme": "light",
-                                "dataDateFormat": "YYYY-MM-DD HH:NN",
-                                "dataLoader": {
-                                    "url": "/data/event-border/"+eventID,
-                                    "format": "json",
-                                },
-                                "valueAxes": [{
-                                    "axisAlpha": 0,
-                                    "position": "left"
-                                }],
-                                "graphs": [{
-                                    "id":"1 5 Star - 1200",
-                                    "title": fiveStarBorder,
-                                    "bullet": "round",
-                                    "balloonText": "[[value]]",
-                                    "valueField": "tier_2"
-                                },{
-                                    "id":"40",
-                                    "title": "11000",
-                                    "bullet": "round",
-                                    "balloonText": "[[value]]",
-                                    "valueField": "tier_6"
-                                },{
-                                    "id":"41",
-                                    "title": "35000",  
-                                    "bullet": "round",
-                                    "balloonText": "[[value]]",
-                                    "valueField": "tier_11"
-                                }],
-                                "chartCursor": {
-                                    "categoryBalloonEnabled": false,
-                                    "cursorAlpha": 1,
-                                    "valueLineAlpha":0.5,
-                                },
-                                "categoryField": "created_at",
-                                "categoryAxis": {
-                                "parseDates": true,
-                                "minPeriod": "hh"
-                                },
-                                "legend": {
-                                "position": "left",
-                                "marginTop": 20,
-                                "valueText": ''
-                                },
-                                "listeners": [{
-                                "event": "drawn",
-                                "method": addLegendLabel
-                            }]
-                            });
-
-
-                            function addLegendLabel(e) {
-                            var title = document.createElement("div");
-                            title.innerHTML = "Borders";
-                            title.className = "legend-title";
-                            e.chart.legendDiv.appendChild(title)
-                            }
-                         </script>
+                        <script src="/js/eventChart.js"></script>
                     </div>
                     <div class="col-md-3" id="story">
                         @if ($chapters != '')

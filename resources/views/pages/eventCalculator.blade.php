@@ -134,19 +134,9 @@ var eventID = "<?php print $event->id; ?>";
 
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/charts.js"></script>
- <script>
+<script src="/js/eventChart.js"></script>
 
- //set up the new border for event 50 and onward
- var fiveStarBorder;
-
- if (eventID > 49) {
-  fiveStarBorder = '2000';
- } else {
-  fiveStarBorder = '1200';
- }
-
-
-
+<script>
 //create the chart instance
 // Create chart instance
 //var chart = am4core.create("chartdiv", am4charts.XYChart);
@@ -186,101 +176,7 @@ var eventID = "<?php print $event->id; ?>";
 // series3.dataFields.dateX = "created_at";
 
 
- var chart = AmCharts.makeChart("chartdiv", {
-    "type": "serial",
-    "theme": "light",
-    "dataDateFormat": "YYYY-MM-DD HH:NN",
-    "dataLoader": {
-    "url": "/data/event-border/"+eventID,
-    "format": "json",
-  },
-      "valueAxes": [{
-        "axisAlpha": 0,
-        "position": "left"
-    }],
-    "graphs": [{
-        "id":"1 5 Star - 1200",
-        "title": fiveStarBorder,
-        "bullet": "round",
-        "balloonText": "[[value]]",
-        "valueField": "tier_2"
-    },{
-        "id":"40",
-        "title": "11000",
-        "bullet": "round",
-        "balloonText": "[[value]]",
-        "valueField": "tier_6"
-    },{
-        "id":"41",
-        "title": "35000",  
-        "bullet": "round",
-        "balloonText": "[[value]]",
-        "valueField": "tier_11"
-    }],
-    "chartCursor": {
-        //"categoryBalloonDateFormat": "YYYY",
-        "categoryBalloonEnabled": false,
-        "cursorAlpha": 1,
-        //"valueLineEnabled":true,
-        //"valueLineBalloonEnabled":true,
-        "valueLineAlpha":0.5,
-        //"fullWidth":true
-    },
-    "categoryField": "created_at",
-    "categoryAxis": {
-      "parseDates": true,
-      "minPeriod": "hh"
-    	//"startOnAxis": true,
-        // "labelFunction": function(label) {
 
-
-        //   if (label == 'start') {
-        //     label = 'Day 1';
-        //   } else if (label == 1) {
-        //     label = 'Day 2';
-        //   } else if (label == 3) {
-        //     label = 'Day 3';
-        //   } else if (label == 5) {
-        //     label = 'Day 4';
-        //   } else if (label == 7) {
-        //     label = 'Day 5';
-        //   } else if (label == 9) {
-        //     label = 'Day 6';
-        //   } else if (label == 11) {
-        //     label = 'Day 7';
-        //   } else if (label == 13) {
-        //     label = 'Day 8';
-        //   } else if (label == 15) {
-        //     label = 'Day 9';
-        //   } else if (label == 17) {
-        //     label = 'Day 10';
-        //   } else if (label == 19) {
-        //     label = 'End';
-        //   } else {
-        //     label = '';
-        //   }
-
-        //   return label;
-        // },
-    },
-    "legend": {
-      "position": "left",
-      "marginTop": 20,
-      "valueText": ''
-    },
-      "listeners": [{
-    "event": "drawn",
-    "method": addLegendLabel
-  }]
-});
-
-
-function addLegendLabel(e) {
-  var title = document.createElement("div");
-  title.innerHTML = "Borders";
-  title.className = "legend-title";
-  e.chart.legendDiv.appendChild(title)
-}
 
 //envent time vars
 
