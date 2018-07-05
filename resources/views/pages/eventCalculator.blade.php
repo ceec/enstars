@@ -137,71 +137,8 @@ var eventID = "<?php print $event->id; ?>";
 <script src="/js/eventChart.js"></script>
 
 <script>
-//create the chart instance
-// Create chart instance
-//var chart = am4core.create("chartdiv", am4charts.XYChart);
-
-// Add data
-//chart.data = [{"id":107,"event_id":75,"position":4,"participants":212396,"rank_1":1,"tier_1":50195271,"rank_2":2000,"tier_2":1753240,"rank_3":4000,"tier_3":0,"rank_4":6000,"tier_4":0,"rank_5":8500,"tier_5":0,"rank_6":11000,"tier_6":0,"rank_7":15000,"tier_7":0,"rank_8":19000,"tier_8":0,"rank_9":23000,"tier_9":0,"rank_10":28000,"tier_10":0,"rank_11":35000,"tier_11":0,"rank_12":0,"tier_12":0,"rank_13":0,"tier_13":0,"rank_14":0,"tier_14":0,"rank_15":0,"tier_15":0,"rank_16":0,"tier_16":0,"rank_17":0,"tier_17":0,"rank_18":0,"tier_18":0,"rank_19":0,"tier_19":0,"rank_max":300000,"updated_at":"2018-05-18 05:44:46","updated_by":1,"created_at":"2018-05-18 05:44:46"},{"id":108,"event_id":75,"position":4,"participants":212396,"rank_1":1,"tier_1":55195271,"rank_2":2000,"tier_2":1753240,"rank_3":4000,"tier_3":0,"rank_4":6000,"tier_4":0,"rank_5":8500,"tier_5":0,"rank_6":11000,"tier_6":34834,"rank_7":15000,"tier_7":0,"rank_8":19000,"tier_8":0,"rank_9":23000,"tier_9":0,"rank_10":28000,"tier_10":0,"rank_11":35000,"tier_11":0,"rank_12":0,"tier_12":0,"rank_13":0,"tier_13":0,"rank_14":0,"tier_14":0,"rank_15":0,"tier_15":0,"rank_16":0,"tier_16":0,"rank_17":0,"tier_17":0,"rank_18":0,"tier_18":0,"rank_19":0,"tier_19":0,"rank_max":300000,"updated_at":"2018-05-18 07:44:46","updated_by":1,"created_at":"2018-05-18 06:44:46"}];
-//chart.dataSource.url = "/test.json";
-//chart.dataSource.url = "/data/event-border.json";
-// chart.dataSource.parser = new am4core.JSONParser();
-
-// // Create axes
-// let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-// dateAxis.dataFields.category = "created_at";
-// dateAxis.dataDateFormat = 'YYYY-MM-DD JJ:NN';
-// dateAxis.baseInterval = {
-//  "timeUnit": "second",
-//  "count": 1
-// };
-// dateAxis.title.text = "Days";
-
-// let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-// valueAxis.title.text = "Points";
-
-// // Create series
-// var series2 = chart.series.push(new am4charts.LineSeries());
-// series2.name = "Tier 1";
-// series2.stroke = am4core.color("#CDA2AB");
-// series2.strokeWidth = 3;
-// series2.dataFields.valueY = "tier_1";
-// series2.dataFields.dateX = "created_at";
-
-// var series3 = chart.series.push(new am4charts.LineSeries());
-// series3.name = "Tier 7";
-// series3.stroke = am4core.color("#CDA2AB");
-// series3.strokeWidth = 3;
-// series3.dataFields.valueY = "tier_7";
-// series3.dataFields.dateX = "created_at";
-
-
-
-
-//envent time vars
-
 //load from local storage
 $('#current-points').val(localStorage.getItem("currentPoints"));
-
-//if they have saved their teams, only display localstoarge if the vlaue is empty
-// var red1Check = parseInt(localStorage.getItem("red1"),10);
-// console.log(red1Check);
-// console.log('red1 '+red1Check);
-// if (red1Check > 0 ) {
-//   $('#red1').val(localStorage.getItem("red1"));
-//   $('#red2').val(localStorage.getItem("red2"));
-//   $('#red3').val(localStorage.getItem("red3"));
-//   $('#blue1').val(localStorage.getItem("blue1"));
-//   $('#blue2').val(localStorage.getItem("blue2"));
-//   $('#blue3').val(localStorage.getItem("blue3"));
-//   $('#yellow1').val(localStorage.getItem("yellow1"));
-//   $('#yellow2').val(localStorage.getItem("yellow2"));
-//   $('#yellow3').val(localStorage.getItem("yellow3"));
-// }
-
-
-
-
 
 //get the value of the red team
 var getRedValue = function () {
