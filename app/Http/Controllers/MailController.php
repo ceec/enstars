@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Mail;
 use Auth;
 use App\Message;
 
+use App\Mail\Contact;
+
 class MailController extends Controller
 {
 
