@@ -37,19 +37,7 @@ class MailController extends Controller
             $m->updated_by = 0;
             $m->save();  
 
-            $to = 'info@enstars.info';
-            $subject = "enstars.info - New Message from ".$request->name;
-            $message = $request->message;
-            $headers = 'From: '.$request->email;     
-
-            //Mail::to($to)->send(new OrderShipped($order));
-
-            //mail($to,$subject,$message,$headers);
-            Mail::raw($message, function($message){
-                $message->from($request->email, $subject);
-
-                $message->to($to);
-            });
+            Mail::to('info@enstars.info')->send(new Contact);
     
         }
 
