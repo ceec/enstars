@@ -2,13 +2,11 @@
 
 namespace App\Mail;
 
+use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
-
-use App\Message;
 
 class Contact extends Mailable
 {
@@ -19,9 +17,13 @@ class Contact extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
-        //
+        $this->input = $request->all();
+
+        if (empty($this->input['email'])) {
+             $this->input['email'] = 'admin@site.ru';
+        }
     }
 
     /**
@@ -31,16 +33,6 @@ class Contact extends Mailable
      */
     public function build()
     {
-
-        //save the message
-        $m = new Message;
-        $m->name = $request->name;
-        $m->email = $request->email;
-        $m->message = $request->message;
-        $m->submitted_by = $submitted_by;
-        $m->updated_by = 0;
-        $m->save();         
-
 
 
     $address = 'ignore@batcave.io';
