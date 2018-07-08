@@ -39,7 +39,7 @@ class MailController extends Controller
             $m->updated_by = 0;
             $m->save();  
 
-            Mail::to('info@enstars.info')->send(new Contact);
+            Mail::to('info@enstars.info')->send(new Contact($request));
     
         }
 
