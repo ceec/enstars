@@ -35,14 +35,12 @@ class Contact extends Mailable
     {
 
 
-    $address = 'ignore@batcave.io';
-    $name = 'Ignore Me';
-    $subject = 'Krytonite Found';
+    $address = $this->input['email'];
+    $name = $this->input['name'];
+    $subject = "enstars.info - New Message from ".$this->input['name'];
 
     return $this->view('mail.contact')
                 ->from($address, $name)
-                ->cc($address, $name)
-                ->bcc($address, $name)
                 ->replyTo($address, $name)
                 ->subject($subject);
 
