@@ -1452,6 +1452,7 @@ class DisplayController extends Controller {
 
     /**
      * Contact page - > send
+     *  2018-07-08 - I tried to set this up as a mail controller, just added a UI like suggestions
      *
      * @return \Illuminate\Http\Response
      */
@@ -1469,6 +1470,7 @@ class DisplayController extends Controller {
 
 
             $m = new Message;
+            $m->status = 0;
             $m->name = $request->name;
             $m->email = $request->email;
             $m->message = $request->message;
@@ -1476,12 +1478,12 @@ class DisplayController extends Controller {
             $m->updated_by = 0;
             $m->save();  
 
-            $to = 'info@enstars.info';
-            $subject = "enstars.info - New Message from ".$request->name;
-            $message = $request->message;
-            $headers = 'From: '.$request->email;     
+            // $to = 'info@enstars.info';
+            // $subject = "enstars.info - New Message from ".$request->name;
+            // $message = $request->message;
+            // $headers = 'From: '.$request->email;     
 
-            mail($to,$subject,$message,$headers);
+            // mail($to,$subject,$message,$headers);
     
         }
 

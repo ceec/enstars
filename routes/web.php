@@ -121,7 +121,7 @@ Route::get('/graph/five-star-color','DisplayController@cardFiveStarColor');
 
 //contact form
 Route::get('/contact','DisplayController@contact');
-Route::post('/contact/send','MailController@contactSend');
+Route::post('/contact/send','DisplayController@contactSend');
 
 //displaying user profile without being logged in, anyone can see
 Route::get('/collection/{name}','DisplayController@userCollection');
