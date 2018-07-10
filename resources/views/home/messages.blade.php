@@ -5,11 +5,15 @@
 <h1>Messages </h1>
 	<div class="row">
 		<div class="col-md-12">
-			<h2>New Messages</h2>
-
-		</div>
-		<div class="col-md-12">
-			<h2>All Messages</h2>
+      <h2>New Messages</h2>
+      @foreach($messages as $message)
+        <p>{{$message->created_at}} | {{$message->message}}</p>
+            {!! Form::open(['url' => '/home/message/clear']) !!}
+            {!! Form::hidden('message_id',$message->id) !!}                                                                       
+            {!! Form::submit('Clear') !!}
+            {!! Form::close() !!}
+        <hr>
+      @endforeach
 		</div>
 	</div>
 

@@ -58,9 +58,10 @@
 
                         </div>
                         <div class="col-md-4">
-                        <h3>Suggestions/Issues</h3>
+                        <h3>To Check</h3>
                             <strong>{{$suggestions}}</strong> <a href="/home/suggestions">Card Suggestions</a><br>                
-                            <strong>{{$issues}}</strong> <a href="/home/cardissues">Card Issues</a><br>                
+                            <strong>{{$issues}}</strong> <a href="/home/cardissues">Card Issues</a><br>  
+                            <strong>{{$messages}}</strong> <a href="/home/messages">Messages</a><br>                                           
                         </div>  
                     </div>
                 </div>

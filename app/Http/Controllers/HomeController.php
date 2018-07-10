@@ -19,6 +19,7 @@ use App\Minieventslide;
 use App\Chapterboy;
 use App\Cardsuggestion;
 use App\Cardissue;
+use App\Message;
 
 class HomeController extends Controller
 {
@@ -41,6 +42,8 @@ class HomeController extends Controller
         $suggestions = Cardsuggestion::where('status','=',0)->count();
         //count issues
         $issues = Cardissue::where('status','=',0)->count();
+        //count messages
+        $messages = Message::where('status','=',0)->count();
 
         //count user states
         $userstotals = User::all()->count();
@@ -66,6 +69,7 @@ class HomeController extends Controller
         ->with('usersweek',$usersweek)
         ->with('userstoday',$userstoday)
         ->with('suggestions',$suggestions)
+        ->with('messages',$messages)
         ->with('issues',$issues);
     }
 
@@ -614,8 +618,30 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function messages() {
-        return view('home.messages');
+        //get all the messages
+        $messages = Message::where('status','=',0)->orderBy('created_at','desc')->get();
+
+        return view('home.messages')
+        ->with('messages',$messages);
     }  
+
+
+    /**
+     * clear message
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function messageClear(Request $request) {
+        //clear the message
+
+        $message = Message::find($request->message_id);
+
+        $message->status = 1;
+
+        $message->save();
+
+        return redirect('/home/messages/');
+    }      
 
 
     /////suggestions

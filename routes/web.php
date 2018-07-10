@@ -236,10 +236,6 @@ Route::post('/edit/blog','BlogController@edit');
 Route::get('/home/event/data','HomeController@eventData');
 Route::post('/add/event/data','HomeController@addEventData');
 
-//email party funtime
-Route::get('/home/messages','HomeController@messages');
-Route::get('/home/message/new','HomeController@newMessage');
-
 //suggestions
 Route::get('/home/suggestions','HomeController@suggestions');
 
@@ -248,6 +244,10 @@ Route::post('/home/suggestion/clear','HomeController@suggestionClear');
 //card issues
 Route::get('/home/cardissues','HomeController@cardIssues');
 Route::post('/home/cardissues/clear','HomeController@cardIssueClear');
+
+//messages
+Route::get('/home/messages','HomeController@messages');
+Route::post('/home/message/clear','HomeController@messageClear');
 
 /////////////// USER ///////////////
 
