@@ -28,7 +28,10 @@ Contact Us | enstars.info
               <label for="s-name">Message</label>
                {!! Form::textarea('message','',['class'=>'form-control','id'=>'message']) !!}
             </div>    
-               {!! Form::hidden('enstars','',['class'=>'form-control','id'=>'message']) !!}
+            <div class="form-group">
+              <label for="email">If you aren't a robot, type Ensemble Stars in the below field!</label>
+               {!! Form::text('enstars','',['class'=>'form-control','id'=>'email']) !!}
+            </div>  
                                                                        
             {!! Form::submit('Send') !!}
             {!! Form::close() !!}
