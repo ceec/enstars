@@ -644,6 +644,20 @@ class HomeController extends Controller
     }      
 
 
+    /**
+     * delete message
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function messageDelete(Request $request) {
+        //clear the message
+
+        $message = Message::find($request->message_id);
+        $message->delete();
+
+        return redirect('/home/messages/');
+    }  
+
     /////suggestions
 
     /**

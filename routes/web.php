@@ -248,6 +248,7 @@ Route::post('/home/cardissues/clear','HomeController@cardIssueClear');
 //messages
 Route::get('/home/messages','HomeController@messages');
 Route::post('/home/message/clear','HomeController@messageClear');
+Route::post('/home/message/delete','HomeController@messageDelete');
 
 /////////////// USER ///////////////
 

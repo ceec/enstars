@@ -12,6 +12,11 @@
             {!! Form::hidden('message_id',$message->id) !!}                                                                       
             {!! Form::submit('Clear') !!}
             {!! Form::close() !!}
+
+            {!! Form::open(['url' => '/home/message/delete']) !!}
+            {!! Form::hidden('message_id',$message->id) !!}                                                                       
+            {!! Form::submit('Delete') !!}
+            {!! Form::close() !!}
         <hr>
       @endforeach
 		</div>
