@@ -836,7 +836,19 @@ $('.road-node').on('click',function(){
                                 <div class="form-group form-inline">
                                     <label for="pf_max">Pf Max</label>
                                      {!! Form::text('pf_max',$card->pf_max,['class'=>'form-control','id'=>'pf_max']) !!}
-                                  </div>                                 
+                                </div>                                 
+                                <div class="form-group form-inline">
+                                    <label for="da_max5">Da Max 5</label>
+                                     {!! Form::number('da_max5',$card->da_max5,['class'=>'form-control','id'=>'da_max5','max'=>'100000000']) !!}
+                                  </div>
+                                <div class="form-group form-inline">
+                                    <label for="vo_max5">Vo Max 5</label>
+                                     {!! Form::number('vo_max5',$card->vo_max5,['class'=>'form-control','id'=>'vo_max5','max'=>'100000000']) !!}
+                                  </div>
+                                <div class="form-group form-inline">
+                                    <label for="pf_max5">Pf Max 5</label>
+                                     {!! Form::number('pf_max5',$card->pf_max5,['class'=>'form-control','id'=>'pf_max5','max'=>'100000000']) !!}
+                                  </div>                                    
                               </div>                              
                             </div>
                               <hr>

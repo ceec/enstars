@@ -153,7 +153,10 @@ class CardController extends Controller
         $c->pf = $request->input('pf');  
         $c->da_max = $request->input('da_max');
         $c->vo_max = $request->input('vo_max');
-        $c->pf_max = $request->input('pf_max');                                
+        $c->pf_max = $request->input('pf_max');   
+        $c->da_max5 = $request->input('da_max5');
+        $c->vo_max5 = $request->input('vo_max5');
+        $c->pf_max5 = $request->input('pf_max5');                                        
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
         $c->sentence_j = $request->input('sentence_j');
