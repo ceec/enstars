@@ -7,8 +7,8 @@
     	<div class="col-md-6">
     		<h2>Add Event Data</h2>
 			{!! Form::open(['url' => '/add/event/data']) !!}
-			{!! Form::text('event_id','46',['class'=>'form-control ',  'placeholder'=>'Event ID','tabindex'=>'1']) !!} <br>
-            {!! Form::text('position','4',['class'=>'form-control ',  'placeholder'=>'Position']) !!} <br>
+			{!! Form::text('event_id','80',['class'=>'form-control ',  'placeholder'=>'Event ID','tabindex'=>'1']) !!} <br>
+            <br>
             Rank<br>
             {!! Form::text('rank_1', '1',['class'=>'']) !!} {!! Form::text('tier_1', '',['class'=>'',  'placeholder'=>'Rank 1 Points','tabindex'=>'2']) !!} <br>
             {!! Form::text('rank_2', '2000',['class'=>'']) !!} {!! Form::text('tier_2', '',['class'=>'',  'placeholder'=>'Rank 2 Points','tabindex'=>'3']) !!} <br>

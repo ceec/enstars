@@ -478,7 +478,7 @@ class HomeController extends Controller
         $d = new Eventpoint;
 
         $d->event_id = $request->event_id;
-        $d->position = $request->position;
+        $d->position = 0;
         $d->participants = $request->participants;
         $d->rank_1 = $request->rank_1;
         $d->tier_1 = $request->tier_1;
