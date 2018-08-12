@@ -35,7 +35,7 @@ class DataController extends Controller {
      */
     public function cardsReleased() {
         //get all the boys
-        $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
+        $boys = Boy::where('classroom_id','!=','7')->where('classroom_id','!=','10')->orderBy('first_name','asc')->get();
 
         //would need to get all the events in chronological order
        //$scouts = Scout::orderBy('start','asc')->get();
