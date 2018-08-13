@@ -1646,7 +1646,7 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function cardPrediction() {
-        $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
+        $boys = Boy::where('classroom_id','!=','7')->where('classroom_id','!=','10')->orderBy('first_name','asc')->get();
 
 
 
@@ -1661,7 +1661,7 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function cardFiveStarColor() {
-        $boys = Boy::where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
+        $boys = Boy::where('classroom_id','!=','7')->where('classroom_id','!=','10')->orderBy('first_name','asc')->get();
 
         $events = Event::orderBy('end','asc')->get();
 
