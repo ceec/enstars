@@ -20,6 +20,7 @@ use App\Chapterboy;
 use App\Cardsuggestion;
 use App\Cardissue;
 use App\Message;
+use App\Event;
 
 class HomeController extends Controller
 {
@@ -465,7 +466,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function eventData() {
-        return view('home.eventData');
+        //get the current event
+        $current_event = Event::where('active','=',1)->first();
+
+        return view('home.eventData')
+            ->with('current_event',$current_event);
     }  
 
 
