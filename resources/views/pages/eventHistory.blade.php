@@ -47,32 +47,32 @@ var chart = AmCharts.makeChart("chartdiv", {
         "title": "Toyland",
         "bullet": "round",
         "balloonText": "Border: [[39_rank]] <b>[[value]]</b>",
-        "valueField": "39_points"
+        "valueField": "62_2000"
     },{
         "id":"40",
         "title": "StarFes",
         "bullet": "round",
         "balloonText": "Border: [[40_rank]] <b>[[value]]</b>",
-        "valueField": "40_points"
+        "valueField": "41_1000"
     },{
         "id":"41",
         "title": "Holiday Party",  
         "bullet": "round",
         "balloonText": "Border: [[41_rank]] <b>[[value]]</b>",
-        "valueField": "41_points"
+        "valueField": "40_1000"
     },
     {
         "id":"44",
         "title": "Setsubun",
         "bullet": "round",
         "balloonText": "Border: [[44_rank]] <b>[[value]]</b>",
-        "valueField": "44_points"
+        "valueField": "81_2000"
     },    {
         "id":"45",
         "title": "Chocolate Fest 2",
         "bullet": "round",
         "balloonText": "Border: [[45_rank]] <b>[[value]]</b>",
-        "valueField": "45_points"
+        "valueField": "82_2000"
     }],
     "chartCursor": {
         //"categoryBalloonDateFormat": "YYYY",
@@ -83,37 +83,37 @@ var chart = AmCharts.makeChart("chartdiv", {
         "valueLineAlpha":0.5,
         //"fullWidth":true
     },
-    "categoryField": "position",
+    "categoryField": "timestamp",
     "categoryAxis": {
-      "labelFunction": function(label) {
+      // "labelFunction": function(label) {
 
 
-        if (label == 2) {
-          label = 'Day 1';
-        } else if (label == 4) {
-          label = 'Day 2';
-        } else if (label == 6) {
-          label = 'Day 3';
-        } else if (label == 8) {
-          label = 'Day 4';
-        } else if (label == 10) {
-          label = 'Day 5';
-        } else if (label == 12) {
-          label = 'Day 6';
-        } else if (label == 14) {
-          label = 'Day 7';
-        } else if (label == 16) {
-          label = 'Day 8';
-        } else if (label == 18) {
-          label = 'Day 9';
-        } else if (label == 20) {
-          label = 'End';
-        } else {
-          label = '';
-        }
+      //   if (label == 2) {
+      //     label = 'Day 1';
+      //   } else if (label == 4) {
+      //     label = 'Day 2';
+      //   } else if (label == 6) {
+      //     label = 'Day 3';
+      //   } else if (label == 8) {
+      //     label = 'Day 4';
+      //   } else if (label == 10) {
+      //     label = 'Day 5';
+      //   } else if (label == 12) {
+      //     label = 'Day 6';
+      //   } else if (label == 14) {
+      //     label = 'Day 7';
+      //   } else if (label == 16) {
+      //     label = 'Day 8';
+      //   } else if (label == 18) {
+      //     label = 'Day 9';
+      //   } else if (label == 20) {
+      //     label = 'End';
+      //   } else {
+      //     label = '';
+      //   }
 
-        return label;
-      },
+      //   return label;
+      // },
     },
     "legend": {
       "position": "left",
