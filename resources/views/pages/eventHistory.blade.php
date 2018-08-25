@@ -34,6 +34,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial",
     "theme": "light",
     "marginRight": 50,
+    "dataDateFormat": "YYYY-MM-DD JJ:NN:SS",
     "dataLoader": {
     "url": "/data/event-border-history",
     "format": "json"
@@ -85,35 +86,37 @@ var chart = AmCharts.makeChart("chartdiv", {
     },
     "categoryField": "timestamp",
     "categoryAxis": {
-      // "labelFunction": function(label) {
+      "parseDates": true,
+      //"minPeriod": "ss",
+      "labelFunction": function(label) {
 
 
-      //   if (label == 2) {
-      //     label = 'Day 1';
-      //   } else if (label == 4) {
-      //     label = 'Day 2';
-      //   } else if (label == 6) {
-      //     label = 'Day 3';
-      //   } else if (label == 8) {
-      //     label = 'Day 4';
-      //   } else if (label == 10) {
-      //     label = 'Day 5';
-      //   } else if (label == 12) {
-      //     label = 'Day 6';
-      //   } else if (label == 14) {
-      //     label = 'Day 7';
-      //   } else if (label == 16) {
-      //     label = 'Day 8';
-      //   } else if (label == 18) {
-      //     label = 'Day 9';
-      //   } else if (label == 20) {
-      //     label = 'End';
-      //   } else {
-      //     label = '';
-      //   }
+        if (label == "Jan 02") {
+          label = 'Day 2';
+        } else if (label == "Jan 03") {
+          label = 'Day 3';
+        } else if (label == 6) {
+          label = 'Day 3';
+        } else if (label == 8) {
+          label = 'Day 4';
+        } else if (label == 10) {
+          label = 'Day 5';
+        } else if (label == 12) {
+          label = 'Day 6';
+        } else if (label == 14) {
+          label = 'Day 7';
+        } else if (label == 16) {
+          label = 'Day 8';
+        } else if (label == 18) {
+          label = 'Day 9';
+        } else if (label == 20) {
+          label = 'End';
+        } else {
+          label = '';
+        }
 
-      //   return label;
-      // },
+        return label;
+      },
     },
     "legend": {
       "position": "left",
