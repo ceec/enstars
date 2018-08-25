@@ -29,6 +29,22 @@ Card Release Graph | enstars.info
     </div>
 </div>
 <script>
+  var events = <?php print json_encode($events); ?>;
+
+  var graphs = [];
+
+  //make a graph from each event
+  for(var i = 0; i < events.length; i++) {
+    graphs.push({
+      "id":events[i].event_id,
+      "title": events[i].event_id,
+      "bullet": "round",
+      "valueField":events[i].event_id+'_2000'
+    });
+  }
+
+  console.log(graphs);
+
 AmCharts.useUTC = true;
 var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial",
@@ -43,38 +59,7 @@ var chart = AmCharts.makeChart("chartdiv", {
         "axisAlpha": 0,
         "position": "left"
     }],
-    "graphs": [{
-        "id":"39",
-        "title": "Toyland",
-        "bullet": "round",
-        "balloonText": "Border: [[39_rank]] <b>[[value]]</b>",
-        "valueField": "78_2000"
-    },{
-        "id":"40",
-        "title": "StarFes",
-        "bullet": "round",
-        "balloonText": "Border: [[40_rank]] <b>[[value]]</b>",
-        "valueField": "79_2000"
-    },{
-        "id":"41",
-        "title": "Holiday Party",  
-        "bullet": "round",
-        "balloonText": "Border: [[41_rank]] <b>[[value]]</b>",
-        "valueField": "80_2000"
-    },
-    {
-        "id":"44",
-        "title": "Setsubun",
-        "bullet": "round",
-        "balloonText": "Border: [[44_rank]] <b>[[value]]</b>",
-        "valueField": "81_2000"
-    },    {
-        "id":"45",
-        "title": "Chocolate Fest 2",
-        "bullet": "round",
-        "balloonText": "Border: [[45_rank]] <b>[[value]]</b>",
-        "valueField": "82_2000"
-    }],
+    "graphs": graphs,
     "chartCursor": {
         //"categoryBalloonDateFormat": "YYYY",
         "categoryBalloonEnabled": false,
@@ -91,25 +76,25 @@ var chart = AmCharts.makeChart("chartdiv", {
       "labelFunction": function(label) {
 
 
-        if (label == "Jan 02") {
+        if (label == "Jan 01") {
+          label = 'Day 1';
+        } else if (label == "Jan 02") {
           label = 'Day 2';
         } else if (label == "Jan 03") {
           label = 'Day 3';
-        } else if (label == 6) {
-          label = 'Day 3';
-        } else if (label == 8) {
+        } else if (label == "Jan 04") {
           label = 'Day 4';
-        } else if (label == 10) {
+        } else if (label == "Jan 05") {
           label = 'Day 5';
-        } else if (label == 12) {
+        } else if (label == "Jan 06") {
           label = 'Day 6';
-        } else if (label == 14) {
+        } else if (label == "Jan 07") {
           label = 'Day 7';
-        } else if (label == 16) {
+        } else if (label == "Jan 08") {
           label = 'Day 8';
-        } else if (label == 18) {
+        } else if (label == "Jan 09") {
           label = 'Day 9';
-        } else if (label == 20) {
+        } else if (label == "Jan 10") {
           label = 'End';
         } else {
           label = '';
@@ -119,7 +104,7 @@ var chart = AmCharts.makeChart("chartdiv", {
       },
     },
     "legend": {
-      "position": "left",
+      //"position": "left",
       "valueText": ''
     },
     "export": {

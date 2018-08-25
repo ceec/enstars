@@ -1634,7 +1634,11 @@ class DisplayController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function eventHistory() {
-        return view('pages.eventHistory');
+        //get all the events from the data
+        $events = Eventpoint::select('event_id')->orderBy('event_id')->distinct()->get();
+
+        return view('pages.eventHistory')
+        ->with('events',$events);
     } 
 
 
