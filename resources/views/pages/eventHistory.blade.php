@@ -72,7 +72,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     "categoryField": "timestamp",
     "categoryAxis": {
       "parseDates": true,
-      //"minPeriod": "ss",
+      "minPeriod": "ss",
       "labelFunction": function(label) {
 
 
