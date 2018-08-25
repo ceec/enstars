@@ -47,19 +47,19 @@ var chart = AmCharts.makeChart("chartdiv", {
         "title": "Toyland",
         "bullet": "round",
         "balloonText": "Border: [[39_rank]] <b>[[value]]</b>",
-        "valueField": "62_2000"
+        "valueField": "78_2000"
     },{
         "id":"40",
         "title": "StarFes",
         "bullet": "round",
         "balloonText": "Border: [[40_rank]] <b>[[value]]</b>",
-        "valueField": "41_1000"
+        "valueField": "79_2000"
     },{
         "id":"41",
         "title": "Holiday Party",  
         "bullet": "round",
         "balloonText": "Border: [[41_rank]] <b>[[value]]</b>",
-        "valueField": "40_1000"
+        "valueField": "80_2000"
     },
     {
         "id":"44",
