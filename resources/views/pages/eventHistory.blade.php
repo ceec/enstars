@@ -38,7 +38,7 @@ Card Release Graph | enstars.info
     graphs.push({
       "id":events[i].event_id,
       "title": events[i].event_id,
-      "bullet": "round",
+      "bullet": "none",
       "valueField":events[i].event_id+'_2000'
     });
   }
