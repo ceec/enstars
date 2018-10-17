@@ -79,13 +79,18 @@ var showTime = setInterval(timeLeft,1000);
                     @endforeach                
                 </div>
                 <div class="col-md-4">
+                    @if (Auth::guest())
+                        <div class="">
+                            <h4>Want a way to track all your cards?<h4><a href="/register">Create an account!</a>
+                        </div>             
+                    @endif
                     <h3>News</h3>
                         <!--sticky-->
-                        <h5><strong>
+                        <!-- <h5><strong>
                             <a href="/news/user-accounts-now-in-beta">User Accounts Now in Beta!</a><br>
                             </strong>
                              <small>September 4, 2017 by ankee</small>
-                        </h5>                       
+                        </h5>                        -->
                         @foreach ($blogs as $blog)
                             <?php
                                 $nicedate = date('F d, Y',strtotime($blog->created_at));
