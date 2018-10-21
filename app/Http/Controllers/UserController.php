@@ -17,6 +17,7 @@ use App\Userteam;
 
 use DB;
 use App\Scout;
+use App\Feature;
 
 //testing
 use App\Repositories\CardRepository;
@@ -250,6 +251,33 @@ class UserController extends Controller
     } 
 
 
+    /**
+     * Display feature requests
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function features() {
+        //add the user card
+        $features = Feature::where('status','=','1')->get();            
+
+         return view('user.features')
+            ->with('features',$features);
+      
+    } 
+
+
+    /**
+     * Display feature request form
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function featureSuggest() {
+    
+
+         return view('user.featureSuggest');
+      
+    }     
+
     /////
 
     /**
@@ -473,7 +501,28 @@ class UserController extends Controller
     }
 
 
+    /**
+     * Add feature
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function featureAdd(Request $request) {
+        $feature = $request->input('feature');
 
+        //add the user card
+        $user = Auth::user();    
+
+
+        $f = new Feature;
+        $f->status = 0;
+        $f->text = $feature;
+        $f->submitted_by = $user->id;
+        $f->save();
+
+
+        return redirect('/user/features');              
+
+    }
 
 
 

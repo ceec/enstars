@@ -61,7 +61,8 @@
                         <h3>To Check</h3>
                             <strong>{{$suggestions}}</strong> <a href="/home/suggestions">Card Suggestions</a><br>                
                             <strong>{{$issues}}</strong> <a href="/home/cardissues">Card Issues</a><br>  
-                            <strong>{{$messages}}</strong> <a href="/home/messages">Messages</a><br>                                           
+                            <strong>{{$messages}}</strong> <a href="/home/messages">Messages</a><br>        
+                            <strong>{{$features}}</strong> <a href="/home/features">Feature Requests</a><br>                                           
                         </div>  
                     </div>
                 </div>

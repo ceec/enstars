@@ -21,6 +21,7 @@ use App\Cardsuggestion;
 use App\Cardissue;
 use App\Message;
 use App\Event;
+use App\Feature;
 
 class HomeController extends Controller
 {
@@ -45,6 +46,8 @@ class HomeController extends Controller
         $issues = Cardissue::where('status','=',0)->count();
         //count messages
         $messages = Message::where('status','=',0)->count();
+        //count feature requests
+        $features = Feature::where('status','=',0)->count();
 
         //count user states
         $userstotals = User::all()->count();
@@ -71,6 +74,7 @@ class HomeController extends Controller
         ->with('userstoday',$userstoday)
         ->with('suggestions',$suggestions)
         ->with('messages',$messages)
+        ->with('features',$features)
         ->with('issues',$issues);
     }
 
@@ -695,6 +699,56 @@ class HomeController extends Controller
 
         return redirect('/home/suggestions/');
     }  
+
+
+    /////features
+
+    /**
+     * view features
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function features() {
+        //get all the messages
+        $features = Feature::where('status','=',0)->orderBy('created_at','desc')->get();
+
+        return view('home.features')
+        ->with('features',$features);
+    }  
+
+
+    /**
+     * clear feature request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function featureApprove(Request $request) {
+        //clear the message
+
+        $message = Feature::find($request->feature_id);
+
+        $message->status = 1;
+
+        $message->save();
+
+        return redirect('/home/features');
+    }      
+
+
+    /**
+     * delete feature request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function featureDelete(Request $request) {
+        //clear the feature
+
+        $message = Feature::find($request->feature_id);
+        $message->delete();
+
+        return redirect('/home/features');
+    }  
+
 
 
 

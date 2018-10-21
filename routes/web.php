@@ -250,6 +250,11 @@ Route::get('/home/messages','HomeController@messages');
 Route::post('/home/message/clear','HomeController@messageClear');
 Route::post('/home/message/delete','HomeController@messageDelete');
 
+//feature requests
+Route::get('/home/features','HomeController@features');
+Route::post('/home/feature/approve','HomeController@featureApprove');
+Route::post('/home/feature/delete','HomeController@featureDelete');
+
 /////////////// USER ///////////////
 
 ///user stuff
@@ -279,3 +284,8 @@ Route::post('/user/edit/dashboardCard','UserController@updateDashboardCard');
 //update user team for event calculator
 Route::post('/user/edit/team','UserController@updateTeam');
 
+///feature requests
+Route::get('/user/features','UserController@features');
+Route::get('/user/feature/suggest','UserController@featureSuggest');
+//add new feature
+Route::post('/user/add/feature','UserController@featureAdd');
