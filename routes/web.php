@@ -236,6 +236,10 @@ Route::post('/edit/blog','BlogController@edit');
 Route::get('/home/event/data','HomeController@eventData');
 Route::post('/add/event/data','HomeController@addEventData');
 
+//add scout
+Route::get('/home/scout/add','ScoutController@eventData');
+Route::post('/add/scout','ScoutController@add');
+
 //suggestions
 Route::get('/home/suggestions','HomeController@suggestions');
 
