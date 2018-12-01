@@ -26,6 +26,17 @@ class ScoutController extends Controller
     }
 
     /**
+     * Add scout display
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addDisplay() {
+
+            return view('home.scoutAdd');
+    } 
+
+
+    /**
      * Add scout 
      *
      * @return \Illuminate\Http\Response
@@ -34,9 +45,9 @@ class ScoutController extends Controller
         //need to update event
         $s = new Scout;
         $s->active = 0;
-        $s->name_j = $request->input('japanese_name');
-        $s->name_e = $request->input('english_name');
-        $s->name_s = '';
+        $s->name_j = $request->input('name_j');
+        $s->name_e = $request->input('name_e');
+        $s->name_s = $request->input('name_s');
         $s->type_id = $request->input('type_id');
         $s->start = $request->input('start');
         $s->end = $request->input('end');
@@ -60,6 +71,7 @@ class ScoutController extends Controller
     public function edit(Request $request) {
         //need to update event
         $s = Scout::find($request->input('scout_id'));
+        $s->active = $request->input('active');
         $s->name_j = $request->input('japanese_name');
         $s->name_e = $request->input('english_name');
         $s->text = $request->input('text');
