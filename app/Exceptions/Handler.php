@@ -32,19 +32,38 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        //2018-06-02
-        //lets update this, dont want Illuminate\Auth\AuthenticationException
-        //Illuminate\Validation\ValidationException
-
-        //only want to mail if its not a 404.
-         if (!($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) && !($exception instanceof \Symfony\Component\HttpKernel\Exception\AuthenticationException)) {
-             mail('cc@battab.com','Enstars Error', $exception);
-         }
-
-
-
+        //2018-11-30
+        //mail the error, only on production
+        if (($this->shouldReport($exception)) && (env('APP_ENV') == 'production')) {
+            $this->sendEmail($exception); // sends an email
+        }        
 
         parent::report($exception);
+    }
+
+
+    /**
+     * Sends an email to the developer about the exception.
+     * https://laravel-news.com/email-on-error-exceptions
+     *
+     * @param  \Exception  $exception
+     * @return void
+     */
+    public function sendEmail(Exception $exception)
+    {
+        try {
+            $e = FlattenException::create($exception);
+
+            $handler = new SymfonyExceptionHandler();
+
+            $html = $handler->getHtml($e);
+
+            $email = env('MAIL_ADDRESS');
+
+            Mail::to($email)->send(new ExceptionOccured($html));
+        } catch (Exception $ex) {
+            dd($ex);
+        }
     }
 
     /**
