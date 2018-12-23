@@ -515,8 +515,9 @@ class UserController extends Controller
 
         $f = new Feature;
         $f->status = 0;
-        $f->text = $feature;
+        $f->feature = $feature;
         $f->submitted_by = $user->id;
+        $f->updated_by = $user->id;
         $f->save();
 
 

@@ -7,7 +7,9 @@
 		<div class="col-md-12">
       <h2>New Feature Requests</h2>
       @foreach($features as $feature)
-        <p>{{$feature->created_at}} | {{$feature->text}}</p>
+        <p>{{$feature->created_at}} | {{$feature->feature}}
+        <br>
+        Submitted by:{{$feature->submitted_by}}</p>
             {!! Form::open(['url' => '/home/feature/approve']) !!}
             {!! Form::hidden('feature_id',$feature->id) !!}                                                                       
             {!! Form::submit('Approve') !!}

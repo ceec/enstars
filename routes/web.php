@@ -267,6 +267,7 @@ Route::post('/remove/user/card','UserController@removeCard');
 //events
 Route::post('/add/user/event','UserController@addEvent');
 Route::post('/update/user/event','UserController@updateEvent');
+
 //account options
 Route::post('/update/user/account','UserController@updateAccount');
 

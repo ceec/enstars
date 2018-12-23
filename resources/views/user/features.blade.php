@@ -16,9 +16,9 @@ Feature Suggestions | enstars.info
           @foreach($features as $feature)
           <div>
             <p>
-              {{$feature->text}}
+              {{$feature->feature}}
             </p>
-            Suggested by {{$feature->submitted_by}} on {{$feature->created_at}}
+            Suggested by {{$feature->user->name}} on {{$feature->created_at}}
           </div>
           <hr>
           @endforeach
