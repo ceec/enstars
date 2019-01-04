@@ -1459,7 +1459,7 @@ class DisplayController extends Controller {
     public function contactSend(Request $request) {
 
         
-        if ($request->enstars !== 'Ensemble Stars') {
+        if ($request->enstars == 'Ensemble Stars') {
 
             //save who submitted it
             if (!Auth::guest()) {
