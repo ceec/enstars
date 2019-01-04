@@ -26,7 +26,7 @@ Dashboard | enstars.info
                         <h3><a href="{{ url('/user/'.Auth::user()->name.'/account') }}">Account Options</a></h3>
                         <h3><a href="{{ url('/collection/'.Auth::user()->name) }}">Collection</a></h3>
                        <!-- <h3><a href="{{ url('/user/'.Auth::user()->name.'/scouts') }}">My Scouts</a></h3>-->
-                       <h3><a href="{{ url('/user/features') }}">Feature Requests</a></h3>
+                       <!-- <h3><a href="{{ url('/user/features') }}">Feature Requests</a></h3> -->
                     </div>
                     <div class="col-md-8">
                         @if (Auth::user()->role_id == 1)

@@ -19,6 +19,15 @@ Feature Suggestions | enstars.info
               {{$feature->feature}}
             </p>
             Suggested by {{$feature->user->name}} on {{$feature->created_at}}
+			      {!! Form::open(['url' => '/user/add/feature/comment']) !!}
+
+            <div class="form-group">
+              <label for="url">Feature</label>
+               {!! Form::textarea('feature','',['class'=>'form-control','id'=>'url','placeholder'=>'Describe the feature you would like to see!']) !!}
+            </div>                                                                                         
+            {!! Form::submit('Add') !!}
+            {!! Form::close() !!}
+
           </div>
           <hr>
           @endforeach
