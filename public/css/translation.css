@@ -1,0 +1,10 @@
+ /* hide generated and japanese text on mobile */
+ .mobile-hide {
+   display: none;
+ }
+
+ @media (min-width: 768px) {
+   .mobile-hide {
+     display: block;
+   }
+ }

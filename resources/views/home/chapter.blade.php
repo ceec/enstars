@@ -32,7 +32,7 @@
     	<img class="img-responsive" src="/images/translate/{{$event_type}}/{{$story->id}}/{{$chapter->chapter}}_{{$slide_number}}.{{$chapter->file_type}}">
     	</div>
     	<div class="col-md-6">
-			<div class="row">
+			<div class="row mobile-hide">
                     <div class="col-md-6">
                         {!! Form::textarea('text_j',$slide->text_j,['class'=>'form-control ajaxTest','id'=>'j-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Japanese Text']) !!} 
                     </div>
