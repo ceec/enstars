@@ -134,6 +134,10 @@ Route::post('/cardissue/send','DisplayController@cardIssueSend');
 Route::get('/graph/cardlist','DisplayController@cardList');
 
 
+////gameplay info///////
+Route::get('/game/management','GameController@management');
+
+
 /////////////////////////////////////////////////////////////////////
 //    Data
 /////////////////////////////////////////////////////////////////////
