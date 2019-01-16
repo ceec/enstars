@@ -244,6 +244,10 @@ Route::post('/add/event/data','HomeController@addEventData');
 Route::get('/home/scout/add','ScoutController@addDisplay');
 Route::post('/add/scout','ScoutController@add');
 
+//add event
+Route::get('/home/event/add','EventController@addDisplay');
+Route::post('/add/event','EventController@add');
+
 //suggestions
 Route::get('/home/suggestions','HomeController@suggestions');
 

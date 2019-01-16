@@ -25,7 +25,49 @@ class EventController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Add event display
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addDisplay() {
 
+            return view('home.eventAdd');
+    } 
+
+
+    /**
+     * Add event 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function add(Request $request) {
+        //need to update event
+        $e = new Event;
+        $e->active = 0;
+        $e->name_j = $request->input('name_j');
+        $e->name_e = $request->input('name_e');
+        $e->name_s = $request->input('name_s');
+        $e->start = $request->input('start');
+        $e->end = $request->input('end');
+        $e->text = $request->input('text');
+        $e->url = $request->input('url');
+        $e->rank_5 = 0;
+        $e->rank_4 = 0;
+        $e->rank_3 = 0;
+        $e->points_5 = 0;
+        $e->points_4 = 0;
+        $e->points_3_da = 0;
+        $e->points_3_vo = 0;
+        $e->points_3_pf = 0;
+        $e->notes = '';
+        $e->website = $request->input('website');              
+        $e->updated_by = Auth::id();  
+        $e->save();
+
+
+        return redirect('/event/'.$e->url);          
+    } 
 
 
     /**
