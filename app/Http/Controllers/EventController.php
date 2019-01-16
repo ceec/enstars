@@ -83,6 +83,14 @@ class EventController extends Controller
         $e->text = $request->input('text');
         $e->start = $request->input('start');
         $e->end = $request->input('end');
+        $e->rank_5 = $request->input('rank_5');
+        $e->rank_4 = $request->input('rank_4');
+        $e->rank_3 = $request->input('rank_3');
+        $e->points_5 = $request->input('points_5');
+        $e->points_4 = $request->input('points_4');
+        $e->points_3_da = $request->input('points_3_da');
+        $e->points_3_vo = $request->input('points_3_vo');
+        $e->points_3_pf = $request->input('points_3_pf');                                                
         $e->updated_by = Auth::id();  
         $e->save();
 

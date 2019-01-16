@@ -186,7 +186,7 @@
                         <div class="panel-body">
                             {!! Form::open(['url' => '/edit/event']) !!}    
                             <div class="row">
-                              <div class="col-md-12">
+                              <div class="col-md-6">
                                   <div class="form-group">
                                     <label for="japanese-name">Japanese Name</label>
                                      {!! Form::text('japanese_name',$event->name_j,['class'=>'form-control','id'=>'japanese-name']) !!}
@@ -209,8 +209,41 @@
                                   </div>                                                                    
                               </div>
 
-                              <div class="col-md-6"></div>
-                            </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rank_5">Rank 5 Star Card</label>
+                                     {!! Form::text('rank_5',$event->rank_5,['class'=>'form-control','id'=>'rank_5']) !!}
+                                </div> 
+                                <div class="form-group">
+                                    <label for="rank_4">Rank 4 Star Card</label>
+                                     {!! Form::text('rank_4',$event->rank_4,['class'=>'form-control','id'=>'rank_4']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label for="rank_3">Rank 3 Star Card</label>
+                                     {!! Form::text('rank_3',$event->rank_3,['class'=>'form-control','id'=>'rank_3']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label for="points_5">Points 5 Star Card</label>
+                                     {!! Form::text('points_5',$event->points_5,['class'=>'form-control','id'=>'points_5']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label for="points_4">Points 4 Star Card</label>
+                                     {!! Form::text('points_4',$event->points_4,['class'=>'form-control','id'=>'points_4']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label for="points_3_da">Points 3 Star Card - Dance</label>
+                                     {!! Form::text('points_3_da',$event->points_3_da,['class'=>'form-control','id'=>'points_3_da']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label for="points_3_vo">Points 3 Star Card - Vocal</label>
+                                     {!! Form::text('points_3_vo',$event->points_3_vo,['class'=>'form-control','id'=>'points_3_vo']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label for="points_3_pf">Points 3 Star Card - Performance</label>
+                                     {!! Form::text('points_3_pf',$event->points_3_pf,['class'=>'form-control','id'=>'points_3_pf']) !!}
+                                </div>                                                                                                                                            
+                              </div>
+                                </div>
                                                        
    
                 
