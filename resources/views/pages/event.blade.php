@@ -181,7 +181,7 @@
                     @if (Auth::user()->isAdmin())
                       <div class="panel panel-default">
                         <div class="panel-heading">
-                          <h3 class="panel-title">Admin - Edit Event <span class="pull-right">Last Updated on {{$event->updated_at}} by {{$event->name}} </span></h3>
+                        <h3 class="panel-title">Admin - Edit Event {{$event->id}}<span class="pull-right">Last Updated on {{$event->updated_at}} by {{$event->name}} </span></h3>
                         </div>
                         <div class="panel-body">
                             {!! Form::open(['url' => '/edit/event']) !!}    
