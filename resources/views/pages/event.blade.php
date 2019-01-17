@@ -188,6 +188,10 @@
                             <div class="row">
                               <div class="col-md-6">
                                   <div class="form-group">
+                                    <label for="active">Active</label>
+                                     {!! Form::select('active',[1=>"Current",0=>"Old"],$event->active,['class'=>'form-control','id'=>'active']) !!}
+                                  </div>                                      
+                                  <div class="form-group">
                                     <label for="japanese-name">Japanese Name</label>
                                      {!! Form::text('japanese_name',$event->name_j,['class'=>'form-control','id'=>'japanese-name']) !!}
                                   </div> 

@@ -78,6 +78,7 @@ class EventController extends Controller
     public function edit(Request $request) {
         //need to update event
         $e = Event::find($request->input('event_id'));
+        $e->active = $request->input('active');
         $e->name_j = $request->input('japanese_name');
         $e->name_e = $request->input('english_name');
         $e->text = $request->input('text');
