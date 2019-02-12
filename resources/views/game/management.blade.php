@@ -33,8 +33,11 @@ Management | enstars.info
       </div>
       <div class="col-md-6">
         <div class="well">
-            <span class="label label-warning">30分 | 30 Minutes</span> 準備運動 | Warm Up <span class="label label-default">10 AP</span> <span class="label label-primary">実施回数: Times</span> 3
+            <span class="label label-warning">30分 | 30 Minutes</span> 振り付け確認 | Checking Choreography <span class="label label-default">10 AP</span> <span class="label label-primary">実施回数: Times</span> 3
         </div>
+        <div class="well">
+            <span class="label label-warning">30分 | 30 Minutes</span> 準備運動 | Warm Up <span class="label label-default">10 AP</span> <span class="label label-primary">実施回数: Times</span> 3
+        </div>        
       </div>
     </div>
 </div> <!-- end container -->
