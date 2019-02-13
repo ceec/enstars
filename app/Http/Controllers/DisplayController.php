@@ -1635,8 +1635,9 @@ class DisplayController extends Controller {
      */
     public function eventHistory() {
         //get all the events from the data
-        $events = Eventpoint::select('event_id')->orderBy('event_id')->distinct()->get();
-
+        //$events = Eventpoint::select('event_id')->orderBy('event_id')->distinct()->get();
+        //get all the events
+        $events = Event::all();
         return view('pages.eventHistory')
         ->with('events',$events);
     } 

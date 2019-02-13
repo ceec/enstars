@@ -31,19 +31,21 @@ Card Release Graph | enstars.info
 <script>
   var events = <?php print json_encode($events); ?>;
 
+  //console.log(events);
+
   var graphs = [];
 
   //make a graph from each event
   for(var i = 0; i < events.length; i++) {
     graphs.push({
-      "id":events[i].event_id,
-      "title": events[i].event_id,
+      "id":events[i].id,
+      "title": events[i].id,
       "bullet": "none",
-      "valueField":events[i].event_id+'_2000'
+      "valueField":events[i].id+'_2000'
     });
   }
 
-  console.log(graphs);
+  //console.log(graphs);
 
 AmCharts.useUTC = true;
 var chart = AmCharts.makeChart("chartdiv", {

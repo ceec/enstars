@@ -158,6 +158,14 @@ Route::get('/data/frequency/{boy_id}','DataController@frequencyChart');
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
+//baby api
+Route::get('/api/event/{event_id}','ApiController@event');
+
+
+
+
+
+
 Auth::routes();
 
 //dashboard
