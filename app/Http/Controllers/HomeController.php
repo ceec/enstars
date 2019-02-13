@@ -531,8 +531,10 @@ class HomeController extends Controller
         $d->updated_by = Auth::user()->id;    
         //normalize to JST    
         date_default_timezone_set('Asia/Tokyo');
-        $d->save();
+        $d->jst_created_at = date("Y-m-d H:i:s");
         date_default_timezone_set('UTC');
+        $d->save();
+        
         
 
 
