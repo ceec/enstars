@@ -9,7 +9,7 @@ Card Release Graph | enstars.info
 <style>
 #chartdiv {
   width: 100%;
-  height: 300px;
+  height: 600px;
 }
 </style>
 <div class="container">
@@ -31,7 +31,7 @@ Card Release Graph | enstars.info
 <script>
   var events = <?php print json_encode($events); ?>;
 
-  //console.log(events);
+  console.log(events);
 
   var graphs = [];
 
@@ -39,7 +39,7 @@ Card Release Graph | enstars.info
   for(var i = 0; i < events.length; i++) {
     graphs.push({
       "id":events[i].id,
-      "title": events[i].id,
+      "title": events[i].name_e,
       "bullet": "none",
       "valueField":events[i].id+'_2000'
     });
@@ -106,7 +106,8 @@ var chart = AmCharts.makeChart("chartdiv", {
       },
     },
     "legend": {
-      //"position": "left",
+      "position": "left",
+      "labelWidth": 300,
       "valueText": ''
     },
     "export": {
