@@ -528,8 +528,12 @@ class HomeController extends Controller
         $d->rank_19 = 0;
         $d->tier_19 = 0;   
         $d->rank_max = 300000;
-        $d->updated_by = Auth::user()->id;                                                     
+        $d->updated_by = Auth::user()->id;    
+        //normalize to JST    
+        date_default_timezone_set('Asia/Tokyo');
         $d->save();
+        date_default_timezone_set('UTC');
+        
 
 
         return redirect('/home');      
