@@ -9,7 +9,7 @@ Card Release Graph | enstars.info
 <style>
 #chartdiv {
   width: 100%;
-  height: 600px;
+  height: 800px;
 }
 </style>
 <div class="container">
@@ -52,6 +52,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial",
     "theme": "light",
     "marginRight": 50,
+    "usePrefixes": true,
     "dataDateFormat": "YYYY-MM-DD JJ:NN:SS",
     "dataLoader": {
     "url": "/data/event-border-history",
@@ -59,7 +60,9 @@ var chart = AmCharts.makeChart("chartdiv", {
   },
     "valueAxes": [{
         "axisAlpha": 0,
-        "position": "left"
+        "position": "left",
+        "maximum": "14000000",
+        "title": "Points"
     }],
     "graphs": graphs,
     "chartCursor": {
@@ -106,7 +109,7 @@ var chart = AmCharts.makeChart("chartdiv", {
       },
     },
     "legend": {
-      "position": "left",
+      "position": "right",
       "labelWidth": 300,
       "valueText": ''
     },
