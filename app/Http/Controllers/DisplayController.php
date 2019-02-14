@@ -1630,24 +1630,7 @@ class DisplayController extends Controller {
     } 
 
 
-    /**
-     * Line of event borders
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function eventHistory() {
-        //get all the events from the data
-        //$events = Eventpoint::select('event_id')->orderBy('event_id')->distinct()->get();
-        //get all the events but only the ones that also have points
-        //SELECT DISTINCT events.* FROM eventpoints,events WHERE events.id = eventpoints.event_id;
-        //SELECT events.* events JOIN eventpoints ON events.id = eventpoints.event_id
-        //SELECT DISTINCT events.* FROM events JOIN eventpoints ON events.id = eventpoints.event_id
-        //$events = Event::join('eventpoints','events.id','=','eventpoints.event_id')->select(DB::raw('DISTINCT(events.*)'))->get();
-        //TODO: fix this I could not get the ORM to be distinct!! 2019-02-12
-        $events = DB::select('SELECT DISTINCT events.* FROM events JOIN eventpoints ON events.id = eventpoints.event_id');
-        return view('pages.eventHistory')
-        ->with('events',$events);
-    } 
+ 
 
 
     //might not technically be a graph in the end

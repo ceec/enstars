@@ -112,7 +112,7 @@ Route::get('/graph/cards-released','DisplayController@cardsReleased');
 //guessing future cards
 Route::get('/graph/five-star-history','DisplayController@cardPrediction');
 //event history
-Route::get('/graph/event-border-history','DisplayController@eventHistory');
+Route::get('/graph/event-border-history','GraphController@eventHistory');
 //timeline of events and scouts
 Route::get('/graph/timeline','DisplayController@timeline');
 //fivestar history color

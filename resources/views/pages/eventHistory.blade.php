@@ -9,7 +9,7 @@ Card Release Graph | enstars.info
 <style>
 #chartdiv {
   width: 100%;
-  height: 800px;
+  height: 400px;
 }
 </style>
 <div class="container">
@@ -23,6 +23,14 @@ Card Release Graph | enstars.info
 			<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 			<script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
       <script src="https://www.amcharts.com/lib/3/plugins/responsive/responsive.min.js"></script>
+
+      {!! Form::open(['method' => 'GET','class'=>'pull-right']) !!}
+      {!! Form::select('boy',$boys,$request->boy) !!} 
+      {!! Form::submit('Edit') !!}
+      {!! Form::close() !!}
+      <br><br>
+      <button class="pull-right"><a href="/graph/event-border-history">Reset</a></button>
+      <br>
 			<div id="chartdiv"></div>
         </div>
 
@@ -61,7 +69,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     "valueAxes": [{
         "axisAlpha": 0,
         "position": "left",
-        "maximum": "14000000",
+       // "maximum": "14000000",
         "title": "Points"
     }],
     "graphs": graphs,
