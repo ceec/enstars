@@ -31,7 +31,8 @@ Card Release Graph | enstars.info
       <br><br>
       <button class="pull-right"><a href="/graph/event-border-history">Reset</a></button>
       <br>
-			<div id="chartdiv"></div>
+      <div id="chartdiv"></div>
+      <div id="legend-div"></div>
         </div>
 
     </div>
@@ -119,7 +120,8 @@ var chart = AmCharts.makeChart("chartdiv", {
     "legend": {
       "position": "right",
       "labelWidth": 300,
-      "valueText": ''
+      "valueText": '',
+      "divId": "legend-div"
     },
     "export": {
         "enabled": true
