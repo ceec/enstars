@@ -26,7 +26,7 @@ Card Release Graph | enstars.info
 
       {!! Form::open(['method' => 'GET','class'=>'pull-right']) !!}
       {!! Form::select('boy',$boys,$request->boy) !!} 
-      {!! Form::submit('Edit') !!}
+      {!! Form::submit('Filter') !!}
       {!! Form::close() !!}
       <br><br>
       <button class="pull-right"><a href="/graph/event-border-history">Reset</a></button>
