@@ -44,7 +44,7 @@
         <div class="row">
         @foreach($events as $event)
             <div class="col-md-4">
-                <a href="/event/{{$event->event->url}}"><img src="/images/events/{{$event->event_id}}.png"></a>      
+                <a href="/event/{{$event->event->url}}"><img class="img-responsive" src="/images/events/{{$event->event_id}}.png"></a>      
             </div>
         @endforeach
         </div>
