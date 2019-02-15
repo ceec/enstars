@@ -14,6 +14,7 @@ use App\Event;
 use App\Cardtag;
 use App\Tag;
 use App\Unit;
+use App\Unitevent;
 use App\Classroom;
 
 use App\Story;
@@ -835,8 +836,11 @@ class DisplayController extends Controller {
 
         $boys = Boy::where('unit_id','=',$unit->id)->get();
 
+        $events = Unitevent::where('unit_id','=',$unit->id)->get();
+
         return view('pages.unit')
             ->with('unit',$unit)
+            ->with('events',$events)
             ->with('boys',$boys);
     }
 

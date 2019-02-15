@@ -15,7 +15,7 @@
                     <?php $x=1; ?>
                     @foreach($boys as $boy)
                     	<div class="col-md-3">
-                                <h2><a href="/idol/{{ strtolower($boy->first_name)}}">{{$boy->english_name}}</a></h2>
+                                <h2><a href="/idol/{{ strtolower($boy->first_name)}}">{{$boy->first_name}} {{$boy->last_name}}</a></h2>
                                 <h2>{{$boy->japanese_name}}</h2>
     							<div class="panel">
     							  <div class="panel-heading">
@@ -41,6 +41,9 @@
 
     </div>
     <h2>Events</h2>
+        @foreach($events as $event)
+            <a href="/event/{{$event->event->url}}"><img src="/images/events/{{$event->event_id}}.png"></a>      
+        @endforeach
     <h2>Stories</h2>
 </div>
 @endsection
