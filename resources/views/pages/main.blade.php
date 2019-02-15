@@ -207,9 +207,9 @@ var showTime = setInterval(timeLeft,1000);
                     </table>                                                        
                 </div>  
                 <div class="col-md-4">
-                    <h3>Tags</h3>
-                    @foreach($tags as $tag)
-                        <a href="/tag/{{$tag->tag}}">{{$tag->tag}}</a><br>
+                    <h3>Units</h3>
+                    @foreach($units as $unit)
+                        <a href="/unit/{{$unit->url}}">{{$unit->name}}</a><br>
                     @endforeach
                 </div>
                 <div class="col-md-4">
@@ -236,6 +236,12 @@ var showTime = setInterval(timeLeft,1000);
                     </div>                                             
             </div>
             <div class="row">
+                <div class="col-md-4">
+                    <h3>Tags</h3>
+                    @foreach($tags as $tag)
+                        <a href="/tag/{{$tag->tag}}">{{$tag->tag}}</a><br>
+                    @endforeach
+                </div>                
             </div>
 </div>
 @endsection
