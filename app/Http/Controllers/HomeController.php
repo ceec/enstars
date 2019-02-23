@@ -541,6 +541,8 @@ class HomeController extends Controller
         $days = $difference->d;
         // get the current time
         $time = substr($d->jst_created_at,-8);
+        //account for first day being 0th
+        $days = $days + 1;
         // deal with padding
         if ($days < 10) {
             $days = '0'.$days;
