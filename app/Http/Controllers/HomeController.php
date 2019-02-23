@@ -533,22 +533,23 @@ class HomeController extends Controller
         date_default_timezone_set('Asia/Tokyo');
         $d->jst_created_at = date("Y-m-d H:i:s");
 
-        //calculate the normalized date
-        // $event = Event::find($request->event_id);
-        // $start = new DateTime('start');
-        // $current = new DateTime($d->jst_created_at);
-        // $difference = $start->diff($current);
-        // $days = $difference->format('%R');
-        // dd($days);
-        //$d->normalized_date = 
-
-
+        // calculate the normalized date
+        $event = Event::find($request->event_id);
+        $start = new \DateTime($event->start);
+        $current = new \DateTime($d->jst_created_at);
+        $difference = $start->diff($current);
+        $days = $difference->d;
+        // get the current time
+        $time = substr($d->jst_created_at,-8);
+        // deal with padding
+        if ($days < 10) {
+            $days = '0'.$days;
+        }
+        $normalized_date = '2000-01-'.$days.' '.$time;
+        $d->normalized_date = $normalized_date;
         date_default_timezone_set('UTC');
         $d->save();
         
-        
-
-
         return redirect('/home');      
     }  
 
