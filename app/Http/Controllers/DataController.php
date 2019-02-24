@@ -370,8 +370,9 @@ class DataController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function frequencyChart($boy_id) {
+        //okay I see, the > 2016-09-01 date is to keep the cards i added before their actual time
         //$cards2018 = Card::where('boy_id','=',$boy_id)->where('created_at','>','2017-12-31')->orderBy('created_at','asc')->get();
-        $cards2018 = Card::where('boy_id','=',$boy_id)->where('stars','>','2')->orderBy('created_at','asc')->get();
+        $cards2018 = Card::where('boy_id','=',$boy_id)->where('stars','>','2')->where('created_at','>','2016-09-01')->orderBy('created_at','asc')->get();
 
       
         foreach($cards2018 as $card) {
