@@ -151,7 +151,7 @@ class DataController extends Controller {
      */
     public function timeline() {
         //want same formatting as below but with events
-        $events = Event::where('start','<','2016-05-21')->orderBy('start','desc')->get();
+        $events = Event::orderBy('start','desc')->get();
 
         //formatting goal
 
