@@ -14,7 +14,8 @@
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "^7.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "laravel/dusk": "^5.0"
     },
     "autoload": {
         "classmap": [
@@ -25,9 +26,9 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/TestCase.php"
-        ]
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-root-package-install": [
