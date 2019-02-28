@@ -58,7 +58,7 @@
                     @if (Auth::user()->isAdmin())
                       <div class="panel panel-default">
                         <div class="panel-heading">
-                          <h3 class="panel-title">Admin - Edit Scout <span class="pull-right">Last Updated on {{$scout->updated_at}} by {{$scout->name}} </span></h3>
+                          <h3 class="panel-title">Admin - Edit Scout {{$scout->id}}<span class="pull-right">Last Updated on {{$scout->updated_at}} by {{$scout->name}} </span></h3>
                         </div>
                         <div class="panel-body">
                             {!! Form::open(['url' => '/edit/scout']) !!}    
