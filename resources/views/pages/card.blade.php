@@ -69,7 +69,9 @@
                     <h4><span class="card-title">Introduced in Scout:</span> <a href="/scout/{{$source->url}}">{{$source->name_e}}</a></h4>
                 @elseif ($from == 'event')
                     <h4><span class="card-title">Introduced in Event:</span> <a href="/event/{{$source->url}}">{{$source->name_e}}</a></h4>
-                    {{$card->eventcard->type}} {{$card->stars}} star
+                    @if($card->eventcard)
+                      {{$card->eventcard->type}} {{$card->stars}} star
+                    @endif
                 @endif
                 <hr>
                 @if ($dorifes_skill->id == 0)

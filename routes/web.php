@@ -225,11 +225,13 @@ Route::get('/home/card/edit/{card_id}','CardController@editDisplay');
 //posting
 Route::post('/home/edit/card','CardController@edit');
 
+Route::get('/home/tools/createEventCards','HomeController@toolCreateEventCards');
 //tool page
 Route::get('/home/tools','HomeController@tools');
 //individual tools
 Route::get('/home/tools/addSlides','HomeController@toolAddSlides');
 Route::get('/home/tools/generatedText','HomeController@toolAddGeneratedText');
+Route::get('/home/tools/createEventCards','HomeController@toolCreateEventCards');
 
 //adding slides
 Route::post('/add/translation/slides','HomeController@addSlides');

@@ -22,6 +22,7 @@ use App\Cardissue;
 use App\Message;
 use App\Event;
 use App\Feature;
+use App\Eventcard;
 
 class HomeController extends Controller
 {
@@ -463,6 +464,67 @@ class HomeController extends Controller
             ->with('boys',$boys);
     }     
 
+    /**
+     * Filling the eventcards table - from tools page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function toolCreateEventCards() {
+        //ok all the events
+        $events = Event::all();
+        foreach($events as $event) {
+            $ec = new EventCard;
+            $ec->event_id = $event->id;
+            $ec->card_id = $event->rank_5;
+            $ec->type = 'Ranking';
+            $ec->save();
+
+            $ec = new EventCard;
+            $ec->event_id = $event->id;
+            $ec->card_id = $event->rank_4;
+            $ec->type = 'Ranking';
+            $ec->save();
+
+            $ec = new EventCard;
+            $ec->event_id = $event->id;
+            $ec->card_id = $event->rank_3;
+            $ec->type = 'Ranking';
+            $ec->save();      
+            
+            $ec = new EventCard;
+            $ec->event_id = $event->id;
+            $ec->card_id = $event->points_5;
+            $ec->type = 'Points';
+            $ec->save();    
+
+            $ec = new EventCard;
+            $ec->event_id = $event->id;
+            $ec->card_id = $event->points_4;
+            $ec->type = 'Points';
+            $ec->save();     
+            
+            $ec = new EventCard;
+            $ec->event_id = $event->id;
+            $ec->card_id = $event->points_3_da;
+            $ec->type = 'Points';
+            $ec->save();  
+
+            $ec = new EventCard;
+            $ec->event_id = $event->id;
+            $ec->card_id = $event->points_3_vo;
+            $ec->type = 'Points';
+            $ec->save();     
+            
+            $ec = new EventCard;
+            $ec->event_id = $event->id;
+            $ec->card_id = $event->points_3_pf;
+            $ec->type = 'Points';
+            $ec->save();              
+        }
+        
+        return redirect('/home/tools/');      
+    } 
+
 
     /**
      * Show the event Data page
@@ -611,8 +673,7 @@ class HomeController extends Controller
 
         
         return redirect('/home/tools/');      
-    }
-
+    }   
 
     /**
      * UI for editing CSS
