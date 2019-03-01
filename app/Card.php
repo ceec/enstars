@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\User;
 use Auth;
 use App\Usercard;
+use App\Eventcard;
 
 
 class Card extends Model
@@ -22,6 +23,16 @@ class Card extends Model
     {
           return $this->belongsTo('App\Event');
     }
+
+    /**
+     * Get the event data for the card.
+     */
+    public function eventcard()
+    {
+          return $this->hasOne('App\Eventcard');
+    }
+
+
 
     /**
      * Get the scout for this card.
