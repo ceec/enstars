@@ -29,14 +29,10 @@
                         ?>
 
                     @if(isset($card->event))
-
+                            
 
                         <td>  
-                            @if ($card->event->rank_5 == $card->id)
-                                <a href="/card/{{$card->id}}"><button class="btn {{$button_class}}">Rank</button></a>
-                            @else
-                                <a href="/card/{{$card->id}}"><button class="btn {{$button_class}}">Points</button></a>
-                            @endif
+                            <a href="/card/{{$card->id}}"><button class="btn {{$button_class}}">{{$card->eventcard->type}}</button></a>
                             <br>
                             {{$card->event->name_e}}<br>
                             {{date('Y-m-d',strtotime($card->event->start))}}
