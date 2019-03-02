@@ -23,6 +23,7 @@ use App\Slide;
 
 use App\Blog;
 
+use App\Collaboration;
 use App\Scout;
 
 use App\Unitskill;
@@ -1232,6 +1233,47 @@ class DisplayController extends Controller {
          ->with('urgent',$urgent)
          ->with('halfway',$halfway);
     }  
+
+    ///collaboration/////
+
+    /**
+     * Show all collaborations
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function collaborationAll() {
+        $collaborations = Collaboration::orderBy('end','desc')->get();
+
+        return view('pages.collaborationAll')
+            ->with('collaborations',$collaborations);
+    }
+
+    /**
+     * Show specific collaboration
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function collaboration($url) {
+        //can pass through an id or an url
+        if (ctype_digit($url)){
+            $collaboration = Collaboration::where('id','=',$url)->first();
+        } else {
+            $collaboration = Collaboration::where('url','=',$url)->first();
+        }
+
+        //when bad event url is passed
+        if (empty($collaboration)) {
+            //want to go to 404 page 
+            abort(404);
+        }
+
+        $cards = Card::where('collaboration_id','=',$collaboration->id)->orderBy('stars','desc')->get();
+
+        return view('pages.collaboration')
+            ->with('cards',$cards)
+            ->with('collaboration',$collaboration);
+    }       
+
 
     ////translations//////
 

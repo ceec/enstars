@@ -68,6 +68,10 @@ Route::get('/scout/all','DisplayController@scoutAll');
 //specfic scouts
 Route::get('/scout/{scout_id}','DisplayController@scout');
 
+//all collaborations
+Route::get('/collaboration/all','DisplayController@collaborationAll');
+//specific collaboration
+Route::get('/collaboration/{collaboration_id}','DisplayController@collaboration');
 
 //listing large groups of stories
 Route::get('/translation/event','DisplayController@translationEvent');

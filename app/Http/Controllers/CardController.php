@@ -102,6 +102,7 @@ class CardController extends Controller
         $c->u_lesson_id = 75;               
         $c->scout_id = 0;
         $c->event_id = 0;
+        $c->collaboration_id = 0;
         $c->sentence_j = '';
         $c->sentence_e = '';        
         $c->stories = 0;
