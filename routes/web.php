@@ -236,6 +236,7 @@ Route::get('/home/tools','HomeController@tools');
 Route::get('/home/tools/addSlides','HomeController@toolAddSlides');
 Route::get('/home/tools/generatedText','HomeController@toolAddGeneratedText');
 Route::get('/home/tools/createEventCards','HomeController@toolCreateEventCards');
+Route::get('/home/tools/emailTest','HomeController@emailTest');
 
 //adding slides
 Route::post('/add/translation/slides','HomeController@addSlides');

@@ -527,6 +527,22 @@ class HomeController extends Controller
 
 
     /**
+     * Testing Email
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function emailTest() {
+
+        $email = env('MAIL_ADDRESS');
+
+        Mail::to($email)->send('test');
+
+        return redirect('/home/tools/');
+
+    }
+
+
+    /**
      * Show the event Data page
      *
      * @return \Illuminate\Http\Response
