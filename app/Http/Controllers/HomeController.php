@@ -24,6 +24,8 @@ use App\Event;
 use App\Feature;
 use App\Eventcard;
 
+use Mail;
+
 class HomeController extends Controller
 {
     /**
