@@ -41,7 +41,9 @@ class Handler extends ExceptionHandler
         //2018-11-30
         //mail the error, only on production
         if (($this->shouldReport($exception)) && (env('APP_ENV') == 'production')) {
+            dd('is it here');
             $this->sendEmail($exception); // sends an email
+
         }        
 
         parent::report($exception);
