@@ -759,7 +759,7 @@ $('.road-node').on('click',function(){
                     @if (Auth::user()->isAdmin())
                       <div class="panel panel-success">
                         <div class="panel-heading">
-                          <h3 class="panel-title">Admin - Edit Card <span class="pull-right">Last Updated on {{$card->updated_at}} by {{$updated_by->name}} </span></h3>
+                        <h3 class="panel-title">Admin - Edit Card  Id:{{$card->id}} Picture: {{$card->boy_id}}_{{$card->card_id}}.png<span class="pull-right">Last Updated on {{$card->updated_at}} by {{$updated_by->name}} </span></h3>
                         </div>
                         <div class="panel-body">
                             {!! Form::open(['url' => '/edit/card']) !!}    
