@@ -60,11 +60,7 @@ Store | enstars.info
           <div class="col-md-4">
             <img class="img-responsive" src="/images/store/20.JPG">
             <h5>Yuzuru</h5>
-          </div>
-          <div class="col-md-4">
-             <img class="img-responsive" src="/images/store/21.JPG"> 
-             <h5>Eichi</h5>
-          </div>                    
+          </div>                  
         </div>   
         <div class="row">
           <div class="col-md-4">
