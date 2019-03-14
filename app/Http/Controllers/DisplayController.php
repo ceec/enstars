@@ -316,6 +316,8 @@ class DisplayController extends Controller {
             $source = Event::where('id','=',$card->event_id)->first();
         } else if ($card->scout_id !=0) {
             $source = Scout::where('id','=',$card->scout_id)->first();
+        } else if ($card->collaboration_id !=0) {
+            $source = Collaboration::where('id','=',$card->collaboration_id)->first();
         } else {
             $source = '';
         }

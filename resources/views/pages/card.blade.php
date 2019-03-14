@@ -24,15 +24,15 @@
                                 $color_class = 'panel-default';
                             }
 
-                            if ($card->scout_id != 0) {
-                                //its from a scout
-                                $from = 'scout';
-                            } else if ($card->event_id !=0) {
-                                //its from an event
-                                $from = 'event';
-                            } else {
-                                $from = 'pool';
-                            }
+                            // if ($card->scout_id != 0) {
+                            //     //its from a scout
+                            //     $from = 'scout';
+                            // } else if ($card->event_id !=0) {
+                            //     //its from an event
+                            //     $from = 'event';
+                            // } else {
+                            //     $from = 'pool';
+                            // }
 
                             if ($source) {
                                 //format starting date
@@ -63,16 +63,19 @@
             </div>
             <div class="col-md-6">
                 <h4><span class="card-title">Released:</span> {{$start_date}}</h4> 
-                @if ($from == 'pool')
-                    <h4><span class="card-title">Introduced in:</span> Original Card</h4>
-                @elseif ($from == 'scout')
-                    <h4><span class="card-title">Introduced in Scout:</span> <a href="/scout/{{$source->url}}">{{$source->name_e}}</a></h4>
-                @elseif ($from == 'event')
-                    <h4><span class="card-title">Introduced in Event:</span> <a href="/event/{{$source->url}}">{{$source->name_e}}</a></h4>
-                    @if($card->eventcard)
-                      {{$card->eventcard->type}} {{$card->stars}} star
-                    @endif
+                @if ($card->scout_id != 0)
+                  <h4><span class="card-title">Introduced in Scout:</span> <a href="/scout/{{$source->url}}">{{$source->name_e}}</a></h4>
+                @elseif ($card->event_id !=0)
+                  <h4><span class="card-title">Introduced in Event:</span> <a href="/event/{{$source->url}}">{{$source->name_e}}</a></h4>
+                  @if($card->eventcard)
+                    {{$card->eventcard->type}} {{$card->stars}} star
+                  @endif
+                @elseif ($card->collaboration_id !=0)
+                  <h4><span class="card-title">Introduced in Collaboration:</span> <a href="/collaboration/{{$source->url}}">{{$source->name_e}}</a></h4>
+                @else
+                  <h4><span class="card-title">Introduced in:</span> Original Card</h4>
                 @endif
+
                 <hr>
                 @if ($dorifes_skill->id == 0)
                     <h4><span class="card-title">Dream Festival Skill:</span> {{$dorifes_skill->english_description}} </h4>
