@@ -31,7 +31,7 @@
                 </div>                    
                 </div>
             </div>
-            <p><a href="{{$collaboration->website}}">Scout Website</a></p>
+            <p><a href="{{$collaboration->website}}">Collaboration Website</a></p>
             <div class="row">
                             <div class="col-md-4">
                 </div>
