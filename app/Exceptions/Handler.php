@@ -12,7 +12,7 @@ use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 use App\Mail\ExceptionOccured;
 
-use App\User;
+use App;
 
 class Handler extends ExceptionHandler
 {
@@ -41,11 +41,9 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
         //2018-11-30
-        $this->sendEmail($exception);
         //mail the error, only on production
-        if (($this->shouldReport($exception)) && (env('APP_ENV') == 'production')) {
+        if (($this->shouldReport($exception)) && (App::environment('production'))) {
             $this->sendEmail($exception); // sends an email
-
         }        
 
         parent::report($exception);
@@ -63,14 +61,9 @@ class Handler extends ExceptionHandler
     {
         try {
             $e = FlattenException::create($exception);
-
             $handler = new SymfonyExceptionHandler();
-
             $html = $handler->getHtml($e);
-            
-            $user = User::where('admin','=',1)->first();
-            dd(config('mail.address'));
-
+            $email = config('enstars.erroremail');
             Mail::to($email)->send(new ExceptionOccured($html));
         } catch (Exception $ex) {
             //dd($ex);
