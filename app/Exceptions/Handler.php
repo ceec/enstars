@@ -12,6 +12,8 @@ use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 use App\Mail\ExceptionOccured;
 
+use App\User;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -59,19 +61,20 @@ class Handler extends ExceptionHandler
      */
     public function sendEmail(Exception $exception)
     {
-        //try {
+        try {
             $e = FlattenException::create($exception);
 
             $handler = new SymfonyExceptionHandler();
 
             $html = $handler->getHtml($e);
-
-            $email = env('MAIL_ADDRESS');
+            
+            $user = User::where('admin','=',1)->first();
+            dd(config('mail.address'));
 
             Mail::to($email)->send(new ExceptionOccured($html));
-        //} catch (Exception $ex) {
+        } catch (Exception $ex) {
             //dd($ex);
-        //}
+        }
     }
 
     /**
