@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
      */
     public function sendEmail(Exception $exception)
     {
-        try {
+        //try {
             $e = FlattenException::create($exception);
 
             $handler = new SymfonyExceptionHandler();
@@ -69,9 +69,9 @@ class Handler extends ExceptionHandler
             $email = env('MAIL_ADDRESS');
 
             Mail::to($email)->send(new ExceptionOccured($html));
-        } catch (Exception $ex) {
+        //} catch (Exception $ex) {
             //dd($ex);
-        }
+        //}
     }
 
     /**
