@@ -70,7 +70,7 @@ class Handler extends ExceptionHandler
 
             Mail::to($email)->send(new ExceptionOccured($html));
         } catch (Exception $ex) {
-            dd($ex);
+            //dd($ex);
         }
     }
 
