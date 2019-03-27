@@ -320,6 +320,9 @@ class UserController extends Controller
         $rank = preg_replace("/[^0-9]/", "",$rank);
         $points = preg_replace("/[^0-9]/", "",$points);
 
+        //deal with empty spaces
+        $rank = intval($rank);
+        $points = intval($points);
 
         //add the user card
         $user = Auth::user();    
