@@ -30,12 +30,12 @@ var eventID = "<?php print $event->id; ?>";
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
 <div class="container">
-	<div class="alert alert-warning	">
+	<!--<div class="alert alert-warning	">
 		<h3>This calculator is in beta!</h3>
     <p>Calculator Update - 2018-01-17 - Data is now tied to your user account, log in to save your team totals.</p>
 		<p>Things may change as I add in new features and I may accidentally break things! If you have any feedback or suggestions 
 		I would appreicate it if you sent them to me through our contact form at the bottom of the page!</p>
-	</div>
+	</div>-->
   <div class="row">
 
       <div class="col-lg-2">
