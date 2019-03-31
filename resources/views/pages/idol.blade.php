@@ -53,6 +53,7 @@
             @endif
         @endforeach
     <h2>Card Frequency - By Week</h2>
+    <p>0 is January and 50 is December, for 52 weeks total. Each ring repesents the card type by amount of stars.</p>
     
     <style>
         #chartdiv {
