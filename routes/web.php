@@ -221,6 +221,7 @@ Route::post('/edit/cardsuggestion','CardController@editsuggestion');
 
 //events
 Route::post('/edit/event','EventController@edit');
+Route::post('/edit/event/card','EventController@editCard');
 
 //scouts
 Route::post('/edit/scout','ScoutController@edit');

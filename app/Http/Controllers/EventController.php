@@ -11,6 +11,7 @@ use App\Minieventchoice;
 use App\Event;
 use Auth;
 use App\User;
+use App\Eventcard;
 
 class EventController extends Controller
 {
@@ -99,5 +100,26 @@ class EventController extends Controller
         return redirect('/event/'.$e->url);          
     } 
 
+    /**
+     * Edit event cards
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCard(Request $request) {
+        //2019-03-31
+        //New UI to add cards to events, for events that have 8+ cards
+        //Going into eventcards instead of in the events table
+        // the 5 start histroy graph also uses this for card sources
+
+        $e = Event::find($request->input('event_id'));
+
+        $ec = new Eventcard;
+        $ec->card_id = $request->input('card_id');
+        $ec->event_id = $request->input('event_id');
+        $ec->type = $request->input('type');
+        $ec->save();
+
+        return redirect('/event/'.$e->url);          
+    } 
 
 }

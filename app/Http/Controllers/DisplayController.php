@@ -54,6 +54,7 @@ use App\Chapterboy;
 
 use DB;
 
+use App\Eventcard;
 
 class DisplayController extends Controller {
 
@@ -1063,6 +1064,9 @@ class DisplayController extends Controller {
         //get the mini events
         $minievents = Minievent::where('event_id','=',$event->id)->orderBy('precedence','asc')->get();
 
+        //get the event cards
+        $eventcards = Eventcard::where('event_id','=',$event->id)->get();
+
         return view('pages.event')
             ->with('cards',$cards)
             ->with('story',$story)
@@ -1070,6 +1074,7 @@ class DisplayController extends Controller {
             ->with('points',$points)
             ->with('rewards',$rewards)
             ->with('minievents',$minievents)
+            ->with('eventcards',$eventcards)
             ->with('event',$event);
     }    
 

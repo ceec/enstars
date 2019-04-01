@@ -213,7 +213,7 @@
                                   </div>                                                                    
                               </div>
 
-                              <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="rank_5">Rank 5 Star Card</label>
                                      {!! Form::text('rank_5',$event->rank_5,['class'=>'form-control','id'=>'rank_5']) !!}
@@ -245,18 +245,32 @@
                                 <div class="form-group">
                                     <label for="points_3_pf">Points 3 Star Card - Performance</label>
                                      {!! Form::text('points_3_pf',$event->points_3_pf,['class'=>'form-control','id'=>'points_3_pf']) !!}
-                                </div>                                                                                                                                            
-                              </div>
-                                </div>
-                                                       
-   
-                
- 
-                                                                                          
-                 
-                                  {!! Form::hidden('event_id', $event->id) !!}                                                      
+                                </div>    
+                            {!! Form::hidden('event_id', $event->id) !!}                                                      
                             {!! Form::submit('Edit') !!}
-                            {!! Form::close() !!}
+                            {!! Form::close() !!}                                                                                                                                                                        
+                            </div>
+                            <div class="col-md-3">
+                                {!! Form::open(['url' => '/edit/event/card']) !!}    
+                                <div class="form-group">
+                                    <label for="card_id">Card</label>
+                                     {!! Form::text('card_id','',['class'=>'form-control','id'=>'card_id']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label for="type">Type</label>
+                                     {!! Form::text('type','',['class'=>'form-control','id'=>'type']) !!}
+                                </div>                                                              
+                                {!! Form::hidden('event_id', $event->id) !!}                                                      
+                                {!! Form::submit('Edit') !!}
+                                {!! Form::close() !!}   
+                                <br>
+                                <h3>Cards</h3>
+                                @foreach($eventcards as $card)
+                                    {{$card->card_id}} {{$card->type}}<br>
+                                @endforeach
+                            </div>
+                            </div>
+
                         </div>
                       </div>
 
