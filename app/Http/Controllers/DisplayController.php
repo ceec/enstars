@@ -55,6 +55,7 @@ use App\Chapterboy;
 use DB;
 
 use App\Eventcard;
+use App\Typegroup;
 
 class DisplayController extends Controller {
 
@@ -840,11 +841,13 @@ class DisplayController extends Controller {
 
         $boys = Boy::where('unit_id','=',$unit->id)->get();
 
-        $events = Unitevent::where('unit_id','=',$unit->id)->get();
+        //$events = Unitevent::where('unit_id','=',$unit->id)->get();
+        //this gets anything tagged with the group of that unit
+        $groups = Typegroup::where('group','=','1')->where('group_id','=',$unit->id)->get();
 
         return view('pages.unit')
             ->with('unit',$unit)
-            ->with('events',$events)
+            ->with('groups',$groups)
             ->with('boys',$boys);
     }
 

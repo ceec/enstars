@@ -42,10 +42,10 @@
     </div>
     <h2>Events</h2>
         <div class="row">
-        @foreach($events as $event)
-            <div class="col-md-4">
-                <a href="/event/{{$event->event->url}}"><img class="img-responsive" src="/images/events/{{$event->event_id}}.png"></a>      
-            </div>
+        @foreach($groups as $group)
+            @if($group->type == 1)
+                {{$group->type}} {{$group->type_id}}<br>
+            @endif
         @endforeach
         </div>
     <h2>Stories</h2>
