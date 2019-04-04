@@ -15,12 +15,12 @@ class Typegroup extends Model {
       
       if ($this->type == 1) {
         //its an event
-        return $this->hasOne('App\Event','id');
+        return $this->hasOne('App\Event','id','type_id');
       }
 
       if ($this->type == 2) {
         //its an event
-        return $this->hasOne('App\Scout','id');
+        return $this->hasOne('App\Scout','id','type_id');
       }      
 
 
