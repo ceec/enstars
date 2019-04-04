@@ -42,12 +42,20 @@
     </div>
     <h2>Events</h2>
         <div class="row">
-        @foreach($groups as $group)
-            @if($group->type == 1)
-                {{$group->type}} {{$group->type_id}}<br>
-            @endif
+        @foreach($events as $event)
+            <div class="col-md-4">
+                <a href="/event/{{$event->source->url}}"><img class="img-responsive" src="/images/events/{{$event->type_id}}.png" alt="{{$event->source->name_e}}" title="{{$event->source->name_e}}"></a>      
+            </div>        
         @endforeach
         </div>
+    <h2>Scouts</h2>
+        <div class="row">
+        @foreach($scouts as $scout)
+            <div class="col-md-4">
+                <a href="/scout/{{$scout->source->url}}"><img class="img-responsive" src="/images/scouts/{{$scout->type_id}}.png" alt="{{$scout->source->name_e}}" title="{{$scout->source->name_e}}"></a>      
+            </div>        
+        @endforeach
+        </div>        
     <h2>Stories</h2>
 </div>
 @endsection

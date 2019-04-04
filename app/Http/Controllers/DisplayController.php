@@ -843,11 +843,13 @@ class DisplayController extends Controller {
 
         //$events = Unitevent::where('unit_id','=',$unit->id)->get();
         //this gets anything tagged with the group of that unit
-        $groups = Typegroup::where('group','=','1')->where('group_id','=',$unit->id)->get();
+        $events = Typegroup::where('type','=',1)->where('group','=','1')->where('group_id','=',$unit->id)->get();
+        $scouts = Typegroup::where('type','=',2)->where('group','=','1')->where('group_id','=',$unit->id)->get();
 
         return view('pages.unit')
             ->with('unit',$unit)
-            ->with('groups',$groups)
+            ->with('events',$events)
+            ->with('scouts',$scouts)
             ->with('boys',$boys);
     }
 
