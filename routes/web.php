@@ -140,6 +140,7 @@ Route::get('/graph/cardlist','DisplayController@cardList');
 
 ////gameplay info///////
 Route::get('/game/management','GameController@management');
+Route::get('/game/courses','GameController@courses');
 
 
 /////////////////////////////////////////////////////////////////////
