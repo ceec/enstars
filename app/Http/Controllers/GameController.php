@@ -25,6 +25,16 @@ class GameController extends Controller
             return view('game.management');
     } 
 
+    /**
+     * Display Courses Page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function courses() {
+
+            return view('game.courses');
+    }     
+
 
     /**
      * Add scout 
