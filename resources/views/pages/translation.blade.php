@@ -16,8 +16,8 @@ All Translated Stories| enstars.info
                             <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                         @endforeach
 
-                        <h4>Gacha Stories</h4>
-                        @foreach ($gacha_stories as $story)
+                        <h4>Scout Stories</h4>
+                        @foreach ($scout_stories as $story)
                             <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                         @endforeach
 
@@ -35,8 +35,8 @@ All Translated Stories| enstars.info
                             <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                         @endforeach
 
-                        <h4>Gacha Stories</h4>
-                        @foreach ($gacha_stories_bad as $story)
+                        <h4>Scout Stories</h4>
+                        @foreach ($scout_stories_bad as $story)
                             <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                         @endforeach
 
