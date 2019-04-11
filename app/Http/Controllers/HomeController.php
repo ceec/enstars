@@ -26,6 +26,8 @@ use App\Eventcard;
 
 use Mail;
 
+use Goutte\Client;
+
 class HomeController extends Controller
 {
     /**
@@ -526,6 +528,45 @@ class HomeController extends Controller
         
         return redirect('/home/tools/');      
     } 
+
+    /**
+     * Tools - Scraper
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function scraper() {
+        //just need to get the da,vo,pf values
+
+
+        $client = new Client();
+
+        // Go to the symfony.com website
+        $crawler = $client->request('GET', 'http://stars.happyelements.co.jp/app_help/events/94/index.html');
+        
+        // Get the latest post in this category and display the titles
+        $crawler->filter('dd.cardDetail-info')->each(function ($node) {
+            $title = $node->filter('h4.head-name')->text();   
+
+            $da = $node->filter('div.ability-wrap > dl > dd')->text();
+            $vo = $node->filter('div.ability-wrap > dl > dd:nth-child(2)')->text();
+            //$pf = $node->filter('div.ability-wrap > dl > dd:nth-child(3)')->text();
+
+            $live = $node->filter('dl.live > dd')->text();
+            $lesson = $node->filter('dl.lesson > dd')->text();
+            
+            print 'Title: '.$title.'<br>';
+            print 'Da: '.$da.'<br>';
+            print 'Vo: '.$vo.'<br>';
+            //print 'Pf: '.$pf.'<br>';
+            print 'Live: '.$live.'<br>';
+            print 'Lesson: '.$lesson.'<br>';
+
+            //print $node->text()."\n";   
+            print '<hr>';
+        });
+
+     
+    }
 
 
     /**
