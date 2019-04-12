@@ -11,7 +11,7 @@ Translated Scout Stories| enstars.info
         <div class="col-md-12">
 
                     <h1>Translated Scout Stories</h1>
-                        @foreach ($gacha_stories as $story)
+                        @foreach ($scout_stories as $story)
                             <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                         @endforeach
 

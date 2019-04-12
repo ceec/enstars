@@ -122,14 +122,14 @@ class HomeController extends Controller
 
 
        $event_stories = Story::where('type','=',1)->get();
-       $gacha_stories = Story::where('type','=',2)->get();
+       $scout_stories = Story::where('type','=',2)->get();
        $character_stories = Story::where('type','=',3)->get();   
         
 
 
         return view('home.translationStatus')
         ->with('event_stories',$event_stories)
-        ->with('gacha_stories',$gacha_stories)
+        ->with('scout_stories',$scout_stories)
         ->with('character_stories',$character_stories);
     }     
 
@@ -140,7 +140,7 @@ class HomeController extends Controller
      */
     public function translations() {
        $event_stories = Story::where('type','=',1)->get();
-       $gacha_stories = Story::where('type','=',2)->get();
+       $scout_stories = Story::where('type','=',2)->get();
        $character_stories = Story::where('type','=',3)->get();
 
        //get the percentage of the stories
@@ -156,7 +156,7 @@ class HomeController extends Controller
        }
 
        //get the percentage of the stories
-       foreach($gacha_stories as $key => $story) {
+       foreach($scout_stories as $key => $story) {
             //count how many are marked complete
             $amount_complete = Chapter::where('story_id','=',$story->id)->where('complete','=','1')->count();
             $amount_total = Chapter::where('story_id','=',$story->id)->count();
@@ -164,7 +164,7 @@ class HomeController extends Controller
             if ($amount_total == 0) {
                 $amount_total = 1;
             }
-            $gacha_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
+            $scout_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
        }
 
 
@@ -182,7 +182,7 @@ class HomeController extends Controller
 
         return view('home.translation')
         ->with('event_stories',$event_stories)
-        ->with('gacha_stories',$gacha_stories)
+        ->with('scout_stories',$scout_stories)
         ->with('character_stories',$character_stories);
     }  
 

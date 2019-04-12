@@ -28,8 +28,8 @@ Enstars Info
                 <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                 @endforeach
 
-                <h4>Gacha Stories</h4>
-                @foreach ($gacha_stories as $story)
+                <h4>Scout Stories</h4>
+                @foreach ($scout as $story)
                 <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                 @endforeach
 

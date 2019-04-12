@@ -10,8 +10,8 @@
             <a href="/home/translations/{{$story->id}}">{{$story->name_e}}</a><br>
             @endforeach
 
-            <h2>Gacha Stories</h2>
-            @foreach ($gacha_stories as $story)
+            <h2>Scout Stories</h2>
+            @foreach ($scout_stories as $story)
              <a href="/home/translations/{{$story->id}}">{{$story->name_e}}</a><br>
             @endforeach
 

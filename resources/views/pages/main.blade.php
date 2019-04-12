@@ -224,8 +224,8 @@ var showTime = setInterval(timeLeft,1000);
                             <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                         @endforeach
 
-                        <h4>Gacha Stories</h4>
-                        @foreach ($gacha_stories as $story)
+                        <h4>Scout Stories</h4>
+                        @foreach ($scout_stories as $story)
                             <a href="/story/{{$story->id}}">{{$story->name_e}}</a><br>
                         @endforeach
 

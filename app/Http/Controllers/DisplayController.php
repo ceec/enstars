@@ -89,7 +89,7 @@ class DisplayController extends Controller {
 
         //stories that are complete
         $event_stories = Story::where('type','=',1)->where('active','=','1')->get();
-        $gacha_stories = Story::where('type','=',2)->where('active','=','1')->get();
+        $scout_stories = Story::where('type','=',2)->where('active','=','1')->get();
         $character_stories = Story::where('type','=',3)->where('active','=','1')->get();
 
         //get a list of tags
@@ -127,7 +127,7 @@ class DisplayController extends Controller {
         ->with('teachers',$teachers)
         ->with('units',$units)
         ->with('event_stories',$event_stories)
-        ->with('gacha_stories',$gacha_stories)
+        ->with('scout_stories',$scout_stories)
         ->with('character_stories',$character_stories)
         ->with('tags',$tags)    
         ->with('reds',$reds)  
@@ -187,7 +187,7 @@ class DisplayController extends Controller {
 
         //stories that are complete
         $event_stories = Story::where('type','=',1)->get();
-        $gacha_stories = Story::where('type','=',2)->get();
+        $scout_stories = Story::where('type','=',2)->get();
         $character_stories = Story::where('type','=',3)->get();
 
         return view('welcome')
@@ -207,7 +207,7 @@ class DisplayController extends Controller {
             ->with('all',$all)        
             ->with('units',$units)
             ->with('event_stories',$event_stories)
-            ->with('gacha_stories',$gacha_stories)
+            ->with('scout_stories',$scout_stories)
             ->with('character_stories',$character_stories)                                                                    
             ->with('boys',$boys);
    
@@ -979,7 +979,7 @@ class DisplayController extends Controller {
         
         
         if ($scout->type_id == 1) {
-            //if its a gacha
+            //if its a scout
             //get the stories
             $story = Story::where('type_id','=',$scout->id)->where('type','=',2)->first();
             //chatpers
@@ -1342,11 +1342,11 @@ class DisplayController extends Controller {
      */
     public function translationScout() {
         //stories that are complete
-        $gacha_stories = Story::where('type','=',2)->where('active','=','1')->get();
+        $scout_stories = Story::where('type','=',2)->where('active','=','1')->get();
 
 
         return view('pages.translationScout')
-        ->with('gacha_stories',$gacha_stories);
+        ->with('scout_stories',$scout_stories);
     }
 
 
