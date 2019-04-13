@@ -589,21 +589,33 @@ class HomeController extends Controller
            
             $skill = Skill::where('japanese_description','=',$card['lesson_skill'])->first();
             $card['lesson_skill_id'] = $skill->id;      
-            
-            $outfits[] = '';
 
             //costumes
             $costumes = $node->filter('li.itemList')->each(function($outfit){
                 $outfits[] = $outfit->text();
+
+                return $outfits;
             });
-            
+
+            //flatten
+            foreach($costumes as $costume) {
+                foreach ($costume as $morecostume) {
+                    $outfits[] = $morecostume;
+                }   
+            }
+
+            foreach($outfits as $outfit) {
+                $card['outfits'][] = trim($outfit);
+            }
+        
+
             print '<pre>';
             print_r($card);
             print '</pre>';
 
-            print '<pre>';
-            print_r($outfits);
-            print '</pre>';            
+            // print '<pre>';
+            // print_r($outfits);
+            // print '</pre>';            
 
             //print $node->text()."\n";   
             print '<hr>';
