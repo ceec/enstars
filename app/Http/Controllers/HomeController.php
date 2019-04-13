@@ -23,6 +23,7 @@ use App\Message;
 use App\Event;
 use App\Feature;
 use App\Eventcard;
+use App\Skill;
 
 use Mail;
 
@@ -536,30 +537,73 @@ class HomeController extends Controller
      */
     public function scraper() {
         //just need to get the da,vo,pf values
-
-
         $client = new Client();
 
         // Go to the symfony.com website
         $crawler = $client->request('GET', 'http://stars.happyelements.co.jp/app_help/events/94/index.html');
         
         // Get the latest post in this category and display the titles
-        $crawler->filter('dd.cardDetail-info')->each(function ($node) {
-            $title = $node->filter('h4.head-name')->text();   
+        $crawler->filter('dl.cardDetail')->each(function ($node) {
+            $fulltitle = $node->filter('h4.head-name')->text();   
 
-            $da = $node->filter('div.ability-wrap > dl > dd')->text();
-            $vo = $node->filter('div.ability-wrap > dl > dd:nth-child(2)')->text();
-            //$pf = $node->filter('div.ability-wrap > dl > dd:nth-child(3)')->text();
+            $pieces = explode(']',$fulltitle);
+
+            $title = str_replace('[','',$pieces[0]);
+            $character = $pieces[1];
+
+            $da = $node->filter('div.ability-wrap dd:nth-child(2)')->text();
+            $vo = $node->filter('div.ability-wrap dd:nth-child(4)')->text();
+            $pf = $node->filter('div.ability-wrap dd:nth-child(6)')->text();
+
+            //remove comma
+            $da = str_replace(',','',$da);
+            $vo = str_replace(',','',$vo);
+            $pf = str_replace(',','',$pf);
 
             $live = $node->filter('dl.live > dd')->text();
+            $live = explode(':',$live);
+            $live_name = $live[0];
+            $live_skill = $live[1];
+
             $lesson = $node->filter('dl.lesson > dd')->text();
+            $lesson = explode(':',$lesson);
+            $lesson_name = $lesson[0];
+            $lesson_skill = $lesson[1];
+
+            $card = [];
+            $card['boy'] = $character;
+            $card['title'] = $title;
+            $card['da'] = $da;
+            $card['vo'] = $vo;
+            $card['pf'] = $pf;
+            $card['live_name'] = $live_name;
+            $card['live_skill'] = $live_skill;
+            $card['lesson_name'] = $lesson_name;
+            $card['lesson_skill'] = $lesson_skill;
             
-            print 'Title: '.$title.'<br>';
-            print 'Da: '.$da.'<br>';
-            print 'Vo: '.$vo.'<br>';
-            //print 'Pf: '.$pf.'<br>';
-            print 'Live: '.$live.'<br>';
-            print 'Lesson: '.$lesson.'<br>';
+            $card = array_map('trim',$card);
+            
+            //find the skill ids for the skills
+            $skill = Skill::where('japanese_description','=',$card['live_skill'])->first();
+            $card['live_skill_id'] = $skill->id;
+           
+            $skill = Skill::where('japanese_description','=',$card['lesson_skill'])->first();
+            $card['lesson_skill_id'] = $skill->id;      
+            
+            $outfits[] = '';
+
+            //costumes
+            $costumes = $node->filter('li.itemList')->each(function($outfit){
+                $outfits[] = $outfit->text();
+            });
+            
+            print '<pre>';
+            print_r($card);
+            print '</pre>';
+
+            print '<pre>';
+            print_r($outfits);
+            print '</pre>';            
 
             //print $node->text()."\n";   
             print '<hr>';
