@@ -542,8 +542,31 @@ class HomeController extends Controller
         // Go to the symfony.com website
         $crawler = $client->request('GET', 'http://stars.happyelements.co.jp/app_help/events/94/index.html');
         
+
+        //get the icon images
+        $crawler->filter('div.thumb-nav a img')->each(function($icons) {
+            $image = $icons->attr('src');
+            $image = ltrim($image,'.');
+            print '<img src="http://stars.happyelements.co.jp/app_help/events/94'.$image.'">';
+        
+        });
+
+
+
+
+
         // Get the latest post in this category and display the titles
         $crawler->filter('dl.cardDetail')->each(function ($node) {
+            //images
+            //looks like in the source itself the image is indeed just /
+            //the actual urls come from JS
+            //
+            //$unbloomed = $node->filter('dt.cardDetail-image img')->attr('src');
+            //the card names are in JS at the top of the script
+            //$card_image = 'gboplxfd';
+            //print '<img src="http://stars.happyelements.co.jp/app_help/events/94/images/cd_'.$card_image.'_n.png>';
+
+
             $fulltitle = $node->filter('h4.head-name')->text();   
 
             $pieces = explode(']',$fulltitle);
@@ -604,9 +627,14 @@ class HomeController extends Controller
                 }   
             }
 
-            foreach($outfits as $outfit) {
-                $card['outfits'][] = trim($outfit);
+            //not every card has outfits
+            if (isset($outfits)) {
+                foreach($outfits as $outfit) {
+                    $card['outfits'][] = trim($outfit);
+                }
             }
+
+
         
 
             print '<pre>';
