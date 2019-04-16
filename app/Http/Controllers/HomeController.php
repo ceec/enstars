@@ -540,14 +540,14 @@ class HomeController extends Controller
         $client = new Client();
 
         // Go to the symfony.com website
-        $crawler = $client->request('GET', 'http://stars.happyelements.co.jp/app_help/events/94/index.html');
+        $crawler = $client->request('GET', 'http://stars.happyelements.co.jp/app_help/events/95/index.html');
         
 
         //get the icon images
         $crawler->filter('div.thumb-nav a img')->each(function($icons) {
             $image = $icons->attr('src');
             $image = ltrim($image,'.');
-            print '<img src="http://stars.happyelements.co.jp/app_help/events/94'.$image.'">';
+            print '<img src="http://stars.happyelements.co.jp/app_help/events/95'.$image.'">';
         
         });
 
