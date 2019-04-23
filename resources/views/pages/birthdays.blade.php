@@ -51,7 +51,7 @@ Birthday Calendar | enstars.info
                             <ul>
                                 @foreach($boys as $boy)
                                     @if (date('m',strtotime($boy->birthday)) == $month_number)
-                                        <li>{{date('d',strtotime($boy->birthday))}} - {{$boy->first_name}} {{$boy->last_name}}</li>
+                                        <li>{{date('j',strtotime($boy->birthday))}} - {{$boy->first_name}} {{$boy->last_name}}</li>
                                     @endif
                                 @endforeach
                             </ul>     
