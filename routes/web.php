@@ -143,6 +143,14 @@ Route::get('/game/management','GameController@management');
 Route::get('/game/courses','GameController@courses');
 
 
+//////// Beta Features in BetaController - move when hatched //////
+
+
+Route::get('/memory','BetafeatureController@memoryGame');
+
+
+
+
 /////////////////////////////////////////////////////////////////////
 //    Data
 /////////////////////////////////////////////////////////////////////
