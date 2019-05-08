@@ -147,7 +147,7 @@ Route::get('/game/courses','GameController@courses');
 
 
 Route::get('/memory','BetafeatureController@memoryGame');
-
+Route::get('/memory/{language}','BetafeatureController@memoryGame');
 
 
 

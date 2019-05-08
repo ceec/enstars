@@ -31,12 +31,18 @@ class BetafeatureController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function memoryGame() {
-      $boys = Boy::where('school_id','=',1)->pluck('english_name')->toArray();
-
+    public function memoryGame($language='') {
+      
       $pictures = Boy::where('school_id','=',1)->pluck('id')->toArray();
+      
+      if ($language == 'japanese') {
+        $boys = Boy::where('school_id','=',1)->pluck('japanese_name')->toArray();    
+        $rawanswers = Boy::where('school_id','=',1)->pluck('japanese_name','id');
+      } else {
+        $boys = Boy::where('school_id','=',1)->pluck('english_name')->toArray();    
+        $rawanswers = Boy::where('school_id','=',1)->pluck('english_name','id');
+      }
 
-      $rawanswers = Boy::where('school_id','=',1)->pluck('english_name','id');
 
       foreach($rawanswers as $key => $answer) {
         $answers[] = $key.str_replace(' ','-',$answer);
