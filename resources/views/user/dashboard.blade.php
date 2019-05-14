@@ -30,16 +30,13 @@ Dashboard | enstars.info
                     </div>
                     <div class="col-md-8">
                         @if (Auth::user()->role_id == 1)
-                            <div class="alert alert-info">
+                            <!--<div class="alert alert-info">
                             <h4 style="margin-top:0px">2018-04-21 - Beta Feature: Card Suggestions</h4>
                             <p style="font-size:15px">
                                 There are a lot of cards! And sometimes I miss data. Every card in your collection now has a Card Suggestion panel. This allows you to enter in any data that is missing for the card.<br>
                                 Any suggestions will go into a moderation queue and then get added into the main database.
                             </p>
-                        </div>
-                        
-
-                        </p>
+                        </div>-->
                         @endif
                         <h3>How to add cards</h3>
                         <p>When you are logged into an account all cards on the boy card list pages get a new Add button. Click on it to add the card to your collection!</p>
