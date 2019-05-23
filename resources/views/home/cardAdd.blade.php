@@ -32,8 +32,6 @@
                   <div class="form-group">
                     <label for="stars">Stars</label>
                     <select name="stars" class="form-control" id="stars">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -42,9 +40,10 @@
                   <div class="form-group">
                     <label for="type">Type</label>
                     <select name="color" class="form-control" id="type">
-                        <option value="red">Dance</option>
-                        <option value="blue">Vocal</option>
-                        <option value="yellow">Performance</option>
+                        <option value="">Type</option>
+                        <option value="dance">Dance</option>
+                        <option value="vocal">Vocal</option>
+                        <option value="performance">Performance</option>
                     </select>
                   </div>   
                   <div class="form-group">
@@ -62,6 +61,63 @@
    	</div>
 
 </div>
+<script>
+      $('#type').change(function() {
 
+        var type = $(this).val();
+        console.log(type);
+          $.get('/api/skill/dreamfestival/'+type,function(data){
+            //clear out dorifes-id options
+            var select = document.getElementById('dorifes-id');
+            select.options.length=0;
+
+            //need to parse this for just what I want
+            for (const skill of data) {
+              //create a new dorifes option
+              var option = document.createElement('option');
+              option.value = skill.id;
+              option.innerHTML = skill.english_description;
+              select.appendChild(option);
+            }          
+
+          },'json');
+
+
+
+
+
+
+		// var $self = $(this);
+		// //make this global to get into the delay function
+		// slideSpeaker = $self.val();
+		// slideID = $self.attr('id');
+		// slideName = $self.attr('name');
+    //     //remove the first two characters - Christine 2017-09-24
+    //     slideID = slideID.slice(2);
+
+    // $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     })
+
+    //     //e.preventDefault(); 
+    //     $.ajax({
+
+    //         type: "POST",
+    //         url: '/add/translationajax',
+    //         data: {slide_id:slideID,name:slideName,value:slideSpeaker},
+    //         dataType: 'json',
+    //         success: function (data) {
+    //         	//update the timestamp
+    //         	$('#lastupdated-'+slideID).html(data.date);
+    //             //console.log(data);
+    //         },
+    //         error: function (data) {
+    //             //console.log('Error:', data);
+    //         }
+    //     });
+    });
+  </script>
 
 @endsection
