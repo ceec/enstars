@@ -11,8 +11,8 @@ Release Notes | enstars.info
   @foreach($notes as $note) 
     Version: {{$note->version}}<br>
     Released: {{$note->release_date}}<br><br>
-    
-    {{$note->notes}}
+
+    {!! $note->notes !!}
     <hr>
 
   @endforeach
