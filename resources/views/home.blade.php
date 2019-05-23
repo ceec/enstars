@@ -47,6 +47,7 @@
                     <div class="col-md-4">
                         <h3>Game</h3>
                         <a href="/home/releasenote/add">Add Release Notes</a><br>
+                        <a href="/home/releasenote/list">Edit Release Notes</a><br>
                     </div>
                     <div class="col-md-4">
                     </div>    

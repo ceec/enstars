@@ -279,6 +279,11 @@ Route::post('/add/event','EventController@add');
 //add release notes
 Route::get('/home/releasenote/add','ReleasenoteController@addDisplay');
 Route::post('/add/releasenote','ReleasenoteController@add');
+//edit release notes
+Route::get('/home/releasenote/edit/{note_id}','ReleasenoteController@editDisplay');
+Route::post('/edit/releasenote','ReleasenoteController@edit');
+//display release notes for editing
+Route::get('/home/releasenote/list','ReleasenoteController@listDisplay');
 
 //suggestions
 Route::get('/home/suggestions','HomeController@suggestions');

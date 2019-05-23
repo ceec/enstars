@@ -42,7 +42,49 @@ class ReleasenoteController extends Controller
         $n->notes = $request->input('notes');
         $n->save();
 
-        return redirect('/game/releasenotes');          
+        return redirect('/home/releasenote/edit/'.$n->id);          
+    } 
+
+    /**
+     * Edit releasenote display
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editDisplay($note_id) {
+      $note = Releasenote::find($note_id);
+      return view('home.releasenoteEdit')
+      ->with('note',$note);
+    } 
+
+
+    /**
+     * Edit releasenote 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request) {
+      $note = Releasenote::find($request->note_id);
+
+        //need to update event
+        $n = Releasenote::find($note->id);
+        $n->version = $request->input('version');
+        $n->release_date = $request->input('release_date');
+        $n->notes = $request->input('notes');
+        $n->save();
+
+        return redirect('/home/releasenote/edit/'.$n->id);    
+    }     
+
+
+    /**
+     * List releasenote display
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listDisplay() {
+      $notes = Releasenote::all();
+      return view('home.releasenoteList')
+      ->with('notes',$notes);
     } 
 
 }
