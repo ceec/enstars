@@ -41,9 +41,9 @@
                     <label for="type">Type</label>
                     <select name="color" class="form-control" id="type">
                         <option value="">Type</option>
-                        <option value="dance">Dance</option>
-                        <option value="vocal">Vocal</option>
-                        <option value="performance">Performance</option>
+                        <option value="red">Dance</option>
+                        <option value="blue">Vocal</option>
+                        <option value="yellow">Performance</option>
                     </select>
                   </div>   
                   <div class="form-group">
@@ -63,8 +63,15 @@
 </div>
 <script>
       $('#type').change(function() {
-
-        var type = $(this).val();
+        var color = $(this).val();
+        //TODO: need to change the db to a lookup table or something here
+        if (color === 'red') {
+          type = 'dance';
+        } else if (color === 'blue') {
+          type = 'vocal';
+        } else {
+          type = 'performance';
+        }
         console.log(type);
           $.get('/api/skill/dreamfestival/'+type,function(data){
             //clear out dorifes-id options
