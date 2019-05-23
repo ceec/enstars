@@ -43,6 +43,16 @@
                         <a href="/home/event/add">Add New</a><br>
                     </div>                                         
                 </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>Game</h3>
+                        <a href="/home/releasenote/add">Add Release Notes</a><br>
+                    </div>
+                    <div class="col-md-4">
+                    </div>    
+                    <div class="col-md-4">
+                    </div>                                         
+                </div>                
                 </div>
             </div>
         </div>

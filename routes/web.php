@@ -141,6 +141,7 @@ Route::get('/graph/cardlist','DisplayController@cardList');
 ////gameplay info///////
 Route::get('/game/management','GameController@management');
 Route::get('/game/courses','GameController@courses');
+Route::get('/game/releasenotes','GameController@releasenotes');
 
 
 //////// Beta Features in BetaController - move when hatched //////
@@ -274,6 +275,10 @@ Route::post('/add/scout','ScoutController@add');
 //add event
 Route::get('/home/event/add','EventController@addDisplay');
 Route::post('/add/event','EventController@add');
+
+//add release notes
+Route::get('/home/releasenote/add','ReleasenoteController@addDisplay');
+Route::post('/add/releasenote','ReleasenoteController@add');
 
 //suggestions
 Route::get('/home/suggestions','HomeController@suggestions');

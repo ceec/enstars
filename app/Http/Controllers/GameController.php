@@ -12,6 +12,8 @@ use App\Scout;
 use Auth;
 use App\User;
 
+use App\Releasenote;
+
 class GameController extends Controller
 {
 
@@ -34,6 +36,20 @@ class GameController extends Controller
 
             return view('game.courses');
     }     
+
+    /**
+     * Display Release Notes Page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function releasenotes() {
+
+        $notes = Releasenote::all();
+            return view('game.releasenotes')
+            ->with('notes',$notes);
+    }     
+
+
 
 
     /**
