@@ -86,9 +86,10 @@
                     </ul>
                   </li>                                 
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Skills <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gameplay <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="/unitskill/all">Unit Skills</a></li>
+                      <li><a href="/game/releasenotes">Release Notes</a></li>
                     </ul>
                   </li>     
                   <li class="dropdown">
