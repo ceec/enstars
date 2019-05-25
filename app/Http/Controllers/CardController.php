@@ -168,6 +168,8 @@ class CardController extends Controller
         $c->lesson_e = $request->input('lesson_e');                        
         $c->dorifes_id = $request->input('dorifes_id');
         $c->lesson_id = $request->input('lesson_id');
+        $c->scout_id = $request->input('scout_id');
+        $c->event_id = $request->input('event_id');
         //unleveled skills
         $c->u_dorifes_j = $request->input('u_dorifes_j');
         $c->u_dorifes_e = $request->input('u_dorifes_e');  

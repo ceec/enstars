@@ -783,7 +783,15 @@ $('.road-node').on('click',function(){
                                   <div class="form-group form-inline">
                                     <label for="sentence-e">English Sentence (when scouted or on promo materials)</label>
                                      {!! Form::text('sentence_e',$card->sentence_e,['class'=>'form-control','id'=>'sentence-e']) !!}
-                                  </div>                                                                                                        
+                                  </div>        
+                                <div class="form-group form-inline">
+                                    <label for="event_id">Event ID</label>
+                                     {!! Form::number('event_id',$card->event_id,['class'=>'form-control','id'=>'event_id']) !!}
+                                  </div>   
+                                <div class="form-group form-inline">
+                                    <label for="scout_id">Scout ID</label>
+                                     {!! Form::number('scout_id',$card->scout_id,['class'=>'form-control','id'=>'scout_id']) !!}
+                                  </div>                                                                                                                                                                      
                               </div>
                               <div class="col-md-3">
                                 <div class="form-group form-inline">
