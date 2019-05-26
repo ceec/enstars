@@ -42,9 +42,6 @@
             </div>
             <br>
 			{!! Form::textarea('text_e', $slide->text_e,['class'=>'form-control ajaxTest','id'=>'e-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'English Text']) !!} 
-            @foreach($boys as $key => $boy)
-                <button class="add-boy-css" data-class="{{$boy}}" data-slide="{{$slide->id}}">{{$boy}}</button> 
-            @endforeach
             <!-- tooltip button -->
                 <button class="add-boy-css" data-class="tooltip" data-slide="{{$slide->id}}">Tooltip</button>
             <br>
