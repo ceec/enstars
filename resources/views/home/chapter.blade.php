@@ -42,7 +42,11 @@
             </div>
             <br>
 			{!! Form::textarea('text_e', $slide->text_e,['class'=>'form-control ajaxTest','id'=>'e-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'English Text']) !!} 
-            <!-- tooltip button -->
+                <!-- italics button -->    
+                <button class="add-boy-css" data-class="italics" data-slide="{{$slide->id}}">italic</button>    
+                <!-- bold button -->    
+                <button class="add-boy-css" data-class="bold" data-slide="{{$slide->id}}">bold</button>                                
+                <!-- tooltip button -->
                 <button class="add-boy-css" data-class="tooltip" data-slide="{{$slide->id}}">Tooltip</button>
             <br>
 			{!! Form::textarea('notes', $slide->notes,['class'=>'form-control ajaxTest', 'id'=>'n-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Notes']) !!} <br>
@@ -127,6 +131,12 @@ $('.add-boy-css').on('click',function(){
         //addin bootstraptooltip text
         //<span data-toggle="tooltip" title="bread filled with red bean paste">anpan</span>
         replaceSelectedText(el, '<span data-toggle="tooltip" title="">'+text+'</span>');
+    } else if (className == 'italics') {
+        //add italic text
+        replaceSelectedText(el, '<em>'+text+'</em>');        
+    } else if (className == 'bold') {
+        //add italic text
+        replaceSelectedText(el, '<strong>'+text+'</strong>');        
     } else {
         //wrap selected text in a class with boy's name <span class="Tori">text</span>
         replaceSelectedText(el, '<span class="'+className+'">'+text+'</span>');
