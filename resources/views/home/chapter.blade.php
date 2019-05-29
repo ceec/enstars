@@ -34,7 +34,7 @@
     	<div class="col-md-6">
 			<div class="row mobile-hide">
                     <div class="col-md-6">
-                        {!! Form::textarea('text_j',$slide->text_j,['class'=>'form-control ajaxTest','id'=>'j-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Japanese Text']) !!} 
+                        {{$slide->text_j}}
                     </div>
                     <div class="col-md-6">
                         {!! Form::textarea('text_g',$slide->text_g,['class'=>'form-control ajaxTest','id'=>'j-'.$slide->id, 'rows' => 3, 'cols' => 100, 'placeholder'=>'Generated Text']) !!} 
