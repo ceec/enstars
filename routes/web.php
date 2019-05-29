@@ -276,6 +276,12 @@ Route::post('/add/scout','ScoutController@add');
 Route::get('/home/event/add','EventController@addDisplay');
 Route::post('/add/event','EventController@add');
 
+//add event/scout from scraper
+Route::get('/home/scraper/add','ScraperController@addDisplay');
+Route::post('/add/scraper','ScraperController@add');
+Route::post('/add/scraper/step/two','ScraperController@addStepTwo');
+
+
 //add release notes
 Route::get('/home/releasenote/add','ReleasenoteController@addDisplay');
 Route::post('/add/releasenote','ReleasenoteController@add');

@@ -532,31 +532,65 @@ class HomeController extends Controller
 
     /**
      * Tools - Scraper
+     * TODO: make a tools controller
      *
      * @return \Illuminate\Http\Response
      */
     public function scraper() {
+        //lets try just getting the images first
+        $url = 'http://stars.happyelements.co.jp/app_help/gachas/144/index.html';
+        
+        $all = file_get_contents($url);
+
+        $images = strstr($all,'</head>',TRUE);
+
+        $images = strstr($images,'img_names');
+
+        $images = strstr($images,'}',TRUE);
+        $images = strstr($images,"{");
+        $images = str_replace('{','',$images);
+       // 
+        $images = explode(',',$images);
+        array_pop($images);
+
+        foreach($images as $key => $image) {
+            $image = str_replace("'","",$image);
+            $image = trim($image);
+            $image = substr($image,3);
+            $image = trim($image,"'");
+            $images[$key] =  $image;
+        }
+
+        //dd($images);
+            //http://stars.happyelements.co.jp/app_help/events/95/images/cd_tblrdosz_n.png
+
         //just need to get the da,vo,pf values
         $client = new Client();
 
         // Go to the symfony.com website
-        $crawler = $client->request('GET', 'http://stars.happyelements.co.jp/app_help/events/95/index.html');
+        $crawler = $client->request('GET', $url);
+
+        //get the bannar image
+        $banner = $crawler->filter('strong.bannar img')->attr('src'); 
+
+        $banner_image = str_replace('/index.html','',$url).substr($banner,1);
+
+       // dd($banner_image);
         
 
         //get the icon images
         $crawler->filter('div.thumb-nav a img')->each(function($icons) {
+            $baseurl = 'http://stars.happyelements.co.jp/app_help/gachas/144';
+
             $image = $icons->attr('src');
             $image = ltrim($image,'.');
-            print '<img src="http://stars.happyelements.co.jp/app_help/events/95'.$image.'">';
+            print '<img src="'.$baseurl.$image.'">';
         
         });
 
-
-
-
-
         // Get the latest post in this category and display the titles
-        $crawler->filter('dl.cardDetail')->each(function ($node) {
+        $cards = $crawler->filter('dl.cardDetail')->each(function ($node) {
+            //create a counter to match with the images array
             //images
             //looks like in the source itself the image is indeed just /
             //the actual urls come from JS
@@ -566,6 +600,8 @@ class HomeController extends Controller
             //$card_image = 'gboplxfd';
             //print '<img src="http://stars.happyelements.co.jp/app_help/events/94/images/cd_'.$card_image.'_n.png>';
 
+            // print '<img src="http://stars.happyelements.co.jp/app_help/events/95/images/cd_'.$images[$imagecount].'_n.png">';
+            // print '<img src="http://stars.happyelements.co.jp/app_help/events/95/images/cd_'.$images[$imagecount].'_e.png">';
 
             $fulltitle = $node->filter('h4.head-name')->text();   
 
@@ -601,11 +637,15 @@ class HomeController extends Controller
             $card['pf'] = $pf;
             $card['live_name'] = $live_name;
             $card['live_skill'] = $live_skill;
-            $card['lesson_name'] = $lesson_name;
-            $card['lesson_skill'] = $lesson_skill;
+            $card['lesson_name'] = trim($lesson_name);
+            $card['lesson_skill'] = trim($lesson_skill);
             
             $card = array_map('trim',$card);
             
+            // print '<pre>';
+            // print_r($card);
+            // print '</pre>';
+
             //find the skill ids for the skills
             $skill = Skill::where('japanese_description','=',$card['live_skill'])->first();
             $card['live_skill_id'] = $skill->id;
@@ -634,21 +674,25 @@ class HomeController extends Controller
                 }
             }
 
+            return $card;
+            
+        });
+        print '<hr>';
+        // print '<pre>';
+        // print_r($cards);
+        // print '</pre>';
 
-        
-
+        //add in card images
+        foreach($cards as $key => $card) {
+            //print $images[$key];
+            print '<img src="http://stars.happyelements.co.jp/app_help/gachas/144/images/cd_'.$images[$key].'_n.png">';
+            print '<img src="http://stars.happyelements.co.jp/app_help/gachas/144/images/cd_'.$images[$key].'_e.png">';
             print '<pre>';
             print_r($card);
             print '</pre>';
-
-            // print '<pre>';
-            // print_r($outfits);
-            // print '</pre>';            
-
-            //print $node->text()."\n";   
             print '<hr>';
-        });
-
+        }
+        
      
     }
 
