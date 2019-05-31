@@ -57,6 +57,8 @@ use DB;
 use App\Eventcard;
 use App\Typegroup;
 
+use App\Releasenote;
+
 class DisplayController extends Controller {
 
     /**
@@ -117,6 +119,48 @@ class DisplayController extends Controller {
         $all= Skill::where('category','=','gem')->where('type','=','all')->get();
 
 
+        //adding a feed of updates should pull from adding new scout, new events, new relase notes, new translated chapters
+
+        //starting lets do scout events and release notes
+
+        //SELECT title FROM scouts,events,releasenotes WHERE 
+
+        $notes = Releasenote::orderBy('created_at','desc')->take(3)->get();
+
+        $events = Event::orderBy('created_at','desc')->take(3)->get();
+
+        $scouts = Scout::orderBy('created_at','desc')->take(3)->get();
+
+        foreach($notes as $note) {
+            $latest_note['type'] = 'releasenote';
+            $latest_note['title'] = 'Game Release Notes for Version '.$note->version;
+            $latest_note['id'] = $note->id;
+            $latest_note['created_at']= $note->created_at;
+            $latest[] = $latest_note;
+        }
+
+        foreach($scouts as $scout) {
+            $latest_scout['type'] = 'scout';
+            $latest_scout['title'] = $scout->name_e.' cards have been added';
+            $latest_scout['id'] = $scout->id;
+            $latest_scout['created_at']= $scout->created_at;
+            $latest[] = $latest_scout;            
+        }
+      
+        foreach($events as $event) {
+            $latest_event['type'] = 'event';
+            $latest_event['title'] = $event->name_e.' cards have been added';
+            $latest_event['id'] = $event->id;
+            $latest_event['created_at']= $event->created_at;
+            $latest[] = $latest_event;
+        }        
+
+         $keys = array_column($latest, 'created_at');
+         array_multisort($keys, SORT_DESC, $latest);
+
+
+         $latest = array_slice($latest,0,5,true);
+
         return view('pages.main')
         ->with('yume_boys',$yume_boys)
         ->with('yume_teachers',$yume_teachers)
@@ -136,7 +180,8 @@ class DisplayController extends Controller {
         ->with('yellows',$yellows)
         ->with('all',$all)         
         ->with('current_event',$current_event)
-        ->with('current_scout',$current_scout)           
+        ->with('current_scout',$current_scout)
+        ->with('latest',$latest)
         ->with('blogs',$blogs);
 
     }
