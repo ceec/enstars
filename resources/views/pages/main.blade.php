@@ -118,7 +118,7 @@ var showTime = setInterval(timeLeft,1000);
                         <h5>Recently Updated</h5>
                         @foreach($latest as $item)
                             @if($item['type'] == 'releasenote')
-                                <a href="/game/releasenote/{{$item['id']}}">{{$item['title']}}</a><br>
+                                <a href="/game/releasenotes">{{$item['title']}}</a><br>
                             @else
                                 <a href="/{{$item['type']}}/{{$item['id']}}">{{$item['title']}}</a><br>
                             @endif
