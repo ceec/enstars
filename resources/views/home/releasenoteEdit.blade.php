@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-    <h1>Add New Release Note</h1>
+    <h1>Edit Release Note</h1>
     
 @if (count($errors) > 0)
     <div class="alert alert-danger">
