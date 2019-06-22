@@ -538,7 +538,7 @@ class HomeController extends Controller
      */
     public function scraper() {
         //lets try just getting the images first
-        $url = 'http://stars.happyelements.co.jp/app_help/gachas/148/index.html';
+        $url = 'http://stars.happyelements.co.jp/app_help/gachas/149/index.html';
         
         $all = file_get_contents($url);
 
@@ -580,7 +580,7 @@ class HomeController extends Controller
 
         //get the icon images
         $crawler->filter('div.thumb-nav a img')->each(function($icons) {
-            $baseurl = 'http://stars.happyelements.co.jp/app_help/gachas/148';
+            $baseurl = 'http://stars.happyelements.co.jp/app_help/gachas/149';
 
             $image = $icons->attr('src');
             $image = ltrim($image,'.');
@@ -591,7 +591,7 @@ class HomeController extends Controller
         // Get the latest post in this category and display the titles
         $cards = $crawler->filter('dl.cardDetail')->each(function ($node) {
 
-            $baseurl = 'http://stars.happyelements.co.jp/app_help/gachas/148';
+            $baseurl = 'http://stars.happyelements.co.jp/app_help/events/99';
             //create a counter to match with the images array
             //images
             //looks like in the source itself the image is indeed just /
@@ -684,7 +684,7 @@ class HomeController extends Controller
         // print_r($cards);
         // print '</pre>';
 
-        $baseurl = 'http://stars.happyelements.co.jp/app_help/gachas/148';
+        $baseurl = 'http://stars.happyelements.co.jp/app_help/gachas/149';
 
         //add in card images
         foreach($cards as $key => $card) {

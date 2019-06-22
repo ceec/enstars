@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Illuminate\Validation\Rule;
+
 class RegisterController extends Controller
 {
     /*
@@ -51,6 +53,10 @@ class RegisterController extends Controller
             'name' => 'required|max:255|alpha_dash|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'enstars' => [
+        'required',
+        Rule::in(['Ensemble Stars']),
+    ],
         ]);
     }
 

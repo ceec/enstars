@@ -74,7 +74,12 @@
                                 @endif
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <label for="email-address">If you aren't a robot, type Ensemble Stars in the below field!</label>
+                                {!! Form::text('enstars','',['class'=>'form-control','id'=>'email-address']) !!}
+                            </div>
+                        </div>  
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
