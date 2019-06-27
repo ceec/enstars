@@ -7,6 +7,13 @@ if (eventID > 49) {
   fiveStarBorder = '1200';
 }
 
+//deal with switchover to using normalized jst time
+if (eventID > 93) {
+  createdAt = 'jst_created_at';
+} else {
+  createdAt = 'created_at';
+}
+
 var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial",
     "theme": "light",
@@ -43,7 +50,7 @@ var chart = AmCharts.makeChart("chartdiv", {
         "cursorAlpha": 1,
         "valueLineAlpha":0.5,
     },
-    "categoryField": "created_at",
+    "categoryField": createdAt,
     "categoryAxis": {
       "parseDates": true,
       "minPeriod": "hh"
