@@ -306,6 +306,7 @@ class DataController extends Controller {
             $start->tier_10 = 0;
             $start->tier_11 = 0;
             $start->created_at = $event->start;
+            $start->jst_created_at = $event->start;
             
             $points->prepend($start);
         }
