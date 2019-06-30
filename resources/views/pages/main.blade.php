@@ -84,38 +84,7 @@ var showTime = setInterval(timeLeft,1000);
                             <h4>Want a way to track all your cards?<h4><a href="/register">Create an account!</a>
                         </div>             
                     @endif
-                    <h3>News</h3>
-                        <!--sticky-->
-                        <!-- <h5><strong>
-                            <a href="/news/user-accounts-now-in-beta">User Accounts Now in Beta!</a><br>
-                            </strong>
-                             <small>September 4, 2017 by ankee</small>
-                        </h5>                        -->
-                        @foreach ($blogs as $blog)
-                            <?php
-                                $nicedate = date('F d, Y',strtotime($blog->created_at));
-                                $nicetime = date('h:i A',strtotime($blog->created_at));
-                            ?>            
-                            @if ($blog->image !='')
-                                <div class="">
-                                    <a href="/{{$blog->type}}/{{$blog->url}}"><img class="img-responsive" src="/images/{{$blog->image}}" alt=""></a>
-                                </div>
-                            @endif
-                        <h5>
-                        @if ($blog->chapter_id !=0)
-                            <a href="/story/{{$blog->story_id}}/{{$blog->chapter_id}}">{!! $blog->title !!}</a><br>
-                        @else
-                            <a href="/{{$blog->type}}/{{$blog->url}}">{!! $blog->title !!}</a><br>
-                        @endif
-
-
-                            
-                            <small>{{$nicedate}} by {{$blog->author->name}}</small>
-                        </h5>                
-                        @endforeach
-                        <a href="/news/all">All News</a>
-                        <br>
-                        <h5>Recently Updated</h5>
+                        <h3>Recently Updated</h3>
                         @foreach($latest as $item)
                             @if($item['type'] == 'releasenote')
                                 <a href="/game/releasenotes">{{$item['title']}}</a><br>
