@@ -100,7 +100,7 @@
                        <li><a href="/birthdays">Birthday Calendar</a></li>                      
                     </ul>
                   </li>                                    
-                  <li><a href="/store">Store</a></li>
+                  <!--<li><a href="/store">Store</a></li>-->
                    
                                   <!-- Authentication Links -->
                     @if (Auth::guest())
