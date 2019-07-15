@@ -59,6 +59,8 @@ use App\Typegroup;
 
 use App\Releasenote;
 
+use App\Scoutcard;
+
 class DisplayController extends Controller {
 
     /**
@@ -1020,9 +1022,16 @@ class DisplayController extends Controller {
                 abort(404);
             }   
 
-        $cards = Card::where('scout_id','=',$scout->id)->orderBy('stars','desc')->get();
-        
-        
+        // If the scout is pulling from already created cards, pull from Scoutcards
+        if ($scout->type_id == '4') {
+            $cards = Card::whereHas('scouts', function($query) use ($scout) {
+                $query->where('scout_id','=',$scout->id);
+            })->get();
+        } else {
+            $cards = Card::where('scout_id','=',$scout->id)->orderBy('stars','desc')->get();
+        }
+
+
         if ($scout->type_id == 1) {
             //if its a scout
             //get the stories

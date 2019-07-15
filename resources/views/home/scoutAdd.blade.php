@@ -32,7 +32,7 @@
             </div>               
             <div class="form-group">
               <label for="s-name">Type Id</label>
-               {!! Form::select('type_id',[1=>"Normal",2=>"Story",3=>"Revival"],['class'=>'form-control','id'=>'story_id','placeholder'=>'Event Type']) !!}
+               {!! Form::select('type_id',[1=>"Normal",2=>"Story",3=>"Revival",4=>"Revival Old"],['class'=>'form-control','id'=>'story_id','placeholder'=>'Event Type']) !!}
             </div>                
             <div class="form-group">
               <label for="s-name">Start Date</label>

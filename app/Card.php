@@ -60,7 +60,10 @@ class Card extends Model
     }
 
 
-
+    public function scouts()
+    {
+        return $this->belongsToMany('App\Scout','scoutcards');
+    }
 
 
 
@@ -76,8 +79,10 @@ class Card extends Model
 
 
     public function display($view='',$text='') {
-    	//display the card
-
+			// TODO: This should not be in the model!! 
+			
+			// display the card
+			//
     	//lets standardize this across all cards!
 
     	//remove lesson skill, keep name bloomed and bg?
