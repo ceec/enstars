@@ -1186,6 +1186,12 @@ class DisplayController extends Controller {
         //need to figure out if there's a current event
          $event = Event::where('active','=','1')->first();
 
+        // Catch for when there are no active events, eg unit collection
+        // Need to just rework this eventually
+         if (!isset($event->id)) {
+            return view('pages.eventCalculator');
+         }
+
          //get the url id of the cards that are in this event
 
          $urgent = Card::where('id','=',$event->points_4)->first();
