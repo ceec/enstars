@@ -11,9 +11,16 @@ class Event extends Model
      */
     public static function current()
     {
-          $current = Event::where('active','=','1')->first();
+        $current = Event::where('active','=','1')->first();
 
-			return $current->url;      
+        // Return the current event, if there is no active event redirect to the all page.
+        if(isset($current->id)) {
+            $url = $current->url;
+        } else {
+            $url = 'all';
+        }
+
+		return $url;      
     }
 
 
