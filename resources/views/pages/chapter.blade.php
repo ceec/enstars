@@ -137,6 +137,9 @@
 				        </div>
 		          	</div>
 		          	<div class="col-md-5 bottom-align-text">
+                  @if ($raw == 'raw')
+                    <p>{!! $slide->text_j !!}</p>
+                  @endif
 		          	<p>{!! $slide->notes !!}</p>
 		          	</div>
    				 </div>

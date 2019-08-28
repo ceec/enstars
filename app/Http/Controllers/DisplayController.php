@@ -1453,7 +1453,7 @@ class DisplayController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function chapter($story_id,$chapter,$generated='') {
+    public function chapter($story_id,$chapter,$generated='',$raw='') {
         $story = Story::where('id','=',$story_id)->first();
 
         //when bad story url is passed
@@ -1497,6 +1497,7 @@ class DisplayController extends Controller {
         ->with('chapter',$chapter_info)
         ->with('previous_chapter',$check_previous)
         ->with('next_chapter',$check_next)
+        ->with('raw',$raw)
         ->with('generated',$generated)
         ->with('slides',$slides);
     } 

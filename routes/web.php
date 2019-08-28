@@ -84,6 +84,7 @@ Route::get('/translation','DisplayController@translation');
 Route::get('/story/{story_id}','DisplayController@story');
 Route::get('/story/{story_id}/{chaper_id}','DisplayController@chapter');
 Route::get('/story/{story_id}/{chaper_id}/{generated}','DisplayController@chapter');
+Route::get('/story/{story_id}/{chaper_id}/{generated}/{raw}','DisplayController@chapter');
 
 //all old blogs
 Route::get('/news/all','DisplayController@blogAll');
