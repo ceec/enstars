@@ -84,7 +84,7 @@ var showTime = setInterval(timeLeft,1000);
                             <h4>Want a way to track all your cards?<h4><a href="/register">Create an account!</a>
                         </div>             
                     @endif
-                    <h3>News 2019-11-13</h3>
+                    <h3>News 2019-11-14</h3>
                     <p><a href="https://enstars.info/news/unit-collection-cards-star-medal-shop-cards-and-the-future">Unit Collection Cards, Star Medal Shop Cards, and the Future!</a></p>
                         <h3>Recently Updated</h3>
                         @foreach($latest as $item)
