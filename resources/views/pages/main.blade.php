@@ -10,6 +10,10 @@ enstars.info - Information and Translations for Ensemble Stars!
             <div class="row">
                 <div class="col-md-4">
                     <h3>Current Event</h3>
+                    <!-- Unit Collection hard coded -->
+                    <h4>Unit Collection Switch</h4>
+                    <a href="/collection/switch"><img class="img-responsive" src="/images/collections/6.png" alt="Unit Collection Switch"></a><br>
+
                     @foreach ($current_event as $event)
                         <h4>{{$event->name_e}}</h4>
                         <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a><br>
