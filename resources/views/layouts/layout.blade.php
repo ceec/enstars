@@ -75,6 +75,7 @@
                       <li><a href="/scout/all">All Scouts</a></li>
                     </ul>
                   </li>
+                   <li><a href="/collection/all">Unit Collections</a></li>    
                   <li><a href="/collaboration/all">Collaborations</a></li>    
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Translations <span class="caret"></span></a>
