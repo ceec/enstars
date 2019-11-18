@@ -50,6 +50,8 @@
                         <a href="/home/releasenote/list">Edit Release Notes</a><br>
                     </div>
                     <div class="col-md-4">
+                        <h3>Unit Collections</h3>
+                        <a href="/home/collection/add">Add New</a><br>
                     </div>    
                     <div class="col-md-4">
                     </div>                                         

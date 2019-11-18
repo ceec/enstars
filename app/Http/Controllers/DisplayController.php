@@ -61,6 +61,8 @@ use App\Releasenote;
 
 use App\Scoutcard;
 
+use App\Collection;
+
 class DisplayController extends Controller {
 
     /**
@@ -1345,6 +1347,45 @@ class DisplayController extends Controller {
             ->with('cards',$cards)
             ->with('collaboration',$collaboration);
     }       
+
+    /**
+     * Show all unit collections
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function collectionAll() {
+        $collections = Collection::orderBy('end','desc')->get();
+
+        return view('pages.unitCollectionAll')
+            ->with('collections',$collections);
+    }
+
+    /**
+     * Show specific unit collection
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function collection($url) {
+        //can pass through an id or an url
+        if (ctype_digit($url)){
+            $collection = Collection::where('id','=',$url)->first();
+        } else {
+            $collection = Collection::where('url','=',$url)->first();
+        }
+
+        // when bad url is passed
+        if (empty($collection)) {
+            //want to go to 404 page 
+            abort(404);
+        }
+
+        $cards = Card::where('collection_id','=',$collection->id)->orderBy('stars','desc')->get();
+
+        return view('pages.unitCollection')
+            ->with('cards',$cards)
+            ->with('collection',$collection);
+    } 
+
 
 
     ////translations//////
