@@ -72,6 +72,8 @@
                   @endif
                 @elseif ($card->collaboration_id !=0)
                   <h4><span class="card-title">Introduced in Collaboration:</span> <a href="/collaboration/{{$source->url}}">{{$source->name_e}}</a></h4>
+                @elseif ($card->collection_id !=0)
+                  <h4><span class="card-title">Introduced in Unit Collection:</span> <a href="/collection/{{$source->url}}">{{$source->name_e}}</a></h4>              
                 @else
                   <h4><span class="card-title">Introduced in:</span> Original Card</h4>
                 @endif
