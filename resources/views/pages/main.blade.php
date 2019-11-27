@@ -12,7 +12,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                     <h3>Current Event</h3>
                     <!-- Unit Collection hard coded -->
                     <h4>Unit Collection Switch</h4>
-                    <a href="/collection/switch"><img class="img-responsive" src="/images/collections/6.png" alt="Unit Collection Switch"></a><br>
+                    <a href="/unitcollection/switch"><img class="img-responsive" src="/images/collections/6.png" alt="Unit Collection Switch"></a><br>
 
                     @foreach ($current_event as $event)
                         <h4>{{$event->name_e}}</h4>

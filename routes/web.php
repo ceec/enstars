@@ -74,9 +74,9 @@ Route::get('/collaboration/all','DisplayController@collaborationAll');
 Route::get('/collaboration/{collaboration_id}','DisplayController@collaboration');
 
 // All Unit Collections
-Route::get('/collection/all','DisplayController@collectionAll');
+Route::get('/unitcollection/all','DisplayController@collectionAll');
 // Specific Unit Collection
-Route::get('/collection/{collection_id}','DisplayController@collection');
+Route::get('/unitcollection/{collection_id}','DisplayController@collection');
 
 //listing large groups of stories
 Route::get('/translation/event','DisplayController@translationEvent');
@@ -286,8 +286,8 @@ Route::get('/home/event/add','EventController@addDisplay');
 Route::post('/add/event','EventController@add');
 
 // Add unit collection
-Route::get('/home/collection/add','CollectionController@addDisplay');
-Route::post('/add/collection','CollectionController@add');
+Route::get('/home/unitcollection/add','CollectionController@addDisplay');
+Route::post('/add/unitcollection','CollectionController@add');
 
 //add event/scout from scraper
 Route::get('/home/scraper/add','ScraperController@addDisplay');
