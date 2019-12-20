@@ -11,8 +11,8 @@ enstars.info - Information and Translations for Ensemble Stars!
                 <div class="col-md-4">
                     <h3>Current Event</h3>
                     <!-- Unit Collection hard coded -->
-                    <h4>Unit Collection MaM&Valkyrie</h4>
-                    <a href="/unitcollection/mam-valkyrie"><img class="img-responsive" src="/images/collections/7.png" alt="Unit Collection MaM&Valkyrie"></a><br>
+                    <h4>Unit Collection Knights</h4>
+                    <a href="/unitcollection/knights"><img class="img-responsive" src="/images/collections/8.png" alt="Unit Collection Knights"></a><br>
 
                     @foreach ($current_event as $event)
                         <h4>{{$event->name_e}}</h4>
