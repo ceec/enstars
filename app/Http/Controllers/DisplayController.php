@@ -62,6 +62,7 @@ use App\Releasenote;
 use App\Scoutcard;
 
 use App\Collection;
+use App\Shopcard;
 
 class DisplayController extends Controller {
 
@@ -374,6 +375,10 @@ class DisplayController extends Controller {
         } else {
             $source = '';
         }
+
+        // // Need to deal with shop cards
+        // $shop = $card->shop;
+        // dd($shop);
 
         //for admins editing
         $lesson_skills = Skill::where('skilltype_id','=','2')->orderBy('category','ASC')->orderBy('type','ASC')->orderBy('size','ASC')->pluck('english_description','id');

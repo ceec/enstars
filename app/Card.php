@@ -76,6 +76,13 @@ class Card extends Model
           return $this->where('stars', '=',$stars);
     }
 
+    /**
+     * Tie the card to the shop
+     */
+    public function shop()
+    {
+          return $this->belongsTo('App\Shopcard');
+    }		
 
 
     public function display($view='',$text='') {
