@@ -75,6 +75,7 @@ class CardController extends Controller
         $c->place = $card_id;
         $c->stars = $request->input('stars');
         $c->color = $request->input('color');
+        $c->game_id = 2;
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
         $c->name_s = $request->input('name_s');
