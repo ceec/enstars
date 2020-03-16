@@ -495,7 +495,8 @@ class DisplayController extends Controller {
             abort(404);
         }  
 
-        $cards = Card::where('boy_id','=',$boy->id)->orderBy('place','ASC')->get();
+        $basic_cards = Card::where('boy_id','=',$boy->id)->where('game_id','=',2)->orderBy('place','ASC')->get();
+        $cards = Card::where('boy_id','=',$boy->id)->where('game_id','=',1)->orderBy('place','ASC')->get();
 
 
         //skills, tie them to the cards
@@ -610,6 +611,7 @@ class DisplayController extends Controller {
         return view('pages.idol')
             ->with('boy',$boy)
             ->with('cards',$final)
+             ->with('basic_cards',$basic_cards)
             ->with('chapters',$chapters)
             ->with('minievents',$minievents);
             //->with('events',$events);
