@@ -103,7 +103,7 @@ var showTime = setInterval(timeLeft,1000);
             </div>
             <div class="row">
                 <div class="col-md-12">
-                <h3>Yumenosaki Academy</h3>
+                <h3></h3>
                 @foreach($yume_boys as $boy)
                     <?php 
                         //name pretty for url
@@ -122,28 +122,6 @@ var showTime = setInterval(timeLeft,1000);
                     <a class="boys" href="/idol/{{$url}}"><img class="img-responsive" src="/images/boys/{{$boy->id}}.png" title="{{$boy->first_name}} {{$boy->last_name}}" alt="{{$boy->first_name}} {{$boy->last_name}}"></a> 
                 @endforeach                            
                 </div>
-                <div class="col-md-12">
-                <h3>Reimei Academy</h3>
-                @foreach($rei_boys as $boy)
-                    <?php 
-                        //name pretty for url
-                        $url = strtolower($boy->first_name);
-                    ?>
-
-                    <a class="boys" href="/idol/{{$url}}"><img class="img-responsive" src="/images/boys/{{$boy->id}}.png" title="{{$boy->first_name}} {{$boy->last_name}}" alt="{{$boy->first_name}} {{$boy->last_name}}"></a> 
-                @endforeach                
-                </div>
-                <div class="col-md-12">
-                <h3>Shuetsu Academy</h3>
-                @foreach($third_boys as $boy)
-                    <?php 
-                        //name pretty for url
-                        $url = strtolower($boy->first_name);
-                    ?>
-
-                    <a class="boys" href="/idol/{{$url}}"><img class="img-responsive" src="/images/boys/{{$boy->id}}.png" title="{{$boy->first_name}} {{$boy->last_name}}" alt="{{$boy->first_name}} {{$boy->last_name}}"></a> 
-                @endforeach                
-                </div>   
                 <div class="col-md-12">
                 <h3>Others</h3>
                 @foreach($others as $boy)

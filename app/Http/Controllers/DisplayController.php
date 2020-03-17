@@ -76,7 +76,7 @@ class DisplayController extends Controller {
         $teachers = Boy::where('classroom_id','=','7')->orderBy('first_name','asc')->get();
 
         //yumenosaki
-        $yume_boys = Boy::where('school_id','=','1')->where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
+        $yume_boys = Boy::where('unit_id','!=','0')->where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
         $yume_teachers = Boy::where('school_id','=','1')->where('classroom_id','=','7')->orderBy('first_name','asc')->get();
 
         //reimei
@@ -86,7 +86,7 @@ class DisplayController extends Controller {
         $third_boys = Boy::where('school_id','=','3')->orderBy('first_name','asc')->get();
 
         //random other peeps
-        $others = Boy::where('school_id','=','4')->orderBy('first_name','asc')->get();
+        $others = Boy::where('unit_id','=','0')->where('classroom_id','!=','7')->orderBy('first_name','asc')->get();
 
         //only show reecentish blog posts
         $recent = date('Y-m-d h:i:s', strtotime("-2 months"));
