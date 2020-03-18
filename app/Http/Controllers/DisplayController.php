@@ -270,7 +270,7 @@ class DisplayController extends Controller {
      */
     public function birthdays() {
         //get just boys with birthday info
-        $boys = Boy::where('school_id','!=',4)->orderBy('birthday','asc')->get();
+        $boys = Boy::where('birthday','>','2010-01-01')->orderBy('birthday','asc')->get();
 
         //should probably move logic here
 
