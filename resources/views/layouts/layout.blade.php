@@ -97,6 +97,8 @@
                     <ul class="dropdown-menu">
                       <li><a href="/unitskill/all">Unit Skills</a></li>
                       <li><a href="/game/releasenotes">Release Notes</a></li>
+                      <li><a href="/game/terms">Terms</a></li>
+                      <li><a href="/game/missions">Missions</a></li>
                     </ul>
                   </li>     
                   <li class="dropdown">

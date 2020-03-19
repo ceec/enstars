@@ -149,6 +149,7 @@ Route::get('/game/management','GameController@management');
 Route::get('/game/courses','GameController@courses');
 Route::get('/game/releasenotes','GameController@releasenotes');
 Route::get('/game/terms','GameController@terms');
+Route::get('/game/missions','GameController@missons');
 
 
 //////// Beta Features in BetaController - move when hatched //////

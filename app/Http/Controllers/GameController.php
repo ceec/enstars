@@ -9,6 +9,7 @@ use App\User;
 
 use App\Releasenote;
 use App\Gameterm;
+use App\Mission;
 
 class GameController extends Controller
 {
@@ -57,6 +58,17 @@ class GameController extends Controller
             ->with('terms',$terms);
     }  
 
+    /**
+     * Display Game Missions
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function missions() {
+
+        $missions = Misson::orderBy('created_at','desc')->get();
+            return view('game.missions')
+            ->with('missions',$missions);
+    }  
 
     /**
      * Add scout 
