@@ -495,7 +495,7 @@ class DisplayController extends Controller {
             abort(404);
         }  
 
-        $basic_cards = Card::where('boy_id','=',$boy->id)->where('game_id','=',2)->orderBy('place','ASC')->get();
+        $basic_cards = Card::where('boy_id','=',$boy->id)->where('game_id','=',2)->orderBy('place','DESC')->get();
         $cards = Card::where('boy_id','=',$boy->id)->where('game_id','=',1)->orderBy('place','ASC')->get();
 
 
