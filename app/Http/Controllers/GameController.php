@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Card;
-use App\Boy;
-use App\Skill;
-use App\Minievent;
-use App\Minieventchoice;
 use App\Scout;
 use Auth;
 use App\User;
 
 use App\Releasenote;
+use App\Gameterm;
 
 class GameController extends Controller
 {
@@ -49,7 +45,17 @@ class GameController extends Controller
             ->with('notes',$notes);
     }     
 
+    /**
+     * Display Game Terms
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function terms() {
 
+        $terms = Gameterm::orderBy('created_at','desc')->get();
+            return view('game.terms')
+            ->with('terms',$terms);
+    }  
 
 
     /**

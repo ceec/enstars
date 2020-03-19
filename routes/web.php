@@ -148,6 +148,7 @@ Route::get('/graph/cardlist','DisplayController@cardList');
 Route::get('/game/management','GameController@management');
 Route::get('/game/courses','GameController@courses');
 Route::get('/game/releasenotes','GameController@releasenotes');
+Route::get('/game/terms','GameController@terms');
 
 
 //////// Beta Features in BetaController - move when hatched //////
@@ -200,10 +201,12 @@ Route::get('/home/album/builder','HomeController@albumBuilder');
 
 //translation area
 Route::get('/home/translations','HomeController@translations');
+Route::get('/home/translations/menu','HomeController@translationMenu');
 Route::get('/home/translations/{story_id}','HomeController@translationStory');
 Route::get('/home/translations/{story_id}/minievent/{mini_id}','HomeController@translationMiniEvent');
 Route::get('/home/translations/{story_id}/{chapter_id}','HomeController@translationChapter');
 Route::get('/home/status','HomeController@translationStatus');
+
 
 //posting
 Route::post('/add/translation','HomeController@addTranslation');
