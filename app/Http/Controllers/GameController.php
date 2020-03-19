@@ -65,7 +65,7 @@ class GameController extends Controller
      */
     public function missions() {
 
-        $missions = Misson::orderBy('created_at','desc')->get();
+        $missions = Mission::orderBy('created_at','desc')->get();
             return view('game.missions')
             ->with('missions',$missions);
     }  
