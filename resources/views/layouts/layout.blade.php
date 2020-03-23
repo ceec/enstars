@@ -95,10 +95,13 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gameplay <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/unitskill/all">Unit Skills</a></li>
-                      <li><a href="/game/releasenotes">Release Notes</a></li>
-                      <li><a href="/game/terms">Terms</a></li>
-                      <li><a href="/game/missions">Missions</a></li>
+                      <li class="dropdown-header">Basic</li>
+                        <li><a href="/game/terms">Terms</a></li>
+                        <li><a href="/game/missions">Missions</a></li>                      
+                      <li class="dropdown-header">Music</li>
+                      <li class="dropdown-header">Classic</li>
+                        <li><a href="/unitskill/all">Unit Skills</a></li>
+                        <li><a href="/game/releasenotes">Release Notes</a></li>
                     </ul>
                   </li>     
                   <li class="dropdown">
