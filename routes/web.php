@@ -78,6 +78,10 @@ Route::get('/unitcollection/all','DisplayController@collectionAll');
 // Specific Unit Collection
 Route::get('/unitcollection/{collection_id}','DisplayController@collection');
 
+// Star medal shop cards
+Route::get('/starmedalshop','DisplayController@starMedalShop');
+
+
 //listing large groups of stories
 Route::get('/translation/event','DisplayController@translationEvent');
 Route::get('/translation/scout','DisplayController@translationScout');

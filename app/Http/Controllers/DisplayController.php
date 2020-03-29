@@ -64,6 +64,8 @@ use App\Scoutcard;
 use App\Collection;
 use App\Shopcard;
 
+use App\Cardsource;
+
 class DisplayController extends Controller {
 
     /**
@@ -1848,6 +1850,21 @@ class DisplayController extends Controller {
         return view('pages.cardList')
             ->with('cards',$cards);
     } 
+
+
+    /**
+     * Show the shop medal cards
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function starMedalShop() {
+        // Okay how to grab these cards
+        $cards = Cardsource::where('source_id','=',1)->get();
+
+        return view('pages.starMedalShop')
+            ->with('cards',$cards);
+    }
+
 
 
     /////user area - not logged in
