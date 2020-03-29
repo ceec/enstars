@@ -28,4 +28,5 @@ Star Medal Shop Card | enstars.info
         </div>
     </div>
 </div>
+<script src="/js/enstars.js"></script>   
 @endsection
