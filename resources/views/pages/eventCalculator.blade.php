@@ -7,6 +7,8 @@ Event Calculator | enstars.info
 
 @section('content')
 
-<h2>On hold while unit collection event is happening.</h2>
+<div class="container">
+  <h2>On hold while figuring out how new events work. :)</h2>
+</div>
 
 @endsection
