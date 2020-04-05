@@ -124,6 +124,9 @@ Route::get('/bonus/{name}','DisplayController@loginBonus');
 //released cards
 Route::get('/graph/cards-released','DisplayController@cardsReleased');
 //guessing future cards
+Route::get('/graph/five-star-history/{game}','DisplayController@cardPrediction');
+// Keep the below to not break search/history
+// FIXME: There is probably a nicer way to handle no game being passed
 Route::get('/graph/five-star-history','DisplayController@cardPrediction');
 //event history
 Route::get('/graph/event-border-history','GraphController@eventHistory');

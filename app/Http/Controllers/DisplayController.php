@@ -1827,12 +1827,20 @@ class DisplayController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function cardPrediction() {
+    public function cardPrediction($game = 1) {
         $boys = Boy::where('classroom_id','!=','7')->where('classroom_id','!=','10')->orderBy('first_name','asc')->get();
 
+        if ($game == 'music') {
+            $game = 3;
+        } else if ($game == 'basic') {
+            $game = 2;
+        } else {
+            $game = 1;
+        }
 
 
         return view('pages.cardPrediction')
+        ->with('game',$game)
          ->with('boys',$boys);
     } 
 
