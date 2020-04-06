@@ -386,6 +386,9 @@ class DisplayController extends Controller {
         $lesson_skills = Skill::where('skilltype_id','=','2')->where('game_id','=',$card->game_id)->orderBy('category','ASC')->orderBy('type','ASC')->orderBy('size','ASC')->pluck('english_description','id');
         $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->orderBy('type','ASC')->orderBy('size','ASC')->pluck('english_description','id');
 
+        // Lesson skills are missing unknown for game_id=2
+        $lesson_skills[75] = 'Unknown';
+
         //user editing
         //if someone is logged in
         if (!Auth::guest()) {
