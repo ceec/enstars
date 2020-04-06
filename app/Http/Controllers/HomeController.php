@@ -434,6 +434,18 @@ class HomeController extends Controller
     }  
 
 
+    // Menu Translation area
+
+    /**
+     * Display for menu translations
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function translationMenu() {
+        return view('home.translationMenu');
+    }  
+
+
     /**
      * Actually Show the tools page
      *

@@ -23,6 +23,8 @@
         <div class="col-md-4">
             <h2>Settings</h2>
             <a href="/home/edit/css">Edit Boy CSS</a>
+            <h2>Game </h2>
+            <a href="/home/translations/menu">Menus</a>
         </div>
 
     </div>
