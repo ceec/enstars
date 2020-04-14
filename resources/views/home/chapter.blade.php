@@ -13,7 +13,9 @@
 			$event_type = 'gacha';
 		} else if ($story->type == 3) {
 			$event_type = 'character/'.$story->boy_id;
-		}
+		} else {
+            $event_type = 'main';
+        }
 	?>
     <h1><div class="col-xs-6"> {!! Form::text('name_e',$chapter->name_e,['class'=>'form-control name_e','id'=>$chapter->id]) !!} </div>- {{$story->name_e}} <small>({{$count}} slides)</small>
 
