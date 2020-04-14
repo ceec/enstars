@@ -842,14 +842,16 @@ class HomeController extends Controller
         }
 
         //add the boys to this chapter
-
-        foreach($boys as $boy) {
-            $c = new Chapterboy;
-            $c->chapter_id = $chapter_id;
-            $c->boy_id = $boy;
-            $c->updated_by = Auth::user()->id;
-            $c->save();
+        if (is_array($boys)) {
+            foreach($boys as $boy) {
+                $c = new Chapterboy;
+                $c->chapter_id = $chapter_id;
+                $c->boy_id = $boy;
+                $c->updated_by = Auth::user()->id;
+                $c->save();
+            }            
         }
+
         
         return redirect('/home/translations/');      
     }
