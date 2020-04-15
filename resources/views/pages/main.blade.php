@@ -24,7 +24,7 @@ enstars.info - Information and Translations for Ensemble Stars!
                             date_default_timezone_set('Asia/Tokyo');
                         ?>                        
                         @if ($event->end > date('Y-m-d h:i:s'))
-                            <h4>Time Remaining:<br> <span id="time-remaining"></span></h4>
+                            <h4>Basic Time Remaining:<br> <span id="time-remaining"></span></h4>
                             
                             <?php
                                   //convert from JST to UTC
