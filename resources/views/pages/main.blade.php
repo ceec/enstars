@@ -15,65 +15,124 @@ enstars.info - Information and Translations for Ensemble Stars!
                     <a href="/unitcollection/eden"><img class="img-responsive" src="/images/collections/9.png" alt="Unit Collection Eden"></a><br>
                     -->
                     @foreach ($current_event as $event)
-                        <h4>{{$event->name_e}}</h4>
-                        <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a><br>
+                        @if($event->game_id == 2)
+                            <h4>{{$event->name_e}}</h4>
+                            <a href="/event/{{$event->url}}"><img class="img-responsive" src="/images/events/{{$event->id}}.png" alt="{{$event->name_e}}"></a><br>
+                        @endif
                         <?php
-                            //this date is in JST but intrepreted in local? MST?
-                            //switch to JST
+                            // This date is in JST but intrepreted in local? MST?
+                            // Switch to JST
                             
                             date_default_timezone_set('Asia/Tokyo');
+
+                            // Convert from JST to UTC
+                            $utc_end = date('Y-m-d H:i:s',strtotime($event->end) - 60 * 60 * 9);
+
+                            // Set up variables for the countdowns
+
+                            if ($event->game_id == 2) {
+                                $basic_end = $utc_end;
+                                $basic_id = $event->id;
+                            } else {
+                                $music_end = $utc_end;
+                                $music_id = $event->id;
+                            }
                         ?>                        
                         @if ($event->end > date('Y-m-d h:i:s'))
-                            <h4>Basic Time Remaining:<br> <span id="time-remaining"></span></h4>
-                            
+                            @if ($event->game_id == 2)
+                                <h4>Basic Time Remaining:<br> <span id="basic-time-remaining"></span></h4>
+                            @else
+                                <h4>Music Time Remaining:<br> <span id="music-time-remaining"></span></h4>
+                            @endif
                             <?php
-                                  //convert from JST to UTC
-  $utc_end = date('Y-m-d H:i:s',strtotime($event->end) - 60 * 60 * 9);
+
                             ?>
-
-                            <script>
-                            var eventEnd = "<?php print $utc_end;?>Z";
-                            //console.log(eventEnd);
-var eventID = "<?php print $event->id; ?>";
-                            //get current time left in event, update it every second.
-var timeLeft = function() {
-  var now = Date.now();
-  ///this is in MST. Need to get it in JST
-  var end = new Date(eventEnd);
-  //console.log(eventEnd);
-  //console.log(end);
-  //how many miliseconds long between the end of the event and now
-  var diff = end.getTime() - now;  
-  //console.log(end.getTime());
-  //calculate time left
-  var days = Math.floor(diff /(1000 * 60 * 60 * 24));
-  //get the remanining time
-  var fullDays = (days * 1000 * 60 * 60 * 24);
-  var remaining = diff - fullDays;
-  
-  var hours = Math.floor(remaining /(1000 * 60 * 60));
-  var fullHours = (hours * 1000 * 60 * 60);
-  
-  remaining = diff - (fullDays + fullHours);
-
-  var minutes = Math.floor(remaining/(1000 * 60));
-  var fullMinutes = (minutes * 1000 * 60);
-  remaining = diff - (fullDays + fullHours + fullMinutes);
-  
-  var seconds = Math.floor(remaining/(1000));
-  
-  var timeSpan = document.getElementById('time-remaining');
-  timeSpan.textContent = days+' days '+hours+' hours '+minutes+' minutes '+seconds+' seconds';
-  
-  //lpLeft(diff);
-}
-
-
-//show remaining time, calculate points/LP
-var showTime = setInterval(timeLeft,1000);
-                            </script>
                         @endif
-                    @endforeach             
+                    @endforeach            
+                    
+                    <script>
+                        var eventEndBasic = "<?php print $basic_end;?>Z";
+                        //console.log(eventEndBasic);
+                        var eventEndMusic = "<?php print $music_end;?>Z";
+                        //console.log(eventEndMusic);
+
+                        var basicID = "<?php print $basic_id; ?>";
+                        //console.log(basicID);
+
+                        // Get current time left in event, update it every second.
+
+                        var timeLeft = function() {
+                            var now = Date.now();
+                            ///this is in MST. Need to get it in JST
+                            var end = new Date(eventEndBasic);
+                        //console.log(eventEnd);
+                        //console.log(end);
+                        //how many miliseconds long between the end of the event and now
+                        var diff = end.getTime() - now;  
+                        //console.log(end.getTime());
+                        //calculate time left
+                        var days = Math.floor(diff /(1000 * 60 * 60 * 24));
+                        //get the remanining time
+                        var fullDays = (days * 1000 * 60 * 60 * 24);
+                        var remaining = diff - fullDays;
+                        
+                        var hours = Math.floor(remaining /(1000 * 60 * 60));
+                        var fullHours = (hours * 1000 * 60 * 60);
+                        
+                        remaining = diff - (fullDays + fullHours);
+
+                        var minutes = Math.floor(remaining/(1000 * 60));
+                        var fullMinutes = (minutes * 1000 * 60);
+                        remaining = diff - (fullDays + fullHours + fullMinutes);
+                        
+                        var seconds = Math.floor(remaining/(1000));
+
+                        var timeSpanName = 'basic-time-remaining';
+                        //console.log(timeSpanName);
+                        var timeSpan = document.getElementById(timeSpanName);
+
+
+                        timeSpan.textContent = days+' days '+hours+' hours '+minutes+' minutes '+seconds+' seconds';
+                        }
+
+                        var timeLeftMusic = function() {
+                            var now = Date.now();
+                            ///this is in MST. Need to get it in JST
+                            var end = new Date(eventEndMusic);
+                        //console.log(eventEnd);
+                        //console.log(end);
+                        //how many miliseconds long between the end of the event and now
+                        var diff = end.getTime() - now;  
+                        //console.log(end.getTime());
+                        //calculate time left
+                        var days = Math.floor(diff /(1000 * 60 * 60 * 24));
+                        //get the remanining time
+                        var fullDays = (days * 1000 * 60 * 60 * 24);
+                        var remaining = diff - fullDays;
+                        
+                        var hours = Math.floor(remaining /(1000 * 60 * 60));
+                        var fullHours = (hours * 1000 * 60 * 60);
+                        
+                        remaining = diff - (fullDays + fullHours);
+
+                        var minutes = Math.floor(remaining/(1000 * 60));
+                        var fullMinutes = (minutes * 1000 * 60);
+                        remaining = diff - (fullDays + fullHours + fullMinutes);
+                        
+                        var seconds = Math.floor(remaining/(1000));
+
+                        var timeSpanName = 'music-time-remaining';
+                        //console.log(timeSpanName);
+                        var timeSpan = document.getElementById(timeSpanName);
+
+
+                        timeSpan.textContent = days+' days '+hours+' hours '+minutes+' minutes '+seconds+' seconds';
+                        }
+
+                        //show remaining time, calculate points/LP
+                        var showTime = setInterval(timeLeft,1000);
+                        var showTimeMusic = setInterval(timeLeftMusic,1000);
+                            </script>                     
                 </div>
                 <div class="col-md-4">
                     <h3>Current Scout</h3>
