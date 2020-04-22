@@ -134,7 +134,8 @@ class DisplayController extends Controller {
 
         $notes = Releasenote::orderBy('created_at','desc')->take(3)->get();
 
-        $events = Event::orderBy('created_at','desc')->take(3)->get();
+        // Right now music (id=3) events are basically the same as basic, hide them
+        $events = Event::where('game_id','!=',3)->orderBy('created_at','desc')->take(3)->get();
 
         $scouts = Scout::orderBy('created_at','desc')->take(3)->get();
 
