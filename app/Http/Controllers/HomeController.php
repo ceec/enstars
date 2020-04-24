@@ -143,6 +143,9 @@ class HomeController extends Controller
        $event_stories = Story::where('type','=',1)->get();
        $scout_stories = Story::where('type','=',2)->get();
        $character_stories = Story::where('type','=',3)->get();
+       $main_stories = Story::where('type','=',4)->get();
+
+       // TODO: This code is very repetitive.
 
        //get the percentage of the stories
        foreach($event_stories as $key => $story) {
@@ -181,7 +184,20 @@ class HomeController extends Controller
             $character_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
        }
 
+       //get the percentage of the stories
+       foreach($main_stories as $key => $story) {
+            //count how many are marked complete
+            $amount_complete = Chapter::where('story_id','=',$story->id)->where('complete','=','1')->count();
+            $amount_total = Chapter::where('story_id','=',$story->id)->count();
+
+            if ($amount_total == 0) {
+                $amount_total = 1;
+            }
+            $main_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
+       }       
+
         return view('home.translation')
+        ->with('main_stories',$main_stories)
         ->with('event_stories',$event_stories)
         ->with('scout_stories',$scout_stories)
         ->with('character_stories',$character_stories);
