@@ -46,6 +46,7 @@ class EventController extends Controller
         //need to update event
         $e = new Event;
         $e->active = 0;
+        $e->game_id = 2;
         $e->name_j = $request->input('name_j');
         $e->name_e = $request->input('name_e');
         $e->name_s = $request->input('name_s');
