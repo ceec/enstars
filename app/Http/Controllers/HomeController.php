@@ -24,6 +24,7 @@ use App\Event;
 use App\Feature;
 use App\Eventcard;
 use App\Skill;
+use App\Cardstat;
 
 use Mail;
 
@@ -496,6 +497,59 @@ class HomeController extends Controller
         return view('home.toolAddGeneratedText')
             ->with('boys',$boys);
     }     
+
+    /**
+     *  Tools - Card Split
+     *  Breaks the information from cards into cardstats
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function toolCardSplit() {
+        // grab all the info from cards
+
+        $cards = Card::all();
+        foreach($cards as $card) {
+
+            // Figure out the type for type id
+            $color = $card->color;
+            if ($color == 'red') {
+                $type = 1;
+            } else if ($color == 'blue') {
+                $type = 2;
+            } else if ($color == 'yellow') {
+                $type = 3;
+            } else {
+                // There shouldnt be any here but just in case
+                $type = 0;
+            }
+
+
+
+            // Make a new card stat
+            $s = new Cardstat;
+            $s->card_id = $card->id;
+            $s->game_id = $card->game_id;
+            $s->type_id = $type;
+            $s->da = $card->da;
+            $s->vo = $card->vo;
+            $s->pf = $card->pf;
+            $s->gr = 0;
+            $s->da_max = $card->da_max;
+            $s->vo_max = $card->vo_max;
+            $s->pf_max = $card->pf_max;
+            $s->gr_max = 0;
+            $s->da_max5 = $card->da_max5;
+            $s->vo_max5 = $card->vo_max5;
+            $s->pf_max5 = $card->pf_max5;
+            $s->gr_max5 = 0;    
+            $s->u_dorifes_id = $card->u_dorifes_id;
+            $s->dorifes_id = $card->dorifes_id;
+            $s->u_lesson_id = $card->u_lesson_id;
+            $s->lesson_id = $card->lesson_id;
+            $s->save(); 
+        }
+    }
+
 
     /**
      * Filling the eventcards table - from tools page
