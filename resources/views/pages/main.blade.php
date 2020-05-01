@@ -147,8 +147,8 @@ enstars.info - Information and Translations for Ensemble Stars!
                             <h4>Want a way to track all your cards?<h4><a href="/register">Create an account!</a>
                         </div>             
                     @endif
-                    <h3>News 2020-03-15</h3>
-                    <p><a href="https://enstars.info/news/enstars-basic-and-music-released">Enstars Basic and Music Released!</a></p>
+                    <h3>News 2020-04-30</h3>
+                    <p><a href="https://enstars.info/news/missing-card-images">Help Needed Collecting Bloomed Card Images</a></p>
                         <h3>Recently Updated</h3>
                         @foreach($latest as $item)
                             @if($item['type'] == 'releasenote')
