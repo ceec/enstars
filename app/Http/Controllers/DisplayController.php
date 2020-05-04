@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Card;
+use App\Cardstat;
 use App\Boy;
 use App\Skill;
 use App\Minievent;
@@ -319,33 +320,46 @@ class DisplayController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function card($card_id) {
+    public function card($card_id,$game='2') {
+        // Find the card
         $card = Card::where('id','=',$card_id)->first();
 
-        //when bad url is passed
+        // When bad url is passed
         if (empty($card)) {
             //want to go to 404 page 
             abort(404);
         }  
 
+        // Get the game
+        if ($game == 'music') {
+            $game_id = 3;
+        } else {
+            $game_id = 2;
+        }
+
+        // Get the stats
+        $stats = Cardstat::where('card_id','=',$card_id)->where('game_id','=',$game_id)->first();
+
+        //dd($stats);
+
         $boy = Boy::where('id','=',$card->boy_id)->first();
 
         //lesson skill
-        if ($card->lesson_id == 0) {
+        if ($stats->lesson_id == 0) {
             $lesson_skill = Skill::where('id','=',1)->first();
             $lesson_skill->id = '';
             $lesson_skill->english_description = 'Unknown';
         } else {
-            $lesson_skill = Skill::where('id','=',$card->lesson_id)->first();
+            $lesson_skill = Skill::where('id','=',$stats->lesson_id)->first();
         }
 
         //dorifes skill
-        if ($card->dorifes_id == 0) {
+        if ($stats->dorifes_id == 0) {
             $dorifes_skill = Skill::where('id','=',1)->first();
             $dorifes_skill->id = '';
             $dorifes_skill->english_description = 'Unknown';
         } else {
-            $dorifes_skill = Skill::where('id','=',$card->dorifes_id)->first();
+            $dorifes_skill = Skill::where('id','=',$stats->dorifes_id)->first();
         }
 
 
@@ -356,14 +370,14 @@ class DisplayController extends Controller {
         if ($card->u_lesson_id == 0) {
             $u_lesson_skill = Skill::where('id','=',74)->first();
         } else {
-            $u_lesson_skill = Skill::where('id','=',$card->u_lesson_id)->first();
+            $u_lesson_skill = Skill::where('id','=',$stats->u_lesson_id)->first();
         }
 
         //dorifes skill
         if ($card->u_dorifes_id == 0) {
             $u_dorifes_skill = Skill::where('id','=',75)->first();
         } else {
-            $u_dorifes_skill = Skill::where('id','=',$card->u_dorifes_id)->first();
+            $u_dorifes_skill = Skill::where('id','=',$stats->u_dorifes_id)->first();
         }
 
         //get event or scout
@@ -476,7 +490,8 @@ class DisplayController extends Controller {
             ->with('yellow_small',$yellow_small)  
             ->with('user_card',$user_card)      
             ->with('updated_by',$updated_by)  
-            ->with('card_suggestion',$card_suggestion)              
+            ->with('card_suggestion',$card_suggestion)    
+            ->with('stats',$stats)          
             ->with('card',$card);
     } 
 

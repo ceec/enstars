@@ -45,17 +45,26 @@
                             //image url
                             $scout_image = '/images/cards/get/'.$card->boy_id.'_'.$card->card_id.'.png';
                             //echo $scout_image;
+
+                            // This chunk should all be moved to the controller
+
+                            if ($stats->game_id == 3) {
+                              $imageurl = "/images/cards/music/";
+                            } else {
+                              $imageurl = "/images/cards/";
+                            }
                         ?>  
-        	<h1>{{$card->name_e}} <small><a href="/idol/{{ strtolower($boy->first_name)}}">{{$boy->first_name}} {{$boy->last_name}}</a></small></h1>
+          <h1>{{$card->name_e}} <small><a href="/idol/{{ strtolower($boy->first_name)}}">{{$boy->first_name}} {{$boy->last_name}}</a></small></h1>
+          <h5><a href="/card/{{$card->id}}/basic">Basic</a> | <a href="/card/{{$card->id}}/music">Music</a></h5>
          <div class="row">
             <div class="col-md-6">
                 <div class="panel {{$color_class}}">
                   <div class="row">
                     <div class="col-md-6">
-                        <img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}.png">
+                        <img class="img-responsive" src="{{$imageurl.$card->boy_id}}_{{$card->card_id}}.png">
                     </div>
                     <div class="col-md-6">
-                         <img class="img-responsive" src="/images/cards/{{$card->boy_id}}_{{$card->card_id}}b.png">
+                         <img class="img-responsive" src="{{$imageurl.$card->boy_id}}_{{$card->card_id}}b.png">
                     </div>
                   </div>
                   <p>{{$card->sentence_e}}</p>
@@ -84,38 +93,38 @@
                 @else
                     <h4><span class="card-title">Dream Festival Skill:</span> <a href="/skill/{{$dorifes_skill->id}}">{{$dorifes_skill->english_description}}</a></h4>
                 @endif
-                <h4>{{$card->dorifes_e}}</h4>
+                <h4>{{$stats->dorifes_e}}</h4>
                 @if ($lesson_skill->id == 0)
                     <h4><span class="card-title">Lesson Skill:</span> {{$lesson_skill->english_description}} </h4>
                 @else
                     <h4><span class="card-title">Lesson Skill:</span> <a href="/skill/{{$lesson_skill->id}}">{{$lesson_skill->english_description}}</a></h4>
                 @endif
-                <h4>{{$card->lesson_e}}</h4>
+                <h4>{{$stats->lesson_e}}</h4>
                 <hr>
                 
                 <div class="row">
                   <div class="col-md-2">
-                    @if ($card->da !== 0) 
+                    @if ($stats->da !== 0) 
                       Base stats<br>
-                      Da: {{$card->da}}<br>
-                      Vo: {{$card->vo}}<br>
-                      Pf: {{$card->pf}} 
+                      Da: {{$stats->da}}<br>
+                      Vo: {{$stats->vo}}<br>
+                      Pf: {{$stats->pf}} 
                     @endif
                   </div>
                   <div class="col-md-3">
-                    @if ($card->da_max !== 0) 
+                    @if ($stats->da_max !== 0) 
                       Max stats 1 Copy<br>
-                      Da: {{$card->da_max}}<br>
-                      Vo: {{$card->vo_max}}<br>
-                      Pf: {{$card->pf_max}} 
+                      Da: {{$stats->da_max}}<br>
+                      Vo: {{$stats->vo_max}}<br>
+                      Pf: {{$stats->pf_max}} 
                     @endif                  
                   </div>
                   <div class="col-md-4">
-                    @if ($card->da_max5 !== 0) 
+                    @if ($stats->da_max5 !== 0) 
                       Max stats 5 Copies<br>
-                      Da: {{$card->da_max5}}<br>
-                      Vo: {{$card->vo_max5}}<br>
-                      Pf: {{$card->pf_max5}} 
+                      Da: {{$stats->da_max5}}<br>
+                      Vo: {{$stats->vo_max5}}<br>
+                      Pf: {{$stats->pf_max5}} 
                     @endif                  
                   </div>                  
                 </div>

@@ -32,6 +32,7 @@ Route::get('/idol/{boy_id}/all', 'DisplayController@idolAll');
 Route::get('/chelsea', 'DisplayController@chelsea');
 
 //specific card
+Route::get('/card/{card_id}/{game}', 'DisplayController@card');
 Route::get('/card/{card_id}', 'DisplayController@card');
 
 //tags

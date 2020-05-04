@@ -505,6 +505,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function toolCardSplit() {
+        ini_set('max_execution_time', 180); //3 minutes
         // grab all the info from cards
 
         $cards = Card::all();
@@ -543,10 +544,51 @@ class HomeController extends Controller
             $s->pf_max5 = $card->pf_max5;
             $s->gr_max5 = 0;    
             $s->u_dorifes_id = $card->u_dorifes_id;
+            $s->u_dorifes_j = '';
+            $s->u_dorifes_e = '';
             $s->dorifes_id = $card->dorifes_id;
+            $s->dorifes_j = '';
+            $s->dorifes_e = '';
             $s->u_lesson_id = $card->u_lesson_id;
+            $s->u_lesson_j = '';
+            $s->u_lesson_e = '';
             $s->lesson_id = $card->lesson_id;
+            $s->lesson_j = '';
+            $s->lesson_e = '';
             $s->save(); 
+
+            // Create an entry for music cards if the card is a basic card
+            if ($card->game_id == 2) {
+                $s = new Cardstat;
+                $s->card_id = $card->id;
+                $s->game_id = 3;
+                $s->type_id = 0;
+                $s->da = 0;
+                $s->vo = 0;
+                $s->pf = 0;
+                $s->gr = 0;
+                $s->da_max = 0;
+                $s->vo_max = 0;
+                $s->pf_max = 0;
+                $s->gr_max = 0;
+                $s->da_max5 = 0;
+                $s->vo_max5 = 0;
+                $s->pf_max5 = 0;
+                $s->gr_max5 = 0;    
+                $s->u_dorifes_id = 0;
+                $s->u_dorifes_j = '';
+                $s->u_dorifes_e = '';                   
+                $s->dorifes_id = 0;
+                $s->dorifes_j = '';
+                $s->dorifes_e = '';                
+                $s->u_lesson_id = 0;
+                $s->u_lesson_j = '';
+                $s->u_lesson_e = '';                
+                $s->lesson_id = 0;
+                $s->lesson_j = '';
+                $s->lesson_e = '';                
+                $s->save();                   
+            }          
         }
     }
 
