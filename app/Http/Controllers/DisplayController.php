@@ -333,8 +333,10 @@ class DisplayController extends Controller {
         // Get the game
         if ($game == 'music') {
             $game_id = 3;
-        } else {
+        } else if ($card->game_id == 2) {
             $game_id = 2;
+        } else {
+            $game_id = 1;
         }
 
         // Get the stats
