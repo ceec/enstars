@@ -55,7 +55,9 @@
                             }
                         ?>  
           <h1>{{$card->name_e}} <small><a href="/idol/{{ strtolower($boy->first_name)}}">{{$boy->first_name}} {{$boy->last_name}}</a></small></h1>
-          <h5><a href="/card/{{$card->id}}/basic">Basic</a> | <a href="/card/{{$card->id}}/music">Music</a></h5>
+          @if ($card->game_id > 1)
+            <h5><a href="/card/{{$card->id}}/basic">Basic</a> | <a href="/card/{{$card->id}}/music">Music</a></h5>
+          @endif
          <div class="row">
             <div class="col-md-6">
                 <div class="panel {{$color_class}}">
