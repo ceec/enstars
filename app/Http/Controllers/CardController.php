@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Card;
+use App\Cardstat;
 use App\Boy;
 use App\Skill;
 use App\Minievent;
@@ -74,7 +75,7 @@ class CardController extends Controller
         $c->card_id = $card_id;
         $c->place = $card_id;
         $c->stars = $request->input('stars');
-        $c->color = $request->input('color');
+        $c->color = '';
         $c->game_id = 2;
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
@@ -90,10 +91,10 @@ class CardController extends Controller
         $c->pf_max5 = 0;                
         $c->dorifes_j = '';
         $c->dorifes_e = '';
-        $c->dorifes_id = $request->input('dorifes_id');
+        $c->dorifes_id = 0;
         $c->lesson_j = '';
         $c->lesson_e = '';
-        $c->lesson_id = $request->input('lesson_id');
+        $c->lesson_id = 0;
         //unleveled skills
         $c->u_dorifes_j = '';
         $c->u_dorifes_e = '';  
@@ -113,6 +114,70 @@ class CardController extends Controller
         $c->updated_by = 1;
         $c->save();
 
+        // In transition from card to card stats, create a new cardstats entry for each game
+        // Basic card
+        $basic = new Cardstat;
+        $basic->card_id = $c->id;
+        $basic->game_id = 2;
+        $basic->type_id = 0;
+        $basic->da = 0;
+        $basic->vo = 0;
+        $basic->pf = 0;
+        $basic->gr = 0;
+        $basic->da_max = 0;
+        $basic->vo_max = 0;
+        $basic->pf_max = 0;
+        $basic->gr_max = 0;
+        $basic->da_max5 = 0;
+        $basic->vo_max5 = 0;
+        $basic->pf_max5 = 0;
+        $basic->gr_max5 = 0;    
+        $basic->u_dorifes_id = 74;
+        $basic->u_dorifes_j = '';
+        $basic->u_dorifes_e = '';                   
+        $basic->dorifes_id = 74;
+        $basic->dorifes_j = '';
+        $basic->dorifes_e = '';                
+        $basic->u_lesson_id = 75;
+        $basic->u_lesson_j = '';
+        $basic->u_lesson_e = '';                
+        $basic->lesson_id = 75;
+        $basic->lesson_j = '';
+        $basic->lesson_e = '';   
+        $basic->updated_by = Auth::id();              
+        $basic->save();  
+
+        // Music card
+        $music = new Cardstat;
+        $music->card_id = $c->id;
+        $music->game_id = 3;
+        $music->type_id = 0;
+        $music->da = 0;
+        $music->vo = 0;
+        $music->pf = 0;
+        $music->gr = 0;
+        $music->da_max = 0;
+        $music->vo_max = 0;
+        $music->pf_max = 0;
+        $music->gr_max = 0;
+        $music->da_max5 = 0;
+        $music->vo_max5 = 0;
+        $music->pf_max5 = 0;
+        $music->gr_max5 = 0;    
+        $music->u_dorifes_id = 74;
+        $music->u_dorifes_j = '';
+        $music->u_dorifes_e = '';                   
+        $music->dorifes_id = 74;
+        $music->dorifes_j = '';
+        $music->dorifes_e = '';                
+        $music->u_lesson_id = 75;
+        $music->u_lesson_j = '';
+        $music->u_lesson_e = '';                
+        $music->lesson_id = 75;
+        $music->lesson_j = '';
+        $music->lesson_e = '';   
+        $music->updated_by = Auth::id();              
+        $music->save(); 
 
         // return view('pages.card')
         //     ->with('card',$card);
@@ -149,8 +214,28 @@ class CardController extends Controller
     public function edit(Request $request) {
         //need to update card
         $c = Card::find($request->input('card_id'));
-        $c->stars = $request->input('stars');
-        $c->color = $request->input('color');
+        $c->stars = $request->input('stars');                                      
+        $c->name_j = $request->input('japanese_name');
+        $c->name_e = $request->input('english_name');
+        $c->sentence_j = $request->input('sentence_j');
+        $c->sentence_e = $request->input('sentence_e');  
+        $c->scout_id = $request->input('scout_id');
+        $c->event_id = $request->input('event_id');
+        $c->updated_by = Auth::id();  
+        $c->save();
+
+        return redirect('/card/'.$c->id);          
+    } 
+
+     /**
+     * Edit cardstat
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCardstat(Request $request) {
+
+        $c = Cardstat::find($request->input('cardstat_id'));
+        $c->type_id = $request->input('type_id');
         $c->da = $request->input('da');
         $c->vo = $request->input('vo');
         $c->pf = $request->input('pf');  
@@ -160,36 +245,31 @@ class CardController extends Controller
         $c->da_max5 = $request->input('da_max5');
         $c->vo_max5 = $request->input('vo_max5');
         $c->pf_max5 = $request->input('pf_max5');                                        
-        $c->name_j = $request->input('japanese_name');
-        $c->name_e = $request->input('english_name');
-        $c->sentence_j = $request->input('sentence_j');
-        $c->sentence_e = $request->input('sentence_e');  
         $c->dorifes_j = $request->input('dorifes_j');
         $c->dorifes_e = $request->input('dorifes_e');  
         $c->lesson_j = $request->input('lesson_j');
         $c->lesson_e = $request->input('lesson_e');                        
         $c->dorifes_id = $request->input('dorifes_id');
         $c->lesson_id = $request->input('lesson_id');
-        $c->scout_id = $request->input('scout_id');
-        $c->event_id = $request->input('event_id');
-        //unleveled skills
         $c->u_dorifes_j = $request->input('u_dorifes_j');
         $c->u_dorifes_e = $request->input('u_dorifes_e');  
         $c->u_lesson_j = $request->input('u_lesson_j');
         $c->u_lesson_e = $request->input('u_lesson_e');                        
         $c->u_dorifes_id = $request->input('u_dorifes_id');
         $c->u_lesson_id = $request->input('u_lesson_id');        
-
         $c->updated_by = Auth::id();  
         $c->save();
 
+        if ($c->game_id == 3) {
+            $game = 'music';
+        } else if ($c->game_id == 2) {
+            $game = 'basic';
+        } else {
+            $game = '';
+        }
 
-        // return view('pages.card')
-        //     ->with('card',$card);
-
-        return redirect('/card/'.$c->id);          
-    } 
-
+        return redirect('/card/'.$c->card_id.'/'.$game);          
+    }    
 
     /**
      * Add card suggestion

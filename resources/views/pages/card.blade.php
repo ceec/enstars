@@ -620,11 +620,11 @@ $('.road-node').on('click',function(){
                                   <div class="form-group form-inline">
                                     <label for="japanese-name">Japanese Name</label>
                                      {!! Form::text('japanese_name',$card->name_j,['class'=>'form-control','id'=>'japanese-name']) !!}
-                                  </div> 
+                                  </div>      
                                   <div class="form-group form-inline">
                                     <label for="english-name">English Name</label>
                                      {!! Form::text('english_name',$card->name_e,['class'=>'form-control','id'=>'english-name']) !!}
-                                  </div>
+                                  </div>   
                                   <div class="form-group form-inline">
                                     <label for="sentence-j">Japanese Sentence (when scouted or on promo materials)</label>
                                      {!! Form::text('sentence_j',$card->sentence_j,['class'=>'form-control','id'=>'sentence-j']) !!}
@@ -632,7 +632,9 @@ $('.road-node').on('click',function(){
                                   <div class="form-group form-inline">
                                     <label for="sentence-e">English Sentence (when scouted or on promo materials)</label>
                                      {!! Form::text('sentence_e',$card->sentence_e,['class'=>'form-control','id'=>'sentence-e']) !!}
-                                  </div>        
+                                  </div>                                                                                            
+                              </div>
+                              <div class="col-md-6">
                                 <div class="form-group form-inline">
                                     <label for="event_id">Event ID</label>
                                      {!! Form::number('event_id',$card->event_id,['class'=>'form-control','id'=>'event_id']) !!}
@@ -640,54 +642,63 @@ $('.road-node').on('click',function(){
                                 <div class="form-group form-inline">
                                     <label for="scout_id">Scout ID</label>
                                      {!! Form::number('scout_id',$card->scout_id,['class'=>'form-control','id'=>'scout_id']) !!}
-                                  </div>                                                                                                                                                                      
-                              </div>
-                              <div class="col-md-3">
+                                  </div>      
                                 <div class="form-group form-inline">
                                     <label for="stars">Stars</label>
                                      {!! Form::text('stars',$card->stars,['class'=>'form-control','id'=>'stars']) !!}
-                                  </div>  
+                                  </div>       
+                                {!! Form::hidden('card_id', $card->id) !!}                                                      
+                                {!! Form::submit('Edit') !!}
+                                {!! Form::close() !!}                                                                                                                                                                                                                                 
+                              </div>
+                            </div>
+                            <hr>       
+                            {!! Form::open(['url' => '/edit/cardstat']) !!}                       
+                            <div class="row">
+                              <div class="col-md-3">
                                 <div class="form-group form-inline">
-                                    <label for="stars">Color</label>
-                                     {!! Form::text('color',$card->color,['class'=>'form-control','id'=>'color']) !!}
+                                    <label for="stars">Type</label>
+                                     {!! Form::text('type_id',$stats->type_id,['class'=>'form-control','id'=>'color']) !!}
                                   </div>
                                 <div class="form-group form-inline">
                                     <label for="da">Da</label>
-                                     {!! Form::text('da',$card->da,['class'=>'form-control','id'=>'da']) !!}
+                                     {!! Form::text('da',$stats->da,['class'=>'form-control','id'=>'da']) !!}
                                   </div>
                                 <div class="form-group form-inline">
                                     <label for="vo">Vo</label>
-                                     {!! Form::text('vo',$card->vo,['class'=>'form-control','id'=>'vo']) !!}
+                                     {!! Form::text('vo',$stats->vo,['class'=>'form-control','id'=>'vo']) !!}
                                   </div>
                                 <div class="form-group form-inline">
                                     <label for="pf">Pf</label>
-                                     {!! Form::text('pf',$card->pf,['class'=>'form-control','id'=>'pf']) !!}
+                                     {!! Form::text('pf',$stats->pf,['class'=>'form-control','id'=>'pf']) !!}
                                   </div>                                 
                               </div>
                               <div class="col-md-3">
                                 <div class="form-group form-inline">
-                                    <label for="da_max">Da Max</label>
-                                     {!! Form::text('da_max',$card->da_max,['class'=>'form-control','id'=>'da_max']) !!}
-                                  </div>
+                                  <label for="da_max">Da Max</label>
+                                    {!! Form::text('da_max',$stats->da_max,['class'=>'form-control','id'=>'da_max']) !!}
+                                </div>
                                 <div class="form-group form-inline">
                                     <label for="vo_max">Vo Max</label>
-                                     {!! Form::text('vo_max',$card->vo_max,['class'=>'form-control','id'=>'vo_max']) !!}
+                                     {!! Form::text('vo_max',$stats->vo_max,['class'=>'form-control','id'=>'vo_max']) !!}
                                   </div>
                                 <div class="form-group form-inline">
                                     <label for="pf_max">Pf Max</label>
-                                     {!! Form::text('pf_max',$card->pf_max,['class'=>'form-control','id'=>'pf_max']) !!}
-                                </div>                                 
+                                     {!! Form::text('pf_max',$stats->pf_max,['class'=>'form-control','id'=>'pf_max']) !!}
+                                </div>   
+                              </div>
+                              <div class="col-md-3">                              
                                 <div class="form-group form-inline">
                                     <label for="da_max5">Da Max 5</label>
-                                     {!! Form::number('da_max5',$card->da_max5,['class'=>'form-control','id'=>'da_max5','max'=>'100000000']) !!}
+                                     {!! Form::number('da_max5',$stats->da_max5,['class'=>'form-control','id'=>'da_max5','max'=>'100000000']) !!}
                                   </div>
                                 <div class="form-group form-inline">
                                     <label for="vo_max5">Vo Max 5</label>
-                                     {!! Form::number('vo_max5',$card->vo_max5,['class'=>'form-control','id'=>'vo_max5','max'=>'100000000']) !!}
+                                     {!! Form::number('vo_max5',$stats->vo_max5,['class'=>'form-control','id'=>'vo_max5','max'=>'100000000']) !!}
                                   </div>
                                 <div class="form-group form-inline">
                                     <label for="pf_max5">Pf Max 5</label>
-                                     {!! Form::number('pf_max5',$card->pf_max5,['class'=>'form-control','id'=>'pf_max5','max'=>'100000000']) !!}
+                                     {!! Form::number('pf_max5',$stats->pf_max5,['class'=>'form-control','id'=>'pf_max5','max'=>'100000000']) !!}
                                   </div>                                    
                               </div>                              
                             </div>
@@ -697,29 +708,29 @@ $('.road-node').on('click',function(){
                                 <div class="col-md-6">
                                   <div class="form-group form-inline">
                                     <label for="dorifes_j">Japanese Dorifes Skill </label>
-                                     {!! Form::text('dorifes_j',$card->dorifes_j,['class'=>'form-control','id'=>'dorifes_j']) !!}
+                                     {!! Form::text('dorifes_j',$stats->dorifes_j,['class'=>'form-control','id'=>'dorifes_j']) !!}
                                   </div>  
                                   <div class="form-group form-inline">
                                     <label for="dorifes_e">English Dorifes Skill</label>
-                                     {!! Form::text('dorifes_e',$card->dorifes_e,['class'=>'form-control','id'=>'dorifes_e']) !!}
+                                     {!! Form::text('dorifes_e',$stats->dorifes_e,['class'=>'form-control','id'=>'dorifes_e']) !!}
                                   </div>      
                                   <div class="form-group form-inline">
                                     <label for="lesson_j">Japanese Lesson Skill </label>
-                                     {!! Form::text('lesson_j',$card->lesson_j,['class'=>'form-control','id'=>'lesson_j']) !!}
+                                     {!! Form::text('lesson_j',$stats->lesson_j,['class'=>'form-control','id'=>'lesson_j']) !!}
                                   </div>  
                                   <div class="form-group form-inline">
                                     <label for="lesson_e">English Lesson Skill</label>
-                                     {!! Form::text('lesson_e',$card->lesson_e,['class'=>'form-control','id'=>'lesson_e']) !!}
+                                     {!! Form::text('lesson_e',$stats->lesson_e,['class'=>'form-control','id'=>'lesson_e']) !!}
                                   </div>                                    
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group form-inline">
                                     <label for="dorifes-id">Dream Festival Skill</label>
-                                    {!! Form::select('dorifes_id', $dorifes_skills,$card->dorifes_id,['class'=>'form-control', 'id'=>'dorifes-id','placeholder' => 'Dream Festival Skill']) !!} 
+                                    {!! Form::select('dorifes_id', $dorifes_skills,$stats->dorifes_id,['class'=>'form-control', 'id'=>'dorifes-id','placeholder' => 'Dream Festival Skill']) !!} 
                                   </div>                                                                                                                                      
                                   <div class="form-group form-inline">
                                     <label for="lesson-skill">Lesson Skill</label>
-                                    {!! Form::select('lesson_id', $lesson_skills,$card->lesson_id ,['class'=>'form-control', 'id'=>'lesson-skill','placeholder' => 'Lesson Skill']) !!} 
+                                    {!! Form::select('lesson_id', $lesson_skills,$stats->lesson_id ,['class'=>'form-control', 'id'=>'lesson-skill','placeholder' => 'Lesson Skill']) !!} 
                                   </div>                                   
                                 </div>
                               </div>
@@ -729,34 +740,34 @@ $('.road-node').on('click',function(){
                                 <div class="col-md-6">
                                   <div class="form-group form-inline">
                                     <label for="u_dorifes_j">Japanese Dorifes Skill </label>
-                                     {!! Form::text('u_dorifes_j',$card->u_dorifes_j,['class'=>'form-control','id'=>'u_dorifes_j']) !!}
+                                     {!! Form::text('u_dorifes_j',$stats->u_dorifes_j,['class'=>'form-control','id'=>'u_dorifes_j']) !!}
                                   </div>  
                                   <div class="form-group form-inline">
                                     <label for="u_dorifes_e">English Dorifes Skill</label>
-                                     {!! Form::text('u_dorifes_e',$card->u_dorifes_e,['class'=>'form-control','id'=>'u_dorifes_e']) !!}
+                                     {!! Form::text('u_dorifes_e',$stats->u_dorifes_e,['class'=>'form-control','id'=>'u_dorifes_e']) !!}
                                   </div>      
                                   <div class="form-group form-inline">
                                     <label for="u_lesson_j">Japanese Lesson Skill </label>
-                                     {!! Form::text('u_lesson_j',$card->u_lesson_j,['class'=>'form-control','id'=>'u_lesson_j']) !!}
+                                     {!! Form::text('u_lesson_j',$stats->u_lesson_j,['class'=>'form-control','id'=>'u_lesson_j']) !!}
                                   </div>  
                                   <div class="form-group form-inline">
                                     <label for="u_lesson_e">English Lesson Skill</label>
-                                     {!! Form::text('u_lesson_e',$card->u_lesson_e,['class'=>'form-control','id'=>'u_lesson_e']) !!}
+                                     {!! Form::text('u_lesson_e',$stats->u_lesson_e,['class'=>'form-control','id'=>'u_lesson_e']) !!}
                                   </div>                                    
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group form-inline">
                                     <label for="u_dorifes-id">Dream Festival Skill</label>
-                                    {!! Form::select('u_dorifes_id', $dorifes_skills,$card->u_dorifes_id,['class'=>'form-control', 'id'=>'u_dorifes-id','placeholder' => 'Dream Festival Skill']) !!} 
+                                    {!! Form::select('u_dorifes_id', $dorifes_skills,$stats->u_dorifes_id,['class'=>'form-control', 'id'=>'u_dorifes-id','placeholder' => 'Dream Festival Skill']) !!} 
                                   </div>                                                                                                                                      
                                   <div class="form-group form-inline">
                                     <label for="u_lesson-skill">Lesson Skill</label>
-                                    {!! Form::select('u_lesson_id', $lesson_skills,$card->u_lesson_id ,['class'=>'form-control', 'id'=>'u_lesson-skill','placeholder' => 'Lesson Skill']) !!} 
+                                    {!! Form::select('u_lesson_id', $lesson_skills,$stats->u_lesson_id ,['class'=>'form-control', 'id'=>'u_lesson-skill','placeholder' => 'Lesson Skill']) !!} 
                                   </div>                                   
                                 </div>
                               </div>                              
                             </div>
-                            {!! Form::hidden('card_id', $card->id) !!}                                                      
+                            {!! Form::hidden('cardstat_id', $stats->id) !!}                                                      
                             {!! Form::submit('Edit') !!}
                             {!! Form::close() !!}
                         </div>

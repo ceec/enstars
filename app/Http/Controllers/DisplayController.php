@@ -369,14 +369,14 @@ class DisplayController extends Controller {
 
 
         //lesson skill
-        if ($card->u_lesson_id == 0) {
+        if ($stats->u_lesson_id == 0) {
             $u_lesson_skill = Skill::where('id','=',74)->first();
         } else {
             $u_lesson_skill = Skill::where('id','=',$stats->u_lesson_id)->first();
         }
 
         //dorifes skill
-        if ($card->u_dorifes_id == 0) {
+        if ($stats->u_dorifes_id == 0) {
             $u_dorifes_skill = Skill::where('id','=',75)->first();
         } else {
             $u_dorifes_skill = Skill::where('id','=',$stats->u_dorifes_id)->first();

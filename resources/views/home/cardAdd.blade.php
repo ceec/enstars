@@ -36,24 +36,7 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                  </div>    
-                  <div class="form-group">
-                    <label for="type">Type</label>
-                    <select name="color" class="form-control" id="type">
-                        <option value="">Type</option>
-                        <option value="red">Dance</option>
-                        <option value="blue">Vocal</option>
-                        <option value="yellow">Performance</option>
-                    </select>
-                  </div>   
-                  <div class="form-group">
-                    <label for="lesson-skill">Lesson Skill</label>
-                    {!! Form::select('lesson_id', $lesson_skills,'' ,['class'=>'form-control', 'id'=>'lesson-skill','placeholder' => 'Lesson Skill']) !!} 
-                  </div>
-                  <div class="form-group">
-                    <label for="dorifes-id">Dream Festival Skill</label>
-                    {!! Form::select('dorifes_id', $dorifes_skills,'' ,['class'=>'form-control', 'id'=>'dorifes-id','placeholder' => 'Dream Festival Skill']) !!} 
-                  </div>                                                                         
+                  </div>                                                                       
             {!! Form::submit('Add') !!}
             {!! Form::close() !!}
 			
