@@ -339,6 +339,11 @@ class DisplayController extends Controller {
             $game_id = 1;
         }
 
+        // Check for game mismatches
+        if ($card->game_id == 1) {
+            $game_id = 1;
+        }
+
         // Get the stats
         $stats = Cardstat::where('card_id','=',$card_id)->where('game_id','=',$game_id)->first();
 
