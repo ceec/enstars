@@ -63,7 +63,7 @@ class DataController extends Controller {
             $result['category'] = $boy->first_name;
 
             //get all the cards
-            $cards = Card::where('boy_id','=',$boy->id)->get();
+            $cards = Card::where('boy_id','=',$boy->id)->where('game_id',2)->get();
             foreach($cards as $card) {
                 //get the info
                 $boy = Boy::where('id','=',$card->boy_id)->first();
