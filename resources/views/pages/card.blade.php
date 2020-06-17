@@ -63,10 +63,10 @@
                 <div class="panel {{$color_class}}">
                   <div class="row">
                     <div class="col-md-6">
-                        <img class="img-responsive" src="{{$imageurl.$card->boy_id}}_{{$card->card_id}}.png">
+                        <img class="img-responsive" src="{{$imageurl.$card->boy_id}}_{{$card->card_id}}.png" onerror="this.src='/images/missingcard.png'">
                     </div>
                     <div class="col-md-6">
-                         <img class="img-responsive" src="{{$imageurl.$card->boy_id}}_{{$card->card_id}}b.png">
+                         <img class="img-responsive" src="{{$imageurl.$card->boy_id}}_{{$card->card_id}}b.png" onerror="this.src='/images/missingcard.png'">
                     </div>
                   </div>
                   <p>{{$card->sentence_e}}</p>
