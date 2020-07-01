@@ -30,6 +30,7 @@
                 </div>
                 <p><a href="{{$event->website}}">Event Website</a></p>
                 <div class="row">
+                @if ($event->game_id==1)
                     <div class="col-md-6">
                         <h3>Graph</h3>
                         <style>
@@ -53,6 +54,7 @@
                         <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
                         <script src="/js/eventChart.js"></script>
                     </div>
+                    @endif
                     <div class="col-md-3" id="story">
                         @if ($chapters != '')
                             <h3>Event Story</h3>
