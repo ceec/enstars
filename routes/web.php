@@ -273,6 +273,8 @@ Route::get('/home/tools/createEventCards','HomeController@toolCreateEventCards')
 Route::get('/home/tools/emailTest','HomeController@emailTest');
 Route::get('/home/tools/scraper','HomeController@scraper');
 Route::get('/home/tools/cardDBsplit','HomeController@toolCardSplit');
+Route::get('/home/tools/linkFinder','ToolController@linkFinder');
+
 
 //adding slides
 Route::post('/add/translation/slides','HomeController@addSlides');

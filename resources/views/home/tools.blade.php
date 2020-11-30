@@ -9,6 +9,7 @@
   <a href="/home/tools/emailTest">Test Email</a><br>
   <!--<a href="/home/tools/createEventCards">Create Eventcards Table</a>-->
   <a href="/home/tools/cardDBsplit">Card DB Split</a>
+  <a href="/home/tools/linkFinder">Link Finder</a>
   
 </div>
 @endsection
