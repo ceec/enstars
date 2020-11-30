@@ -14,6 +14,7 @@ use Auth;
 use App\User;
 use App\Cardroad;
 use App\Cardsuggestion;
+use App\Logcard;
 
 class CardController extends Controller
 {
@@ -212,8 +213,15 @@ class CardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request) {
-        //need to update card
+
         $c = Card::find($request->input('card_id'));
+
+        // need to log what was previously there
+        $l = $c->replicate();
+        $l->setTable('logcards');
+        $l->save();
+
+        //need to update card
         $c->stars = $request->input('stars');                                      
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
