@@ -243,6 +243,12 @@ class CardController extends Controller
     public function editCardstat(Request $request) {
 
         $c = Cardstat::find($request->input('cardstat_id'));
+
+        // need to log what was previously there
+        $l = $c->replicate();
+        $l->setTable('logcardstats');
+        $l->save();
+
         $c->type_id = $request->input('type_id');
         $c->da = $request->input('da');
         $c->vo = $request->input('vo');
