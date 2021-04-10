@@ -212,7 +212,7 @@ class Card extends Model
 ?>
 				<button class="btn <?php print $button_class; ?> btn-xs" data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
 				<?php if (Auth::user()->role_id == 2) {
-						print $this->boy->id.'_'.$this->place;
+						print $this->boy->id.'_'.$this->card_id;
 				}
 				?>
 
