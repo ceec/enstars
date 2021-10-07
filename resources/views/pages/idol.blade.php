@@ -9,43 +9,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-
                 <h1>{{$boy->first_name}} {{$boy->last_name}}</h1>
-                <div id="cards" class="row">
-                    <?php $x = 1; ?>
+                {{-- enstars!! cards --}}
+                <div style="display: flex; flex-wrap: wrap;">
                     @foreach($basic_cards as $card)
                         {{ $card->display() }}
-                        <?php
-                        if ($x % 4 == 0) {
-                        ?>
-                </div>
-                <div class="row">
-                    <?php
-                    }
-                    $x++;
-                    ?>
                     @endforeach
                 </div>
                 <hr>
-                <div id="cards" class="row">
-                    <?php $x = 1; ?>
+                {{-- old enstars cards --}}
+                <div style="display: flex; flex-wrap: wrap;">
                     @foreach($cards as $card)
                         {{ $card->display() }}
-                        <?php
-                        if ($x % 4 == 0) {
-                        ?>
-                </div>
-                <div class="row">
-                    <?php
-                    }
-                    $x++;
-                    ?>
                     @endforeach
                 </div>
-
-
             </div>
         </div>
+
         <h2>Information</h2>
         <div class="row">
             <div class="col-md-6">
@@ -59,7 +39,6 @@
 
             </div>
             <div class="col-md-6">
-
             </div>
         </div>
         <h2>Stories</h2>

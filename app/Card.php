@@ -93,28 +93,24 @@ class Card extends Model
         //remove lesson skill, keep name bloomed and bg?
         //bg maybe only if you have that card.
 
-
         //how to check if this card is already had by the user
 
         //get current user
         $user = Auth::user();
 
-
         //check if they have this card
         if (isset($user)) {
             //they are logged in
-
-
             $have = Usercard::where('user_id', '=', $user->id)->where('card_id', '=', $this->id)->count();
 
             if ($have > 0) {
-                $background = 'panel-info';
+                $background = 'obtained';
                 $current_page = Route::getFacadeRoot()->current()->uri();
                 //dont show blue if on user page
                 if ($current_page == 'user/{name}/cards') {
                     $background = '';
                 } else {
-                    $background = 'panel-info';
+                    $background = 'obtained';
                 }
 
                 $bloomcheck = Usercard::where('user_id', '=', $user->id)->where('card_id', '=', $this->id)->first();
@@ -133,107 +129,95 @@ class Card extends Model
             $bloom = false;
         }
 
-        //check for mini
+        // check for mini
         if ($view == 'mini') {
-            $col = 2;
+            // 6 in a row
+            $col = 2;  // mini-card
         } else {
-            $col = 3;
+            // 4 in a row
+            $col = "card";
         }
 
         ?>
-        <div class="col-md-<?php print $col; ?>">
-            <?php
-            if ($this->stars != '') {
-                ?>
-                <div id="card-panel-<?php print $this->id; ?>" class="panel <?php print $background; ?>">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <a href="/card/<?php print $this->id ?>">
-                                <div class="card-container" id="card-<?php print $this->id ?>">
-                                    <?php
-                                    if ($bloom) {
-                                        $displaybloom = 'b';
-                                    } else {
-                                        $displaybloom = '';
-                                    }
-                                    ?>
-                                    <img class="img-responsive"
-                                         src="/images/cards/<?php print $this->boy_id ?>_<?php print $this->card_id . $displaybloom; ?>.png">
-                                </div>
-                            </a>
-                            <?php
-                            if ($view != 'mini') {
-                                ?>
-                                <span class="glyphicon glyphicon-certificate bloom hoverhand"
-                                      id="bloom-<?php print $this->id ?>" data-id="<?php print $this->id ?>"
-                                      data-card-id="<?php print $this->card_id ?>"
-                                      data-boy="<?php print $this->boy_id ?>" aria-hidden="true"></span>
-                                <?php print $this->id ?><?php print $this->name_e ?>
-                                <?php
-                                if (!Auth::guest()) {
-                                    if (Auth::user()->isAdmin()) {
-                                        ?>
-                                        <div class="pull-right"><?php print $this->da; ?></div>
-                                        <?php
-                                    }
-                                }
-                                ?>
-
-                                <?php
-                            }
-                            ?>
-                            <?php print $text; ?>
-                        </h3>
+        <?php
+        if ($this->stars != '') {
+            ?>
+            <div id="card-panel-<?php print $this->id; ?>" class="<?php echo $col, " ", $background; ?>">
+                <a href="/card/<?php print $this->id ?>">
+                    <div id="card-<?php print $this->id ?>" class="card-container">
+                        <?php
+                        if ($bloom) {
+                            $displaybloom = 'b';
+                        } else {
+                            $displaybloom = '';
+                        }
+                        ?>
+                        <img style="width:100%;" src="/images/cards/<?php print $this->boy_id ?>_<?php print $this->card_id . $displaybloom; ?>.png">
                     </div>
+                    <figcaption><?php print $this->name_e ?></figcaption>
+                </a>
+                <?php
+                if ($view != 'mini') {
+                    ?>
+                    <span class="glyphicon glyphicon-certificate bloom hoverhand"
+                          id="bloom-<?php print $this->id ?>" data-id="<?php print $this->id ?>"
+                          data-card-id="<?php print $this->card_id ?>"
+                          data-boy="<?php print $this->boy_id ?>" aria-hidden="true"></span>
+                    <?php print $this->id ?>
                     <?php
-
-
-                    //dont show the buttons if its in mini view
-                    if ($view != 'mini') {
-
-                        //check if they are logged in
-                        if (isset($user)) {
-                            //extra UI for admins
-
-
-                            //make sure its not the user display page, hide buttons there - 2017-09-02
-                            $route = $route = Route::current()->uri();
-
-                            if ($route != "collection/{name}") {
-                                //normal UI for users
-                                //change text based on if they have the card
-                                if ($have > 0) {
-                                    $button_text = 'Remove';
-                                    $button_class = 'btn-danger remove-card';
-                                } else {
-                                    $button_text = 'Add';
-                                    $button_class = 'add-card btn-success';
-                                }
-
-                                ?>
-                                <button class="btn <?php print $button_class; ?> btn-xs"
-                                        data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
-                                <?php if (Auth::user()->role_id == 2) {
-                                    print $this->boy->id . '_' . $this->card_id;
-                                }
-                                ?>
-
-
-                                <?php
-                            }
-
-
+                    if (!Auth::guest()) {
+                        if (Auth::user()->isAdmin()) {
+                            ?>
+                            <div class="pull-right"><?php print $this->da; ?></div>
+                            <?php
                         }
                     }
                     ?>
-                </div>
+
+                    <?php
+                }
+                ?>
+                <?php print $text; ?>
+
                 <?php
-            }
-            ?>
+                //dont show the buttons if its in mini view
+                if ($view != 'mini') {
 
-        </div>
+                    //check if they are logged in
+                    if (isset($user)) {
+                        //extra UI for admins
+
+                        //make sure its not the user display page, hide buttons there - 2017-09-02
+                        $route = $route = Route::current()->uri();
+
+                        if ($route != "collection/{name}") {
+                            //normal UI for users
+                            //change text based on if they have the card
+                            if ($have > 0) {
+                                $button_text = 'Remove';
+                                $button_class = 'btn-danger remove-card';
+                            } else {
+                                $button_text = 'Add';
+                                $button_class = 'add-card btn-success';
+                            }
+
+                            ?>
+                            <button class="btn <?php print $button_class; ?> btn-xs"
+                                    data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
+                            <?php if (Auth::user()->role_id == 2) {
+                                print $this->boy->id . '_' . $this->card_id;
+                            }
+                            ?>
+
+                            <?php
+                        }
+                    }
+                }
+                ?>
+            </div>
+            <?php
+        }
+        ?>
         <?php
-
-
     }
 }
