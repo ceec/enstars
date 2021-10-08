@@ -1,57 +1,34 @@
 @extends('layouts.layout')
 
 @section('title')
-@parent
-Collection - {{$user->name}} | enstars.info
+    @parent
+    Collection - {{$user->name}} | enstars.info
 @stop
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-          <h1>Cards - {{$user->name}}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Cards - {{$user->name}}</h1>
                 <h3>5 Stars - {{count($fivestarcards)}} cards</h3>
-                <div class="row">
-                    <?php $x=1; ?>
+                <div style="display: flex;flex-wrap: wrap;">
                     @foreach($fivestarcards as $card)
-                    <?php
-                        // print '<pre>';
-                        // print_r($card);
-                        // print '</pre>';
-                        // exit;
-                    ?>
-                        {{ $card->display() }}    
-                        <?php
-                            if ($x%4==0) {
-?>
-                            </div>
-                            <div class="row">
-<?php                            
-                            }
-                            $x++;
-                        ?>
+                        <a href="/card/{{ $card->id }}" style="margin: 8px;">
+                            <img src="/images/cards/{{ $card->boy_id }}_{{ $card->card_id }}.png"
+                                 style="width:180px;height:auto;">
+                        </a>
                     @endforeach
-                </div>  
+                </div>
                 <h3>4 Stars - {{count($fourstarcards)}} cards</h3>
-                <div class="row">
-                    <?php $x=1; ?>
+                <div style="display: flex;flex-wrap: wrap;">
                     @foreach($fourstarcards as $card)
-                        {{ $card->display('mini') }}    
-                        <?php
-                            if ($x%6==0) {
-?>
-                            </div>
-                            <div class="row">
-<?php                            
-                            }
-                            $x++;
-                        ?>
+                        <a href="/card/{{ $card->id }}" style="margin: 8px;">
+                            <img src="/images/cards/{{ $card->boy_id }}_{{ $card->card_id }}.png"
+                                 style="width:180px;height:auto;">
+                        </a>
                     @endforeach
-                </div>                  
-               
-
+                </div>
+            </div>
         </div>
-
     </div>
-</div>
 @endsection
