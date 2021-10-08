@@ -130,44 +130,8 @@
                                     @endif
                                 </div>
                             </div>
-
-                        <!--<div class="row">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Ranking</th>
-                                <th>Points</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>
-                                {{$event->rank_5}}
-                                </td>
-                                <td>
-{{$event->points_5}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-{{$event->rank_4}}
-                                </td>
-                                <td>
-{{$event->points_4}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-{{$event->rank_3}}
-                                </td>
-                                <td>
-{{$event->points_3_da}} {{$event->points_3_vo}} {{$event->points_3_pf}}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>-->
                         </div>
                     </div>
-
                 </div>
 
 

@@ -82,7 +82,7 @@ class Card extends Model
     }
 
 
-    public function display($view = '', $text = '')
+    public function display($text = '')
     {
         // TODO: This should not be in the model!!
 
@@ -129,20 +129,11 @@ class Card extends Model
             $bloom = false;
         }
 
-        // check for mini
-        if ($view == 'mini') {
-            // 6 in a row
-            $col = 2;  // mini-card
-        } else {
-            // 4 in a row
-            $col = "card";
-        }
-
         ?>
         <?php
         if ($this->stars != '') {
             ?>
-            <div id="card-panel-<?php print $this->id; ?>" class="<?php echo $col, " ", $background; ?>">
+            <div id="card-panel-<?php print $this->id; ?>" class="card<?php echo " ", $background; ?>">
                 <a href="/card/<?php print $this->id ?>">
                     <div id="card-<?php print $this->id ?>" class="card-container">
                         <?php
@@ -152,65 +143,58 @@ class Card extends Model
                             $displaybloom = '';
                         }
                         ?>
-                        <img style="width:100%;" src="/images/cards/<?php print $this->boy_id ?>_<?php print $this->card_id . $displaybloom; ?>.png">
+                        <img style="width:100%;"
+                             src="/images/cards/<?php print $this->boy_id ?>_<?php print $this->card_id . $displaybloom; ?>.png">
                     </div>
                     <figcaption><?php print $this->name_e ?></figcaption>
                 </a>
-                <?php
-                if ($view != 'mini') {
-                    ?>
-                    <span class="glyphicon glyphicon-certificate bloom hoverhand"
-                          id="bloom-<?php print $this->id ?>" data-id="<?php print $this->id ?>"
-                          data-card-id="<?php print $this->card_id ?>"
-                          data-boy="<?php print $this->boy_id ?>" aria-hidden="true"></span>
-                    <?php print $this->id ?>
-                    <?php
-                    if (!Auth::guest()) {
-                        if (Auth::user()->isAdmin()) {
-                            ?>
-                            <div class="pull-right"><?php print $this->da; ?></div>
-                            <?php
-                        }
-                    }
-                    ?>
 
-                    <?php
+                <span class="glyphicon glyphicon-certificate bloom hoverhand"
+                      id="bloom-<?php print $this->id ?>" data-id="<?php print $this->id ?>"
+                      data-card-id="<?php print $this->card_id ?>"
+                      data-boy="<?php print $this->boy_id ?>" aria-hidden="true"></span>
+                <?php print $this->id ?>
+                <?php
+                if (!Auth::guest()) {
+                    if (Auth::user()->isAdmin()) {
+                        ?>
+                        <div class="pull-right"><?php print $this->da; ?></div>
+                        <?php
+                    }
                 }
                 ?>
+
+
                 <?php print $text; ?>
 
                 <?php
-                //dont show the buttons if its in mini view
-                if ($view != 'mini') {
+                //check if they are logged in
+                if (isset($user)) {
+                    //extra UI for admins
 
-                    //check if they are logged in
-                    if (isset($user)) {
-                        //extra UI for admins
+                    //make sure its not the user display page, hide buttons there - 2017-09-02
+                    $route = $route = Route::current()->uri();
 
-                        //make sure its not the user display page, hide buttons there - 2017-09-02
-                        $route = $route = Route::current()->uri();
-
-                        if ($route != "collection/{name}") {
-                            //normal UI for users
-                            //change text based on if they have the card
-                            if ($have > 0) {
-                                $button_text = 'Remove';
-                                $button_class = 'btn-danger remove-card';
-                            } else {
-                                $button_text = 'Add';
-                                $button_class = 'add-card btn-success';
-                            }
-
-                            ?>
-                            <button class="btn <?php print $button_class; ?> btn-xs"
-                                    data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
-                            <?php if (Auth::user()->role_id == 2) {
-                                print $this->boy->id . '_' . $this->card_id;
-                            }
-                            ?>
-
-                            <?php
+                    if ($route != "collection/{name}") {
+                        //normal UI for users
+                        //change text based on if they have the card
+                        if ($have > 0) {
+                            $button_text = 'Remove';
+                            $button_class = 'btn-danger remove-card';
+                        } else {
+                            $button_text = 'Add';
+                            $button_class = 'add-card btn-success';
                         }
+
+                        ?>
+                        <button class="btn <?php print $button_class; ?> btn-xs"
+                                data-id="<?php print $this->id; ?>"><?php print $button_text; ?></button>
+                        <?php if (Auth::user()->role_id == 2) {
+                            print $this->boy->id . '_' . $this->card_id;
+                        }
+                        ?>
+
+                        <?php
                     }
                 }
                 ?>

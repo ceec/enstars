@@ -144,7 +144,6 @@
             <div class="col-md-4">
                 <h3>Current Scout</h3>
                 @foreach ($current_scout as $scout)
-
                     <a href="/scout/{{$scout->url}}">
                         <img class="img-responsive" src="/images/scouts/{{$scout->id}}.png"
                              alt="{{$scout->name_e}}">
@@ -155,13 +154,12 @@
             </div>
             <div class="col-md-4">
                 @if (Auth::guest())
-                    <div class="">
-                        <h4>Want a way to track all your cards?<h4><a href="/register">Create an account!</a>
-                    </div>
+                    <h4>Want a way to track all your cards?</h4>
+                    <a href="/register">Create an account!</a>
                 @endif
-                <h3>News 2020-04-30</h3>
-                <p><a href="https://enstars.info/news/missing-card-images">Help Needed Collecting Bloomed Card
-                        Images</a></p>
+                <h3>News</h3>
+                <a href="https://enstars.info/news/missing-card-images">Help Needed Collecting Card Images</a>
+                <p>Website is undergoing updates! If you see something funky, <a href="/contact">please let us know!</a></p>
                 <h3>Recently Updated</h3>
                 @foreach($latest as $item)
                     @if($item['type'] == 'releasenote')
@@ -170,9 +168,9 @@
                         <a href="/{{$item['type']}}/{{$item['id']}}">{{$item['title']}}</a><br>
                     @endif
                 @endforeach
-
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-md-12">
                 @foreach($yume_boys as $boy)
