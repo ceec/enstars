@@ -60,15 +60,14 @@
                                 @endif
                             </div>
                             <div class="col-md-3">
-                            @if ($minievents != '')
-                                <!-- <h3>Mini Events</h3>-->
+                                @if ($minievents != "[]")
+                                    <h3>Mini Talk</h3>
                                     @foreach ($minievents as $event)
                                         @if ($event->complete == 1)
                                             <a href="/minievent/{{$event->id}}">{{$event->name_e}}</a><br>
                                         @else
                                             {{$event->name_e}}<br>
                                         @endif
-
                                     @endforeach
                                 @endif
                             </div>
@@ -102,21 +101,33 @@
                                                         @if ($rewards[$i-1]['5_star'] > 0)
                                                             @foreach($cards as $card)
                                                                 @if ($card->id == $event->rank_5)
-                                                                    {{ $card->display('mini','x'.$rewards[$i-1]['5_star']) }}
+                                                                    <a href="/card/{{ $card->id }}">
+                                                                        <img style="width:128px;height:auto;"
+                                                                             src="/images/cards/{{ $card->boy_id }}_{{ $card->card_id }}.png">
+                                                                    </a>
+                                                                    {{ 'x'.$rewards[$i-1]['5_star'] }}
                                                                 @endif
                                                             @endforeach
                                                         @endif
                                                         @if ($rewards[$i-1]['4_star'] > 0)
                                                             @foreach($cards as $card)
                                                                 @if ($card->id == $event->rank_4)
-                                                                    {{ $card->display('mini','x'.$rewards[$i-1]['4_star']) }}
+                                                                    <a href="/card/{{ $card->id }}">
+                                                                        <img style="width:128px;height:auto;"
+                                                                             src="/images/cards/{{ $card->boy_id }}_{{ $card->card_id }}.png">
+                                                                    </a>
+                                                                    {{ 'x'.$rewards[$i-1]['4_star'] }}
                                                                 @endif
                                                             @endforeach
                                                         @endif
                                                         @if ($rewards[$i-1]['3_star'] > 0)
                                                             @foreach($cards as $card)
                                                                 @if ($card->id == $event->rank_3)
-                                                                    {{ $card->display('mini','x'.$rewards[$i-1]['3_star']) }}
+                                                                    <a href="/card/{{ $card->id }}">
+                                                                        <img style="width:128px;height:auto;"
+                                                                             src="/images/cards/{{ $card->boy_id }}_{{ $card->card_id }}.png">
+                                                                    </a>
+                                                                    {{ 'x'.$rewards[$i-1]['3_star'] }}
                                                                 @endif
                                                             @endforeach
                                                         @endif

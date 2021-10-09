@@ -82,7 +82,7 @@ class Card extends Model
     }
 
 
-    public function display($text = '')
+    public function display()
     {
         // TODO: This should not be in the model!!
 
@@ -154,18 +154,6 @@ class Card extends Model
                       data-card-id="<?php print $this->card_id ?>"
                       data-boy="<?php print $this->boy_id ?>" aria-hidden="true"></span>
                 <?php print $this->id ?>
-                <?php
-                if (!Auth::guest()) {
-                    if (Auth::user()->isAdmin()) {
-                        ?>
-                        <div class="pull-right"><?php print $this->da; ?></div>
-                        <?php
-                    }
-                }
-                ?>
-
-
-                <?php print $text; ?>
 
                 <?php
                 //check if they are logged in
