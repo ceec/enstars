@@ -87,8 +87,8 @@ body {
 /* idol.blade.php */
 
 .card-container {
-    width: 180px;
-    height: 225px;
+    width: 160px;
+    height: 200px;
     margin: auto;
 }
 
@@ -106,5 +106,6 @@ body {
 
     .card {
         width: calc(100% / 4);
+        padding: 8px;
     }
 }
