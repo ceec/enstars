@@ -172,7 +172,7 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 @foreach($yume_boys as $boy)
                     <?php
                     //name pretty for url
@@ -198,8 +198,7 @@
                              alt="{{$boy->first_name}} {{$boy->last_name}}">
                     </a>
                 @endforeach
-            </div>
-            <div class="col-md-12">
+                <br><br>
                 <h3>Others</h3>
                 @foreach($others as $boy)
                     <?php
@@ -212,6 +211,11 @@
                                                                title="{{$boy->first_name}} {{$boy->last_name}}"
                                                                alt="{{$boy->first_name}} {{$boy->last_name}}"></a>
                 @endforeach
+            </div>
+            <div class="col-md-4">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdA35Es78EmefTeX_ue_Dp8x64BMSdTafVyEBkooQaYV0jg1g/viewform?embedded=true"
+                        width="390" height="650" frameborder="0" marginheight="0" marginwidth="0">Loading…
+                </iframe>
             </div>
         </div>
         <div class="row">
