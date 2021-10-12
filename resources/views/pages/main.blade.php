@@ -169,10 +169,9 @@
                     @endif
                 @endforeach
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-8">
+                <h3></h3>
                 @foreach($yume_boys as $boy)
                     <?php
                     //name pretty for url
@@ -191,21 +190,15 @@
                     //name pretty for url
                     $url = strtolower($boy->first_name);
                     ?>
-
-                    <a class="boys" href="/idol/{{$url}}">
-                        <img src="/images/boys/{{$boy->id}}.png"
-                             title="{{$boy->first_name}} {{$boy->last_name}}"
-                             alt="{{$boy->first_name}} {{$boy->last_name}}">
-                    </a>
+                    <a class="boys" href="/idol/{{$url}}"><img class="img-responsive" src="/images/boys/{{$boy->id}}.png" title="{{$boy->first_name}} {{$boy->last_name}}" alt="{{$boy->first_name}} {{$boy->last_name}}"></a> 
                 @endforeach
-                <br><br>
+                    <br><br>
                 <h3>Others</h3>
                 @foreach($others as $boy)
                     <?php
                     //name pretty for url
                     $url = strtolower($boy->first_name);
                     ?>
-
                     <a class="boys" href="/idol/{{$url}}"><img class="img-responsive"
                                                                src="/images/boys/{{$boy->id}}.png"
                                                                title="{{$boy->first_name}} {{$boy->last_name}}"
