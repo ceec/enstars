@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Chapterboy extends Model {
-    
+class Chapterboy extends Model
+{
 
 
     /**
@@ -23,6 +23,6 @@ class Chapterboy extends Model {
     public function chapter()
     {
         return $this->belongsTo('App\Chapter');
-    }    
+    }
 
 }

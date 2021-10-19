@@ -28,6 +28,6 @@ class CreateUserscoutsTable extends Migration
      */
     public function down()
     {
-         Schema::drop('userscouts');
+        Schema::drop('userscouts');
     }
 }

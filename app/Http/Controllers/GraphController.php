@@ -23,7 +23,8 @@ use App\Blog;
 use Auth;
 use DB;
 
-class GraphController extends Controller {
+class GraphController extends Controller
+{
 
 
     /**
@@ -31,7 +32,8 @@ class GraphController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function eventHistory(Request $request) {
+    public function eventHistory(Request $request)
+    {
         //get all the events from the data
         //$events = Eventpoint::select('event_id')->orderBy('event_id')->distinct()->get();
         //get all the events but only the ones that also have points
@@ -55,8 +57,8 @@ class GraphController extends Controller {
         // }
 
         $boy = $request->boy;
-        
-        $boy = Boy::where('first_name','=',$boy)->first();
+
+        $boy = Boy::where('first_name', '=', $boy)->first();
 
         if ($boy) {
             //okay need a 3 table join
@@ -64,21 +66,21 @@ class GraphController extends Controller {
             ///
             //hmmmm
             //SELECT 
-            $events = DB::select("Select DISTINCT events.* FROM events,eventpoints,cards WHERE events.id = eventpoints.event_id AND events.rank_5=cards.id AND cards.boy_id='".$boy->id."'");
+            $events = DB::select("Select DISTINCT events.* FROM events,eventpoints,cards WHERE events.id = eventpoints.event_id AND events.rank_5=cards.id AND cards.boy_id='" . $boy->id . "'");
         } else {
             $events = DB::select("SELECT DISTINCT events.* FROM events JOIN eventpoints ON events.id = eventpoints.event_id");
         }
 
-       // dd($boy);
+        // dd($boy);
 
         //dd($where);
 
-        $boys = Boy::where('classroom_id','>',1)->where('classroom_id','<',10)->pluck('first_name','first_name');
+        $boys = Boy::where('classroom_id', '>', 1)->where('classroom_id', '<', 10)->pluck('first_name', 'first_name');
 
 
         return view('pages.eventHistory')
-        ->with('request',$request)
-        ->with('boys',$boys)
-        ->with('events',$events);
+            ->with('request', $request)
+            ->with('boys', $boys)
+            ->with('events', $events);
     }
 }

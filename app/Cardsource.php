@@ -11,6 +11,6 @@ class Cardsource extends Model
      */
     public function card()
     {
-        return $this->hasOne('App\Card','id','card_id');
+        return $this->hasOne('App\Card', 'id', 'card_id');
     }
 }

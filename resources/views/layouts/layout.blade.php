@@ -12,9 +12,10 @@
     </title>
 
     <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
+          type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Loved+by+the+King" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Loved+by+the+King" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
 
 
@@ -38,129 +39,137 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#app-navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                     {{ config('app.name', 'Laravel') }}  
-                </a>
-            </div>
+            <!-- Branding Image -->
+            <a class="navbar-brand" href="{{ url('/') }}">
+                {{ config('app.name', 'Laravel') }}
+            </a>
+        </div>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events <span class="caret"></span></a>
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Events <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/event/{{ \App\Event::current() }}">Current Event</a></li>
-                      <li><a href="/event/all">All Events</a></li>
-                      <li><a href="/event/calculator">Calculator</a></li>
+                        <li><a href="/event/{{ \App\Event::current() }}">Current Event</a></li>
+                        <li><a href="/event/all">All Events</a></li>
+                        <li><a href="/event/calculator">Calculator</a></li>
                     </ul>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Scouts <span class="caret"></span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Scouts <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/scout/{{ \App\Scout::current() }} ">Current Scout</a></li>
-                       <!--<li><a href="/scout/tsumugis-introduction">Current Story Scout</a></li>-->
-                      <li><a href="/scout/all">All Scouts</a></li>
+                        <li><a href="/scout/{{ \App\Scout::current() }} ">Current Scout</a></li>
+                        <!--<li><a href="/scout/tsumugis-introduction">Current Story Scout</a></li>-->
+                        <li><a href="/scout/all">All Scouts</a></li>
                     </ul>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Card Sources <span class="caret"></span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Other Card Sources <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/unitcollection/all">Unit Collections</a></li>    
-                      <li><a href="/collaboration/all">Collaborations</a></li>
-                      <li><a href="/starmedalshop">Star Medal Shop</a></li>  
+                        <li><a href="/unitcollection/all">Unit Collections</a></li>
+                        <li><a href="/collaboration/all">Collaborations</a></li>
+                        <li><a href="/starmedalshop">Star Medal Shop</a></li>
                     </ul>
-                  </li>                    
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Translations <span class="caret"></span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Translations <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/translation/event">Event Stories</a></li>
-                      <li><a href="/translation/scout">Scout Stories</a></li>
-                      <li><a href="/translation/character">Character Stories</a></li>
-                      <li><a href="/translation">All Stories</a></li>
+                        <li><a href="/translation/event">Event Stories</a></li>
+                        <li><a href="/translation/scout">Scout Stories</a></li>
+                        <li><a href="/translation/character">Character Stories</a></li>
+                        <li><a href="/translation">All Stories</a></li>
                     </ul>
-                  </li>                                 
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gameplay <span class="caret"></span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Gameplay <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li class="dropdown-header">Basic</li>
+                        <li class="dropdown-header">Basic</li>
                         <li><a href="/game/terms">Terms</a></li>
-                        <li><a href="/game/missions">Missions</a></li>                      
-                      <li class="dropdown-header">Music</li>
-                      <li class="dropdown-header">Classic</li>
+                        <li><a href="/game/missions">Missions</a></li>
+                        <li class="dropdown-header">Music</li>
+                        <li class="dropdown-header">Classic</li>
                         <li><a href="/unitskill/all">Unit Skills</a></li>
                         <li><a href="/game/releasenotes">Release Notes</a></li>
                     </ul>
-                  </li>     
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data <span class="caret"></span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Data <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/graph/cards-released">Released Cards Graph</a></li>
-                      <li><a href="/graph/five-star-history/basic">Five Star History</a></li>
-                       <li><a href="/birthdays">Birthday Calendar</a></li>                      
+                        <li><a href="/graph/cards-released">Released Cards Graph</a></li>
+                        <li><a href="/graph/five-star-history/basic">Five Star History</a></li>
+                        <li><a href="/birthdays">Birthday Calendar</a></li>
                     </ul>
-                  </li>                                    
-                  <!--<li><a href="/store">Store</a></li>-->
-                   
-                                  <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                       
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+                </li>
+                <!--<li><a href="/store">Store</a></li>-->
 
-                            <ul class="dropdown-menu" role="menu">
-                                @if (Auth::user()->isAdmin())
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            @if (Auth::user()->isAdmin())
                                 <li><a href="{{ url('/home') }}">Admin</a></li>
-                                @endif
-                                <li><a href="{{ url('/user/dashboard') }}">Dashboard</a></li>
-                                <li><a href="{{ url('/user/'.Auth::user()->name.'/cards') }}">Cards</a></li>
-                                <li>
-                                    <a href="{{ url('/logout') }}"
-                                        onclick="event.preventDefault();
+                            @endif
+                            <li><a href="{{ url('/user/dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ url('/user/'.Auth::user()->name.'/cards') }}">Cards</a></li>
+                            <li>
+                                <a href="{{ url('/logout') }}"
+                                   onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
+                                    Logout
+                                </a>
 
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    @yield('content')
+@yield('content')
 <footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-      <br>
-        Images and Characters From <a href="http://stars.happyelements.co.jp/">あんさんぶるスターズ！</a>
-      </div>
-      <div class="col-md-3">
-            <br>
-          <ul class="list-inline text-center">
-            <!--<li>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <br>
+                Images and Characters From <a href="http://stars.happyelements.co.jp/">あんさんぶるスターズ！</a>
+            </div>
+            <div class="col-md-3">
+                <br>
+                <ul class="list-inline text-center">
+                <!--<li>
               <a href="{{ url('rss') }}" data-toggle="tooltip"
                  title="RSS feed">
                 <span class="fa-stack fa-lg">
@@ -169,35 +178,42 @@
                 </span>
               </a>
             </li>-->
-            <li>
-              <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
-                 title="My Twitter Page">
+                    <li>
+                        <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
+                           title="My Twitter Page">
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
                 </span>
-              </a>
-            </li>
-          </ul>
-      </div>
-      <div class="col-md-4">
-        <br>
-        <a class="navbar-right" href="/contact">Contact Us</a>
-      </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <br>
+                <a class="navbar-right" href="/contact">Contact Us</a>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
-    <!-- JavaScripts -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+<!-- JavaScripts -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-84361146-1', 'auto');
-  ga('send', 'pageview');
+    ga('create', 'UA-84361146-1', 'auto');
+    ga('send', 'pageview');
 
 </script>
 </body>

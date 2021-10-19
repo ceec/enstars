@@ -11,6 +11,6 @@ class Cardsuggestion extends Model
      */
     public function card()
     {
-        return $this->belongsTo('App\Card','acard_id');
+        return $this->belongsTo('App\Card', 'acard_id');
     }
 }

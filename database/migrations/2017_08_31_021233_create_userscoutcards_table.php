@@ -28,6 +28,6 @@ class CreateUserscoutcardsTable extends Migration
      */
     public function down()
     {
-         Schema::drop('userscoutcards');
+        Schema::drop('userscoutcards');
     }
 }

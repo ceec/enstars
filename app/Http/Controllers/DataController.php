@@ -26,19 +26,21 @@ use App\Eventpoint;
 use App\Cardroad;
 
 
-class DataController extends Controller {
+class DataController extends Controller
+{
 
     /**
      * generate the card release gantt, this should be generating the DATA for the gannt, gannt display should be other page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function cardsReleased() {
+    public function cardsReleased()
+    {
         //get all the boys
-        $boys = Boy::where('classroom_id','!=','7')->where('classroom_id','!=','10')->orderBy('first_name','asc')->get();
+        $boys = Boy::where('classroom_id', '!=', '7')->where('classroom_id', '!=', '10')->orderBy('first_name', 'asc')->get();
 
         //would need to get all the events in chronological order
-       //$scouts = Scout::orderBy('start','asc')->get();
+        //$scouts = Scout::orderBy('start','asc')->get();
 
 
         // {
@@ -63,10 +65,10 @@ class DataController extends Controller {
             $result['category'] = $boy->first_name;
 
             //get all the cards
-            $cards = Card::where('boy_id','=',$boy->id)->where('game_id',2)->get();
-            foreach($cards as $card) {
+            $cards = Card::where('boy_id', '=', $boy->id)->where('game_id', 2)->get();
+            foreach ($cards as $card) {
                 //get the info
-                $boy = Boy::where('id','=',$card->boy_id)->first();
+                $boy = Boy::where('id', '=', $card->boy_id)->first();
 
 
                 if ($card->color == 'red') {
@@ -80,23 +82,23 @@ class DataController extends Controller {
 
                 if ($card->scout_id != 0) {
                     //get that scout
-                    $scout = Scout::where('id','=',$card->scout_id)->first();
-                    
-                    $dates[$card->id]['start'] = date('Y-m-d',strtotime($scout->start));
-                    $dates[$card->id]['end'] = date('Y-m-d',strtotime($scout->end));
+                    $scout = Scout::where('id', '=', $card->scout_id)->first();
+
+                    $dates[$card->id]['start'] = date('Y-m-d', strtotime($scout->start));
+                    $dates[$card->id]['end'] = date('Y-m-d', strtotime($scout->end));
                     $dates[$card->id]['task'] = $scout->name_e;
                     $dates[$card->id]['stars'] = $card->stars;
                     $dates[$card->id]['color'] = $card->color;
-                                     
+
                 } else if ($card->event_id != 0) {
                     //get that event
-                    $event = Event::where('id','=',$card->event_id)->first();
-                    
-                    $dates[$card->id]['start'] = date('Y-m-d',strtotime($event->start));
-                    $dates[$card->id]['end'] = date('Y-m-d',strtotime($event->end));
-                    $dates[$card->id]['task'] = $event->name_e;    
-                    $dates[$card->id]['stars'] = $card->stars;   
-                    $dates[$card->id]['color'] = $card->color;        
+                    $event = Event::where('id', '=', $card->event_id)->first();
+
+                    $dates[$card->id]['start'] = date('Y-m-d', strtotime($event->start));
+                    $dates[$card->id]['end'] = date('Y-m-d', strtotime($event->end));
+                    $dates[$card->id]['task'] = $event->name_e;
+                    $dates[$card->id]['stars'] = $card->stars;
+                    $dates[$card->id]['color'] = $card->color;
                 }
 
 
@@ -112,9 +114,9 @@ class DataController extends Controller {
             $dates = array();
         } //end boys
 
-            // print '<pre>';
-            // print_r($main);
-            // print '</pre>';
+        // print '<pre>';
+        // print_r($main);
+        // print '</pre>';
 
         //barf out appropriate json here
         //how should do this
@@ -140,8 +142,7 @@ class DataController extends Controller {
 
         echo json_encode($main);
 
-    } 
-
+    }
 
 
     /**
@@ -149,40 +150,41 @@ class DataController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function timeline() {
+    public function timeline()
+    {
         //want same formatting as below but with events
-        $events = Event::orderBy('start','desc')->get();
+        $events = Event::orderBy('start', 'desc')->get();
 
         //formatting goal
 
-      //   "category": "Events",
-      //   "segments": [ {
-      //     "start": "2016-01-01",
-      //     "end": "2016-01-14",
-      //     "color": "#b9783f",
-      //     "task": "Gathering requirements"
-      //   } ]        
+        //   "category": "Events",
+        //   "segments": [ {
+        //     "start": "2016-01-01",
+        //     "end": "2016-01-14",
+        //     "color": "#b9783f",
+        //     "task": "Gathering requirements"
+        //   } ]
 
-            $result['category'] = "Events";
+        $result['category'] = "Events";
 
-        foreach($events as $event) {
-            $dates[$event->id]['start'] = date('Y-m-d',strtotime($event->start));
-            $dates[$event->id]['end'] = date('Y-m-d',strtotime($event->end));
+        foreach ($events as $event) {
+            $dates[$event->id]['start'] = date('Y-m-d', strtotime($event->start));
+            $dates[$event->id]['end'] = date('Y-m-d', strtotime($event->end));
             $dates[$event->id]['task'] = $event->name_e;
-            $dates[$event->id]['color'] = $event->color;          
+            $dates[$event->id]['color'] = $event->color;
 
-           
+
         }
 
 
-            $result['segments'] = array_values($dates);
+        $result['segments'] = array_values($dates);
 
-            $main[] = $result;
-            unset($result);
-            $result = array();
+        $main[] = $result;
+        unset($result);
+        $result = array();
 
-            unset($dates);
-            $dates = array();   
+        unset($dates);
+        $dates = array();
 
         // foreach ($boys as $boy) {
         //     //need to start the array here
@@ -197,16 +199,16 @@ class DataController extends Controller {
         //         if ($card->scout_id != 0) {
         //             //get that scout
         //             $scout = Scout::where('id','=',$card->scout_id)->first();
-                    
+
         //             $dates[$card->id]['start'] = date('Y-m-d',strtotime($scout->start));
         //             $dates[$card->id]['end'] = date('Y-m-d',strtotime($scout->end));
         //             $dates[$card->id]['task'] = $scout->name_e;
         //             $dates[$card->id]['color'] = $boy->color;
-                                     
+
         //         } else if ($card->event_id != 0) {
         //             //get that event
         //             $event = Event::where('id','=',$card->event_id)->first();
-                    
+
         //             $dates[$card->id]['start'] = date('Y-m-d',strtotime($event->start));
         //             $dates[$card->id]['end'] = date('Y-m-d',strtotime($event->end));
         //             $dates[$card->id]['task'] = $event->name_e;       
@@ -227,11 +229,9 @@ class DataController extends Controller {
         // } //end boys
 
 
-
         echo json_encode($main);
 
-    } 
-
+    }
 
 
     /**
@@ -239,37 +239,38 @@ class DataController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function eventHistory() {
+    public function eventHistory()
+    {
         //order by lowest to highest normalized date, grab distinct
-        $points = Eventpoint::select('normalized_date')->where('normalized_date','!=',null)->orderBy('normalized_date','ASC')->distinct()->get();
+        $points = Eventpoint::select('normalized_date')->where('normalized_date', '!=', null)->orderBy('normalized_date', 'ASC')->distinct()->get();
 
-        foreach($points as $point) {
+        foreach ($points as $point) {
             //grab all the points for that time
-            $times = Eventpoint::where('normalized_date','=',$point->normalized_date)->get();
+            $times = Eventpoint::where('normalized_date', '=', $point->normalized_date)->get();
 
             //get those events
-            foreach($times as $time) {
-                $event = $time->event_id.'_'.$time->rank_2;
+            foreach ($times as $time) {
+                $event = $time->event_id . '_' . $time->rank_2;
                 $events[$event] = $time->tier_2;
                 $data[$time->normalized_date] = $events;
-                
+
             }
 
             unset($events);
         }
 
         //okay have the data points arranged with their dates, add date to each list
-        foreach($data as $date => $points) {
+        foreach ($data as $date => $points) {
             $data[$date]['timestamp'] = $date;
         }
 
         //turn from associated array into indexed array
         $data = array_values($data);
 
-       
+
         echo json_encode($data);
 
-    } 
+    }
 
 
     /**
@@ -277,12 +278,13 @@ class DataController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function eventBorder($event_id) {
+    public function eventBorder($event_id)
+    {
 
         //get current event
         $event = Event::find($event_id);
 
-        $points = Eventpoint::where('event_id','=',$event->id)->get();
+        $points = Eventpoint::where('event_id', '=', $event->id)->get();
 
         //if there arent any, just return []
         //when bad url is passed
@@ -307,13 +309,13 @@ class DataController extends Controller {
             $start->tier_11 = 0;
             $start->created_at = $event->start;
             $start->jst_created_at = $event->start;
-            
+
             $points->prepend($start);
         }
 
         echo json_encode($points);
 
-    } 
+    }
 
     //////////
     //idol road tree
@@ -324,21 +326,21 @@ class DataController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function idolRoad($card_id) {
+    public function idolRoad($card_id)
+    {
         //building the idol road
         //$road = Cardroad::where('card_id','=',$card_id)->where('parent','=',0)->get();
 
-        $top = Cardroad::where('card_id','=',$card_id)->where('parent','like','%u%')->where('node','like','%u%')->get();
-        
+        $top = Cardroad::where('card_id', '=', $card_id)->where('parent', 'like', '%u%')->where('node', 'like', '%u%')->get();
+
         //check that any nodes with a parent that does not have u but has u -- first row up
-        $upper = Cardroad::where('card_id','=',$card_id)->where('parent','not like','%u%')->where('node','like','%u%')->get();
-        
+        $upper = Cardroad::where('card_id', '=', $card_id)->where('parent', 'not like', '%u%')->where('node', 'like', '%u%')->get();
+
         //check that parent is 0 - middle
 
         //check that any nodes with a parent that does not have d but has d -- first row down
 
         //check that nodes with a parent with a d that also has a d -- second row down.
-
 
 
         $top = json_encode($top);
@@ -357,12 +359,9 @@ class DataController extends Controller {
         // }
 
 
+        echo json_encode(array_merge(json_decode($top, true), json_decode($upper, true)));
 
-
-
-        echo json_encode(array_merge(json_decode($top, true),json_decode($upper, true)));
-
-    }     
+    }
 
 
     /**
@@ -370,14 +369,15 @@ class DataController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function frequencyChart($boy_id) {
+    public function frequencyChart($boy_id)
+    {
         //okay I see, the > 2016-09-01 date is to keep the cards i added before their actual time
         //$cards2018 = Card::where('boy_id','=',$boy_id)->where('created_at','>','2017-12-31')->orderBy('created_at','asc')->get();
-        $cards2018 = Card::where('boy_id','=',$boy_id)->where('stars','>','2')->where('created_at','>','2016-09-01')->orderBy('created_at','asc')->get();
+        $cards2018 = Card::where('boy_id', '=', $boy_id)->where('stars', '>', '2')->where('created_at', '>', '2016-09-01')->orderBy('created_at', 'asc')->get();
 
-      
-        foreach($cards2018 as $card) {
-            $data2018['x'] = date('W',strtotime($card->created_at));
+
+        foreach ($cards2018 as $card) {
+            $data2018['x'] = date('W', strtotime($card->created_at));
             $data2018['y'] = $card->stars;
             $data2018['source'] = $card->event_id;
             $data[] = $data2018;
@@ -385,7 +385,6 @@ class DataController extends Controller {
 
         echo json_encode($data);
     }
-
 
 
 }
