@@ -1,75 +1,75 @@
 /* Enstar CSS */
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
+
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 110px;
-  /* sticky header */
-  padding-top: 70px;
+    /* Margin bottom by footer height */
+    margin-bottom: 110px;
+    /* sticky header */
+    padding-top: 70px;
 
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 100px;
-  background-color: #f5f5f5;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 100px;
+    background-color: #f5f5f5;
 }
-
-
 
 
 .panel-danger > .panel-heading {
-	/* red */
-	background-color: #ee5859;
-	border-color: #ee5859;
+    /* red */
+    background-color: #ee5859;
+    border-color: #ee5859;
 }
 
 
 .panel-danger {
-	border-color: #ee5859;
+    border-color: #ee5859;
 }
 
 .panel-info > .panel-heading {
-	/* blue */
-	background-color: #55d1da;
-	border-color: #55d1da;
+    /* blue */
+    background-color: #55d1da;
+    border-color: #55d1da;
 }
 
 .panel-info {
-	border-color: #55d1da;
+    border-color: #55d1da;
 }
 
-.panel-warning > .panel-heading{
-	/* yellow */
-	background-color: #ffd33a;
-	border-color: #ffd33a;	
+.panel-warning > .panel-heading {
+    /* yellow */
+    background-color: #ffd33a;
+    border-color: #ffd33a;
 }
 
 .panel-warning {
-	border-color: #ffd33a;
+    border-color: #ffd33a;
 }
 
-.hoverhand { 
-	cursor: pointer; 
-	cursor: hand; 
+.hoverhand {
+    cursor: pointer;
+    cursor: hand;
 }
 
 .boys {
-	display: inline-block;
+    display: inline-block;
 }
 
 
-:lang(ja) 	{
+:lang(ja) {
     font-family: Latha, "Tamil MN", serif;
     font-size: 100%;
-    }
+}
 
 
- .card-title {
- 	font-weight: 400;
- }   
+.card-title {
+    font-weight: 400;
+}

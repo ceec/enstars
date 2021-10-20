@@ -22,7 +22,8 @@ use App\Blog;
 
 use Auth;
 
-class BlogController extends Controller {
+class BlogController extends Controller
+{
 
 
     /**
@@ -41,18 +42,20 @@ class BlogController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function addDisplay() {
+    public function addDisplay()
+    {
 
 
-            return view('home.blogAdd');
-    } 
+        return view('home.blogAdd');
+    }
 
     /**
-     * Add blog post 
+     * Add blog post
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
 
         $this->validate($request, [
             'title' => 'required',
@@ -70,12 +73,12 @@ class BlogController extends Controller {
         $b->content = $request->input('content');
         $b->image = $request->input('image');
         $b->url = $request->input('url');
-        $b->updated_by = $request->input('updated_by');  
+        $b->updated_by = $request->input('updated_by');
         $b->save();
 
 
-        return redirect('/home');          
-    } 
+        return redirect('/home');
+    }
 
 
     /**
@@ -83,32 +86,35 @@ class BlogController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function listDisplay() {
-            $blogs = Blog::orderBy('created_at','DESC')->get();
+    public function listDisplay()
+    {
+        $blogs = Blog::orderBy('created_at', 'DESC')->get();
 
-            return view('home.blogList')
-            ->with('blogs',$blogs);
-    } 
+        return view('home.blogList')
+            ->with('blogs', $blogs);
+    }
 
     /**
      * UI for eding
      *
      * @return \Illuminate\Http\Response
      */
-    public function editDisplay($blog_id) {
-            $blog = Blog::find($blog_id);
+    public function editDisplay($blog_id)
+    {
+        $blog = Blog::find($blog_id);
 
-            return view('home.blogEdit')
-            ->with('blog',$blog);
-    } 
+        return view('home.blogEdit')
+            ->with('blog', $blog);
+    }
 
 
     /**
-     * Edit blog post 
+     * Edit blog post
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
         $blog_id = $request->input('blog_id');
 
         $up = Blog::find($blog_id);
@@ -118,12 +124,12 @@ class BlogController extends Controller {
         $up->content = $request->input('content');
         $up->image = $request->input('image');
         $up->url = $request->input('url');
-        $up->updated_by = $request->input('updated_by');  
+        $up->updated_by = $request->input('updated_by');
         $up->save();
 
 
-        return redirect('/home');          
-    } 
+        return redirect('/home');
+    }
 
 
 }

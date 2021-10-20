@@ -18,13 +18,13 @@ class CreateUserteamsTable extends Migration
             $table->integer('user_id');
             $table->integer('da');
             $table->integer('da_2');
-            $table->integer('da_3');      
+            $table->integer('da_3');
             $table->integer('vo');
             $table->integer('vo_2');
-            $table->integer('vo_3');  
+            $table->integer('vo_3');
             $table->integer('pf');
             $table->integer('pf_2');
-            $table->integer('pf_3');                                                    
+            $table->integer('pf_3');
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateUserteamsTable extends Migration
      */
     public function down()
     {
-         Schema::drop('userteams');
+        Schema::drop('userteams');
     }
 }

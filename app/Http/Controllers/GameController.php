@@ -19,63 +19,69 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function management() {
+    public function management()
+    {
 
-            return view('game.management');
-    } 
+        return view('game.management');
+    }
 
     /**
      * Display Courses Page
      *
      * @return \Illuminate\Http\Response
      */
-    public function courses() {
+    public function courses()
+    {
 
-            return view('game.courses');
-    }     
+        return view('game.courses');
+    }
 
     /**
      * Display Release Notes Page
      *
      * @return \Illuminate\Http\Response
      */
-    public function releasenotes() {
+    public function releasenotes()
+    {
 
-        $notes = Releasenote::orderBy('created_at','desc')->get();
-            return view('game.releasenotes')
-            ->with('notes',$notes);
-    }     
+        $notes = Releasenote::orderBy('created_at', 'desc')->get();
+        return view('game.releasenotes')
+            ->with('notes', $notes);
+    }
 
     /**
      * Display Game Terms
      *
      * @return \Illuminate\Http\Response
      */
-    public function terms() {
+    public function terms()
+    {
 
-        $terms = Gameterm::orderBy('created_at','desc')->get();
-            return view('game.terms')
-            ->with('terms',$terms);
-    }  
+        $terms = Gameterm::orderBy('created_at', 'desc')->get();
+        return view('game.terms')
+            ->with('terms', $terms);
+    }
 
     /**
      * Display Game Missions
      *
      * @return \Illuminate\Http\Response
      */
-    public function missions() {
+    public function missions()
+    {
 
-        $missions = Mission::orderBy('created_at','desc')->get();
-            return view('game.missions')
-            ->with('missions',$missions);
-    }  
+        $missions = Mission::orderBy('created_at', 'desc')->get();
+        return view('game.missions')
+            ->with('missions', $missions);
+    }
 
     /**
-     * Add scout 
+     * Add scout
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
         //need to update event
         $s = new Scout;
         $s->active = 0;
@@ -85,24 +91,25 @@ class GameController extends Controller
         $s->type_id = $request->input('type_id');
         $s->start = $request->input('start');
         $s->end = $request->input('end');
-        $s->text_j = $request->input('text_j');        
-        $s->text = $request->input('text');      
-        $s->website = $request->input('website'); 
-        $s->url = $request->input('url');                  
-        $s->updated_by = Auth::id();  
+        $s->text_j = $request->input('text_j');
+        $s->text = $request->input('text');
+        $s->website = $request->input('website');
+        $s->url = $request->input('url');
+        $s->updated_by = Auth::id();
         $s->save();
 
 
-        return redirect('/scout/'.$s->url);          
-    } 
+        return redirect('/scout/' . $s->url);
+    }
 
 
     /**
-     * Edit scout 
+     * Edit scout
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
         //need to update event
         $s = Scout::find($request->input('scout_id'));
         $s->active = $request->input('active');
@@ -111,12 +118,12 @@ class GameController extends Controller
         $s->text = $request->input('text');
         $s->start = $request->input('start');
         $s->end = $request->input('end');
-        $s->updated_by = Auth::id();  
+        $s->updated_by = Auth::id();
         $s->save();
 
 
-        return redirect('/scout/'.$s->url);          
-    } 
+        return redirect('/scout/' . $s->url);
+    }
 
 
 }

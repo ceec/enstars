@@ -28,27 +28,27 @@ Route::get('/chelsea', 'DisplayController@chelsea');
 Route::get('/card/{card_id}', 'DisplayController@card');
 
 //userprofile ->public
-Route::get('/user/{user_id}','DisplayController@user');
+Route::get('/user/{user_id}', 'DisplayController@user');
 
 //tags
-Route::get('/tag/{tag_name}','DisplayController@tag');
+Route::get('/tag/{tag_name}', 'DisplayController@tag');
 
 //skills
-Route::get('/skill/{skill_id}','DisplayController@skill');
+Route::get('/skill/{skill_id}', 'DisplayController@skill');
 
 //units
-Route::get('/unit/{unit_name}','DisplayController@unit');
+Route::get('/unit/{unit_name}', 'DisplayController@unit');
 
 //events
 //calculator
-Route::get('/event/calculator','DisplayController@eventCalculator');
+Route::get('/event/calculator', 'DisplayController@eventCalculator');
 
-Route::get('/event/{event_url}','DisplayController@event');
+Route::get('/event/{event_url}', 'DisplayController@event');
 
 
 //stories
-Route::get('/story/{story_id}','DisplayController@story');
-Route::get('/story/{story_id}/{chaper_id}','DisplayController@chapter');
+Route::get('/story/{story_id}', 'DisplayController@story');
+Route::get('/story/{story_id}/{chaper_id}', 'DisplayController@chapter');
 
 //adding card suggestions
 Route::post('/add/name', 'CardController@addName');
@@ -59,25 +59,25 @@ Auth::routes();
 //dashboard
 Route::get('/home', 'HomeController@index');
 //user cardlist in dashboard
-Route::get('/home/cards','HomeController@cards');
+Route::get('/home/cards', 'HomeController@cards');
 
-Route::get('/home/album','HomeController@album');
+Route::get('/home/album', 'HomeController@album');
 //add cards to album
-Route::get('/home/album/builder','HomeController@albumBuilder');
+Route::get('/home/album/builder', 'HomeController@albumBuilder');
 
 //translation area
-Route::get('/home/translations','HomeController@translations');
-Route::get('/home/translations/{story_id}','HomeController@translationStory');
-Route::get('/home/translations/{story_id}/{chapter_id}','HomeController@translationChapter');
+Route::get('/home/translations', 'HomeController@translations');
+Route::get('/home/translations/{story_id}', 'HomeController@translationStory');
+Route::get('/home/translations/{story_id}/{chapter_id}', 'HomeController@translationChapter');
 //posting
-Route::post('/add/translation','HomeController@addTranslation');
+Route::post('/add/translation', 'HomeController@addTranslation');
 //ajax posting
-Route::post('/add/translationajax','HomeController@addTranslationAjax');
+Route::post('/add/translationajax', 'HomeController@addTranslationAjax');
 
 //tool page
-Route::get('/home/tools','HomeController@tools');
+Route::get('/home/tools', 'HomeController@tools');
 //adding slides
-Route::post('/add/translation/slides','HomeController@addSlides');
+Route::post('/add/translation/slides', 'HomeController@addSlides');
 
 
 

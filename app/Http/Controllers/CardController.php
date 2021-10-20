@@ -30,39 +30,36 @@ class CardController extends Controller
     }
 
 
-
-
-
-
-
     /**
      * Add card  UI
      *
      * @return \Illuminate\Http\Response
      */
-    public function addDisplay() {
-            $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
+    public function addDisplay()
+    {
+        $boys = Boy::orderBy('first_name', 'ASC')->pluck('first_name', 'id');
 
 
-            $lesson_skills = Skill::where('skilltype_id','=','2')->orderBy('category','ASC')->orderBy('type','ASC')->orderBy('size','ASC')->where('game_id','=',2)->pluck('english_description','id');
-            $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->orderBy('type','ASC')->orderBy('size','ASC')->orderBy('amount','ASC')->pluck('english_description','id');
+        $lesson_skills = Skill::where('skilltype_id', '=', '2')->orderBy('category', 'ASC')->orderBy('type', 'ASC')->orderBy('size', 'ASC')->where('game_id', '=', 2)->pluck('english_description', 'id');
+        $dorifes_skills = Skill::where('skilltype_id', '=', '1')->orderBy('category', 'ASC')->orderBy('type', 'ASC')->orderBy('size', 'ASC')->orderBy('amount', 'ASC')->pluck('english_description', 'id');
 
-            return view('home.cardAdd')
-            ->with('lesson_skills',$lesson_skills) 
-            ->with('dorifes_skills',$dorifes_skills)                  
-            ->with('boys',$boys);
-    } 
+        return view('home.cardAdd')
+            ->with('lesson_skills', $lesson_skills)
+            ->with('dorifes_skills', $dorifes_skills)
+            ->with('boys', $boys);
+    }
 
     /**
-     * Add card 
+     * Add card
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
         $boy_id = $request->input('boy_id');
 
         //get last position
-        $last_card = Card::where('boy_id','=',$boy_id)->orderBy('card_id','desc')->first();
+        $last_card = Card::where('boy_id', '=', $boy_id)->orderBy('card_id', 'desc')->first();
 
         $card_id = $last_card->card_id + 1;
 
@@ -86,10 +83,10 @@ class CardController extends Controller
         $c->pf = 0;
         $c->da_max = 0;
         $c->vo_max = 0;
-        $c->pf_max = 0;   
+        $c->pf_max = 0;
         $c->da_max5 = 0;
         $c->vo_max5 = 0;
-        $c->pf_max5 = 0;                
+        $c->pf_max5 = 0;
         $c->dorifes_j = '';
         $c->dorifes_e = '';
         $c->dorifes_id = 0;
@@ -98,17 +95,17 @@ class CardController extends Controller
         $c->lesson_id = 0;
         //unleveled skills
         $c->u_dorifes_j = '';
-        $c->u_dorifes_e = '';  
+        $c->u_dorifes_e = '';
         $c->u_lesson_j = '';
-        $c->u_lesson_e = '';                        
+        $c->u_lesson_e = '';
         $c->u_dorifes_id = 74;
-        $c->u_lesson_id = 75;               
+        $c->u_lesson_id = 75;
         $c->scout_id = 0;
         $c->event_id = 0;
         $c->collaboration_id = 0;
         $c->collection_id = 0;
         $c->sentence_j = '';
-        $c->sentence_e = '';        
+        $c->sentence_e = '';
         $c->stories = 0;
         $c->suggested_name = '';
         $c->suggested_link = '';
@@ -132,21 +129,21 @@ class CardController extends Controller
         $basic->da_max5 = 0;
         $basic->vo_max5 = 0;
         $basic->pf_max5 = 0;
-        $basic->gr_max5 = 0;    
+        $basic->gr_max5 = 0;
         $basic->u_dorifes_id = 74;
         $basic->u_dorifes_j = '';
-        $basic->u_dorifes_e = '';                   
+        $basic->u_dorifes_e = '';
         $basic->dorifes_id = 74;
         $basic->dorifes_j = '';
-        $basic->dorifes_e = '';                
+        $basic->dorifes_e = '';
         $basic->u_lesson_id = 75;
         $basic->u_lesson_j = '';
-        $basic->u_lesson_e = '';                
+        $basic->u_lesson_e = '';
         $basic->lesson_id = 75;
         $basic->lesson_j = '';
-        $basic->lesson_e = '';   
-        $basic->updated_by = Auth::id();              
-        $basic->save();  
+        $basic->lesson_e = '';
+        $basic->updated_by = Auth::id();
+        $basic->save();
 
         // Music card
         $music = new Cardstat;
@@ -164,27 +161,27 @@ class CardController extends Controller
         $music->da_max5 = 0;
         $music->vo_max5 = 0;
         $music->pf_max5 = 0;
-        $music->gr_max5 = 0;    
+        $music->gr_max5 = 0;
         $music->u_dorifes_id = 74;
         $music->u_dorifes_j = '';
-        $music->u_dorifes_e = '';                   
+        $music->u_dorifes_e = '';
         $music->dorifes_id = 74;
         $music->dorifes_j = '';
-        $music->dorifes_e = '';                
+        $music->dorifes_e = '';
         $music->u_lesson_id = 75;
         $music->u_lesson_j = '';
-        $music->u_lesson_e = '';                
+        $music->u_lesson_e = '';
         $music->lesson_id = 75;
         $music->lesson_j = '';
-        $music->lesson_e = '';   
-        $music->updated_by = Auth::id();              
-        $music->save(); 
+        $music->lesson_e = '';
+        $music->updated_by = Auth::id();
+        $music->save();
 
         // return view('pages.card')
         //     ->with('card',$card);
 
-        return redirect('/home');          
-    } 
+        return redirect('/home');
+    }
 
 
     /**
@@ -192,27 +189,29 @@ class CardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editDisplay($card_id) {
-            
-            $card = Card::find($card_id);
-            $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
-            $lesson_skills = Skill::where('skilltype_id','=','2')->orderBy('category','ASC')->pluck('english_description','id');
-            $dorifes_skills = Skill::where('skilltype_id','=','1')->orderBy('category','ASC')->pluck('english_description','id');
+    public function editDisplay($card_id)
+    {
 
-            return view('home.cardEdit')
-            ->with('card',$card)
-            ->with('lesson_skills',$lesson_skills) 
-            ->with('dorifes_skills',$dorifes_skills)                  
-            ->with('boys',$boys);
-    } 
+        $card = Card::find($card_id);
+        $boys = Boy::orderBy('first_name', 'ASC')->pluck('first_name', 'id');
+        $lesson_skills = Skill::where('skilltype_id', '=', '2')->orderBy('category', 'ASC')->pluck('english_description', 'id');
+        $dorifes_skills = Skill::where('skilltype_id', '=', '1')->orderBy('category', 'ASC')->pluck('english_description', 'id');
+
+        return view('home.cardEdit')
+            ->with('card', $card)
+            ->with('lesson_skills', $lesson_skills)
+            ->with('dorifes_skills', $dorifes_skills)
+            ->with('boys', $boys);
+    }
 
 
     /**
-     * Edit card 
+     * Edit card
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
 
         $c = Card::find($request->input('card_id'));
 
@@ -222,25 +221,26 @@ class CardController extends Controller
         $l->save();
 
         //need to update card
-        $c->stars = $request->input('stars');                                      
+        $c->stars = $request->input('stars');
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
         $c->sentence_j = $request->input('sentence_j');
-        $c->sentence_e = $request->input('sentence_e');  
+        $c->sentence_e = $request->input('sentence_e');
         $c->scout_id = $request->input('scout_id');
         $c->event_id = $request->input('event_id');
-        $c->updated_by = Auth::id();  
+        $c->updated_by = Auth::id();
         $c->save();
 
-        return redirect('/card/'.$c->id);          
-    } 
+        return redirect('/card/' . $c->id);
+    }
 
-     /**
+    /**
      * Edit cardstat
      *
      * @return \Illuminate\Http\Response
      */
-    public function editCardstat(Request $request) {
+    public function editCardstat(Request $request)
+    {
 
         $c = Cardstat::find($request->input('cardstat_id'));
 
@@ -252,26 +252,26 @@ class CardController extends Controller
         $c->type_id = $request->input('type_id');
         $c->da = $request->input('da');
         $c->vo = $request->input('vo');
-        $c->pf = $request->input('pf');  
+        $c->pf = $request->input('pf');
         $c->da_max = $request->input('da_max');
         $c->vo_max = $request->input('vo_max');
-        $c->pf_max = $request->input('pf_max');   
+        $c->pf_max = $request->input('pf_max');
         $c->da_max5 = $request->input('da_max5');
         $c->vo_max5 = $request->input('vo_max5');
-        $c->pf_max5 = $request->input('pf_max5');                                        
+        $c->pf_max5 = $request->input('pf_max5');
         $c->dorifes_j = $request->input('dorifes_j');
-        $c->dorifes_e = $request->input('dorifes_e');  
+        $c->dorifes_e = $request->input('dorifes_e');
         $c->lesson_j = $request->input('lesson_j');
-        $c->lesson_e = $request->input('lesson_e');                        
+        $c->lesson_e = $request->input('lesson_e');
         $c->dorifes_id = $request->input('dorifes_id');
         $c->lesson_id = $request->input('lesson_id');
         $c->u_dorifes_j = $request->input('u_dorifes_j');
-        $c->u_dorifes_e = $request->input('u_dorifes_e');  
+        $c->u_dorifes_e = $request->input('u_dorifes_e');
         $c->u_lesson_j = $request->input('u_lesson_j');
-        $c->u_lesson_e = $request->input('u_lesson_e');                        
+        $c->u_lesson_e = $request->input('u_lesson_e');
         $c->u_dorifes_id = $request->input('u_dorifes_id');
-        $c->u_lesson_id = $request->input('u_lesson_id');        
-        $c->updated_by = Auth::id();  
+        $c->u_lesson_id = $request->input('u_lesson_id');
+        $c->updated_by = Auth::id();
         $c->save();
 
         if ($c->game_id == 3) {
@@ -282,15 +282,16 @@ class CardController extends Controller
             $game = '';
         }
 
-        return redirect('/card/'.$c->card_id.'/'.$game);          
-    }    
+        return redirect('/card/' . $c->card_id . '/' . $game);
+    }
 
     /**
      * Add card suggestion
      *
      * @return \Illuminate\Http\Response
      */
-    public function addName(Request $request) {
+    public function addName(Request $request)
+    {
         $card_id = $request->input('card_id');
         $first_name = $request->input('first_name');
 
@@ -305,8 +306,8 @@ class CardController extends Controller
         // return view('pages.card')
         //     ->with('card',$card);
 
-        return redirect('/idol/'.$first_name);          
-    } 
+        return redirect('/idol/' . $first_name);
+    }
 
 
     /**
@@ -314,7 +315,8 @@ class CardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addLink(Request $request) {
+    public function addLink(Request $request)
+    {
         $card_id = $request->input('card_id');
         $first_name = $request->input('first_name');
 
@@ -329,9 +331,8 @@ class CardController extends Controller
         // return view('pages.card')
         //     ->with('card',$card);
 
-        return redirect('/idol/'.$first_name);          
-    } 
-
+        return redirect('/idol/' . $first_name);
+    }
 
 
     /**
@@ -339,7 +340,8 @@ class CardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addRoad(Request $request) {
+    public function addRoad(Request $request)
+    {
         $stars = $request->input('stars');
         $card_id = $request->input('card_id');
 
@@ -347,7 +349,7 @@ class CardController extends Controller
 
         //nodes 0 -> 15
         //add in the parent nodes
-        for ($i=1; $i < 14; $i++) { 
+        for ($i = 1; $i < 14; $i++) {
             //add the base nodes
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -369,7 +371,7 @@ class CardController extends Controller
             //based on the i, change the small amount
             if ($i < 3) {
                 $small = 4;
-            } else if ($i <7) {
+            } else if ($i < 7) {
                 $small = 6;
             } else if ($i < 10) {
                 $small = 7;
@@ -449,7 +451,7 @@ class CardController extends Controller
             $n->end = 0;
             $n->updated_by = 0;
             $n->save();
-  
+
             $n = new Cardroad;
             $n->card_id = $card_id;
             $n->parent = '3';
@@ -464,8 +466,8 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();          
-                
+            $n->save();
+
             $n = new Cardroad;
             $n->card_id = $card_id;
             $n->parent = '5';
@@ -480,7 +482,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();   
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -496,7 +498,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();    
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -512,7 +514,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();  
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -528,7 +530,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();    
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -544,7 +546,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();    
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -576,7 +578,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 1;
             $n->updated_by = 0;
-            $n->save();         
+            $n->save();
 
             //lower level   
             $n = new Cardroad;
@@ -593,8 +595,8 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();                   
- 
+            $n->save();
+
             $n = new Cardroad;
             $n->card_id = $card_id;
             $n->parent = '2';
@@ -609,7 +611,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();   
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -625,7 +627,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();     
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -641,7 +643,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();   
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -657,7 +659,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();   
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -673,7 +675,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();   
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -689,7 +691,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save(); 
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -705,7 +707,7 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 0;
             $n->updated_by = 0;
-            $n->save();  
+            $n->save();
 
             $n = new Cardroad;
             $n->card_id = $card_id;
@@ -721,15 +723,12 @@ class CardController extends Controller
             $n->chapter_id = 0;
             $n->end = 1;
             $n->updated_by = 0;
-            $n->save();                                                       
+            $n->save();
         }
 
 
-
-
-        return redirect('/card/'.$card_id);          
-    } 
-
+        return redirect('/card/' . $card_id);
+    }
 
 
     /**
@@ -737,20 +736,20 @@ class CardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editRoadNode(Request $request) {
+    public function editRoadNode(Request $request)
+    {
         $card_id = $request->input('card_id');
         //need to update card
         $n = Cardroad::find($request->input('node_id'));
         $n->type = $request->input('type');
         $n->color = $request->input('color');
         $n->points = $request->input('points');
-        $n->updated_by = Auth::id();  
+        $n->updated_by = Auth::id();
         $n->save();
 
 
-
-        return redirect('/card/'.$card_id);          
-    } 
+        return redirect('/card/' . $card_id);
+    }
 
     //card suggestions
 
@@ -760,7 +759,8 @@ class CardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addSuggestion(Request $request) {
+    public function addSuggestion(Request $request)
+    {
         $card_id = $request->input('acard_id');
 
         //copy card in the database
@@ -787,7 +787,7 @@ class CardController extends Controller
         $c->pf_max = $card->pf_max;
         $c->da_max5 = $card->da_max5;
         $c->vo_max5 = $card->vo_max5;
-        $c->pf_max5 = $card->pf_max5;            
+        $c->pf_max5 = $card->pf_max5;
         $c->dorifes_j = $card->dorifes_j;
         $c->dorifes_e = $card->dorifes_e;
         $c->dorifes_id = $card->dorifes_id;
@@ -798,24 +798,21 @@ class CardController extends Controller
         $c->u_dorifes_j = $card->u_dorifes_j;
         $c->u_dorifes_e = $card->u_dorifes_e;
         $c->u_lesson_j = $card->u_lesson_j;
-        $c->u_lesson_e = $card->u_lesson_e;      
+        $c->u_lesson_e = $card->u_lesson_e;
         $c->u_dorifes_id = $card->u_dorifes_id;
-        $c->u_lesson_id = $card->u_lesson_id;               
+        $c->u_lesson_id = $card->u_lesson_id;
         $c->scout_id = $card->scout_id;
         $c->event_id = $card->event_id;
         $c->sentence_j = $card->sentence_j;
-        $c->sentence_e = $card->sentence_e;    
+        $c->sentence_e = $card->sentence_e;
         $c->stories = $card->stories;
         $c->suggested_name = $card->suggested_name;
         $c->suggested_link = $card->suggested_link;
         $c->updated_by = Auth::id();
         $c->save();
 
-        return redirect('/card/'.$card_id);            
-    } 
-
-
-
+        return redirect('/card/' . $card_id);
+    }
 
 
     /**
@@ -823,42 +820,43 @@ class CardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editSuggestion(Request $request) {
+    public function editSuggestion(Request $request)
+    {
         //need to update card
         $c = Cardsuggestion::find($request->input('suggestion_id'));
         $c->stars = $request->input('stars');
         $c->color = $request->input('color');
         $c->da = $request->input('da');
         $c->vo = $request->input('vo');
-        $c->pf = $request->input('pf');  
+        $c->pf = $request->input('pf');
         $c->da_max = $request->input('da_max');
         $c->vo_max = $request->input('vo_max');
-        $c->pf_max = $request->input('pf_max');   
+        $c->pf_max = $request->input('pf_max');
         $c->da_max5 = $request->input('da_max5');
         $c->vo_max5 = $request->input('vo_max5');
-        $c->pf_max5 = $request->input('pf_max5');                                        
+        $c->pf_max5 = $request->input('pf_max5');
         $c->name_j = $request->input('japanese_name');
         $c->name_e = $request->input('english_name');
         $c->sentence_j = $request->input('sentence_j');
-        $c->sentence_e = $request->input('sentence_e');  
+        $c->sentence_e = $request->input('sentence_e');
         $c->dorifes_j = $request->input('dorifes_j');
-        $c->dorifes_e = $request->input('dorifes_e');  
+        $c->dorifes_e = $request->input('dorifes_e');
         $c->lesson_j = $request->input('lesson_j');
-        $c->lesson_e = $request->input('lesson_e');                        
+        $c->lesson_e = $request->input('lesson_e');
         $c->dorifes_id = $request->input('dorifes_id');
         $c->lesson_id = $request->input('lesson_id');
         //unleveled skills
         $c->u_dorifes_j = $request->input('u_dorifes_j');
-        $c->u_dorifes_e = $request->input('u_dorifes_e');  
+        $c->u_dorifes_e = $request->input('u_dorifes_e');
         $c->u_lesson_j = $request->input('u_lesson_j');
-        $c->u_lesson_e = $request->input('u_lesson_e');                        
+        $c->u_lesson_e = $request->input('u_lesson_e');
         $c->u_dorifes_id = $request->input('u_dorifes_id');
-        $c->u_lesson_id = $request->input('u_lesson_id');        
+        $c->u_lesson_id = $request->input('u_lesson_id');
 
-        $c->updated_by = Auth::id();  
+        $c->updated_by = Auth::id();
         $c->save();
 
-        return redirect('/card/'.$c->acard_id);          
-    }     
+        return redirect('/card/' . $c->acard_id);
+    }
 
 }

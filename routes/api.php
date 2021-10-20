@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 */
 //was causing artisan to throw an error
 //In Route.php line 880:
-                                                                       
-  //Unable to prepare route [api/user] for serialization. Uses Closure.
+
+//Unable to prepare route [api/user] for serialization. Uses Closure.
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:api');

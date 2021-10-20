@@ -12,6 +12,6 @@ class Logineventday extends Model
      */
     public function boy()
     {
-          return $this->belongsTo('App\Boy');
-    }    
+        return $this->belongsTo('App\Boy');
+    }
 }

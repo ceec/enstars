@@ -2,29 +2,33 @@
 
 [enstars.info](http://enstars.info)
 
-enstars.info is a database for the Japanese app card game Ensemble Stars. It uses Laravel as a base and it's goal to have easily acessable game data.
+enstars.info is a database for the Japanese app card game Ensemble Stars. It uses Laravel as a base and it's goal to
+have easily acessable game data.
 
-
-I am working on this by myself so any data errors you find let me know at cc@enstars.info! I'm open to any ideas and feature requests as well!
+I am working on this by myself so any data errors you find let me know at cc@enstars.info! I'm open to any ideas and
+feature requests as well!
 
 # Versions
 
 2016-09-18 Version 1.1
+
 * Added ability to hide collections
 * Added card issue form for each card
 
-2016-09-24 Version 1.2
-Admin:
+2016-09-24 Version 1.2 Admin:
+
 * Add unupgraded lesson and dream festival skills to the database
 * Added ability to edit scout and event names and times
 * Added boy class buttons to Translation UI
 
 General:
+
 * Tied users to messages and card issues.
 
 # Database
 
 ## agencies
+
 id / name / udpdated_at / created_at
 
 Holds the names for the agenices the idols belong to.
@@ -32,6 +36,7 @@ Holds the names for the agenices the idols belong to.
 Last used 2020-03-17
 
 ## alerts
+
 id / japanese_title / english_title / japanese_text / english_text / updated_at / updated_by / created_at
 
 Translations for the pop up messages throughout the game.
@@ -100,7 +105,7 @@ Last updated 2017-02-25
 
 ## collaborations
 
-Holds the main information on each collaboration. 
+Holds the main information on each collaboration.
 
 Last updated 2019-03-31
 
@@ -192,7 +197,8 @@ Last updated 2016-09-19.
 
 ## logineventdays
 
-Not used. Lookup table to loginevents. Abandoned effort to track login event things. I think this was for the 2nd (3rd?) white day.
+Not used. Lookup table to loginevents. Abandoned effort to track login event things. I think this was for the 2nd (3rd?)
+white day.
 
 Last updated 2017-03-24.
 
@@ -226,7 +232,8 @@ Last updated 2017-03-09.
 
 ## minieventsOLD
 
-Should be deleted. Original effort to track the character focused mini events. I had hand written a lot of these into that journal.
+Should be deleted. Original effort to track the character focused mini events. I had hand written a lot of these into
+that journal.
 
 Last updated 2016-07-03.
 
@@ -334,7 +341,8 @@ Last updated: 2016-09-23
 
 ## typegroups
 
-I think this was my effort to break the scout/event cards into a lookup table? Horrible naming and I need to find the notes to see what I did.
+I think this was my effort to break the scout/event cards into a lookup table? Horrible naming and I need to find the
+notes to see what I did.
 
 Last updated: 2019-04-04.
 

@@ -45,16 +45,14 @@ class UserController extends Controller
     }
 
 
-
-
-
     /**
      * Display user dashboard
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard() {
-        $user = Auth::user();    
+    public function dashboard()
+    {
+        $user = Auth::user();
 
 
         //print_r($this->cards->forUser($user));
@@ -68,10 +66,10 @@ class UserController extends Controller
         //get the set data
         //loop through all the scouts.
         //tie the cards they have
-        $scouts = Scout::orderBy('end','desc')->get();
+        $scouts = Scout::orderBy('end', 'desc')->get();
 
         //check for bloomed card settings
-        $bloomcheck = Usercard::where('user_id','=',$user->id)->where('card_id','=',$user->card)->first();
+        $bloomcheck = Usercard::where('user_id', '=', $user->id)->where('card_id', '=', $user->card)->first();
 
         //something is happening where $bloomcheck doesnt have a ->bloom
         if (isset($bloomcheck->bloom)) {
@@ -79,23 +77,19 @@ class UserController extends Controller
                 $bloom = true;
             } else {
                 $bloom = false;
-            }	
+            }
         } else {
             $bloom = false;
         }
 
 
+        return view('user.dashboard')
+            ->with('scouts', $scouts)
+            ->with('user', $user)
+            ->with('bloom', $bloom)
+            ->with('card', $card);
 
-
-
-         return view('user.dashboard')
-            ->with('scouts',$scouts)
-            ->with('user',$user)
-            ->with('bloom',$bloom)
-            ->with('card',$card);
-      
-    } 
-
+    }
 
 
     /**
@@ -103,7 +97,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function cards() {
+    public function cards()
+    {
         //SELECT cards.* FROM cards,usercards WHERE usercards.user_id='1' AND usercards.card_id = cards.id
         //$cards = Usercard::where('user_id','=',Auth::user()->id)->get();
 
@@ -134,45 +129,46 @@ class UserController extends Controller
 
 
         $card = new Card;
-        $fivestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','desc');
+        $fivestarcardsq = $card->select('cards.*')->join('usercards', 'usercards.card_id', '=', 'cards.id')->whereRaw("cards.stars='5'")->whereRaw('usercards.user_id = ' . Auth::user()->id)->orderBy('usercards.created_at', 'desc');
         $fivestarcards = $fivestarcardsq->get();
         //$fivestarcards_count = $fivestarcardsq->count();
 
         //four star
-        $fourstarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='4'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','desc');
+        $fourstarcardsq = $card->select('cards.*')->join('usercards', 'usercards.card_id', '=', 'cards.id')->whereRaw("cards.stars='4'")->whereRaw('usercards.user_id = ' . Auth::user()->id)->orderBy('usercards.created_at', 'desc');
         $fourstarcards = $fourstarcardsq->get();
         //$fourstarcards_count = $fourstarcardsq->count();
 
         //three star
-        $threestarcardsq = $card->select('cards.*')->join('usercards','usercards.card_id','=','cards.id')->whereRaw("cards.stars='3'")->whereRaw('usercards.user_id = '.Auth::user()->id)->orderBy('usercards.created_at','desc');
+        $threestarcardsq = $card->select('cards.*')->join('usercards', 'usercards.card_id', '=', 'cards.id')->whereRaw("cards.stars='3'")->whereRaw('usercards.user_id = ' . Auth::user()->id)->orderBy('usercards.created_at', 'desc');
         $threestarcards = $threestarcardsq->get();
         //$threestarcards_count = $threestarcardsq->count();        
 
-       // dd($cards);
+        // dd($cards);
 
 
-         return view('user.cards')
-            ->with('fivestarcards',$fivestarcards)
-            ->with('fourstarcards',$fourstarcards)
-            ->with('threestarcards',$threestarcards);
-      
-    } 
+        return view('user.cards')
+            ->with('fivestarcards', $fivestarcards)
+            ->with('fourstarcards', $fourstarcards)
+            ->with('threestarcards', $threestarcards);
+
+    }
 
 
     /**
-     * Add card 
+     * Add card
      *
      * @return \Illuminate\Http\Response
      */
-    public function addCard(Request $request) {
+    public function addCard(Request $request)
+    {
         $card_id = $request->input('card_id');
 
         //add the user card
-        $user = Auth::user();    
+        $user = Auth::user();
 
         //check if that card is already there
 
-        $check = Usercard::where('user_id','=',$user->id)->where('card_id','=',$card_id)->count();
+        $check = Usercard::where('user_id', '=', $user->id)->where('card_id', '=', $card_id)->count();
 
         if ($check < 1) {
             //only add if it isnt already there
@@ -180,38 +176,39 @@ class UserController extends Controller
             $u = new Usercard;
             $u->user_id = $user->id;
             $u->card_id = $card_id;
-             $u->bloom = 0;
-             $u->copies = 1;
-             $u->level = 0;
-             $u->da = 0;
-             $u->vo = 0;
-             $u->pf = 0;
-             $u->percent = 0;
-             $u->affection = 0;
+            $u->bloom = 0;
+            $u->copies = 1;
+            $u->level = 0;
+            $u->da = 0;
+            $u->vo = 0;
+            $u->pf = 0;
+            $u->percent = 0;
+            $u->affection = 0;
             $u->save();
 
-            echo json_encode(array('card_id'=>$card_id));            
+            echo json_encode(array('card_id' => $card_id));
         }
     }
 
 
     /**
-     * Remove card 
+     * Remove card
      *
      * @return \Illuminate\Http\Response
      */
-    public function removeCard(Request $request) {
+    public function removeCard(Request $request)
+    {
         $card_id = $request->input('card_id');
 
         //add the user card
-        $user = Auth::user();    
+        $user = Auth::user();
 
         //need to delete card
-        $d = Usercard::where('user_id','=',$user->id)->where('card_id','=',$card_id)->first();
+        $d = Usercard::where('user_id', '=', $user->id)->where('card_id', '=', $card_id)->first();
         $d->delete();
 
-        echo json_encode(array('card_id'=>$card_id));
-    } 
+        echo json_encode(array('card_id' => $card_id));
+    }
 
 
 
@@ -223,17 +220,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function scouts() {
-        
-       // $scouts = 
+    public function scouts()
+    {
+
+        // $scouts =
 
         $card = Card::find($user->card);
 
-         return view('user.scouts')
-            ->with('user',$user)
-            ->with('card',$card);
-      
-    } 
+        return view('user.scouts')
+            ->with('user', $user)
+            ->with('card', $card);
+
+    }
 
 
     /**
@@ -241,14 +239,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function account() {
+    public function account()
+    {
         //add the user card
-        $user = Auth::user();            
+        $user = Auth::user();
 
-         return view('user.account')
-            ->with('user',$user);
-      
-    } 
+        return view('user.account')
+            ->with('user', $user);
+
+    }
 
 
     /**
@@ -256,14 +255,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function features() {
+    public function features()
+    {
         //add the user card
-        $features = Feature::where('status','=','1')->get();            
+        $features = Feature::where('status', '=', '1')->get();
 
-         return view('user.features')
-            ->with('features',$features);
-      
-    } 
+        return view('user.features')
+            ->with('features', $features);
+
+    }
 
 
     /**
@@ -271,12 +271,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function featureSuggest() {
-    
+    public function featureSuggest()
+    {
 
-         return view('user.featureSuggest');
-      
-    }     
+
+        return view('user.featureSuggest');
+
+    }
 
     /////
 
@@ -285,11 +286,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addEvent(Request $request) {
+    public function addEvent(Request $request)
+    {
         $event_id = $request->input('event_id');
 
         //add the user card
-        $user = Auth::user();    
+        $user = Auth::user();
 
 
         $e = new Userevent;
@@ -301,7 +303,7 @@ class UserController extends Controller
         $e->save();
 
 
-         echo json_encode(array('event_id'=>$event_id));            
+        echo json_encode(array('event_id' => $event_id));
 
     }
 
@@ -311,25 +313,26 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function updateEvent(Request $request) {
+    public function updateEvent(Request $request)
+    {
         $event_id = $request->input('event_id');
         $rank = $request->input('rank');
         $points = $request->input('points');
 
         //clean up rank and points to just be integers!!
-        $rank = preg_replace("/[^0-9]/", "",$rank);
-        $points = preg_replace("/[^0-9]/", "",$points);
+        $rank = preg_replace("/[^0-9]/", "", $rank);
+        $points = preg_replace("/[^0-9]/", "", $points);
 
         //deal with empty spaces
         $rank = intval($rank);
         $points = intval($points);
 
         //add the user card
-        $user = Auth::user();    
+        $user = Auth::user();
 
         //do want to update or be able to track all the data?
         //update for now, would just need to change this to an insert to add lots of data.
-        $e = Userevent::where('user_id','=',$user->id)->where('event_id','=',$event_id)->first();
+        $e = Userevent::where('user_id', '=', $user->id)->where('event_id', '=', $event_id)->first();
 
         $e->user_id = $user->id;
         $e->event_id = $event_id;
@@ -339,7 +342,7 @@ class UserController extends Controller
         $e->save();
 
 
-         echo json_encode(array('event_id'=>$event_id));            
+        echo json_encode(array('event_id' => $event_id));
 
     }
 
@@ -348,23 +351,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function updateCard(Request $request) {
-         $user = Auth::user();
+    public function updateCard(Request $request)
+    {
+        $user = Auth::user();
 
-         $card_id = $request->input('card_id');
-         $usercard_id = $request->input('usercard_id');
+        $card_id = $request->input('card_id');
+        $usercard_id = $request->input('usercard_id');
 
-         $c = Usercard::find($usercard_id);
-         $c->bloom = intval($request->input('bloom'));
-         $c->copies = intval($request->input('copies'));
-         $c->level = intval($request->input('level'));
-         $c->da = intval($request->input('da'));
-         $c->vo = intval($request->input('vo'));
-         $c->pf = intval($request->input('pf'));
-         $c->percent = intval($request->input('percent'));
-         $c->affection = intval($request->input('affection'));
-         $c->save();
-
+        $c = Usercard::find($usercard_id);
+        $c->bloom = intval($request->input('bloom'));
+        $c->copies = intval($request->input('copies'));
+        $c->level = intval($request->input('level'));
+        $c->da = intval($request->input('da'));
+        $c->vo = intval($request->input('vo'));
+        $c->pf = intval($request->input('pf'));
+        $c->percent = intval($request->input('percent'));
+        $c->affection = intval($request->input('affection'));
+        $c->save();
 
 
         // $event_id = $request->input('event_id');
@@ -386,82 +389,84 @@ class UserController extends Controller
 
 
         // echo json_encode(array('usercard_id'=>$usercard_id));            
-         return redirect('/card/'.$card_id);      
+        return redirect('/card/' . $card_id);
 
     }
 
 
     /**
      * Update dashboard card - Added 2017-09-04
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
-    public function updateDashboardCard(Request $request) {
-         $user = Auth::user();
+    public function updateDashboardCard(Request $request)
+    {
+        $user = Auth::user();
 
-         $card_id = $request->input('card_id');
-         $usercard_id = $request->input('usercard_id');
+        $card_id = $request->input('card_id');
+        $usercard_id = $request->input('usercard_id');
 
-         $c = User::find($user->id);
-         $c->card = $card_id;
-         $c->save();
+        $c = User::find($user->id);
+        $c->card = $card_id;
+        $c->save();
 
 
         // echo json_encode(array('usercard_id'=>$usercard_id));            
-         return redirect('/card/'.$card_id);      
+        return redirect('/card/' . $card_id);
 
     }
 
     /**
      * Update user account - Added 2017-09-18
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
-    public function updateAccount(Request $request) {
-         $user = Auth::user();
-         $display = $request->display_collection;
+    public function updateAccount(Request $request)
+    {
+        $user = Auth::user();
+        $display = $request->display_collection;
 
-         if ($display == 'Hide Collection') {
+        if ($display == 'Hide Collection') {
             $display_value = 0;
-         } else {
+        } else {
             $display_value = 1;
-         }
+        }
 
 
-
-         $c = User::find($user->id);
-         $c->display_collection = $display_value;
-         $c->save();
+        $c = User::find($user->id);
+        $c->display_collection = $display_value;
+        $c->save();
 
 
         // echo json_encode(array('usercard_id'=>$usercard_id));            
-         return redirect('/user/'.$user->name.'/account');      
+        return redirect('/user/' . $user->name . '/account');
 
     }
 
     /**
      * Update user team/event calculator - Added 2017-12-18
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
-    public function updateTeam(Request $request) {
-         $user = Auth::user();
+    public function updateTeam(Request $request)
+    {
+        $user = Auth::user();
 
-         $da = (int)$request->da;
-         $da_2 = (int)$request->da_2;
-         $da_3 = (int)$request->da_3;
+        $da = (int)$request->da;
+        $da_2 = (int)$request->da_2;
+        $da_3 = (int)$request->da_3;
 
-         $vo = (int)$request->vo;
-         $vo_2 = (int)$request->vo_2;
-         $vo_3 = (int)$request->vo_3;
+        $vo = (int)$request->vo;
+        $vo_2 = (int)$request->vo_2;
+        $vo_3 = (int)$request->vo_3;
 
-         $pf = (int)$request->pf;
-         $pf_2 = (int)$request->pf_2;
-         $pf_3 = (int)$request->pf_3;
+        $pf = (int)$request->pf;
+        $pf_2 = (int)$request->pf_2;
+        $pf_3 = (int)$request->pf_3;
 
-         //check if team is already there
+        //check if team is already there
 
-        $check = Userteam::where('user_id','=',$user->id)->count();
+        $check = Userteam::where('user_id', '=', $user->id)->count();
 
         if ($check < 1) {
             //only add if it isnt already there
@@ -478,10 +483,10 @@ class UserController extends Controller
             $t->pf_3 = $pf_3;
             $t->save();
 
-            echo json_encode(array('work'=>$t->da));            
+            echo json_encode(array('work' => $t->da));
         } else {
             //update the team
-            $t = Userteam::where('user_id','=',$user->id)->first();
+            $t = Userteam::where('user_id', '=', $user->id)->first();
             $t->da = $da;
             $t->da_2 = $da_2;
             $t->da_3 = $da_3;
@@ -495,11 +500,8 @@ class UserController extends Controller
         }
 
 
-
-
-
-        echo json_encode(array('work'=>$t->da));            
-         //return redirect('/user/'.$user->name.'/account');      
+        echo json_encode(array('work' => $t->da));
+        //return redirect('/user/'.$user->name.'/account');
 
     }
 
@@ -509,11 +511,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function featureAdd(Request $request) {
+    public function featureAdd(Request $request)
+    {
         $feature = $request->input('feature');
 
         //add the user card
-        $user = Auth::user();    
+        $user = Auth::user();
 
 
         $f = new Feature;
@@ -524,10 +527,9 @@ class UserController extends Controller
         $f->save();
 
 
-        return redirect('/user/features');              
+        return redirect('/user/features');
 
     }
-
 
 
 }

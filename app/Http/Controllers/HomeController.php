@@ -37,7 +37,8 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('admin');
     }
 
@@ -46,22 +47,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         //count suggestions
-        $suggestions = Cardsuggestion::where('status','=',0)->count();
+        $suggestions = Cardsuggestion::where('status', '=', 0)->count();
         //count issues
-        $issues = Cardissue::where('status','=',0)->count();
+        $issues = Cardissue::where('status', '=', 0)->count();
         //count messages
-        $messages = Message::where('status','=',0)->count();
+        $messages = Message::where('status', '=', 0)->count();
         //count feature requests
-        $features = Feature::where('status','=',0)->count();
+        $features = Feature::where('status', '=', 0)->count();
 
         //count user states
         $userstotals = User::all()->count();
         //weekly users
         //lets use Carbon
         \Carbon\Carbon::setWeekStartsAt(\Carbon\Carbon::SUNDAY);
-        \Carbon\Carbon::setWeekEndsAt(\Carbon\Carbon::SATURDAY);        
+        \Carbon\Carbon::setWeekEndsAt(\Carbon\Carbon::SATURDAY);
         $now = \Carbon\Carbon::now();
 
         //make them strings not objects
@@ -74,15 +76,15 @@ class HomeController extends Controller
 
         //get todays
         $userstoday = User::whereBetween('created_at', [$startofday, $endofday])->get()->count();
-        
+
         return view('home')
-        ->with('userstotal',$userstotals)
-        ->with('usersweek',$usersweek)
-        ->with('userstoday',$userstoday)
-        ->with('suggestions',$suggestions)
-        ->with('messages',$messages)
-        ->with('features',$features)
-        ->with('issues',$issues);
+            ->with('userstotal', $userstotals)
+            ->with('usersweek', $usersweek)
+            ->with('userstoday', $userstoday)
+            ->with('suggestions', $suggestions)
+            ->with('messages', $messages)
+            ->with('features', $features)
+            ->with('issues', $issues);
     }
 
 
@@ -98,8 +100,8 @@ class HomeController extends Controller
 
 
         return view('home.album')
-        ->with('cards',$allcards);
-    } 
+            ->with('cards', $allcards);
+    }
 
 
     /**
@@ -107,7 +109,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function translationStatus(){
+    public function translationStatus()
+    {
         //all the stories
 
         //events -> separate out by year
@@ -118,91 +121,91 @@ class HomeController extends Controller
         //$event_2015 = $chapter->select('chapters.*')->join('events','events.id','=','chapters.event_id')->whereRaw("events.start < '2016-01-01'")->orderBy('events.start','asc')->get();
 
 
-       // $event_2015 = Story::event()->where('start','<','2016-01-01')->get();
+        // $event_2015 = Story::event()->where('start','<','2016-01-01')->get();
 
-        $event_2015 = Event::where('start','<','2016-01-01')->get();
+        $event_2015 = Event::where('start', '<', '2016-01-01')->get();
 
 
-       $event_stories = Story::where('type','=',1)->get();
-       $scout_stories = Story::where('type','=',2)->get();
-       $character_stories = Story::where('type','=',3)->get();   
-        
+        $event_stories = Story::where('type', '=', 1)->get();
+        $scout_stories = Story::where('type', '=', 2)->get();
+        $character_stories = Story::where('type', '=', 3)->get();
 
 
         return view('home.translationStatus')
-        ->with('event_stories',$event_stories)
-        ->with('scout_stories',$scout_stories)
-        ->with('character_stories',$character_stories);
-    }     
+            ->with('event_stories', $event_stories)
+            ->with('scout_stories', $scout_stories)
+            ->with('character_stories', $character_stories);
+    }
 
     /**
      * Show the translation page
      *
      * @return \Illuminate\Http\Response
      */
-    public function translations() {
-       $event_stories = Story::where('type','=',1)->get();
-       $scout_stories = Story::where('type','=',2)->get();
-       $character_stories = Story::where('type','=',3)->get();
-       $main_stories = Story::where('type','=',4)->get();
+    public function translations()
+    {
+        $event_stories = Story::where('type', '=', 1)->get();
+        $scout_stories = Story::where('type', '=', 2)->get();
+        $character_stories = Story::where('type', '=', 3)->get();
+        $main_stories = Story::where('type', '=', 4)->get();
 
-       // TODO: This code is very repetitive.
+        // TODO: This code is very repetitive.
 
-       //get the percentage of the stories
-       foreach($event_stories as $key => $story) {
+        //get the percentage of the stories
+        foreach ($event_stories as $key => $story) {
             //count how many are marked complete
-            $amount_complete = Chapter::where('story_id','=',$story->id)->where('complete','=','1')->count();
-            $amount_total = Chapter::where('story_id','=',$story->id)->count();
+            $amount_complete = Chapter::where('story_id', '=', $story->id)->where('complete', '=', '1')->count();
+            $amount_total = Chapter::where('story_id', '=', $story->id)->count();
 
             if ($amount_total == 0) {
                 $amount_total = 1;
             }
-            $event_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
-       }
+            $event_stories[$key]->percent = round(($amount_complete / $amount_total) * 100);
+        }
 
-       //get the percentage of the stories
-       foreach($scout_stories as $key => $story) {
+        //get the percentage of the stories
+        foreach ($scout_stories as $key => $story) {
             //count how many are marked complete
-            $amount_complete = Chapter::where('story_id','=',$story->id)->where('complete','=','1')->count();
-            $amount_total = Chapter::where('story_id','=',$story->id)->count();
+            $amount_complete = Chapter::where('story_id', '=', $story->id)->where('complete', '=', '1')->count();
+            $amount_total = Chapter::where('story_id', '=', $story->id)->count();
 
             if ($amount_total == 0) {
                 $amount_total = 1;
             }
-            $scout_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
-       }
+            $scout_stories[$key]->percent = round(($amount_complete / $amount_total) * 100);
+        }
 
 
-       //get the percentage of the stories
-       foreach($character_stories as $key => $story) {
+        //get the percentage of the stories
+        foreach ($character_stories as $key => $story) {
             //count how many are marked complete
-            $amount_complete = Chapter::where('story_id','=',$story->id)->where('complete','=','1')->count();
-            $amount_total = Chapter::where('story_id','=',$story->id)->count();
+            $amount_complete = Chapter::where('story_id', '=', $story->id)->where('complete', '=', '1')->count();
+            $amount_total = Chapter::where('story_id', '=', $story->id)->count();
 
             if ($amount_total == 0) {
                 $amount_total = 1;
             }
-            $character_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
-       }
+            $character_stories[$key]->percent = round(($amount_complete / $amount_total) * 100);
+        }
 
-       //get the percentage of the stories
-       foreach($main_stories as $key => $story) {
+        //get the percentage of the stories
+        foreach ($main_stories as $key => $story) {
             //count how many are marked complete
-            $amount_complete = Chapter::where('story_id','=',$story->id)->where('complete','=','1')->count();
-            $amount_total = Chapter::where('story_id','=',$story->id)->count();
+            $amount_complete = Chapter::where('story_id', '=', $story->id)->where('complete', '=', '1')->count();
+            $amount_total = Chapter::where('story_id', '=', $story->id)->count();
 
             if ($amount_total == 0) {
                 $amount_total = 1;
             }
-            $main_stories[$key]->percent = round(($amount_complete/$amount_total) * 100);            
-       }       
+            $main_stories[$key]->percent = round(($amount_complete / $amount_total) * 100);
+        }
 
         return view('home.translation')
-        ->with('main_stories',$main_stories)
-        ->with('event_stories',$event_stories)
-        ->with('scout_stories',$scout_stories)
-        ->with('character_stories',$character_stories);
-    }  
+            ->with('main_stories', $main_stories)
+            ->with('event_stories', $event_stories)
+            ->with('scout_stories', $scout_stories)
+            ->with('character_stories', $character_stories);
+    }
 
 
     /**
@@ -210,23 +213,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function translationStory($story_id) {
+    public function translationStory($story_id)
+    {
 
-        $story = Story::where('id','=',$story_id)->first();
-        $chapters = Chapter::where('story_id','=',$story_id)->get();
+        $story = Story::where('id', '=', $story_id)->first();
+        $chapters = Chapter::where('story_id', '=', $story_id)->get();
 
         //get percent complete
-        foreach($chapters as $key => $chapter) {
+        foreach ($chapters as $key => $chapter) {
             //count how many stories have something in the english text field
-            $amount_complete = Slide::where('chapter_id','=',$chapter->id)->where('text_e','!=','')->count();
-            $amount_total = Slide::where('chapter_id','=',$chapter->id)->count();
+            $amount_complete = Slide::where('chapter_id', '=', $chapter->id)->where('text_e', '!=', '')->count();
+            $amount_total = Slide::where('chapter_id', '=', $chapter->id)->count();
 
             //check for generated text
-            $generated_check = Slide::where('chapter_id','=',$chapter->id)->where('slide','=',2)->first();
+            $generated_check = Slide::where('chapter_id', '=', $chapter->id)->where('slide', '=', 2)->first();
 
-           // dd($generated_check);
-           
-            
+            // dd($generated_check);
+
+
             if (isset($generated_check)) {
                 if ($generated_check->text_g != '') {
                     $generated = true;
@@ -236,25 +240,24 @@ class HomeController extends Controller
             } else {
                 $generated = false;
             }
-        
+
 
             if ($amount_total == 0) {
                 $amount_total = 1;
             }
-            $chapters[$key]->percent = round(($amount_complete/$amount_total) * 100);
+            $chapters[$key]->percent = round(($amount_complete / $amount_total) * 100);
             $chapters[$key]->total_slides = $amount_total;
             $chapters[$key]->generated = $generated;
         }
 
         //get the mini events tied to this event
-        $mini = Minievent::where('event_id','=',$story->type_id)->orderBy('precedence','ASC')->get();
+        $mini = Minievent::where('event_id', '=', $story->type_id)->orderBy('precedence', 'ASC')->get();
 
         return view('home.story')
-        ->with('story',$story)
-        ->with('mini',$mini)
-        ->with('chapters',$chapters);
-    }  
-
+            ->with('story', $story)
+            ->with('mini', $mini)
+            ->with('chapters', $chapters);
+    }
 
 
     /**
@@ -262,61 +265,62 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function translationMiniEvent($story_id,$minievent_id) {
-        $minievent = Minievent::where('id','=',$minievent_id)->first();
-        $story = Story::where('id','=',$story_id)->first();
-        $slides = Minieventslide::where('minievent_id','=',$minievent->id)->get();
+    public function translationMiniEvent($story_id, $minievent_id)
+    {
+        $minievent = Minievent::where('id', '=', $minievent_id)->first();
+        $story = Story::where('id', '=', $story_id)->first();
+        $slides = Minieventslide::where('minievent_id', '=', $minievent->id)->get();
         //get the boys info
-        $boy = Boy::where('id','=',$minievent->boy_id)->first();
+        $boy = Boy::where('id', '=', $minievent->boy_id)->first();
 
-        $choices = Minieventchoice::where('minievent_id','=',$minievent->id)->orderBy('choice_id','asc')->get();
-
-
+        $choices = Minieventchoice::where('minievent_id', '=', $minievent->id)->orderBy('choice_id', 'asc')->get();
 
 
         return view('home.miniEvent')
-        ->with('minievent',$minievent)
-        ->with('choices',$choices)
-        ->with('story',$story)
-        ->with('boy',$boy)
-        ->with('slides',$slides);
-    }  
+            ->with('minievent', $minievent)
+            ->with('choices', $choices)
+            ->with('story', $story)
+            ->with('boy', $boy)
+            ->with('slides', $slides);
+    }
 
     /**
      * Show the chapter's slides
      *
      * @return \Illuminate\Http\Response
      */
-    public function translationChapter($story_id,$chapter_id) {
+    public function translationChapter($story_id, $chapter_id)
+    {
         $chapter_id = intval($chapter_id);
 
-        $chapter = Chapter::where('id','=',$chapter_id)->first();
-        $story = Story::where('id','=',$story_id)->first();
-        $slides = Slide::where('chapter_id','=',$chapter_id)->get();
+        $chapter = Chapter::where('id', '=', $chapter_id)->first();
+        $story = Story::where('id', '=', $story_id)->first();
+        $slides = Slide::where('chapter_id', '=', $chapter_id)->get();
         //need list of the boys who could be talking
         //$boys = CHap::orderBy('first_name','ASC')->pluck('first_name','id');
 
         //lets write a join
         $boy = new Boy;
-        $boysq = $boy->select('boys.*')->join('chapterboys','chapterboys.boy_id','=','boys.id')->whereRaw('chapterboys.chapter_id = '.$chapter_id);
-        $boys = $boysq->pluck('first_name','id');
+        $boysq = $boy->select('boys.*')->join('chapterboys', 'chapterboys.boy_id', '=', 'boys.id')->whereRaw('chapterboys.chapter_id = ' . $chapter_id);
+        $boys = $boysq->pluck('first_name', 'id');
 
         //create percentages
 
 
         return view('home.chapter')
-        ->with('chapter',$chapter)
-        ->with('story',$story)
-        ->with('boys',$boys)
-        ->with('slides',$slides);
-    }  
+            ->with('chapter', $chapter)
+            ->with('story', $story)
+            ->with('boys', $boys)
+            ->with('slides', $slides);
+    }
 
     /**
      * update the slide translation
      *
      * @return \Illuminate\Http\Response
      */
-    public function addTranslation(Request $request) {
+    public function addTranslation(Request $request)
+    {
         $slide_id = $request->input('slide_id');
         $chapter_id = $request->input('chapter_id');
         $story_id = $request->input('story_id');
@@ -337,8 +341,8 @@ class HomeController extends Controller
         $slide->save();
 
 
-         return redirect('/home/translations/'.$story_id.'/'.$chapter_id);      
-    } 
+        return redirect('/home/translations/' . $story_id . '/' . $chapter_id);
+    }
 
 
     /**
@@ -346,13 +350,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addTranslationAjax(Request $request) {
+    public function addTranslationAjax(Request $request)
+    {
         $slide_id = $request->input('slide_id');
 
         $field = $request->input('name');
 
         $value = $request->input('value');
-
 
 
         //need to update slide
@@ -365,9 +369,8 @@ class HomeController extends Controller
         $slide->save();
 
 
-
         echo json_encode($slide->updated_at);
-    } 
+    }
 
 
     /**
@@ -375,7 +378,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addMiniEventTranslationAjax(Request $request) {
+    public function addMiniEventTranslationAjax(Request $request)
+    {
         $slide_id = $request->input('slide_id');
 
         $field = $request->input('name');
@@ -392,25 +396,25 @@ class HomeController extends Controller
 
 
         //need to update slide
-        
+
 
         //test this update
 
         $slide->$field = $value;
-         $slide->updated_by = Auth::user()->id;
+        $slide->updated_by = Auth::user()->id;
         $slide->save();
 
 
-
         echo json_encode($slide->updated_at);
-    } 
+    }
 
     /**
      * update the slide translation WITH AJAX woop
      *
      * @return \Illuminate\Http\Response
      */
-    public function chapterDisplay(Request $request) {
+    public function chapterDisplay(Request $request)
+    {
         $chapter_id = $request->input('chapter_id');
 
         $complete = $request->input('show');
@@ -424,8 +428,8 @@ class HomeController extends Controller
         $c->updated_by = Auth::user()->id;
         $c->save();
 
-        echo json_encode(array('chapter'=>$complete));
-    } 
+        echo json_encode(array('chapter' => $complete));
+    }
 
 
     /**
@@ -433,7 +437,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function chapterName(Request $request) {
+    public function chapterName(Request $request)
+    {
         $chapter_id = $request->input('chapter_id');
 
         $name_e = $request->input('name_e');
@@ -447,8 +452,8 @@ class HomeController extends Controller
         $c->updated_by = Auth::user()->id;
         $c->save();
 
-        echo json_encode(array('chapter'=>$complete));
-    }  
+        echo json_encode(array('chapter' => $complete));
+    }
 
 
     // Menu Translation area
@@ -458,9 +463,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function translationMenu() {
+    public function translationMenu()
+    {
         return view('home.translationMenu');
-    }  
+    }
 
 
     /**
@@ -468,35 +474,38 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tools() {
+    public function tools()
+    {
         return view('home.tools');
-    }   
+    }
 
     /**
      * UI for generating chapter slides
      *
      * @return \Illuminate\Http\Response
      */
-    public function toolAddSlides() {
+    public function toolAddSlides()
+    {
         //return a list of all the boys
-        $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
+        $boys = Boy::orderBy('first_name', 'ASC')->pluck('first_name', 'id');
 
         return view('home.toolAddSlides')
-            ->with('boys',$boys);
-    } 
+            ->with('boys', $boys);
+    }
 
     /**
      * UI for adding generated text
      *
      * @return \Illuminate\Http\Response
      */
-    public function toolAddGeneratedText() {
+    public function toolAddGeneratedText()
+    {
         //return a list of all the boys
-        $boys = Boy::orderBy('first_name','ASC')->pluck('first_name','id');
+        $boys = Boy::orderBy('first_name', 'ASC')->pluck('first_name', 'id');
 
         return view('home.toolAddGeneratedText')
-            ->with('boys',$boys);
-    }     
+            ->with('boys', $boys);
+    }
 
     /**
      *  Tools - Card Split
@@ -504,12 +513,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function toolCardSplit() {
+    public function toolCardSplit()
+    {
         ini_set('max_execution_time', 180); //3 minutes
         // grab all the info from cards
 
         $cards = Card::all();
-        foreach($cards as $card) {
+        foreach ($cards as $card) {
 
             // Figure out the type for type id
             $color = $card->color;
@@ -523,7 +533,6 @@ class HomeController extends Controller
                 // There shouldnt be any here but just in case
                 $type = 0;
             }
-
 
 
             // Make a new card stat
@@ -542,7 +551,7 @@ class HomeController extends Controller
             $s->da_max5 = $card->da_max5;
             $s->vo_max5 = $card->vo_max5;
             $s->pf_max5 = $card->pf_max5;
-            $s->gr_max5 = 0;    
+            $s->gr_max5 = 0;
             $s->u_dorifes_id = $card->u_dorifes_id;
             $s->u_dorifes_j = '';
             $s->u_dorifes_e = '';
@@ -555,7 +564,7 @@ class HomeController extends Controller
             $s->lesson_id = $card->lesson_id;
             $s->lesson_j = '';
             $s->lesson_e = '';
-            $s->save(); 
+            $s->save();
 
             // Create an entry for music cards if the card is a basic card
             if ($card->game_id == 2) {
@@ -574,21 +583,21 @@ class HomeController extends Controller
                 $s->da_max5 = 0;
                 $s->vo_max5 = 0;
                 $s->pf_max5 = 0;
-                $s->gr_max5 = 0;    
+                $s->gr_max5 = 0;
                 $s->u_dorifes_id = 0;
                 $s->u_dorifes_j = '';
-                $s->u_dorifes_e = '';                   
+                $s->u_dorifes_e = '';
                 $s->dorifes_id = 0;
                 $s->dorifes_j = '';
-                $s->dorifes_e = '';                
+                $s->dorifes_e = '';
                 $s->u_lesson_id = 0;
                 $s->u_lesson_j = '';
-                $s->u_lesson_e = '';                
+                $s->u_lesson_e = '';
                 $s->lesson_id = 0;
                 $s->lesson_j = '';
-                $s->lesson_e = '';                
-                $s->save();                   
-            }          
+                $s->lesson_e = '';
+                $s->save();
+            }
         }
     }
 
@@ -598,10 +607,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function toolCreateEventCards() {
+    public function toolCreateEventCards()
+    {
         //ok all the events
         $events = Event::all();
-        foreach($events as $event) {
+        foreach ($events as $event) {
             $ec = new EventCard;
             $ec->event_id = $event->id;
             $ec->card_id = $event->rank_5;
@@ -618,41 +628,41 @@ class HomeController extends Controller
             $ec->event_id = $event->id;
             $ec->card_id = $event->rank_3;
             $ec->type = 'Ranking';
-            $ec->save();      
-            
+            $ec->save();
+
             $ec = new EventCard;
             $ec->event_id = $event->id;
             $ec->card_id = $event->points_5;
             $ec->type = 'Points';
-            $ec->save();    
+            $ec->save();
 
             $ec = new EventCard;
             $ec->event_id = $event->id;
             $ec->card_id = $event->points_4;
             $ec->type = 'Points';
-            $ec->save();     
-            
+            $ec->save();
+
             $ec = new EventCard;
             $ec->event_id = $event->id;
             $ec->card_id = $event->points_3_da;
             $ec->type = 'Points';
-            $ec->save();  
+            $ec->save();
 
             $ec = new EventCard;
             $ec->event_id = $event->id;
             $ec->card_id = $event->points_3_vo;
             $ec->type = 'Points';
-            $ec->save();     
-            
+            $ec->save();
+
             $ec = new EventCard;
             $ec->event_id = $event->id;
             $ec->card_id = $event->points_3_pf;
             $ec->type = 'Points';
-            $ec->save();              
+            $ec->save();
         }
-        
-        return redirect('/home/tools/');      
-    } 
+
+        return redirect('/home/tools/');
+    }
 
     /**
      * Tools - Scraper
@@ -660,33 +670,34 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function scraper() {
+    public function scraper()
+    {
         //lets try just getting the images first
         $url = 'http://stars.happyelements.co.jp/app_help/gachas/149/index.html';
-        
+
         $all = file_get_contents($url);
 
-        $images = strstr($all,'</head>',TRUE);
+        $images = strstr($all, '</head>', TRUE);
 
-        $images = strstr($images,'img_names');
+        $images = strstr($images, 'img_names');
 
-        $images = strstr($images,'}',TRUE);
-        $images = strstr($images,"{");
-        $images = str_replace('{','',$images);
-       // 
-        $images = explode(',',$images);
+        $images = strstr($images, '}', TRUE);
+        $images = strstr($images, "{");
+        $images = str_replace('{', '', $images);
+        //
+        $images = explode(',', $images);
         array_pop($images);
 
-        foreach($images as $key => $image) {
-            $image = str_replace("'","",$image);
+        foreach ($images as $key => $image) {
+            $image = str_replace("'", "", $image);
             $image = trim($image);
-            $image = substr($image,3);
-            $image = trim($image,"'");
-            $images[$key] =  $image;
+            $image = substr($image, 3);
+            $image = trim($image, "'");
+            $images[$key] = $image;
         }
 
         //dd($images);
-            //http://stars.happyelements.co.jp/app_help/events/95/images/cd_tblrdosz_n.png
+        //http://stars.happyelements.co.jp/app_help/events/95/images/cd_tblrdosz_n.png
 
         //just need to get the da,vo,pf values
         $client = new Client();
@@ -695,21 +706,21 @@ class HomeController extends Controller
         $crawler = $client->request('GET', $url);
 
         //get the bannar image
-        $banner = $crawler->filter('strong.bannar img')->attr('src'); 
+        $banner = $crawler->filter('strong.bannar img')->attr('src');
 
-        $banner_image = str_replace('/index.html','',$url).substr($banner,1);
+        $banner_image = str_replace('/index.html', '', $url) . substr($banner, 1);
 
-       // dd($banner_image);
-        
+        // dd($banner_image);
+
 
         //get the icon images
-        $crawler->filter('div.thumb-nav a img')->each(function($icons) {
+        $crawler->filter('div.thumb-nav a img')->each(function ($icons) {
             $baseurl = 'http://stars.happyelements.co.jp/app_help/gachas/149';
 
             $image = $icons->attr('src');
-            $image = ltrim($image,'.');
-            print '<img src="'.$baseurl.$image.'">';
-        
+            $image = ltrim($image, '.');
+            print '<img src="' . $baseurl . $image . '">';
+
         });
 
         // Get the latest post in this category and display the titles
@@ -729,11 +740,11 @@ class HomeController extends Controller
             // print '<img src="http://stars.happyelements.co.jp/app_help/events/95/images/cd_'.$images[$imagecount].'_n.png">';
             // print '<img src="http://stars.happyelements.co.jp/app_help/events/95/images/cd_'.$images[$imagecount].'_e.png">';
 
-            $fulltitle = $node->filter('h4.head-name')->text();   
+            $fulltitle = $node->filter('h4.head-name')->text();
 
-            $pieces = explode(']',$fulltitle);
+            $pieces = explode(']', $fulltitle);
 
-            $title = str_replace('[','',$pieces[0]);
+            $title = str_replace('[', '', $pieces[0]);
             $character = $pieces[1];
 
             $da = $node->filter('div.ability-wrap dd:nth-child(2)')->text();
@@ -741,17 +752,17 @@ class HomeController extends Controller
             $pf = $node->filter('div.ability-wrap dd:nth-child(6)')->text();
 
             //remove comma
-            $da = str_replace(',','',$da);
-            $vo = str_replace(',','',$vo);
-            $pf = str_replace(',','',$pf);
+            $da = str_replace(',', '', $da);
+            $vo = str_replace(',', '', $vo);
+            $pf = str_replace(',', '', $pf);
 
             $live = $node->filter('dl.live > dd')->text();
-            $live = explode(':',$live);
+            $live = explode(':', $live);
             $live_name = $live[0];
             $live_skill = $live[1];
 
             $lesson = $node->filter('dl.lesson > dd')->text();
-            $lesson = explode(':',$lesson);
+            $lesson = explode(':', $lesson);
             $lesson_name = $lesson[0];
             $lesson_skill = $lesson[1];
 
@@ -765,43 +776,43 @@ class HomeController extends Controller
             $card['live_skill'] = $live_skill;
             $card['lesson_name'] = trim($lesson_name);
             $card['lesson_skill'] = trim($lesson_skill);
-            
-            $card = array_map('trim',$card);
-            
+
+            $card = array_map('trim', $card);
+
             // print '<pre>';
             // print_r($card);
             // print '</pre>';
 
             //find the skill ids for the skills
-            $skill = Skill::where('japanese_description','=',$card['live_skill'])->first();
+            $skill = Skill::where('japanese_description', '=', $card['live_skill'])->first();
             $card['live_skill_id'] = $skill->id;
-           
-            $skill = Skill::where('japanese_description','=',$card['lesson_skill'])->first();
-            $card['lesson_skill_id'] = $skill->id;      
+
+            $skill = Skill::where('japanese_description', '=', $card['lesson_skill'])->first();
+            $card['lesson_skill_id'] = $skill->id;
 
             //costumes
-            $costumes = $node->filter('li.itemList')->each(function($outfit){
+            $costumes = $node->filter('li.itemList')->each(function ($outfit) {
                 $outfits[] = $outfit->text();
 
                 return $outfits;
             });
 
             //flatten
-            foreach($costumes as $costume) {
+            foreach ($costumes as $costume) {
                 foreach ($costume as $morecostume) {
                     $outfits[] = $morecostume;
-                }   
+                }
             }
 
             //not every card has outfits
             if (isset($outfits)) {
-                foreach($outfits as $outfit) {
+                foreach ($outfits as $outfit) {
                     $card['outfits'][] = trim($outfit);
                 }
             }
 
             return $card;
-            
+
         });
         print '<hr>';
         // print '<pre>';
@@ -811,17 +822,17 @@ class HomeController extends Controller
         $baseurl = 'http://stars.happyelements.co.jp/app_help/gachas/149';
 
         //add in card images
-        foreach($cards as $key => $card) {
+        foreach ($cards as $key => $card) {
             //print $images[$key];
-            print '<img src="'.$baseurl.'/images/cd_'.$images[$key].'_n.png">';
-            print '<img src="'.$baseurl.'/images/cd_'.$images[$key].'_e.png">';
+            print '<img src="' . $baseurl . '/images/cd_' . $images[$key] . '_n.png">';
+            print '<img src="' . $baseurl . '/images/cd_' . $images[$key] . '_e.png">';
             print '<pre>';
             print_r($card);
             print '</pre>';
             print '<hr>';
         }
-        
-     
+
+
     }
 
 
@@ -830,7 +841,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function emailTest() {
+    public function emailTest()
+    {
 
         $email = env('MAIL_ADDRESS');
 
@@ -846,13 +858,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function eventData() {
+    public function eventData()
+    {
         //get the current event
-        $current_event = Event::where('active','=',1)->first();
+        $current_event = Event::where('active', '=', 1)->first();
 
         return view('home.eventData')
-            ->with('current_event',$current_event);
-    }  
+            ->with('current_event', $current_event);
+    }
 
 
     /**
@@ -860,7 +873,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addEventData(Request $request) {
+    public function addEventData(Request $request)
+    {
         $d = new Eventpoint;
 
         $d->event_id = $request->event_id;
@@ -881,9 +895,9 @@ class HomeController extends Controller
         $d->rank_7 = $request->rank_7;
         $d->tier_7 = $request->tier_7;
         $d->rank_8 = $request->rank_8;
-        $d->tier_8 = $request->tier_8;                                                        
+        $d->tier_8 = $request->tier_8;
         $d->rank_9 = $request->rank_9;
-        $d->tier_9 = $request->tier_9;   
+        $d->tier_9 = $request->tier_9;
         $d->rank_10 = $request->rank_10;
         $d->tier_10 = $request->tier_10;
         $d->rank_11 = $request->rank_11;
@@ -897,15 +911,15 @@ class HomeController extends Controller
         $d->rank_15 = 0;
         $d->tier_15 = 0;
         $d->rank_16 = 0;
-        $d->tier_16 = 0;     
+        $d->tier_16 = 0;
         $d->rank_17 = 0;
         $d->tier_17 = 0;
         $d->rank_18 = 0;
         $d->tier_18 = 0;
         $d->rank_19 = 0;
-        $d->tier_19 = 0;   
+        $d->tier_19 = 0;
         $d->rank_max = 300000;
-        $d->updated_by = Auth::user()->id;    
+        $d->updated_by = Auth::user()->id;
         //normalize to JST    
         date_default_timezone_set('Asia/Tokyo');
         $d->jst_created_at = date("Y-m-d H:i:s");
@@ -917,21 +931,20 @@ class HomeController extends Controller
         $difference = $start->diff($current);
         $days = $difference->d;
         // get the current time
-        $time = substr($d->jst_created_at,-8);
+        $time = substr($d->jst_created_at, -8);
         //account for first day being 0th
         $days = $days + 1;
         // deal with padding
         if ($days < 10) {
-            $days = '0'.$days;
+            $days = '0' . $days;
         }
-        $normalized_date = '2000-01-'.$days.' '.$time;
+        $normalized_date = '2000-01-' . $days . ' ' . $time;
         $d->normalized_date = $normalized_date;
         date_default_timezone_set('UTC');
         $d->save();
-        
-        return redirect('/home');      
-    }  
 
+        return redirect('/home');
+    }
 
 
     /**
@@ -939,12 +952,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addSlides(Request $request) {
+    public function addSlides(Request $request)
+    {
         $chapter_id = $request->input('chapter_id');
         $boys = $request->input('boys');
         $amount = $request->input('amount');
 
-        for ($i=1; $i <= $amount; $i++) { 
+        for ($i = 1; $i <= $amount; $i++) {
             //insert each of the slides
             $s = new Slide;
             $s->chapter_id = $chapter_id;
@@ -955,17 +969,17 @@ class HomeController extends Controller
 
         //add the boys to this chapter
         if (is_array($boys)) {
-            foreach($boys as $boy) {
+            foreach ($boys as $boy) {
                 $c = new Chapterboy;
                 $c->chapter_id = $chapter_id;
                 $c->boy_id = $boy;
                 $c->updated_by = Auth::user()->id;
                 $c->save();
-            }            
+            }
         }
 
-        
-        return redirect('/home/translations/');      
+
+        return redirect('/home/translations/');
     }
 
 
@@ -974,32 +988,34 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addGeneratedText(Request $request) {
+    public function addGeneratedText(Request $request)
+    {
         $chapter_id = $request->input('chapter_id');
         $text = $request->input('text_g');
 
         //need to parse $text into JSON
         $data = json_decode($text);
 
-        foreach($data as $slide) {
-            $c = Slide::where('chapter_id','=',$chapter_id)->where('slide','=',$slide->id)->first();
+        foreach ($data as $slide) {
+            $c = Slide::where('chapter_id', '=', $chapter_id)->where('slide', '=', $slide->id)->first();
             $c->text_g = $slide->english;
             $c->text_j = $slide->japanese;
             $c->save();
         }
 
-        
-        return redirect('/home/tools/');      
-    }   
+
+        return redirect('/home/tools/');
+    }
 
     /**
      * UI for editing CSS
      *
      * @return \Illuminate\Http\Response
      */
-    public function editCSS() {
+    public function editCSS()
+    {
         return view('home.editCSS');
-    }        
+    }
 
 
     /**
@@ -1007,14 +1023,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveCSS(Request $request) {
+    public function saveCSS(Request $request)
+    {
         //update the file
 
 
         file_put_contents("./css/boy.css", $request->contents) or die("can't open file");
 
-        echo json_encode(array('result'=>'saved'));
-    }  
+        echo json_encode(array('result' => 'saved'));
+    }
 
 
     /////emails
@@ -1024,13 +1041,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function messages() {
+    public function messages()
+    {
         //get all the messages
-        $messages = Message::where('status','=',0)->orderBy('created_at','desc')->get();
+        $messages = Message::where('status', '=', 0)->orderBy('created_at', 'desc')->get();
 
         return view('home.messages')
-        ->with('messages',$messages);
-    }  
+            ->with('messages', $messages);
+    }
 
 
     /**
@@ -1038,7 +1056,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function messageClear(Request $request) {
+    public function messageClear(Request $request)
+    {
         //clear the message
 
         $message = Message::find($request->message_id);
@@ -1048,7 +1067,7 @@ class HomeController extends Controller
         $message->save();
 
         return redirect('/home/messages/');
-    }      
+    }
 
 
     /**
@@ -1056,14 +1075,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function messageDelete(Request $request) {
+    public function messageDelete(Request $request)
+    {
         //clear the message
 
         $message = Message::find($request->message_id);
         $message->delete();
 
         return redirect('/home/messages/');
-    }  
+    }
 
     /////suggestions
 
@@ -1072,21 +1092,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function suggestions() {
+    public function suggestions()
+    {
         //get all the suggestions
-        $suggestions = Cardsuggestion::where('status','=',0)->get();
+        $suggestions = Cardsuggestion::where('status', '=', 0)->get();
 
 
         return view('home.suggestions')
-            ->with('suggestions',$suggestions);
-    }      
+            ->with('suggestions', $suggestions);
+    }
 
     /**
      * clear suggestions
      *
      * @return \Illuminate\Http\Response
      */
-    public function suggestionClear(Request $request) {
+    public function suggestionClear(Request $request)
+    {
         //clear the suggestion
 
         $suggestion = Cardsuggestion::find($request->suggestion_id);
@@ -1096,7 +1118,7 @@ class HomeController extends Controller
         $suggestion->save();
 
         return redirect('/home/suggestions/');
-    }  
+    }
 
 
     /////features
@@ -1106,13 +1128,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function features() {
+    public function features()
+    {
         //get all the messages
-        $features = Feature::where('status','=',0)->orderBy('created_at','desc')->get();
+        $features = Feature::where('status', '=', 0)->orderBy('created_at', 'desc')->get();
 
         return view('home.features')
-        ->with('features',$features);
-    }  
+            ->with('features', $features);
+    }
 
 
     /**
@@ -1120,7 +1143,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function featureApprove(Request $request) {
+    public function featureApprove(Request $request)
+    {
         //clear the message
 
         $message = Feature::find($request->feature_id);
@@ -1130,7 +1154,7 @@ class HomeController extends Controller
         $message->save();
 
         return redirect('/home/features');
-    }      
+    }
 
 
     /**
@@ -1138,14 +1162,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function featureDelete(Request $request) {
+    public function featureDelete(Request $request)
+    {
         //clear the feature
 
         $message = Feature::find($request->feature_id);
         $message->delete();
 
         return redirect('/home/features');
-    }  
+    }
 
 
 
@@ -1158,21 +1183,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function cardIssues() {
+    public function cardIssues()
+    {
         //get all the issues
-        $issues = Cardissue::where('status','=',0)->orderBy('created_at','desc')->get();
+        $issues = Cardissue::where('status', '=', 0)->orderBy('created_at', 'desc')->get();
 
 
         return view('home.cardissues')
-            ->with('issues',$issues);
-    }  
+            ->with('issues', $issues);
+    }
 
     /**
      * clear issues
      *
      * @return \Illuminate\Http\Response
      */
-    public function cardIssueClear(Request $request) {
+    public function cardIssueClear(Request $request)
+    {
         //clear the issue
 
         $issue = Cardissue::find($request->issue_id);
@@ -1182,8 +1209,7 @@ class HomeController extends Controller
         $issue->save();
 
         return redirect('/home/cardissues/');
-    } 
-
+    }
 
 
 }
