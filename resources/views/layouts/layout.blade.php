@@ -21,6 +21,7 @@
 
     <!-- Styles -->
     <link href="/css/bootstrapyeti.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-grid.min.css" rel="stylesheet">
     <link href="/css/enstars2.css" rel="stylesheet">
     <link href="/css/boy.css" rel="stylesheet">
 
