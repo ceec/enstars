@@ -198,7 +198,6 @@
 </footer>
 <!-- JavaScripts -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
