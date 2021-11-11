@@ -31,18 +31,20 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addDisplay() {
+    public function addDisplay()
+    {
 
-            return view('home.eventAdd');
-    } 
+        return view('home.eventAdd');
+    }
 
 
     /**
-     * Add event 
+     * Add event
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
         //need to update event
         $e = new Event;
         $e->active = 0;
@@ -63,21 +65,22 @@ class EventController extends Controller
         $e->points_3_vo = 0;
         $e->points_3_pf = 0;
         $e->notes = '';
-        $e->website = $request->input('website');              
-        $e->updated_by = Auth::id();  
+        $e->website = $request->input('website');
+        $e->updated_by = Auth::id();
         $e->save();
 
 
-        return redirect('/event/'.$e->url);          
-    } 
+        return redirect('/event/' . $e->url);
+    }
 
 
     /**
-     * Edit event 
+     * Edit event
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
         //need to update event
         $e = Event::find($request->input('event_id'));
         $e->active = $request->input('active');
@@ -93,20 +96,21 @@ class EventController extends Controller
         $e->points_4 = $request->input('points_4');
         $e->points_3_da = $request->input('points_3_da');
         $e->points_3_vo = $request->input('points_3_vo');
-        $e->points_3_pf = $request->input('points_3_pf');                                                
-        $e->updated_by = Auth::id();  
+        $e->points_3_pf = $request->input('points_3_pf');
+        $e->updated_by = Auth::id();
         $e->save();
 
 
-        return redirect('/event/'.$e->url);          
-    } 
+        return redirect('/event/' . $e->url);
+    }
 
     /**
      * Edit event cards
      *
      * @return \Illuminate\Http\Response
      */
-    public function editCard(Request $request) {
+    public function editCard(Request $request)
+    {
         //2019-03-31
         //New UI to add cards to events, for events that have 8+ cards
         //Going into eventcards instead of in the events table
@@ -120,7 +124,7 @@ class EventController extends Controller
         $ec->type = $request->input('type');
         $ec->save();
 
-        return redirect('/event/'.$e->url);          
-    } 
+        return redirect('/event/' . $e->url);
+    }
 
 }

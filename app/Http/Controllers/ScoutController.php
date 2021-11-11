@@ -30,18 +30,20 @@ class ScoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addDisplay() {
+    public function addDisplay()
+    {
 
-            return view('home.scoutAdd');
-    } 
+        return view('home.scoutAdd');
+    }
 
 
     /**
-     * Add scout 
+     * Add scout
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
         //need to update event
         $s = new Scout;
         $s->active = 0;
@@ -51,24 +53,25 @@ class ScoutController extends Controller
         $s->type_id = $request->input('type_id');
         $s->start = $request->input('start');
         $s->end = $request->input('end');
-        $s->text_j = $request->input('text_j');        
-        $s->text = $request->input('text');      
-        $s->website = $request->input('website'); 
-        $s->url = $request->input('url');                  
-        $s->updated_by = Auth::id();  
+        $s->text_j = $request->input('text_j');
+        $s->text = $request->input('text');
+        $s->website = $request->input('website');
+        $s->url = $request->input('url');
+        $s->updated_by = Auth::id();
         $s->save();
 
 
-        return redirect('/scout/'.$s->url);          
-    } 
+        return redirect('/scout/' . $s->url);
+    }
 
 
     /**
-     * Edit scout 
+     * Edit scout
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
         //need to update event
         $s = Scout::find($request->input('scout_id'));
         $s->active = $request->input('active');
@@ -77,12 +80,12 @@ class ScoutController extends Controller
         $s->text = $request->input('text');
         $s->start = $request->input('start');
         $s->end = $request->input('end');
-        $s->updated_by = Auth::id();  
+        $s->updated_by = Auth::id();
         $s->save();
 
 
-        return redirect('/scout/'.$s->url);          
-    } 
+        return redirect('/scout/' . $s->url);
+    }
 
 
 }

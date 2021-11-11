@@ -12,7 +12,7 @@ class Blog extends Model
      */
     public function author()
     {
-          return $this->belongsTo('App\User','updated_by');
-    }    
+        return $this->belongsTo('App\User', 'updated_by');
+    }
 
 }

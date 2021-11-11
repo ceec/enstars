@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Chapter extends Model {
-    
+class Chapter extends Model
+{
+
 
     /**
      * Get the story
@@ -13,6 +14,6 @@ class Chapter extends Model {
     public function story()
     {
         return $this->belongsTo('App\Story');
-    }     
+    }
 
 }

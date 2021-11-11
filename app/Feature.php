@@ -11,6 +11,6 @@ class Feature extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User','submitted_by');
+        return $this->belongsTo('App\User', 'submitted_by');
     }
 }

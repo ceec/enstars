@@ -34,19 +34,21 @@ class ScraperController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addDisplay() {
+    public function addDisplay()
+    {
 
-            return view('home.scraperAdd');
-    } 
+        return view('home.scraperAdd');
+    }
 
 
     /**
-     * Add scraper 
+     * Add scraper
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request) {
-      
+    public function add(Request $request)
+    {
+
         //scrape
         $url = $request->input('url');
         $type = $request->input('type');
@@ -59,21 +61,20 @@ class ScraperController extends Controller
 
         $fulldate = $crawler->filter('div.date')->text();
 
-        $dates = explode('~',$fulldate);
-        
-        foreach($dates as $key => $date) {
-          $date = trim($date);
-          $date = str_replace('月','-',$date);
-          $date = str_replace('日','',$date);
-          //$dates[$key] = str_replace('','-',$date);
-          $date = date('Y').'-'.$date;
+        $dates = explode('~', $fulldate);
 
-          $dates[$key] = $date;
+        foreach ($dates as $key => $date) {
+            $date = trim($date);
+            $date = str_replace('月', '-', $date);
+            $date = str_replace('日', '', $date);
+            //$dates[$key] = str_replace('','-',$date);
+            $date = date('Y') . '-' . $date;
+
+            $dates[$key] = $date;
         }
 
         $start_date = $dates[0];
         $end_date = $dates[1];
-
 
 
         $scraper['japanese_name'] = $japanese_name;
@@ -83,40 +84,41 @@ class ScraperController extends Controller
         $scraper['type'] = $type;
 
         return view('home.scraperAddStepTwo')
-          ->with('scraper',$scraper);   
-    } 
+            ->with('scraper', $scraper);
+    }
 
     /**
-     * Add scraper 
+     * Add scraper
      *
      * @return \Illuminate\Http\Response
      */
-    public function addStepTwo(Request $request) {
+    public function addStepTwo(Request $request)
+    {
 
         $type = $request->input('type');
         $url = $request->input('website');
 
         if ($type != 4) {
-          //they are scouts
-          $s = new Scout;
-          $s->active = 0;
-          $s->name_j = $request->input('name_j');
-          $s->name_e = '';
-          $s->name_s = '';
-          $s->type_id = $type;
-          $s->start = $request->input('start');
-          $s->end = $request->input('end');  
-          $s->text_j = '';
-          $s->text = '';
-          $s->website = $request->input('website'); 
-          $s->url = $request->input('url');                  
-          $s->updated_by = Auth::id();  
-          $s->save();
+            //they are scouts
+            $s = new Scout;
+            $s->active = 0;
+            $s->name_j = $request->input('name_j');
+            $s->name_e = '';
+            $s->name_s = '';
+            $s->type_id = $type;
+            $s->start = $request->input('start');
+            $s->end = $request->input('end');
+            $s->text_j = '';
+            $s->text = '';
+            $s->website = $request->input('website');
+            $s->url = $request->input('url');
+            $s->updated_by = Auth::id();
+            $s->save();
 
-          $id = $s->id;
+            $id = $s->id;
 
         } else {
-          //its an event      
+            //its an event
         }
 
         $scraper['id'] = $id;
@@ -127,30 +129,30 @@ class ScraperController extends Controller
         $crawler = $client->request('GET', $url);
 
         //grab the icon
-        $banner = $crawler->filter('strong.bannar img')->attr('src'); 
-        $scraper['banner_image'] = str_replace('/index.html','',$url).substr($banner,1);
+        $banner = $crawler->filter('strong.bannar img')->attr('src');
+        $scraper['banner_image'] = str_replace('/index.html', '', $url) . substr($banner, 1);
 
         //now to grab all the cards
 
         //get the small images
-        $scraper['small_images'] = $crawler->filter('div.thumb-nav a img')->each(function($icons) {
+        $scraper['small_images'] = $crawler->filter('div.thumb-nav a img')->each(function ($icons) {
             $baseurl = 'http://stars.happyelements.co.jp/app_help/gachas/144';
 
             $image = $icons->attr('src');
-            $image = ltrim($image,'.');
+            $image = ltrim($image, '.');
             //print '<img src="'.$baseurl.$image.'">';
-            return '<img src="'.$baseurl.$image.'">';
-        
+            return '<img src="' . $baseurl . $image . '">';
+
         });
 
         //get all the card info
-       // Get the latest post in this category and display the titles
+        // Get the latest post in this category and display the titles
         $scraper['cards'] = $crawler->filter('dl.cardDetail')->each(function ($node) {
-            $fulltitle = $node->filter('h4.head-name')->text();   
+            $fulltitle = $node->filter('h4.head-name')->text();
 
-            $pieces = explode(']',$fulltitle);
+            $pieces = explode(']', $fulltitle);
 
-            $title = str_replace('[','',$pieces[0]);
+            $title = str_replace('[', '', $pieces[0]);
             $character = $pieces[1];
 
             $da = $node->filter('div.ability-wrap dd:nth-child(2)')->text();
@@ -158,17 +160,17 @@ class ScraperController extends Controller
             $pf = $node->filter('div.ability-wrap dd:nth-child(6)')->text();
 
             //remove comma
-            $da = str_replace(',','',$da);
-            $vo = str_replace(',','',$vo);
-            $pf = str_replace(',','',$pf);
+            $da = str_replace(',', '', $da);
+            $vo = str_replace(',', '', $vo);
+            $pf = str_replace(',', '', $pf);
 
             $live = $node->filter('dl.live > dd')->text();
-            $live = explode(':',$live);
+            $live = explode(':', $live);
             $live_name = $live[0];
             $live_skill = $live[1];
 
             $lesson = $node->filter('dl.lesson > dd')->text();
-            $lesson = explode(':',$lesson);
+            $lesson = explode(':', $lesson);
             $lesson_name = $lesson[0];
             $lesson_skill = $lesson[1];
 
@@ -182,156 +184,156 @@ class ScraperController extends Controller
             $card['live_skill'] = $live_skill;
             $card['lesson_name'] = trim($lesson_name);
             $card['lesson_skill'] = trim($lesson_skill);
-            
-            $card = array_map('trim',$card);
+
+            $card = array_map('trim', $card);
 
             //find the skill ids for the skills
-            $skill = Skill::where('japanese_description','=',$card['live_skill'])->first();
+            $skill = Skill::where('japanese_description', '=', $card['live_skill'])->first();
             $card['live_skill_id'] = $skill->id;
-           
-            $skill = Skill::where('japanese_description','=',$card['lesson_skill'])->first();
-            $card['lesson_skill_id'] = $skill->id;      
+
+            $skill = Skill::where('japanese_description', '=', $card['lesson_skill'])->first();
+            $card['lesson_skill_id'] = $skill->id;
 
             //get the boy id
-            $japanese_name = str_replace(' ','',$character);
-            $boy = Boy::where('japanese_name','=',$japanese_name)->first();
+            $japanese_name = str_replace(' ', '', $character);
+            $boy = Boy::where('japanese_name', '=', $japanese_name)->first();
             $card['boy_id'] = $boy->id;
 
             //costumes
-            $costumes = $node->filter('li.itemList')->each(function($outfit){
+            $costumes = $node->filter('li.itemList')->each(function ($outfit) {
                 $outfits[] = $outfit->text();
 
                 return $outfits;
             });
 
             //flatten
-            foreach($costumes as $costume) {
+            foreach ($costumes as $costume) {
                 foreach ($costume as $morecostume) {
                     $outfits[] = $morecostume;
-                }   
+                }
             }
 
             //not every card has outfits
             if (isset($outfits)) {
-                foreach($outfits as $outfit) {
+                foreach ($outfits as $outfit) {
                     $card['outfits'][] = trim($outfit);
                 }
             }
 
             return $card;
-        });        
-
+        });
 
 
         //get the images from the raw JS
         $all = file_get_contents($url);
 
-        $images = strstr($all,'</head>',TRUE);
+        $images = strstr($all, '</head>', TRUE);
 
-        $images = strstr($images,'img_names');
+        $images = strstr($images, 'img_names');
 
-        $images = strstr($images,'}',TRUE);
-        $images = strstr($images,"{");
-        $images = str_replace('{','',$images);
-       // 
-        $images = explode(',',$images);
+        $images = strstr($images, '}', TRUE);
+        $images = strstr($images, "{");
+        $images = str_replace('{', '', $images);
+        //
+        $images = explode(',', $images);
         array_pop($images);
 
-        foreach($images as $key => $image) {
-            $image = str_replace("'","",$image);
+        foreach ($images as $key => $image) {
+            $image = str_replace("'", "", $image);
             $image = trim($image);
-            $image = substr($image,3);
-            $image = trim($image,"'");
-            $images[$key] =  $image;
-        }        
+            $image = substr($image, 3);
+            $image = trim($image, "'");
+            $images[$key] = $image;
+        }
 
 
         //add in card images
-        foreach($scraper['cards'] as $key => $card) {
+        foreach ($scraper['cards'] as $key => $card) {
             //print $images[$key];
-            $scraper['cards'][$key]['unbloomed'] = 'http://stars.happyelements.co.jp/app_help/gachas/144/images/cd_'.$images[$key].'_n.png';
-            $scraper['cards'][$key]['bloomed'] = 'http://stars.happyelements.co.jp/app_help/gachas/144/images/cd_'.$images[$key].'_e.png';
+            $scraper['cards'][$key]['unbloomed'] = 'http://stars.happyelements.co.jp/app_help/gachas/144/images/cd_' . $images[$key] . '_n.png';
+            $scraper['cards'][$key]['bloomed'] = 'http://stars.happyelements.co.jp/app_help/gachas/144/images/cd_' . $images[$key] . '_e.png';
 
             //lets insert into the temporary card table
             $s = new Cardsuggestion;
             $s->status = 0;
             $s->acard_id = 0;
             $s->boy_id = $card['boy_id'];
-          
-          // need to get the next card id and place
-          $last_card = Card::where('boy_id','=',$card['boy_id'])->orderBy('card_id','desc')->first();
-          $card_id = $last_card->card_id + 1;
 
-          $s->card_id = $card_id;
-          $s->place = $card_id;
+            // need to get the next card id and place
+            $last_card = Card::where('boy_id', '=', $card['boy_id'])->orderBy('card_id', 'desc')->first();
+            $card_id = $last_card->card_id + 1;
 
-          //is there a way to get stars???
-          $s->stars = 3;
+            $s->card_id = $card_id;
+            $s->place = $card_id;
 
-          //is there a way to get color??
-          //two ways either what stat is highest, or what type of live skill
-          $colors['red'] = $card['da'];
-          $colors['blue'] = $card['vo'];
-          $colors['yellow'] = $card['pf'];
-          $color = array_keys($colors, max($colors));
-          $s->color = $color[0];
+            //is there a way to get stars???
+            $s->stars = 3;
 
-          $s->name_j = $card['title'];
-          $s->name_e = '';
-          $s->name_s = '';
+            //is there a way to get color??
+            //two ways either what stat is highest, or what type of live skill
+            $colors['red'] = $card['da'];
+            $colors['blue'] = $card['vo'];
+            $colors['yellow'] = $card['pf'];
+            $color = array_keys($colors, max($colors));
+            $s->color = $color[0];
 
-          $s->da = 0;
-          $s->vo = 0;
-          $s->pf = 0;
-          $s->da_max = $card['da'];
-          $s->vo_max = $card['vo'];
-          $s->pf_max = $card['pf'];   
-          $s->da_max5 = 0;
-          $s->vo_max5 = 0;
-          $s->pf_max5 = 0;    
+            $s->name_j = $card['title'];
+            $s->name_e = '';
+            $s->name_s = '';
 
-          //skills
-          $s->dorifes_j = $card['live_name'];
-          $s->dorifes_e = '';
-          $s->dorifes_id = $card['live_skill_id'];
+            $s->da = 0;
+            $s->vo = 0;
+            $s->pf = 0;
+            $s->da_max = $card['da'];
+            $s->vo_max = $card['vo'];
+            $s->pf_max = $card['pf'];
+            $s->da_max5 = 0;
+            $s->vo_max5 = 0;
+            $s->pf_max5 = 0;
 
-          $s->lesson_j = $card['lesson_name'];
-          $s->lesson_e = '';
-          $s->lesson_id = $card['lesson_skill_id'];
+            //skills
+            $s->dorifes_j = $card['live_name'];
+            $s->dorifes_e = '';
+            $s->dorifes_id = $card['live_skill_id'];
 
-          //unleveled skills
-          $s->u_dorifes_j = '';
-          $s->u_dorifes_e = '';  
-          $s->u_lesson_j = '';
-          $s->u_lesson_e = '';                        
-          $s->u_dorifes_id = 74;
-          $s->u_lesson_id = 75;      
+            $s->lesson_j = $card['lesson_name'];
+            $s->lesson_e = '';
+            $s->lesson_id = $card['lesson_skill_id'];
 
-          $s->scout_id = $scraper['id'];
-          $s->event_id = 0;
-          //$s->collaboration_id = 0;
+            //unleveled skills
+            $s->u_dorifes_j = '';
+            $s->u_dorifes_e = '';
+            $s->u_lesson_j = '';
+            $s->u_lesson_e = '';
+            $s->u_dorifes_id = 74;
+            $s->u_lesson_id = 75;
 
-          $s->sentence_j = '';
-          $s->sentence_e = '';        
-          $s->stories = 0;
-          $s->suggested_name = '';
-          $s->suggested_link = '';
-          $s->updated_by = 1;
-          $s->save();            
+            $s->scout_id = $scraper['id'];
+            $s->event_id = 0;
+            //$s->collaboration_id = 0;
 
-        }        
+            $s->sentence_j = '';
+            $s->sentence_e = '';
+            $s->stories = 0;
+            $s->suggested_name = '';
+            $s->suggested_link = '';
+            $s->updated_by = 1;
+            $s->save();
+
+        }
 
         return view('home.scraperAddStepThree')
-          ->with('scraper',$scraper);         
-    } 
+            ->with('scraper', $scraper);
+    }
 
 
     /**
-     * Edit event 
+     * Edit event
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
         //need to update event
         $e = Event::find($request->input('event_id'));
         $e->active = $request->input('active');
@@ -347,20 +349,21 @@ class ScraperController extends Controller
         $e->points_4 = $request->input('points_4');
         $e->points_3_da = $request->input('points_3_da');
         $e->points_3_vo = $request->input('points_3_vo');
-        $e->points_3_pf = $request->input('points_3_pf');                                                
-        $e->updated_by = Auth::id();  
+        $e->points_3_pf = $request->input('points_3_pf');
+        $e->updated_by = Auth::id();
         $e->save();
 
 
-        return redirect('/event/'.$e->url);          
-    } 
+        return redirect('/event/' . $e->url);
+    }
 
     /**
      * Edit event cards
      *
      * @return \Illuminate\Http\Response
      */
-    public function editCard(Request $request) {
+    public function editCard(Request $request)
+    {
         //2019-03-31
         //New UI to add cards to events, for events that have 8+ cards
         //Going into eventcards instead of in the events table
@@ -374,7 +377,7 @@ class ScraperController extends Controller
         $ec->type = $request->input('type');
         $ec->save();
 
-        return redirect('/event/'.$e->url);          
-    } 
+        return redirect('/event/' . $e->url);
+    }
 
 }

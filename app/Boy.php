@@ -20,7 +20,7 @@ class Boy extends Model
      */
     public function fiveStars()
     {
-        return $this->hasMany('App\Card')->where('cards.stars','=','5');
+        return $this->hasMany('App\Card')->where('cards.stars', '=', '5');
     }
 
 
@@ -48,7 +48,7 @@ class Boy extends Model
     public function club()
     {
         return $this->belongsTo('App\Club');
-    }    
+    }
 
-   
+
 }

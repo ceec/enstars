@@ -22,7 +22,7 @@ class Contact extends Mailable
         $this->input = $request->all();
 
         if (empty($this->input['email'])) {
-             $this->input['email'] = 'admin@site.ru';
+            $this->input['email'] = 'admin@site.ru';
         }
     }
 
@@ -35,14 +35,14 @@ class Contact extends Mailable
     {
 
 
-    $address = $this->input['email'];
-    $name = $this->input['name'];
-    $subject = "enstars.info - New Message from ".$this->input['name'];
+        $address = $this->input['email'];
+        $name = $this->input['name'];
+        $subject = "enstars.info - New Message from " . $this->input['name'];
 
-    return $this->view('mail.contact')
-                ->from($address, $name)
-                ->replyTo($address, $name)
-                ->subject($subject);
+        return $this->view('mail.contact')
+            ->from($address, $name)
+            ->replyTo($address, $name)
+            ->subject($subject);
 
     }
 }

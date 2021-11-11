@@ -14,13 +14,9 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%;
+    /* Set the fixed height of the footer here */
     height: 100px;
     background-color: #f5f5f5;
-    padding-top: 30px;
-}
-
-.fa-btn {
-    margin-right: 6px;
 }
 
 
@@ -36,6 +32,7 @@ body {
 }
 
 .panel-info > .panel-heading {
+    /* blue */
     background-color: #55d1da;
     border-color: #55d1da;
 }

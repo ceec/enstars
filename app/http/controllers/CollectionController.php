@@ -30,18 +30,20 @@ class CollectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addDisplay() {
+    public function addDisplay()
+    {
 
-            return view('home.collectionAdd');
-    } 
+        return view('home.collectionAdd');
+    }
 
 
     /**
-     * Add collection 
+     * Add collection
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
         //need to update event
         $s = new Collection;
         $s->active = 0;
@@ -50,24 +52,25 @@ class CollectionController extends Controller
         $s->name_s = $request->input('name_s');
         $s->start = $request->input('start');
         $s->end = $request->input('end');
-        $s->text_j = $request->input('text_j');        
-        $s->text = $request->input('text');      
-        $s->website = $request->input('website'); 
-        $s->url = $request->input('url');                  
-        $s->updated_by = Auth::id();  
+        $s->text_j = $request->input('text_j');
+        $s->text = $request->input('text');
+        $s->website = $request->input('website');
+        $s->url = $request->input('url');
+        $s->updated_by = Auth::id();
         $s->save();
 
 
-        return redirect('/collection/'.$s->url);          
-    } 
+        return redirect('/collection/' . $s->url);
+    }
 
 
     /**
-     * Edit collection 
+     * Edit collection
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
         //need to update event
         $s = Collection::find($request->input('collection_id'));
         $s->active = $request->input('active');
@@ -76,12 +79,12 @@ class CollectionController extends Controller
         $s->text = $request->input('text');
         $s->start = $request->input('start');
         $s->end = $request->input('end');
-        $s->updated_by = Auth::id();  
+        $s->updated_by = Auth::id();
         $s->save();
 
 
-        return redirect('/collection/'.$s->url);          
-    } 
+        return redirect('/collection/' . $s->url);
+    }
 
 
 }

@@ -16,11 +16,7 @@
 
     <!-- Scripts -->
 
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
+    <script> window.Laravel = <?php echo json_encode([ 'csrfToken' => csrf_token(), ]); ?> </script>
     <script src="/js/jquery-3.1.1.min.js"></script>
 </head>
 <body>

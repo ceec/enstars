@@ -34,9 +34,7 @@
                         {{ $card->display() }}
                     @endforeach
                 </div>
-
             </div>
-
         </div>
     </div>
 @endsection

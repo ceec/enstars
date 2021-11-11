@@ -18,14 +18,15 @@ class MailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function contactSend(Request $request) {
+    public function contactSend(Request $request)
+    {
 
-        
+
         if ($request->enstars == '') {
 
             //save who submitted it
             if (!Auth::guest()) {
-                $submitted_by =  Auth::id();  
+                $submitted_by = Auth::id();
             } else {
                 $submitted_by = 0;
             }
@@ -37,16 +38,15 @@ class MailController extends Controller
             $m->message = $request->message;
             $m->submitted_by = $submitted_by;
             $m->updated_by = 0;
-            $m->save();  
+            $m->save();
 
             //Mail::to('info@enstars.info')->send(new Contact($request));
-    
+
         }
 
 
-
         return view('pages.contactThankYou');
-      }
+    }
 
 
 }

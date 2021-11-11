@@ -11,6 +11,6 @@ class Scoutcard extends Model
      */
     public function cards()
     {
-        return $this->hasMany('App\Card','scoutcards');
+        return $this->hasMany('App\Card', 'scoutcards');
     }
 }

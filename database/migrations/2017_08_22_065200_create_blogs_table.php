@@ -17,7 +17,7 @@ class CreateBlogsTable extends Migration
             $table->increments('id');
             $table->integer('active');
             $table->string('title');
-            $table->string('type',30);
+            $table->string('type', 30);
             $table->text('blurb');
             $table->text('content');
             $table->string('image');

@@ -16,10 +16,10 @@ class CreateCardroadsTable extends Migration
         Schema::create('cardroads', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('card_id');
-            $table->string('parent',11);
-            $table->string('node',11);
-            $table->string('type',11);
-            $table->string('color',20);                        
+            $table->string('parent', 11);
+            $table->string('node', 11);
+            $table->string('type', 11);
+            $table->string('color', 20);
             $table->integer('points');
             $table->integer('small');
             $table->integer('medium');
@@ -39,6 +39,6 @@ class CreateCardroadsTable extends Migration
      */
     public function down()
     {
-         Schema::drop('cardroads');
+        Schema::drop('cardroads');
     }
 }

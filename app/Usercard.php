@@ -20,16 +20,14 @@ class Usercard extends Model
      */
     public function cardFiveStars()
     {
-    	//WHY IS THIS SO HARD
-    	//$test = $this->card;
+        //WHY IS THIS SO HARD
+        //$test = $this->card;
 
-    	return 'test worked';
+        return 'test worked';
 
 
         //return $this->belongsTo('App\Card');
     }
-
-
 
 
 }

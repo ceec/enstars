@@ -77,7 +77,3 @@ $('body').on('click', '.remove-card', function () {
         }
     });
 });
-
-
-
-
