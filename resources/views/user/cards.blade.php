@@ -29,11 +29,9 @@
                 <h3>3 Stars
                     <small> - {{count($threestarcards)}} cards</small>
                 </h3>
-                <div style="display: flex;flex-wrap: wrap">
-                    @foreach($threestarcards as $card)
-                        {{ $card->display() }}
-                    @endforeach
-                </div>
+                <!-- commenthing this out until we can figure out a better way to display lots of 3 stars -->
+                <!--<div style="display: flex;flex-wrap: wrap">
+                </div>-->
             </div>
         </div>
     </div>
