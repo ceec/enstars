@@ -28,9 +28,6 @@ Route::get('/data/idol/{boy_id}', 'DisplayController@idolData');
 //all of a boys cards
 Route::get('/idol/{boy_id}/all', 'DisplayController@idolAll');
 
-//Cheslea page
-Route::get('/chelsea', 'DisplayController@chelsea');
-
 //specific card
 Route::get('/card/{card_id}/{game}', 'DisplayController@card');
 Route::get('/card/{card_id}', 'DisplayController@card');
