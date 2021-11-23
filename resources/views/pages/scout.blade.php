@@ -15,19 +15,9 @@
                 <p>{!! $scout->text !!}</p>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
-                            <?php $x = 1; ?>
+                        <div style="display: flex;flex-wrap: wrap">
                             @foreach($cards as $card)
                                 {{ $card->display() }}
-                                <?php
-                                if ($x % 4 == 0) {
-                                ?>
-                        </div>
-                        <div class="row">
-                            <?php
-                            }
-                            $x++;
-                            ?>
                             @endforeach
                         </div>
                     </div>
