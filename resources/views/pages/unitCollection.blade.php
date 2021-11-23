@@ -9,34 +9,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-
-                <h1>{{$collection->name_e}} <small>{{date('F j, Y H:i',strtotime($collection->start))}}
-                        - {{date('F j, Y H:i',strtotime($collection->end))}}</small></h1>
+                <h1>{{$collection->name_e}}
+                    <small> {{date('F j, Y H:i',strtotime($collection->start))}}
+                        - {{date('F j, Y H:i',strtotime($collection->end))}}</small>
+                </h1>
                 <p>{!! $collection->text !!}</p>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
-                            <?php $x = 1; ?>
+                        <div style="display: flex;flex-wrap: wrap">
                             @foreach($cards as $card)
                                 {{ $card->display() }}
-                                <?php
-                                if ($x % 4 == 0) {
-                                ?>
-                        </div>
-                        <div class="row">
-                            <?php
-                            }
-                            $x++;
-                            ?>
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <p><a href="{{$collection->website}}">collection Website</a></p>
-                <div class="row">
-                    <div class="col-md-4">
-                    </div>
-                </div>
+                <p><a href="{{$collection->website}}">Collection Website</a></p>
             </div>
         </div>
 

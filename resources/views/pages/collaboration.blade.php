@@ -9,34 +9,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-
-                <h1>{{$collaboration->name_e}} <small>{{date('F j, Y H:i',strtotime($collaboration->start))}}
-                        - {{date('F j, Y H:i',strtotime($collaboration->end))}}</small></h1>
+                <h1>{{$collaboration->name_e}}
+                    <small> {{date('F j, Y H:i',strtotime($collaboration->start))}}
+                        - {{date('F j, Y H:i',strtotime($collaboration->end))}}</small>
+                </h1>
                 <p>{!! $collaboration->text !!}</p>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
-                            <?php $x = 1; ?>
+                        <div style="display: flex;flex-wrap: wrap;">
                             @foreach($cards as $card)
                                 {{ $card->display() }}
-                                <?php
-                                if ($x % 4 == 0) {
-                                ?>
-                        </div>
-                        <div class="row">
-                            <?php
-                            }
-                            $x++;
-                            ?>
                             @endforeach
                         </div>
                     </div>
                 </div>
                 <p><a href="{{$collaboration->website}}">Collaboration Website</a></p>
-                <div class="row">
-                    <div class="col-md-4">
-                    </div>
-                </div>
             </div>
         </div>
 

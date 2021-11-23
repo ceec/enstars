@@ -10,6 +10,7 @@
         @section('title')
         @show
     </title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
@@ -18,32 +19,31 @@
     <link href="https://fonts.googleapis.com/css?family=Loved+by+the+King" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
 
-
     <!-- Styles -->
     <link href="/css/bootstrapyeti.min.css" rel="stylesheet">
     <link href="/css/bootstrap-grid.min.css" rel="stylesheet">
-    <link href="/css/enstars2.css" rel="stylesheet">
+    <link href="/css/enstars3.css" rel="stylesheet">
     <link href="/css/boy.css" rel="stylesheet">
 
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-
+    <!-- JS -->
     <script src="/js/jquery-2.2.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    {{--    <script>--}}
+    {{--      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){--}}
+    {{--      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),--}}
+    {{--      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)--}}
+    {{--      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');--}}
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
+    {{--      ga('create', 'UA-84361146-1', 'auto');--}}
+    {{--      ga('send', 'pageview');--}}
 
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    {{--    </script>--}}
 </head>
 <body id="app-layout">
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-
             <!-- Collapsed Hamburger -->
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#app-navbar-collapse">
@@ -122,11 +122,9 @@
                     </ul>
                 </li>
                 <!--<li><a href="/store">Store</a></li>-->
-
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
-
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -142,10 +140,9 @@
                             <li>
                                 <a href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                  document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
-
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                       style="display: none;">
                                     {{ csrf_field() }}
@@ -158,64 +155,47 @@
         </div>
     </div>
 </nav>
-
-@yield('content')
+<main>
+    @yield('content')
+</main>
 <footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <br>
-                Images and Characters From <a href="http://stars.happyelements.co.jp/">あんさんぶるスターズ！</a>
-            </div>
-            <div class="col-md-3">
-                <br>
-                <ul class="list-inline text-center">
-                <!--<li>
-              <a href="{{ url('rss') }}" data-toggle="tooltip"
-                 title="RSS feed">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>-->
-                    <li>
-                        <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
-                           title="My Twitter Page">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <br>
-                <a class="navbar-right" href="/contact">Contact Us</a>
-            </div>
+    <div style="display:flex;align-items:center;">
+        <div class="col-md-4">
+            Images and Characters From <a href="http://stars.happyelements.co.jp/">あんさんぶるスターズ！</a>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
+               title="My Twitter Page">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+        <!-- <ul class="list-inline text-center">
+              <li>
+                <a href="{{ url('rss') }}" data-toggle="tooltip"
+                   title="RSS feed">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
+                   title="My Twitter Page">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul> -->
+        </div>
+        <div class="col-md-4 text-right">
+            <a href="/contact">Contact Us</a>
         </div>
     </div>
 </footer>
-<!-- JavaScripts -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-84361146-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
 </html>

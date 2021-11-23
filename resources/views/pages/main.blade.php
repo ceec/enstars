@@ -16,10 +16,15 @@
                 -->
                 @foreach ($current_event as $event)
                     @if($event->game_id == 2)
-                        <h4>{{$event->name_e}}</h4>
-                        <a href="/event/{{$event->url}}"><img class="img-responsive"
-                                                              src="/images/events/{{$event->id}}.png"
-                                                              alt="{{$event->name_e}}"></a><br>
+
+                        <a href="/event/{{$event->url}}">
+                            <img class="img-responsive"
+                                 src="/images/events/{{$event->id}}.png"
+                                 alt="{{$event->name_e}}">
+                            <h4>{{$event->name_e}}</h4>
+                        </a>
+
+                        <br>
                     @endif
                     <?php
                     // This date is in JST but intrepreted in local? MST?
@@ -139,20 +144,22 @@
             <div class="col-md-4">
                 <h3>Current Scout</h3>
                 @foreach ($current_scout as $scout)
-                    <h4>{{$scout->name_e}}</h4>
-                    <a href="/scout/{{$scout->url}}"><img class="img-responsive" src="/images/scouts/{{$scout->id}}.png"
-                                                          alt="{{$scout->name_e}}"></a><br>
+                    <a href="/scout/{{$scout->url}}">
+                        <img class="img-responsive" src="/images/scouts/{{$scout->id}}.png"
+                             alt="{{$scout->name_e}}">
+                        <h4>{{$scout->name_e}}</h4>
+                    </a>
+                    <br>
                 @endforeach
             </div>
             <div class="col-md-4">
                 @if (Auth::guest())
-                    <div class="">
-                        <h4>Want a way to track all your cards?<h4><a href="/register">Create an account!</a>
-                    </div>
+                    <h4>Want a way to track all your cards?</h4>
+                    <a href="/register">Create an account!</a>
                 @endif
-                <h3>News 2020-04-30</h3>
-                <p><a href="https://enstars.info/news/missing-card-images">Help Needed Collecting Bloomed Card
-                        Images</a></p>
+                <h3>News</h3>
+                <a href="https://enstars.info/news/missing-card-images">Help Needed Collecting Card Images</a>
+                <p>Website is undergoing updates! If you see something funky, <a href="/contact">please let us know!</a></p>
                 <h3>Recently Updated</h3>
                 @foreach($latest as $item)
                     @if($item['type'] == 'releasenote')
@@ -161,7 +168,6 @@
                         <a href="/{{$item['type']}}/{{$item['id']}}">{{$item['title']}}</a><br>
                     @endif
                 @endforeach
-
             </div>
         </div>
             <div class="row">
@@ -173,10 +179,11 @@
                     $url = strtolower($boy->first_name);
                     ?>
 
-                    <a class="boys" href="/idol/{{$url}}"><img class="img-responsive"
-                                                               src="/images/boys/{{$boy->id}}.png"
-                                                               title="{{$boy->first_name}} {{$boy->last_name}}"
-                                                               alt="{{$boy->first_name}} {{$boy->last_name}}"></a>
+                    <a class="boys" href="/idol/{{$url}}">
+                        <img src="/images/boys/{{$boy->id}}.png"
+                             title="{{$boy->first_name}} {{$boy->last_name}}"
+                             alt="{{$boy->first_name}} {{$boy->last_name}}">
+                    </a>
                 @endforeach
                 <br><br>
                 @foreach($yume_teachers as $boy)
@@ -184,11 +191,7 @@
                     //name pretty for url
                     $url = strtolower($boy->first_name);
                     ?>
-
-                    <a class="boys" href="/idol/{{$url}}"><img class="img-responsive"
-                                                               src="/images/boys/{{$boy->id}}.png"
-                                                               title="{{$boy->first_name}} {{$boy->last_name}}"
-                                                               alt="{{$boy->first_name}} {{$boy->last_name}}"></a>
+                    <a class="boys" href="/idol/{{$url}}"><img class="img-responsive" src="/images/boys/{{$boy->id}}.png" title="{{$boy->first_name}} {{$boy->last_name}}" alt="{{$boy->first_name}} {{$boy->last_name}}"></a>
                 @endforeach
                     <br><br>
                 <h3>Others</h3>
@@ -197,7 +200,6 @@
                     //name pretty for url
                     $url = strtolower($boy->first_name);
                     ?>
-
                     <a class="boys" href="/idol/{{$url}}"><img class="img-responsive"
                                                                src="/images/boys/{{$boy->id}}.png"
                                                                title="{{$boy->first_name}} {{$boy->last_name}}"
@@ -205,12 +207,10 @@
                 @endforeach
             </div>
             <div class="col-md-4">
-                <div class="col-md-4">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdA35Es78EmefTeX_ue_Dp8x64BMSdTafVyEBkooQaYV0jg1g/viewform?embedded=true"
-                                width="390" height="650" frameborder="0" marginheight="0" marginwidth="0">Loading…
-                     </iframe>
-                </div>
-            </div>     
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdA35Es78EmefTeX_ue_Dp8x64BMSdTafVyEBkooQaYV0jg1g/viewform?embedded=true"
+                        width="390" height="650" frameborder="0" marginheight="0" marginwidth="0">Loading…
+                </iframe>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-4">

@@ -14,19 +14,9 @@
                 <p>{!! $event->text !!}</p>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
-                            <?php $x = 1; ?>
+                        <div style="display: flex; flex-wrap: wrap;">
                             @foreach($cards as $card)
                                 {{ $card->display() }}
-                                <?php
-                                if ($x % 4 == 0) {
-                                ?>
-                        </div>
-                        <div class="row">
-                            <?php
-                            }
-                            $x++;
-                            ?>
                             @endforeach
                         </div>
                         <p><a href="{{$event->website}}">Event Website</a></p>
@@ -70,15 +60,14 @@
                                 @endif
                             </div>
                             <div class="col-md-3">
-                            @if ($minievents != '')
-                                <!-- <h3>Mini Events</h3>-->
+                                @if ($minievents != "[]")
+                                    <h3>Mini Talk</h3>
                                     @foreach ($minievents as $event)
                                         @if ($event->complete == 1)
                                             <a href="/minievent/{{$event->id}}">{{$event->name_e}}</a><br>
                                         @else
                                             {{$event->name_e}}<br>
                                         @endif
-
                                     @endforeach
                                 @endif
                             </div>
@@ -112,21 +101,33 @@
                                                         @if ($rewards[$i-1]['5_star'] > 0)
                                                             @foreach($cards as $card)
                                                                 @if ($card->id == $event->rank_5)
-                                                                    {{ $card->display('mini','x'.$rewards[$i-1]['5_star']) }}
+                                                                    <a href="/card/{{ $card->id }}">
+                                                                        <img style="width:128px;height:auto;"
+                                                                             src="/images/cards/{{ $card->boy_id }}_{{ $card->card_id }}.png">
+                                                                    </a>
+                                                                    {{ 'x'.$rewards[$i-1]['5_star'] }}
                                                                 @endif
                                                             @endforeach
                                                         @endif
                                                         @if ($rewards[$i-1]['4_star'] > 0)
                                                             @foreach($cards as $card)
                                                                 @if ($card->id == $event->rank_4)
-                                                                    {{ $card->display('mini','x'.$rewards[$i-1]['4_star']) }}
+                                                                    <a href="/card/{{ $card->id }}">
+                                                                        <img style="width:128px;height:auto;"
+                                                                             src="/images/cards/{{ $card->boy_id }}_{{ $card->card_id }}.png">
+                                                                    </a>
+                                                                    {{ 'x'.$rewards[$i-1]['4_star'] }}
                                                                 @endif
                                                             @endforeach
                                                         @endif
                                                         @if ($rewards[$i-1]['3_star'] > 0)
                                                             @foreach($cards as $card)
                                                                 @if ($card->id == $event->rank_3)
-                                                                    {{ $card->display('mini','x'.$rewards[$i-1]['3_star']) }}
+                                                                    <a href="/card/{{ $card->id }}">
+                                                                        <img style="width:128px;height:auto;"
+                                                                             src="/images/cards/{{ $card->boy_id }}_{{ $card->card_id }}.png">
+                                                                    </a>
+                                                                    {{ 'x'.$rewards[$i-1]['3_star'] }}
                                                                 @endif
                                                             @endforeach
                                                         @endif
@@ -140,44 +141,8 @@
                                     @endif
                                 </div>
                             </div>
-
-                        <!--<div class="row">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Ranking</th>
-                                <th>Points</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>
-                                {{$event->rank_5}}
-                                </td>
-                                <td>
-{{$event->points_5}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-{{$event->rank_4}}
-                                </td>
-                                <td>
-{{$event->points_4}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-{{$event->rank_3}}
-                                </td>
-                                <td>
-{{$event->points_3_da}} {{$event->points_3_vo}} {{$event->points_3_pf}}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>-->
                         </div>
                     </div>
-
                 </div>
 
 

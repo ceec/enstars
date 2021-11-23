@@ -28,24 +28,22 @@ $('body').on('click', '.add-card', function () {
     })
 
     $.ajax({
-
         type: "POST",
         url: '/add/user/card',
         data: {card_id: ID},
         dataType: 'json',
         success: function (data) {
             //change the color of the bg, add the class
-            jQuery('#card-panel-' + data.card_id).addClass('panel-info');
+            jQuery('#card-panel-' + data.card_id).addClass('obtained');
             //$('#lastupdated-'+slideID).html(data.date);
             clickedOn.html('Remove');
-            clickedOn.removeClass('add-card');
-            clickedOn.addClass('remove-card');
+            clickedOn.removeClass('add-card btn-success');
+            clickedOn.addClass('remove-card btn-danger');
         },
         error: function (data) {
             console.log('Error:', data);
         }
     });
-
 });
 
 
@@ -61,27 +59,21 @@ $('body').on('click', '.remove-card', function () {
     })
 
     $.ajax({
-
         type: "POST",
         url: '/remove/user/card',
         data: {card_id: ID},
         dataType: 'json',
         success: function (data) {
             //change the color of the bg, remove the class
-            jQuery('#card-panel-' + data.card_id).removeClass('panel-info');
+            jQuery('#card-panel-' + data.card_id).removeClass('obtained');
             //$('#lastupdated-'+slideID).html(data.date);
             //change the text and class of the button
             clickedOn.html('Add');
-            clickedOn.removeClass('remove-card');
-            clickedOn.addClass('add-card');
+            clickedOn.removeClass('remove-card btn-danger');
+            clickedOn.addClass('add-card btn-success');
         },
         error: function (data) {
             console.log('Error:', data);
         }
     });
-
 });
-
-
-
-
