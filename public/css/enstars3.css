@@ -84,8 +84,7 @@ body {
 /* idol.blade.php */
 
 .card-container {
-    width: 160px;
-    height: 200px;
+    width: 100%;
     margin: auto;
 }
 
@@ -96,11 +95,6 @@ body {
 }
 
 @media screen and (min-width: 992px) {
-    .card-container {
-        width: 230px;
-        height: 288px;
-    }
-
     .card {
         width: calc(100% / 4);
         padding: 8px;
