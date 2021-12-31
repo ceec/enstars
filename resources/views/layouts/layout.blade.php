@@ -21,6 +21,7 @@
 
     <!-- Styles -->
     <link href="/css/bootstrapyeti.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-grid.min.css" rel="stylesheet">
     <link href="/css/enstars3.css" rel="stylesheet">
     <link href="/css/boy.css" rel="stylesheet">
 
@@ -157,12 +158,12 @@
 <main>
     @yield('content')
 </main>
-<footer class="footer">
-    <div style="display:flex;align-items:center;">
-        <div class="col-md-4">
+<footer class="footer row align-items-center">
+    <div class="row text-center align-items-center">
+        <div class="col-lg-4">
             Images and Characters From <a href="http://stars.happyelements.co.jp/">あんさんぶるスターズ！</a>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-lg-4">
             <a href="https://twitter.com/enstars_info" data-toggle="tooltip"
                title="My Twitter Page">
               <span class="fa-stack fa-lg">
@@ -191,7 +192,7 @@
               </li>
             </ul> -->
         </div>
-        <div class="col-md-4 text-right">
+        <div class="col-lg-4 text-lg-right">
             <a href="/contact">Contact Us</a>
         </div>
     </div>
